@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>{$cate_title}</title>
+    <link rel="stylesheet" type="text/css" href="new/find/css/reset_ph_v=2016.css">
+    <script src="new/find/js/jquery-1.11.3.min.js"></script>
+    <script src="new/find/js/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="new/find/css/wap_mall_v_2017.css">
+    <script src="new/find/js/fastclick.js"></script>
+	<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+</head>
+<body>
+<section class="container container-details cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="{url x="index" r="find#new_mall"}" class="back-icon"><img src="new/find/images/wap2/my/icon_back.png" width="10" height="18"></a>我的订单</div> 
+	<?php } ?>
+	<!-- 我的订单 -->
+    <p class="order-title"><a href="javascript:;" class="active">全部</a><a href="javascript:;">待发货</a><a href="javascript:;">已发货</a></p>
+    <div class="order-list" style="display: block">
+		{if $order_all}
+		<ul>
+	        {foreach from="$order_all" item="item"}
+	        <li>
+	            <a href="{url x="index" r="find#mall_order_details" p="id=$item.id"}">
+	            <p>{$item.sub_name}{if $item.order_status eq 1}<span>已发货</span>{else}<span class="orange">待发货</span>{/if}</p>
+	            <p>日期：{$item.ex_date}</p>
+			</a>
+	        </li>
+	       {/foreach}
+	    </ul>
+    	
+		{else}
+		<div class="no-order">
+	    	<img src="new/find/images/wap2/mall/img_no_order.png" />
+	    	<p>您还没有相关订单!</p>
+	    </div>
+	    
+		{/if}
+    </div>
+    <div class="order-list">
+    	{if $order_none}
+		<ul>
+	        {foreach from="$order_none" item="item"}
+			
+	        <li>
+			<a href="{url x="index" r="find#mall_order_details" p="id=$item.id"}">
+	            <p>{$item.sub_name}<span class="orange">待发货</span></p>
+	            <p>日期：{$item.ex_date}</p>
+			</a>
+	        </li>
+	       {/foreach}
+	    </ul>
+    	
+		{else}
+		<div class="no-order">
+	    	<img src="new/find/images/wap2/mall/img_no_order.png" />
+	    	<p>您还没有相关订单!</p>
+	    </div>
+	    
+		{/if}
+    </div>
+    <div class="order-list">
+    	{if $order_done}
+		<ul>
+			{foreach from="$order_done" item="item"}
+	        <li>
+	            <a href="{url x="index" r="find#mall_order_details" p="id=$item.id"}">
+	            <p>{$item.sub_name}<span>已发货</span></p>
+	            <p>日期：{$item.ex_date}</p>
+			</a>
+	        </li>
+	       {/foreach}
+	    </ul>
+    	
+		{else}
+		<div class="no-order">
+	    	<img src="new/find/images/wap2/mall/img_no_order.png" />
+	    	<p>您还没有相关订单!</p>
+	    </div>
+	    
+		{/if}
+    </div>
+</section>
+<script>
+    //选项卡切换
+    $(function(){
+        $('.order-title').find('a').click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+            var index = $(this).index();
+            $('.order-list').hide().eq(index).show();
+        });
+    });
+    //页面滚动时，选项卡切换按钮在页面顶部固定不动
+    $(window).scroll(function(){
+        if ( $(window).scrollTop() > 0 ){
+            $(".order-title").css({
+                'position' : 'fixed',
+                'top' : '$(window).scrollTop()'
+            });
+        } else {
+            $(".order-title").css({
+                'position' : 'static',
+                'top' : '0'
+            });
+        }
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<div class="user_top_title bgfb">
+	<a class="current">风险评估</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<form id="questionnaireForm" name="questionnaireForm" class="questionnaire" ajax_url="{url x="index" r="uc_account#assessment_do"}">
+			<ol>
+				<li>
+					<h4>您的年龄？</h4>
+					<ul>
+						<li><label><input type="radio" name="score1" id="q_0_1" value="1" class="pl" />30岁以下</label></li>
+						<li><label><input type="radio" name="score1" id="q_0_2" value="2" class="pl" />31-40岁</label></li>
+						<li><label><input type="radio" name="score1" id="q_0_3" value="3" class="pl" />41-50岁</label></li>
+						<li><label><input type="radio" name="score1" id="q_0_4" value="4" class="pl" />51-60岁</label></li>
+						<li><label><input type="radio" name="score1" id="q_0_5" value="5" class="pl" />60以上</label></li>
+					</ul>
+				</li>
+				<li>
+					<h4>您的职业是什么？</h4>
+					<ul>
+						<li><label><input type="radio" name="score2" id="q_1_1" value="1" class="pl" />无固定职业</label></li>
+						<li><label><input type="radio" name="score2" id="q_1_2" value="2" class="pl" />普通职员</label></li>
+						<li><label><input type="radio" name="score2" id="q_1_3" value="3" class="pl" />专业技术人员</label></li>
+						<li><label><input type="radio" name="score2" id="q_1_4" value="4" class="pl" />一般企事业单位的中高级管理人员</label></li>
+						<li><label><input type="radio" name="score2" id="q_1_5" value="5" class="pl" />金融行业从业人员</label></li>
+					</ul>
+				</li>
+				<li>
+					<h4>您的家庭可支配年收入是多少（人民币）？</h4>
+					<ul>
+						<li><label><input type="radio" name="score3" id="q_2_1" value="1" class="pl" />10万元以下</label></li>
+						<li><label><input type="radio" name="score3" id="q_2_2" value="2" class="pl" />10-20万元</label></li>
+						<li><label><input type="radio" name="score3" id="q_2_3" value="3" class="pl" />20-50万元</label></li>
+						<li><label><input type="radio" name="score3" id="q_2_4" value="4" class="pl" />50-100万元</label></li>
+						<li><label><input type="radio" name="score3" id="q_2_5" value="5" class="pl" />100万元以上</label></li>
+					</ul>
+				</li>
+				<li>
+					<h4>在您每年的家庭可支配收入中，可用于金融出借（储蓄存款外）的比例为？</h4>
+					<ul>
+						<li><label><input type="radio" name="score4" id="q_3_1" value="1" class="pl" />10%以内</label></li>
+						<li><label><input type="radio" name="score4" id="q_3_2" value="2" class="pl" />10%至20%</label></li>
+						<li><label><input type="radio" name="score4" id="q_3_3" value="3" class="pl" />20%至30%</label></li>
+						<li><label><input type="radio" name="score4" id="q_3_4" value="4" class="pl" />30%至50%</label></li>
+						<li><label><input type="radio" name="score4" id="q_3_5" value="5" class="pl" />50%以上</label></li>
+					</ul>
+				</li>
+				<li>
+					<h4>您出借的主要目的？</h4>
+					<ul>
+						<li><label><input type="radio" name="score5" id="q_4_1" value="1" class="pl" />补贴家用</label></li>
+						<li><label><input type="radio" name="score5" id="q_4_2" value="2" class="pl" />养老</label></li>
+						<li><label><input type="radio" name="score5" id="q_4_3" value="3" class="pl" />子女教育</label></li>
+						<li><label><input type="radio" name="score5" id="q_4_4" value="4" class="pl" />资产增值</label></li>
+						<li><label><input type="radio" name="score5" id="q_4_5" value="5" class="pl" />家庭富裕</label></li>
+					</ul>
+				</li>
+				<li>
+					<h4>以下哪项描述最符合您的出借态度？</h4>
+					<ul>
+						<li><label><input type="radio" name="score6" id="q_5_1" value="1" class="pl" />厌恶风险，不希望本金损失，希望获得稳定回报。</label></li>
+						<li><label><input type="radio" name="score6" id="q_5_2" value="2" class="pl" />保守出借，不希望损失本金，愿意承担一定风险</label></li>
+						<li><label><input type="radio" name="score6" id="q_5_3" value="3" class="pl" />对风险的最大接受程度是收回全部本金</label></li>
+						<li><label><input type="radio" name="score6" id="q_5_4" value="4" class="pl" />希望赚取高回报，并愿意为此承担较大的本金损失</label></li>
+						<li><label><input type="radio" name="score6" id="q_5_5" value="5" class="pl" />可以承担一定风险，能承受50%以上的本金损失</label></li>
+					</ul>
+				</li>
+				<li>
+					<h4>您的金融产品出借知识可描述为？</h4>
+					<ul>
+						<li><label><input type="radio" name="score7" id="q_6_1" value="1" class="pl" />完全不了解金融产品出借</label></li>
+						<li><label><input type="radio" name="score7" id="q_6_2" value="2" class="pl" />仅对一种金融产品有粗略了解</label></li>
+						<li><label><input type="radio" name="score7" id="q_6_3" value="3" class="pl" />有限：对几种常见的金融产品及相关风险有初步了解</label></li>
+						<li><label><input type="radio" name="score7" id="q_6_4" value="4" class="pl" />了解：对金融产品及相关风险有所了解，但并不深入</label></li>
+						<li><label><input type="radio" name="score7" id="q_6_5" value="5" class="pl" />丰富：对金融产品及相关风险有丰富的知识和理解。</label></li>
+					</ul>
+				</li>
+				<li>
+					<h4>您的出借出现何种程度的波动时，您会呈现明显的焦虑？</h4>
+					<ul>
+						<li><label><input type="radio" name="score8" id="q_7_1" value="1" class="pl" />本金无损失，但收益未达到预期</label></li>
+						<li><label><input type="radio" name="score8" id="q_7_2" value="2" class="pl" />出现轻微本金损失</label></li>
+						<li><label><input type="radio" name="score8" id="q_7_3" value="3" class="pl" />本金10%以内的损失</label></li>
+						<li><label><input type="radio" name="score8" id="q_7_4" value="4" class="pl" />本金20%-50%的损失</label></li>
+						<li><label><input type="radio" name="score8" id="q_7_5" value="5" class="pl" />本金50%以上的损失</label></li>
+					</ul>
+				</li>
+				<li>
+					<h4>您的出借经验可以描述为？</h4>
+					<ul>
+						<li><label><input type="radio" name="score9" id="q_8_1" value="1" class="pl" />除银行储蓄外，基本没有其他出借经验</label></li>
+						<li><label><input type="radio" name="score9" id="q_8_2" value="2" class="pl" />购买过债权、保险等理财产品</label></li>
+						<li><label><input type="radio" name="score9" id="q_8_3" value="3" class="pl" />参与过股票、基金等产品的交易</label></li>
+						<li><label><input type="radio" name="score9" id="q_8_4" value="4" class="pl" />参与过权证、期货、期权等产品的交易</label></li>
+						<li><label><input type="radio" name="score9" id="q_8_5" value="5" class="pl" />参与过私募、资管、信托等产品的交易</label></li>
+					</ul>
+				</li>
+				<li>
+					<h4>您觉得下面哪个选项可以最好的描述您的出借目标？</h4>
+					<ul>
+						<li><label><input type="radio" name="score10" id="q_9_1" value="1" class="pl" />避免亏损</label></li>
+						<li><label><input type="radio" name="score10" id="q_9_2" value="2" class="pl" />谨慎成长</label></li>
+						<li><label><input type="radio" name="score10" id="q_9_3" value="3" class="pl" />稳健成长</label></li>
+						<li><label><input type="radio" name="score10" id="q_9_4" value="4" class="pl" />显著成长</label></li>
+						<li><label><input type="radio" name="score10" id="q_9_5" value="5" class="pl" />激进成长</label></li>
+					</ul>
+				</li>
+				<li>
+					<h4>您认为自己能承受的最大出借损失是多少？</h4>
+					<ul>
+						<li><label><input type="radio" name="score11" id="q_10_1" value="1" class="pl" />本金不亏损</label></li>
+						<li><label><input type="radio" name="score11" id="q_10_2" value="2" class="pl" />10%以内</label></li>
+						<li><label><input type="radio" name="score11" id="q_10_3" value="3" class="pl" />10%-30%</label></li>
+						<li><label><input type="radio" name="score11" id="q_10_4" value="4" class="pl" />30%-50%</label></li>
+						<li><label><input type="radio" name="score11" id="q_10_5" value="5" class="pl" />超过50%</label></li>
+					</ul>
+				</li>
+				<li>
+					<h4>您可接受的出借的最长年限？</h4>
+					<ul>
+						<li><label><input type="radio" name="score12" id="q_11_1" value="1" class="pl" />半年以内</label></li>
+						<li><label><input type="radio" name="score12" id="q_11_2" value="2" class="pl" />半年至1年</label></li>
+						<li><label><input type="radio" name="score12" id="q_11_3" value="3" class="pl" />1年至3年</label></li>
+						<li><label><input type="radio" name="score12" id="q_11_4" value="4" class="pl" />3年至5年</label></li>
+						<li><label><input type="radio" name="score12" id="q_11_5" value="5" class="pl" />5年以上</label></li>
+					</ul>
+				</li>
+			</ol>
+			<p class="ta_c">
+				<input type="button" class="submit" id="assessment_submit" value="完成" />
+				<input type="button" class="reset" id="assessment_reset" value="重新评估" />
+			</p>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,72 @@
+{include file="inc/header.html"}
+<style>
+    .fi-jf-top{ width: 100%; overflow: hidden; position: static; top: 0;}
+    .fi-jf-my{ height: 48px; line-height: 48px; background: linear-gradient(to bottom, #575cde 0%, #4672de 100%); overflow: hidden; color: white; text-align: center; font-size: 1.8rem; font-weight: bold; display: none;}
+</style>
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="{url x="index" r="find#new_mall"}" class="back-icon"><!-- <a href="{url x="find" r="score"}" class="back-icon"> --><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>我的积分</div>
+<?php } ?>
+	<!-- 积分记录 -->
+    <div class="fi-jf-top">
+		<div class="fi-jf-banner">
+	        <p>{$scores}</p><span>我的积分</span>
+	    </div>
+        <p class="fi-jf-my">我的积分：{$scores}</p>
+		<p class="fi-re-title">
+	    {foreach from="$score" item="vo" key=key}     
+        <a href="{$vo.url}" {if $key eq $score_type}class="active"{/if}>{$vo.name}</a>
+    {/foreach}
+	</p>
+	</div>
+	
+    <ul class="fi-re-list" style="display: block">
+	{if !$sign_get}
+    <div class="pt-coupon-no">
+        <img src="{$TMPL}/images/wap2/pt/10.png"  class="pt-in-false-img pt-coupon-no-img">
+        <h2>这里空空如也！</h2>
+    </div>
+    {else}
+	 {foreach from="$sign_get" item="item" name=goods}
+        <li>
+            <p class="fi-re-time"><span>{$item.week}</span><span>{$item.time}</span></p>
+            <p class="fi-re-action"><i class="{if $score_type}scire-r{else}scire-i{/if}"></i><span>{$item.memo}</span><span>{$item.create_time_ymd}</span></p>
+            <p class="fi-re-num">{if $score_type eq 1}{else}+{/if}{$item.score}积分</p>
+        </li>
+    {/foreach}
+	{/if}
+    </ul>
+</section>
+<script>
+    //选项卡切换
+    $(function(){
+        $('.fi-re-title').find('a').click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+            var index = $(this).index();
+            $('.fi-re-list').hide().eq(index).show();
+        });
+    });
+    //页面滚动时，选项卡切换按钮在页面顶部固定不动
+	/*
+    $(window).scroll(function(){
+        if ( $(window).scrollTop() > 0 ){
+            $(".fi-jf-top").css({
+                'position' : 'fixed',
+                'top' : '$(window).scrollTop()'
+            });
+            $('.fi-jf-banner').hide();
+            $('.fi-jf-my').show();
+        } else {
+            $(".fi-jf-top").css({
+                'position' : 'static',
+                'top' : '0'
+            });
+            $('.fi-jf-my').hide();
+            $('.fi-jf-banner').show();
+        }
+    });
+	*/
+</script>
+</body>
+</html>

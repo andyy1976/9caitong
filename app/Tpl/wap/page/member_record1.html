@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">     
+<meta content="yes" name="apple-mobile-web-app-capable">     
+<meta content="black" name="apple-mobile-web-app-status-bar-style">     
+<meta content="telephone=no" name="format-detection">  
+<title>成长记录</title>
+<link rel="stylesheet" type="text/css" href="/new/css/member_level/style.css" />
+<script type="text/javascript" src="/new/js/page/resize.js"></script>
+</head>
+<body>
+	<div class="main-bg">
+	<?php if(!es_session::get('MachineInfo')) {?>
+	<header>
+		<a href="javascript:;" onclick="window.history.go(-1);" class="head-perv">
+			<img src="/new/images/memberLevel/head-ico1.png" alt="" />
+		</a>
+		<a href="#" class="head-close">
+			<img src="/new/images/memberLevel/head-ico2.png" alt="" />
+		</a>
+		<h1>成长记录</h1>
+	</header>
+	{?php } ?}
+	<div class="record-img">
+		<img src="/new/images/memberLevel/record-img.png" alt="" />
+	</div>
+	<p class="record-p1">暂无成长记录</p>
+	</div>
+</body>
+</html>

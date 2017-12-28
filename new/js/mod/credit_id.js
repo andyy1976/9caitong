@@ -1,0 +1,1 @@
+define("new/js/mod/credit_id",["new/css/layer.css","$","layer"],function(e){e("new/css/layer.css");var n=e("$"),c=e("layer");n("#authenticationRealname").click(function(){c.alert("请绑定银行卡来完成实名认证",{title:"提示",closeBtn:0,btn:"去绑定"},function(){window.location.href="/member.php?ctl=uc_money&act=bank"})})});

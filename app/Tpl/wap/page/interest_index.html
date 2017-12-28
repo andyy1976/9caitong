@@ -1,0 +1,32 @@
+{include file="inc/iheader.html"} 
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+</head>
+<body>
+<section class="cf">
+    <?php if(!$_GET['device']) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>计息方式</div>
+    <?php } ?>
+    <h3>募集期规则</h3>
+    <div class="pt_c_i cf">
+        <img src="{$TMPL}/images/wap2/pt/img_count_interest_1.png">
+        <dl><dt>1、</dt><dd>项目设20天募集期，提前满标可提前计息，未满标将流标。</dd></dl>
+        <dl><dt>2、</dt><dd>满标后 ，次日开始计息，按月付息、到期还本。</dd></dl>
+        <dl><dt>3、</dt><dd>募集期收益暂由平台补贴，按项目预期收益率计息。</dd></dl>
+        <dl><dt>4、</dt><dd>到期时统一返还本金、募集期收益和优惠券本息。</dd></dl>
+    </div>
+    <h3>收益计算方式</h3>
+    <div class="pt_c_i">
+        <img src="{$TMPL}/images/wap2/pt/img_count_interest_2.png">
+        <p>举个栗子：</p>
+        <p>小明2月1日出借了一个项目，3个月期限，预期年化收益率7%，本金10000元，代金券20，红包30。项目2月3日满标。<br>则这笔出借收益计算方法为：<br>出借总额为：10000+20+30<br>出借期限为：365/12×3+3=94.25天<br>到期后，小明可获得收益计算方法为：<br>（10000+20+30）×7%/365×94.25天=可获收益</p>
+    </div>
+</section>
+</body>
+</html>

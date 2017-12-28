@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>微信VIP俱乐部上线</title>
+    <link rel="stylesheet" type="text/css" href="new/activity/wxvip/css/reset_ph_v=2016.css">
+    <script src="new/activity/wxvip/js/jquery-1.11.3.min.js"></script>
+    <script src="new/activity/wxvip/js/layer-v3.0.3/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="new/activity/wxvip/css/wap_vip_v_2017.css?11">
+    <script src="new/activity/wxvip/js/fastclick.js"></script>
+	<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+  
+</head>
+<body>
+<section class="container cf">
+    <!-- <div class="header header-vip"> <a href="javascript:history.go(-1)" class="back-icon"><img src="new/activity/wxvip/images/wap2/my/icon_back.png" width="10" height="18"></a><a href="javascript:;" class="close-icon"><img src="new/activity/wxvip/images/wap2/mall/icon_close.png" width="20" height="18" /> </a>微信会员体系上线<a href="javascript:;" class="help-icon" onclick="popBox()"><img src="new/activity/wxvip/images/wap2/vip/icon_share.png" width="20" height="20" /></a></div> -->
+    <!-- 微信会员 -->
+    <div class="public_bg"></div>
+	<div class="content">
+        <a href="javascript:;" class="btn-join">点击加入会员</a>
+        <ul class="vip-list">
+            <li><span>普卡</span><p>（<=500玖币）</p><p>每日可抽奖1次</p></li>
+            <li><span>铜卡</span><p>（501-1000玖币）</p><p>每日可抽奖2次</p></li>
+            <li><span>银卡</span><p>（1001-2000玖币）</p><p>每日可抽奖3次</p></li>
+            <li><span>金卡</span><p>（2001-5000玖币）</p><p>每日可抽奖4次</p></li>
+            <li><span>钻石</span><p>（>5000玖币）</p><p>每日可抽奖5次</p></li>
+        </ul>
+        <img src="new/activity/wxvip/images/wap2/vip/img_ewm.png" class="img-ewm" />
+    </div>
+</section>
+<div id="popBg"></div>
+<div id="popBox">
+    <a href="javascript:;"><img src="new/activity/wxvip/images/wap2/fi/bg_share.png"></a>
+</div>
+<script type="text/javascript" src="new/activity/wxvip/js/flexible.js"></script>
+
+</body>
+</html>

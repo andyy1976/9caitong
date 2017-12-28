@@ -1,0 +1,39 @@
+{include file="inc/nheader.html"}
+		<div class="wrapper">
+			<div class="activitytab ofh">
+				<ul class="center ofh">
+					<li><a class="cur">当前活动</a></li>
+					<li><a href="{url x="index" r="activity#past"}">往期活动</a></li>
+				</ul>
+			</div>
+			<div class="wrap_f0">
+				<div class="center ofh">
+					<ul class="activity_list ofh">
+						{foreach from=$list item="vo"}
+						<li>
+							<a href="{$vo.pc_url}"><img src="{$vo.pc_img}" /></a>
+							<p>{$vo.title}</p>
+							<p>活动时间：<span>{$vo.start_time}-{$vo.end_time}</span></p>
+							<a href="{$vo.pc_url}" class="btn underway">查看详情</a>
+						</li>
+						{/foreach}
+					</ul>
+				</div>
+				<div class="blank50"></div>
+			</div>
+		</div>
+{include file="/inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{
+					"$":"new/js/lib/jquery-1.8.3",
+					"layer":"new/js/lib/layer"
+				},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+			});
+			seajs.use(["new/js/page/common"])
+		</script>
+	</body>
+</html>

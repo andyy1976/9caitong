@@ -1,0 +1,118 @@
+<body>
+<section class="container cf">
+    <div class="header"><a href="{$ajax_return}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>消息中心</div>
+    <!-- 设置-消息中心-公告、报道、动态 -->
+    <div class="news_tab_title">
+        <ul>
+            {foreach from="$news_url" item="vo" key=key}
+                <li {if $key eq $type}class="active"{/if}> <a href="{$vo.url}">{$vo.name}</a></li>
+            {/foreach}
+        </ul>
+        <style type="text/css">
+            .news_tab_title a{color:#666;}
+            .news_tab_title .active a{color:#5066de;}
+        </style>
+    </div>
+    {if $type eq 0}
+    <ul class="news_tab_content" style="display: block;">
+    {foreach from=$news_list item=news}
+        <li>
+            <a href="{$news.url}">
+                <h4>{function name="msubstr" v=$news.title s=0 e=16}</h4>
+                <p>{function name="msubstr" v=$news.content s=0 e=56}</p>
+                <span>{$news.create_time}</span>
+            </a>
+        </li>
+    {/foreach}
+    </ul>
+    {elseif $type eq 1}
+    <ul class="news_tab_content" style="display: block;">
+    {foreach from=$news_list item=news}
+        <li>
+            <a href="{$news.url}">
+                <div>
+                    <h5>{function name="msubstr" v=$news.title s=0 e=30}</h5>
+                    <span>{$news.create_time}</span>
+                </div>
+                <img src="{$news.img}" />
+            </a>
+        </li>
+    {/foreach}
+    </ul>
+    {else}
+    <ul class="news_tab_content" style="display: block;">
+    {foreach from=$news_list item=news}
+        <li>
+            <a href="{$news.url}">
+                <div>
+                    <h5>{function name="msubstr" v=$news.title s=0 e=30}</h5>
+                    <span>{$news.create_time}</span>
+                </div>
+                <img src="{$news.img}" />
+            </a>
+        </li>
+    {/foreach}
+    </ul>
+    {/if}
+</section>
+<script type="text/javascript">
+//选项卡切换 
+$('.news_tab_title').find('li').click(function(){
+    $('.news_tab_title').find('li').removeClass('active');
+    $(this).addClass('active');
+    $('.news_tab_content').hide();
+    $('.news_tab_content').eq($(this).index()).show();
+});
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var type = {$type};
+        $.ajax({
+            type:'POST',
+            url:"{url x="index" r="uc_set#ajaxNews"}",
+            data:{'type':type},
+            dataType:'json',
+            success:function(msg){
+                console.log(msg);
+                if(parseInt(msg-{$page})>0){
+                  scroll(msg);
+                }
+            }
+        })
+        function scroll(msg){
+            var range = 50;             //距下边界长度/单位px
+            var elemt = 500;            //插入元素高度/单位px           //设置加载最多次数
+            var page = 1;
+            var totalheight = 0; 
+            $(window).scroll(function(){
+                var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+                var type = {$type};
+                totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+                if(($(document).height()-range) <= totalheight) {
+                    page++;
+                    var nums=parseInt((msg/{$page})+1);
+                    if(page<=nums) {
+                        getJSON(page,type);
+                    }                   
+                }
+            });
+        }
+        // 请求数据加载到页面中。。。
+        function getJSON(page,type){
+            page=parseInt(page);
+            $.ajax({
+                type:"POST",
+                url:"{url x="index" r="uc_set#news_list"}",
+                data:{'page':page,'type':type},
+                success :function (str){
+                    var main = $(".news_tab_content");
+                    if(str!='false'){
+                        main.append(str);
+                    }
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

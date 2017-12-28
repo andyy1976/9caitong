@@ -1,0 +1,186 @@
+<?php 
+$this->_var['pagecss'][] = $this->_var['TMPL']."/css/reset_ph_v=2016.css";
+$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_public_v=2016.css";
+$this->_var['pagejs'][] = $this->_var['TMPL']."/js/jquery-1.11.3.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL']."/js/fastclick.js";
+if(MODULE_NAME!="uc_autoinvest"){//自动投标使用的新版layer
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/layer/layer.js";
+}
+$this->_var['pagejs'][] = $this->_var['TMPL']."/js/set_login.js";
+if(MODULE_NAME=="index"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_v=2016.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/jquery.kxbdMarquee.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/countUp.min.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/jquery.AshAlom.gaugeMeter-2.0.0.min.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/TouchSlide.1.1.js";
+}
+if(MODULE_NAME=="salesman"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/iosSelect.css";
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_my_v=2016.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/iscroll.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/iosSelect.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/areaData_v2.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/zepto.js";
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_fi_v=2016.css";
+}
+if(substr(MODULE_NAME,0,3)=="uc_"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/swiper.min.css";
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_my_v=2016.css";
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_cg_account.css";
+}
+if(MODULE_NAME=="invite"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_fi_v=2016.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/android/ShareSDK.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/simpScroller-min.js";
+}
+if(MODULE_NAME=="user"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_rl_v=2016.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/utils/des.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/script.js";
+
+}
+if(MODULE_NAME=="agreement"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_rl_v=2016.css";
+}
+if(MODULE_NAME=="taste"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_fi_v=2016.css";
+}
+if(MODULE_NAME=="score"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_fi_v=2016.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/android/ShareSDK.js";
+}
+if(MODULE_NAME=="notice"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_my_v=2016.css";
+}
+if(MODULE_NAME=="find"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_fi_v_2017.css";
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_fi_v=2016.css";
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/swiper-4.0.5.min.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/countUp.min.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/swiper-4.0.5.min.js";
+}
+if(MODULE_NAME=="deals"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_pt_v=2016.css";
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/swiper.min.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/jquery.easypiechart.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/idangerous.swiper.min.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/iscroll/iscroll.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/navbarscroll.js";
+}
+if(MODULE_NAME=="deal" || MODULE_NAME=="experience_deal" || MODULE_NAME=="plandeal"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_pt_v=2016.css";
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/lightSlider.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/jquery.lightSlider.min.js";
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/js/sweetalert/sweetalert.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/utils/des.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/script.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/simpScroller-min.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/sweetalert/sweetalert-dev.js";
+}
+if(MODULE_NAME=="uc_set"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/jquery-rebox.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/jquery-rebox.js";
+}
+if(MODULE_NAME=="payment"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_my_v=2016.css";
+}
+if(MODULE_NAME=="withdraw"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_my_v=2016.css";
+}
+if(MODULE_NAME=="guarantee"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/swiper.min.css";
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_index_safe.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/swiper.min.js";
+}
+if(MODULE_NAME=="interest"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/pt_count_interest.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/iSlider.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/iSlider.plugin.dot.js";
+}
+if(MODULE_NAME=="welfare"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/wap_index_welfare.css";
+}
+if(MODULE_NAME=="uc_account"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/iosSelect.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/iscroll.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/iosSelect.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/areaData_v2.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/zepto.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/utils/des.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/script.js";
+}
+if(MODULE_NAME=="uc_center"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/iosSelect.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/iscroll.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/iosSelect.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/areaData_v2.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/src/zepto.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/swiper.min.js";
+}
+
+if(MODULE_NAME=="uc_money" && ACTION_NAME=="incharge"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/js/sweetalert/sweetalert.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/utils/des.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/script.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/sweetalert/sweetalert-dev.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/simpScroller-min.js";
+}
+if(MODULE_NAME=="uc_money" && ACTION_NAME=="bank"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/js/sweetalert/sweetalert.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/utils/des.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/script.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/sweetalert/sweetalert-dev.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/simpScroller-min.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/swiper.min.js";
+}
+if(MODULE_NAME=="uc_autoinvest"){
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/autoinvest/mobiscroll/mobiscroll.jquery.min.css";
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/autoinvest/mobileSelect.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/autoinvest/layer.js";	
+	$this->_var['pagecss'][] = $this->_var['TMPL']."/css/autoinvest/wap_auto_tender_v_2017.css";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/autoinvest/mobileSelect.min.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/autoinvest/mobiscroll.jquery.min.js";
+}
+if(MODULE_NAME=="taste"){
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/sweetalert/sweetalert.min.js";
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/simpScroller-min.js";
+}
+if(MODULE_NAME=="uc_voucher"){
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/simpScroller-min.js";
+}
+if(app_conf("APP_MSG_SENDER_OPEN")==1)
+{
+	$this->_var['pagejs'][] = $this->_var['TMPL']."/js/msg_sender.js";
+	$this->_var['cpagejs'][] = $this->_var['TMPL']."/js/msg_sender.js";
+}
+?>
+{function name="parse_css" v="$pagecss"}
+<script type="text/javascript">
+var APP_ROOT = '{$APP_ROOT}';;
+var LOADER_IMG = '{$TMPL}/images/lazy_loading.gif';
+var ERROR_IMG = '{$TMPL}/images/image_err.gif';
+var TMPL = '{$TMPL}';
+var send_span = {function name="app_conf" v="SEND_SPAN"}000;
+{if app_conf("APP_MSG_SENDER_OPEN") eq 1 && $DEAL_MSG_COUNT > 0}
+var to_send_msg = true;
+{else}
+var to_send_msg = false;
+{/if}
+var __LOGIN_KEY = "{insert name="get_login_key"}";
+var __HASH_KEY__ = "{insert name="get_hash_key"}";
+</script>
+<!-- <script type="text/javascript" src="{$APP_ROOT}/public/runtime/app/lang.js"></script> -->
+{function name="parse_script" v="$pagejs" c="$cpagejs"}
+
+<!--[if lt IE 10]>
+<script type="text/javascript" src="{$TMPL}/js/PIE.js"></script>
+<![endif]-->
+<script language="javascript">
+$(function() {
+    if (window.PIE) {
+        $('.bdr3,.bdr5,.user_info_d a,.main_adv_ctl li,.after_login .user_money A,.listbtn SPAN').each(function() {
+            PIE.attach(this);
+        });
+    }
+});
+</script>

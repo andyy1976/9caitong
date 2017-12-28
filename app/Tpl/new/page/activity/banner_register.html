@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<title>新手专享</title>
+		<meta name="keywords" content="{if $page_keyword}{$page_keyword}{/if}{$site_info.SHOP_KEYWORD}" />
+		<meta name="description" content="{if $page_description}{$page_description}{/if}{$site_info.SHOP_DESCRIPTION}" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" type="text/css" href="/new/css/sp_public.css"/>
+		<link rel="stylesheet" type="text/css" href="new/activity/P_banner_register/css/reset_pc_v=2016.css">
+		<link rel="stylesheet" type="text/css" href="new/activity/P_banner_register/css/index.css" />
+		<script src="/new/sp_public/jquery-1.8.3.min.js" type="text/javascript" ></script>
+		<script src="new/activity/P_banner_register/js/index.js" type="text/javascript"></script>
+		<script src="new/activity/P_banner_register/js/OnlyNum.js" type="text/javascript"></script>
+		<script src="/new/sp_public/layer.js" type="text/javascript" ></script>
+		<!--[if lt IE 9]>
+		<script src="/new/js/lib/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+{include file="inc/sheader.html"}
+    <div class="cetitle">
+	    <ul>
+			<li id="newpro"><a href="#new">新人福利</a></li>
+			<li id="howmon"><a href="#how">如何出借</a></li>
+			<li id="actimon"><a href="#act">活动多多</a></li>
+			<li id="somepre"><a href="#pro">常见问题</a></li>
+			<li class="topLiOne" id="topLiOne">返回顶部</li>
+			<li class="topLi" id="topLi"><span style="font-size:14px;margin-left:10px;<p></p>">TOP</span></li>
+		</ul> 
+	
+	</div>
+
+    <div class="newTop"><img src="new/activity/P_banner_register/images/newTop.png"/></div>
+	<a name="new"></a>
+	<div class="newWelbg" id="newWelbg">
+	    <div class="see-more">
+			<p class="ExpX cf">玖财通是创新的移动互联网金融平台，致力于打造安全、稳定、规范的互联网金融产品，为用户提供安全便捷的借贷服务</p><!-- <p class="see-moreTwo cf" >查看玖财通更多信息 &gt;</p> --><br>
+		    <div class="noOne-new">
+			    <p class="titleOnex"><img src="new/activity/P_banner_register/images/noone.png"/></p>
+				<p class="vipOne"><img src="new/activity/P_banner_register/images/an-crown.png"/><span>专享特权1</span>注册就送84442体验金+50代金券</p>
+				<div class="experience-gold">
+				    <ul>
+					    <li><p class="monycoun"><span class="mon">8888</span>元</p><p class="monycounf">注册体验金</p></li>
+						<li><p class="monycoun"><span class="mon">58888</span>元</p><p class="monycounf">出借体验金</p></li>
+						<li><p class="monycoun"><span class="mon">16666</span>元</p><p class="monycounf">分享体验金</p></li>
+						<li class="cashMonyx"><p class="cashm"><span class="mcoun">50</span>元</p><p class="cashmt">代金券</p><p class="Mfoot">代金券</p></li>
+					</ul>
+				</div>
+				<p class="vipOne"><img src="new/activity/P_banner_register/images/an-crown.png"/><span>专享特权2</span>可体验新手专享产品</p>
+				<div class="Novice">
+				    <ul>
+					    <li class="yearget"><p class="lilvZo"><span class="lilv">6.5</span>%</p><p class="">预期年化收益</p></li>
+						<li><p class="monthOneZo"><span class="monthOne">1</span>个月</p><p class="">出借期限</p></li>
+						<li><p class="setMoneyZo"><span class="setMoney">100</span>元</p><p class="">起投金额</p></li>
+					</ul>
+					<div>
+					    <img class="jibtn"  src="new/activity/P_banner_register/images/jibtn.png"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+    <a name="how"></a>
+	<div class="howInvbg">
+	    <div class="howInvOne">
+		    <p class="titleOnex"><img src="new/activity/P_banner_register/images/notwo.png"/></p> 
+			<ul>
+			      <!-- icon测class为 ：imgcai时 是未登录状态 颜色为灰色
+				       icon测class为 ："空"时 是未登录状态 颜色为彩色
+				       文案的class为 ：desc时是未登录状态颜色为#666
+					   文案的class为 ：yi时是登录状态，颜色为#333
+				  -->
+			
+			    
+				<li class="invli">
+				    <p class="shu">1</p><p class="wenzi">注册</p>
+					<p class="">
+					{if $user_msg.id}
+						<img  src="new/activity/P_banner_register/images/register.png"/></p><div>
+						<p class="desc">您已注册，{function name="hideMobile" v=$user_msg.mobile}</p>
+					{else}
+					<div>
+					<img src="new/activity/P_banner_register/images/resgihui.png"/></p><div>
+					<a href="{url x="index" r="user#register"}"><p class="yi">点击注册</p></a>
+					{/if}
+					</div>
+				</li>
+				<li class="xiaoyu"><img src="new/activity/P_banner_register/images/xiao.png"/></li>
+				<li class="invli">
+					<p class="shu">2</p><p class="wenzi">实名认证</p>
+					<p class="">
+					{if $user_msg.idcardpassed}
+					<img  src="new/activity/P_banner_register/images/realname.png"/></p>
+					<div>
+					<p class="desc">您已完成实名认证</p>
+					{else}
+					<img src="new/activity/P_banner_register/images/realhui.png"/></p>
+					<div>
+					<a href="{url x="index" r="uc_money#bank"}"><p class="yi">去实名认证</p></a>
+					{/if}
+					</div>
+				</li>
+				<li class="xiaoyu"><img src="new/activity/P_banner_register/images/xiao.png"/></li>
+				<li class="invli">
+					<p class="shu">3</p><p class="wenzi">账户充值</p>
+					<p class="chong"><img class="imgcai" src="new/activity/P_banner_register/images/account.png"/><img src="new/activity/P_banner_register/images/acchui.png"/></p>
+					<div><p >我要充值</p><a href="{url x="index" r="uc_money#incharge"}"><p class="yi">我要充值</p></a></div>
+				</li>
+				<li class="xiaoyu"><img src="new/activity/P_banner_register/images/xiao.png"/></li>
+				<li class="invli">
+					<p class="shu">4</p><p class="wenzi">体验出借</p>
+					<p class="lastimg"><img class="imgcai" src="new/activity/P_banner_register/images/invmoney.png"/><img  src="new/activity/P_banner_register/images/invhui.png"/></p>
+					<div><p >我出借资</p><a href="{url x="index" r="deals"}"><p class="yi">我要出借</p></a></div>
+				</li>
+			</ul>
+		</div>  
+	</div>
+    <a name="act"></a>
+	<div class="avtivbg">
+	    <div class="active">
+		    <p class="titleOnex"><img src="new/activity/P_banner_register/images/nothree.png"/></p> 
+			<ul>
+				<li class="exp"><p class="expPa">注册即送体验金</p><p class="activetime">活动时间：<span>2017.05.01-2017.05.31</span></p><a href="{url x="index" r="activity#registered_experience"}"><p class="btnexp">查看详情</p></a></li>
+				<li class="abs"><p class="expPa">首尾标送红包</p><p class="activetime">活动时间：<span>2017.05.01-2017.05.31</span></p><a href="{url x="index" r="activity#P633&activity_id=10"}"><p class="btnexp">查看详情</p></a></li>
+				<!-- <li class="incint"><p class="expPa">加息多多,“壕”有钱拿</p><p class="activetime">活动时间：<span>2017.05.01-2017.05.31</span></p><a href="{url x="index" r="activity#registered_experience"}"><p class="btnexp">查看详情</p></a></li> -->
+				<li class="prin"><p class="expPa">本金复投，收益轻松涨起来</p><p class="activetime">活动时间：<span>2017.05.01-2017.05.31</span></p><a href="{url x="index" r="activity#P632&activity_id=8"}"><p class="btnexp">查看详情</p></a></li>
+				<!-- <p class="lookmore">查看更多活动&gt;</p>
+ -->			</ul>
+		</div>
+	</div>
+	<a name="pro"></a>
+	<div class="problemBg">
+	    <div class="problem">
+		    <p class="titleOnex"><img src="new/activity/P_banner_register/images/nofoor.png"/></p> 
+		    <ul>
+			    <li class="problemclass"><span class="jiajian">+</span>关于玖财通</li>
+				<ol>
+				   <li class="odd">1.玖财通是怎样的平台？</li>
+				   <li class="even">玖财通是北京玖承资产管理有限公司旗下的移动互联网金融平台，注册资本1亿元，致力于为广大缺乏投融资渠道的人们提供一个安全、诚信、低风险的信息平台，满足借款方资金需求与出借方财富增值需求，为客户提供投融资全方位解决方案。</li>
+				   <li class="odd">2.可以在哪些地方使用玖财通？</li>
+				   <li class="even">玖财通APP端：可以在手机端各大应用市场安装“玖财通”使用。<br>
+                       玖财通PC端：可在电脑浏览器中访问www.9caitong.com。<br>
+                       玖财通WAP端：可在浏览器中访问wap.9caitong.com或关注玖财通微信公众号。<br>
+                       玖财通微信端：可以在微信中搜索“玖财通”并关注该微信公众号。</li>
+					<li class="odd">3.在玖财通出借安全吗？</li>
+                    <li class="even">技术层面：<br>
+                        平台采用全球先进的阿里云金融服务，国际标准的SSL安全加密技术，中国金融中心CFCA数字证书，在保证快速、高效交易的同时，最大限度保证用户交易安全。<br>
+                        合规层面：<br>
+                        玖财通自成立伊始，积极响应国家相关部门政策，在打造平台的同时，步步遵循合规指导意见。无论是ICP证书的获得，SSL 加密协议和CFCA数字证书的签订使用无一不体现这一点。目前正在洽谈银行存管系统，预计近期上线。</li>   
+				</ol>
+				<li class="problemclass"><span class="jiajian">+</span>登录与注册</li>
+				<ol>
+				   <li class="odd">1.注册成功后，有哪些奖励？</li>
+				   <li class="even">玖财通新用户注册成功后，即可获得84442元体验金和50元代金券。体验金收益高达115.6元。</li>    
+				</ol>
+				<li class="problemclass"><span class="jiajian">+</span>实名认证</li>
+				<ol>
+				   <li class="odd">1.为何要实名验证？</li>
+				   <li class="even">为确认出借人的身份以及保证合同的有效性与合法性，玖财通需要对平台的所有用户进行身份验证，同时我们也会通过实名认证验证您设置的提现银行账户是否属于您本人。为了确保您的资金安全，您需要在首次出借前进行实名认证。当用户提现或维权时，平台都将核实身份信息。</li>    
+				</ol>
+				<li class="problemclass"><span class="jiajian">+</span>资金与回款</li>
+				<ol>
+				   <li class="odd">1.什么是募集期？出借后募集期间有收益吗？</li>
+				   <li class="even">根据互联网金融相关部门规定，网络借贷项目的资金募集期不超过20天。<br>
+                       募集期是有收益的，募集期收益由玖财通平台补贴给用户作为站岗资金的福利。<br>
+                       募集期收益计算方式为:出借金额*出借后募集天数*项目年化收益/365 </li> 
+				   <li class="odd">2.出借后何时计息？如何派息？如何计算收益？</li>
+				   <li class="even">玖财通平台项目的还款方式为按月付息，到期还本。<br>
+					   项目期间每期返还项目每期收益，最后一期返还最后一期收益和出借本金外，额外返还募集期收益。<br>
+					   募集期收益=出借金额*出借后募集天数*项目年化收益/365<br>
+					   项目收益=项目天数*出借金额*项目年化收益/365 </li>    
+				</ol>
+				<li class="problemclass"><span class="jiajian">+</span>充值与提现</li>
+				<ol>
+				   <li class="odd">1.什么是同卡进出？为什么要选择同卡进出？</li>
+				   <li class="even">为保障用户资金安全，使用快捷支付的用户需遵循同卡进出的规则。同卡进出是指使用快捷支付的用户，绑定后充值和提现只能通过这一张银行卡来完成，即使手机丢失银行卡账号泄露资金仍不会提取到其他银行卡，最大限度保障用户的资金安全。 </li> 
+				   <li class="odd">2.如何充值？</li>
+				   <li class="even">1)充值方式分为网银充值和快捷充值，暂不支持信用卡充值，每日的充值限额依据各银行限额为准。<br>
+					   2)首次使用招商银行卡快捷充值，需要校验银行卡密码。后续再用招行卡充值不需要校验卡密。<br>
+					   3)由于网络传输延迟问题，充值成功后可能玖财通账户可用余额未增加。如果遇到这种情况请您将付款成功的页面截图，然后刷新页面。如果刷新未能解决问题，请您拨打玖财通客服电话010-53608035，客服人员会马上处理您的问题。 </li>
+                   <li class="odd">3.提现资金多久到账？提现需要手续费吗？</li>
+				   <li class="even">提现申请成功后，将在1个工作日（双休日或法定节假日顺延）到账，请您注意查收。为保证提现额度与到账速度，请完善银行卡的支行信息。<br>
+					   为防止恶意转账、套现等行为，充值的资金，未出借部分将按照提现金额收取0.5%的手续费，出借后的资金提现将不收取任何手续费。 </li> 					   
+				</ol>
+				<li class="problemclass"><span class="jiajian">+</span>体验金与虚拟货币</li>
+				<ol>
+				   <li class="odd">1.什么是代金券和红包？如何使用？</li>
+				   <li class="even">1.代金券和红包是玖财通平台的虚拟货币，可用来出借使用。<br>
+					   2.代金券使用比例为1:50，即出借1000元可使用20元代金券，红包没有使用比例限制；<br>
+					   3.新手标和尾标不可使用红包/代金券；<br>
+					   4.红包和代金券不可同时使用。 </li> 
+				   <li class="odd">2.体验金怎样获得？如何使用？</li>
+				   <li class="even">体验金是玖财通发放给用户，用于体验出借的一种虚拟出借产品。完成注册即可分别获得8888注册体验金、58888出借体验金、16666分享体验金。<br>
+						注册体验金：可直接使用，计息结束后可领取收益。<br>
+						出借体验金：出借除新手标以外的任何标的后即可解锁使用，计息结束后可领取收益。<br>
+						分享体验金：邀请三个好友注册并实名认证，且好友均使用注册体验金后即可解锁使用，计息结束后可领取收益。 </li>    
+				</ol>
+				<li class="problemclass"><span class="jiajian">+</span>邀请好友</li>
+				<ol>
+				   <li class="odd">1.如何邀请好友？</li>
+				   <li class="even">在玖财通APP【账户】-【邀请好友】页面通过以下三种方式均可邀请好友：<br>
+						1.点击“邀请好友”按钮，将邀请链接通过微信/朋友圈/QQ分享给好友，好友完成注册。<br>
+						2.好友扫描“我的二维码”进入到注册页面完成注册。<br>
+						3.好友在注册页面填写你的邀请码，完成注册。<br>
+						注册后30天内完成实名认证，即可成功邀请一位好友。 </li> 
+				   <li class="odd">2.邀请好友有什么奖励？</li>
+				   <li class="even">每邀请一位好友您即可获得20元代金券，超过50人，不再发放奖励。 </li>    
+				</ol>
+			</ul>
+			
+		</div>
+		<div class="di"><br></div>
+	</div>
+	
+
+{include file="inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+			});
+			seajs.use(["/new/js/page/common"])
+		</script>
+	</body>
+</html>

@@ -1,0 +1,17 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+	<div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>体验金明细</div>
+	<!-- 体验金明细 -->
+	<ul class="taste-money-list">
+    {foreach from=$list item="vo"}
+        <li {if $vo.money lt 0} class="taste-money-list-use" {/if}>
+            <p><span>{$vo.week}</span><span>{$vo.time}</span></p>
+            <p><i></i><span>{if $vo.money lt 0}{$vo.money}{else}+{$vo.money}{/if}</span><span>{$vo.addtime}</span></p>
+            <p>{$vo.detail}</p>
+        </li>
+    {/foreach}        
+    </ul>
+</section>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div class="user_top_title bgfb">
+	<a class="current">{$LANG.UC_NOTICE}</a>
+</div>
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<h3 class="uc_title">
+			{if $msg_info.is_notice gt 0}
+			{$msg_info.notice_name}
+			{else}
+			{$LANG.SYSTEM_PM}
+			{/if}
+		</h3>
+		<div class="ofh mg30 ti_28 lh_200">
+			{$msg_info.content}
+		</div>
+		
+		<p class="ta_r">玖财通团队</p>
+		<p class="ta_r">{function name="to_date" v=$msg_info.create_time}</p>
+	</div>
+</div>

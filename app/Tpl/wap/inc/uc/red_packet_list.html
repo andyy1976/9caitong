@@ -1,0 +1,6 @@
+{foreach from=$red_packet_list item=red}
+         <li>
+                <div class="my-coupon-l"><span>{$red.money}</span>&yen;</div>
+                <div class="my-coupon-r"><p>{$red.ratio}元可用</p><p>{$red.use_condition}个月项目</p><p>{function name="to_date" value="$red.begin_time" f="Y-m-d"}至{function name="to_date" value="$red.end_time" f="Y-m-d"}</p></div>
+            </li>
+{/foreach}

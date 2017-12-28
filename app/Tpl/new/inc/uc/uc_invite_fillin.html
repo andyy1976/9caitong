@@ -1,0 +1,32 @@
+<div class="user_top_title bgfb">
+	<a class="current">补填邀请码</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		
+		{if $is_fillin eq 'yes'}
+			<p class="ta_c">您已填写过邀请码（邀请码不可更改），邀请人为</p>
+			<div class="myinvite ta_c">{$mobile}</div>
+		{else}
+			<table cellpadding="5" cellspacing="0" border="0"  class="uc_table_form">
+				<tbody>
+					<form id="invite_fillin" ajax_url="{url x="index" r="uc_invite#referer_deal"}">
+					<tr>
+						<td>邀请码：</td>
+						<td><input id="invitecode" class="uc_input input_onfocus_shadow" maxlength="11" placeholder="请填写您要补填的邀请码！" /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="button" id="sub_btn_fillininvitecode" name="submit" value="提交" class="uc_submit_blue" /></td>
+						<td></td>
+					</tr>
+					</form>
+				</tbody>
+			</table>
+		{/if}
+		
+	</div>
+</div>

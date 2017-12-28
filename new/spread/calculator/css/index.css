@@ -1,0 +1,440 @@
+html {
+  overflow: hidden;
+}
+body {
+  width: 100%;
+}
+img {
+  width: 100%;
+}
+.topimg {
+  width: 100%;
+  height: 10rem;
+}
+.top-box {
+  height: 2.15625rem;
+  width: 100%;
+  background: #729dd6;
+  opacity: 0.7;
+  overflow: hidden;
+  position: fixed;
+  z-index: 98;
+}
+.top-box img {
+  width: 1.125rem;
+  height: 1.15625rem;
+  float: left;
+  margin: 0.5rem 0 0 0.8125rem;
+}
+.top-box a {
+  font-size: 0.625rem;
+  color: #fff;
+  line-height: 2.15625rem;
+  display: inline-block;
+  padding-left: 0.4375rem;
+}
+.li {
+  height: 2.15625rem;
+  width: 100%;
+  background: #5d9aeb;
+  overflow: hidden;
+  z-index: 199;
+  position: fixed;
+}
+.closeBtn {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  float: right;
+  z-index: 199;
+  right: 0.78125rem;
+  top: 0.625rem;
+  position: fixed;
+  background: url(../images/close-btn.png);
+  background-size: 100% 100%;
+}
+.Calculation {
+  width: 100%;
+  margin: 0rem auto 0;
+}
+.common-input {
+  width: 100%;
+  height: 3.75rem;
+  border-bottom: 1px solid #ededed;
+  position: relative;
+}
+.common-input span {
+  line-height: 3.75rem;
+  font-size: 0.75rem;
+  color: #666666;
+  padding-left: 1.875rem;
+}
+.common-input .yuan {
+  font-size: 0.5625rem;
+  color: #bcbcbc;
+  margin-left: -1.875rem;
+}
+.common-input input {
+  width: 38%;
+  height: 1.4375rem;
+  line-height: 1.375rem;
+  border: 1px solid #e6e6e6;
+  color: #72a5ed;
+  font-size: 0.9375rem;
+  text-align: center;
+  float: right;
+  margin-top: 0.875rem;
+  margin-right: 2.5rem;
+  padding: 0;
+}
+.one {
+  height: 3.8125rem;
+}
+.one span {
+  line-height: 3.8125rem;
+}
+.one input {
+  height: 1.4375rem;
+  line-height: 1.375rem;
+  margin-top: 0.9375rem;
+}
+.tips {
+  width: 100%;
+}
+.tips p {
+  width: 64%;
+  text-align: center;
+  font-size: 0.5rem;
+  color: #cdcdcd;
+  float: right;
+  line-height: 1.125rem;
+  margin: -1.25rem 0rem 0rem;
+}
+.jian1 {
+  display: none;
+}
+.common-btn {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline-block;
+  position: absolute;
+  left: 8.09375rem;
+  top: 1.125rem;
+  padding: 0rem;
+}
+.common-btn:last-child {
+  left: 17.8125rem;
+}
+.Inv-btnTwo {
+  color: #5d9aeb;
+  border-color: #5d9aeb;
+}
+.Inv-trem {
+  height: 3.75rem;
+  color: #666666;
+  border-bottom: 1px solid #ededed;
+  margin-top: 0.75rem;
+}
+.Inv-trem span {
+  line-height: 3.125rem;
+  font-size: 0.75rem;
+  color: #666666;
+  padding-left: 1.875rem;
+}
+.Inv-trem span .yuan {
+  font-size: 0.5625rem;
+  color: #bcbcbc;
+  margin-left: -1.875rem;
+}
+.Inv-trem P {
+  width: 10.25rem;
+  height: 2.1875rem;
+  float: right;
+  margin: 0.3125rem 1.40625rem 0rem 0rem;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
+}
+.Inv-trem input {
+  width: 2.5625rem;
+  height: 2.1875rem;
+  font-size: 0.9375rem;
+  color: #a0a0a0;
+  border: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.Inv-trem .monCunt {
+  color: #86b1ef;
+}
+.triangle {
+  width: 10.25rem;
+  height: 2px;
+  position: relative;
+  height: 0.625rem;
+  float: right;
+  margin: -1.09375rem 1.40625rem 0rem 0rem;
+}
+.triangle_border_up {
+  width: 0;
+  height: 0;
+  margin-left: 3.65625rem;
+  position: absolute;
+  border-width: 0rem 0.25rem 0.4375rem;
+  border-style: solid;
+  border-color: transparent transparent #86b1ef;
+}
+.inv-rate-total {
+  height: 4.5rem;
+}
+.but-total {
+  width: 100%;
+  height: 4.6875rem;
+  background: #eeeeee;
+}
+.Inv-rate {
+  width: 9.96875rem;
+  height: 2.8125rem;
+  margin-top: 0.875rem;
+  float: left;
+}
+.Inv-rate span {
+  line-height: 1.8125rem;
+  font-size: 0.75rem;
+  color: #666666;
+}
+.Inv-rate p {
+  font-size: 0.9375rem;
+  text-align: center;
+  font-weight: bold;
+  width: 8.75rem;
+}
+.Inv-rate .intRate {
+  color: #5d9aeb;
+}
+.one1 {
+  border-left: 1px solid #f0f0f0;
+}
+.one1 .yuan1 {
+  font-size: 0.5625rem;
+  color: #bcbcbc;
+}
+.one1 .Profit {
+  color: #ff4431;
+}
+#lvshu {
+  font-size: 0.9375rem;
+  color: #5d9aeb;
+}
+.yuqi {
+  line-height: 1.8125rem;
+  font-size: 0.75rem;
+  color: #666666;
+  margin-left: 1.875rem;
+}
+#monCunt {
+  background: #fff;
+}
+.det-thr {
+  width: 1rem;
+  height: 1rem;
+  background: url(../images/Explain.png);
+  background-size: 100% 100%;
+  float: left;
+  position: absolute;
+  margin-left: 4.5rem;
+  margin-top: -2.4375rem;
+}
+.det-tw {
+  width: 1rem;
+  height: 1rem;
+  background: url(../images/Explain.png);
+  background-size: 100% 100%;
+  float: right;
+  margin-top: 0.3125rem;
+  margin-right: 1.8125rem;
+}
+.kong {
+  height: 0.9375rem;
+}
+.footBtn {
+  margin: 0rem 21% 0 21%;
+  text-align: center;
+  width: 11.3125rem;
+  border: 1px solid #5d9aeb;
+  line-height: 1.78125rem;
+  border-radius: 8px;
+  background: #eeeeee;
+  color: #5d9aeb;
+}
+.footBtnA {
+  color: #fff;
+}
+.footBtnTwo {
+  width: 100%;
+  text-align: center;
+  font-size: 0.5rem;
+  color: #7e7e7e;
+  margin: 0.46875rem 0 0.46875rem 0;
+}
+.footBtnTwo span {
+  color: #5d9aeb;
+}
+.activeDetails {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  background: black;
+  opacity: 0.6;
+  z-index: 99;
+  display: none;
+}
+.redDetails {
+  width: 14.21875rem;
+  height: 17.03125rem;
+  top: 28%;
+  left: 14.5%;
+  background: #fff;
+  z-index: 100;
+  position: fixed;
+  display: none;
+}
+.redDetails p {
+  padding: 0 1.40625rem 0 1.40625rem;
+  font-size: 0.5625rem;
+  color: #7e7e7e;
+}
+.redDetails .useX {
+  font-size: 0.625rem;
+  color: #5d9aeb;
+  margin-top: 0.9375rem;
+  margin-bottom: 0.3125rem;
+}
+.redDetails .footBtnT {
+  margin: 1.71875rem auto;
+  text-align: center;
+  width: 8.1875rem;
+  border: 1px solid #5d9aeb;
+  line-height: 1.6875rem;
+  border-radius: 8px;
+  background: #fff;
+  color: #5d9aeb;
+}
+.Calculator-foot {
+  width: 100%;
+  background: #666;
+}
+.Calculator-foot .bottomNav {
+  padding-top: 0.625rem;
+  width: 100%;
+  margin-left: 1.5625rem;
+}
+.Calculator-foot .bottomNav li {
+  float: left;
+  color: #ccc;
+  font-size: 0.625rem;
+  margin-left: 1.40625rem;
+}
+.Calculator-foot .bottomNav .ge {
+  color: #8f8f8f;
+}
+.Calculator-foot .About-us a {
+  color: #ccc;
+}
+.Calculator-foot p {
+  text-align: center;
+  color: #949494;
+  font-size: 0.5rem;
+}
+.Calculator-foot .diyi {
+  margin-top: 0.3125rem;
+}
+.Calculator-foot .lastP {
+  padding-bottom: 0.625rem;
+}
+.CustomerBoxZ {
+  width: 100%;
+  height: 120%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  background: black;
+  opacity: 0.6;
+  z-index: 99;
+  display: none;
+}
+.CustomerBox {
+  width: 70%;
+  background: #fff;
+  position: fixed;
+  z-index: 100;
+  left: 15%;
+  top: 25%;
+  display: none;
+}
+.CustomerBox ul {
+  width: 50%;
+  margin: 0.75rem 0 0 25%;
+}
+.timer {
+  width: 100%;
+  line-height: 2.8125rem;
+  font-size: 0.75rem;
+  border-bottom: 1px solid #e8e8e8;
+  color: #9d9d9d;
+}
+.telBtn {
+  font-size: 0.75rem;
+  color: #5d9aeb;
+}
+.bottomNavO li {
+  font-size: 0.875rem;
+  line-height: 2.8125rem;
+  text-align: center;
+  width: 100%;
+  height: 2.8125rem;
+  border-bottom: 1px solid #cee1f9;
+  background: #fff;
+}
+.bottomNavO .lali {
+  border-bottom: none;
+}
+.cancelBtn {
+  background: #fff;
+  font-size: 0.6875rem;
+  width: 60%;
+  height: 1.875rem;
+  line-height: 1.875rem;
+  text-align: center;
+  margin-top: 0.375rem;
+  border-radius: 0.3125rem;
+  color: #5d9aeb;
+  border: 1px solid #5d9aeb;
+  margin: 0.625rem 20% 1.5625rem;
+}
+#mb {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  background: black;
+  opacity: 0.6;
+  z-index: 99;
+  display: none;
+}
+#zongDiv {
+  width: 12.5rem;
+  height: 12.5rem;
+  position: fixed;
+  z-index: 100;
+  top: 25%;
+  left: 20%;
+  display: none;
+}
+#imgT {
+  width: 12.5rem;
+  height: 12.5rem;
+}

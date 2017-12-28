@@ -1,0 +1,180 @@
+html {
+	color: #000;
+	background: #FFF;
+	font-family: "Microsoft Yahei";
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+fieldset, img {
+	border: 0;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+	font-style: normal;
+	font-weight: normal;
+}
+ol, ul {
+	list-style: none;
+}
+caption, th {
+	text-align: left;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+q:before, q:after {
+	content: '';
+}
+abbr, acronym {
+	border: 0;
+	font-variant: normal;
+}
+sup {
+	vertical-align: text-top;
+}
+sub {
+	vertical-align: text-bottom;
+}
+input, textarea, select {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+ *font-size:100%;
+}
+legend {
+	color: #000;
+}
+.clear {
+	clear: both;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+.banner {
+	background: url(main_02.png) no-repeat center;
+	height: 815px;
+	overflow: hidden;
+}
+.main1 {
+	background: url(main_03.png) center no-repeat;
+	height: 789px;
+	overflow: hidden;
+}
+.main2 {
+	background: url(main_04.png) center no-repeat;
+	height: 654px;
+	overflow: hidden;
+}
+.main3 {
+	background: url(main_05.png) center no-repeat;
+	height: 955px;
+	overflow: hidden;
+}
+.main4 {
+	background: url(main_06.png) center no-repeat;
+	height: 540px;
+	overflow: hidden;
+}
+.main5 {
+	background: url(main_07.png) center no-repeat;
+	height: 114px;
+	overflow: hidden;
+}
+.center {
+	width: 1170px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.main1 h1 {
+	font-size: 60px;
+	text-align: center;
+	color: #c2230e;
+	font-weight: bold;
+	margin-top: 150px;
+}
+.main1 p {
+	font-size: 28px;
+	text-align: left;
+	color: #f34510;
+	line-height: 150%;
+	width: 810px;
+	margin: 50px auto 0;
+	font-weight: bold;
+}
+.YU_zhuce, .YU_touzi {
+	background-image: url(butter_03.png);
+	width: 325px;
+	height: 94px;
+	background-repeat: no-repeat;
+	font-size: 40px;
+	color: #fff;
+	line-height: 94px;
+	text-align: center;
+	display: block;
+	margin: 70px auto 0;
+}
+.main2 h1, .main3 h1 {
+	font-size: 60px;
+	text-align: center;
+	color: #c2230e;
+	font-weight: bold;
+	margin-top: 10px;
+}
+.main2 p, .main3 p {
+	font-size: 28px;
+	text-align: left;
+	color: #f34510;
+	line-height: 150%;
+	width: 810px;
+	margin: 50px auto 0;
+	font-weight: bold;
+}
+.main5 p {
+	font-size: 18px;
+	text-align: center;
+	color: #fc7c55;
+	line-height: 114px;
+}
+.main4 ul {
+	width: 1400px;
+	height: 460px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.main4 ul li {
+	float: left;
+	width: 700px;
+}
+.main4 ul li h2 {
+	font-size: 60px;
+	color: #fff;
+	margin-top: 110px;
+	margin-left: 140px;
+	font-weight: bold;
+}
+.main4 ul li h3 {
+	font-size: 90px;
+	color: #fff;
+	line-height: 460px;
+	text-align: center;
+	font-weight: bold;
+}
+.main4 ul li p {
+	font-size: 28px;
+	color: #fff;
+	margin-left: 140px;
+	line-height: 150%;
+	margin-top: 40px;
+}

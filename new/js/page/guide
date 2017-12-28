@@ -1,0 +1,10 @@
+/*
+ * @date 2016-08-17
+ * @description 安全保障
+ * @version V1.0.0
+ */
+define(function (require) {
+	var $=require("$");
+	require('../mod/login');			//--------【弹出登录框】
+	require('../mod/viceNav');			//--------【弹出登录框】
+});

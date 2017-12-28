@@ -1,0 +1,40 @@
+<body>
+<section class="container cf" style="overflow-x:hidden">
+    <div class="header" style="background: linear-gradient(to bottom, #575cde 0%, #575cde 100%);"><a href="{url x="index" r="uc_center"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>资金详览<a href="{url x="index" r="uc_money#money_list"}" class="my-re-record">资金明细</a></div>
+    <div class="my-money-title">
+        <p> 
+        {foreach from="$invest" item="vo" key=key}
+            <a href="{$vo.url}" {if $key eq $money_type}class="active"{/if}>{$vo.name}</a>
+        {/foreach}
+        </p>
+    </div>
+	<!-- 资金详览 -->
+    <div class="my-cash-ban">
+        <ul>
+        	<li><p>{$user_statics.load_wait_earnings}</p><p>待收收益 ( 元 )</p></li>
+			<li><p>{$user_statics.load_repay_money}</p><p>已收收益 ( 元 )</p></li>
+        </ul>
+    </div>
+    <ul class="my-cash-list cf">
+    	<li><a><h3>账户资产</h3></a></li>
+    	<li><a><p>账户总资产</p><span>{$user_statics.total_money}元</span></a></li>
+        <li><a><p>可用余额</p><span>{$user_statics.balance}元</span></a></li>
+        <li><a><p>在投金额</p><span>{$user_statics.invest_money}元</span></a></li>    	
+    	<li><a><p>提现冻结</p><span>{$user_statics.lock_money}元</span></a></li>
+    	{if $money_type ne 2}
+		<li><a><p>自动投标冻结</p><span>{$user_statics.lock_autoinvest_money}元</span></a></li>
+		{/if}
+    	<li><a><p>现金红包</p><span>{$user_statics.cash_red_sum}元</span></a></li>
+    	<li><a><p>出借红包</p><span>{$user_statics.deal_red_sum}元</span></a></li>
+
+    </ul>
+    <ul class="my-cash-list cf">
+    	<li class="my-cash-profit"><a><h3>出借收益</h3></a></li>
+    	<li><a><p>累计出借总计</p><span>{$user_statics.invest_total_money}元</span></a></li>
+    	<li><a><p>已收收益总计</p><span>{$user_statics.load_repay_money}元</span></a></li>
+    	<li><a><p>待收收益总计</p><span>{$user_statics.load_wait_earnings}元</span></a></li>
+    	<li><a><p>体验金收益</p><span>{$user_statics.taste}元</span></a></li>
+    </ul>
+</section>
+</body>
+</html>

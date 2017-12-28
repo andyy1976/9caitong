@@ -1,0 +1,67 @@
+<body>
+<section class="container cf">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>{$details.name}</div>
+    <!-- 出借产品详情 -->
+    <div class="my-cash-ban my-invest-details-ban">
+        <ul>
+            <li><p>{$details.count_money}</p><p>出借总额 ( 元 )</p></li>
+            <li><p>{$details.interest_money}</p><p>预期收益 ( 元 )</p></li>
+        </ul>
+    </div>
+    <h3 class="my-invest-details-title">项目信息</h3>
+    <ul class="my-cash-list my-invest-details-list cf">
+        <li><p>项目名称</p><span>{$details.name}</span></li>
+        <li><p>项目总金额</p><span>{$details.borrow_amount}元</span></li>
+        <li><p>预期年化收益率</p><span>{$details.rate}%</span></li>
+        <li><p>项目期限</p><span>{$details.repay_time}{if $details.repay_time_type eq 0}天{else}个月{/if}</span></li>
+        <li><p>还款方式</p><span>{$details.loantype_format}</span></li>
+    </ul>
+    <h3 class="my-invest-details-title">出借信息</h3>
+    <ul class="my-cash-list my-invest-details-list cf">
+        <li><p>出借金额</p><span>{$details.money}元</span></li>
+        <li><p>红包</p><span>{$details.red}元</span></li>
+        <!-- <li><p>代金券</p><span>{$details.ecv_money}元</span></li>  -->
+        {if $details.interestrate_id}
+            <li><p>加息利率</p><span>{$details.coupon_rate}</span></li>
+            <li><p>加息天数</p><span>{$details.coupon_day}</span></li>
+        {/if}
+        <li><p>出借日期</p><span>{$details.create_date}</span></li>
+        {if $details.repay_end_time}
+         <li><p>结息日期</p><span>{$details.repay_end_time}</span></li>
+        {else}
+        <li><p>结息日期</p><span>审核中</span></li>
+        {/if}        
+        <li><p>已收收益</p><span>{$details.end_interest_money}元</span></li>
+        {if $deal_type eq 0}
+        <li>
+            <p>查看合同</p>
+            {if $details.deal_status eq 1}
+            <span>合同审核中</span>
+            {elseif $details.deal_status eq 2}
+            <span>合同审核中</span>
+           <!--  <a href="{url x="index" r="uc_invest#down_contract" p="id=$details.pid&load_id=$details.id"}">合同审核中</a> -->
+            {elseif $details.deal_status eq 3}
+            <span>-</span>
+            {elseif $details.deal_status eq 4}
+            <a href="{url x="index" r="uc_invest#down_contract" p="id=$details.pid&load_id=$details.id"}">合同已生成</a>
+            {elseif $details.deal_status eq 5}
+            <a href="{url x="index" r="uc_invest#down_contract" p="id=$details.pid&load_id=$details.id"}">合同已生成</a>
+            {/if}
+        </li>
+        {/if}
+        {if $deal_type eq 1}
+            {if $details.repay_start_time}
+                <li><p>查看债权</p><a href="{url x="index" r="uc_invest#deal_list" p="id=$load_id"}" class="my-return-btn"><img src="{$TMPL}/images/wap2/my/icon_return.png" width="8" height="14"></a></li>
+            {else}
+                <li><p>查看债权</p><a href="javascript:;" style="color:#aaa">满标后显示</a></li>
+            {/if}
+        {/if}
+        {if $details.repay_end_time}
+        <li><p>回款明细</p><a href="{url x="index" r="uc_invest#refdetail" p="id=$details.id"}&load_id={$load_id}&deal_type={$deal_type}" class="my-return-btn"><img src="{$TMPL}/images/wap2/my/icon_return.png" width="8" height="14"></a></li>
+        {else}
+        <li><p>回款明细</p><a href="javascript:;" style="color:#aaa">审核中</a></li>
+        {/if}
+    </ul>
+</section>
+</body>
+</html>

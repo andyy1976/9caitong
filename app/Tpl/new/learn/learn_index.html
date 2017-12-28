@@ -1,0 +1,64 @@
+<div class="user_top_title bgfb">
+	<a class="current">体验金</a>
+</div>
+
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<div class="sl_wrap">
+			<div class="sl_key">使用状态：</div>
+			<div class="sl_value">
+				{foreach from="$voucher_deal" item="paging" key=key}
+                	<li><a href="{$paging.url}#deallist" {if $key eq $voucher_paging} class="cur"{/if}>{$paging.name}</a></li>
+            	{/foreach}
+			</div>			
+		</div>
+		<div class="blank50"></div>
+		<div class="fictitious_money of_h">
+			{if $result}
+			<ul class="experience">
+
+				{foreach from=$result item=vouchers key=key}
+				<li class="{if $vouchers.use_status eq 0 && $vouchers.end_time gt $time}available{elseif $vouchers.use_status eq 0 && $vouchers.end_time lt $time}Unavailable{elseif $vouchers.use_status eq 1}Unavailable{/if}">
+					<div class="money">
+						<span>¥<i>{$vouchers.money}</i></span>
+					</div>
+					<div class="condition">
+						<p>可用标的：体验标</p>
+						<p>有效期：{function name="evc_date_time" value=$vouchers.end_time}</p>
+					</div>
+
+					{if $vouchers.use_status eq 1 }
+                   		<span class="used"></span>
+                	{elseif $vouchers.end_time lt $time }
+                   		<span class="overdue"></span>
+               	 	{/if}
+
+				</li>
+
+					
+					
+				 {/foreach}				
+			</ul>		
+
+			{else}
+
+			 <div class="noFictitiousMoney ta_c">
+            	<img src="/new/images/noFictitiousMoney.png" />
+            	<p>暂无体验金</p>
+            </div>
+			{/if}
+		</div>
+		<div class="pages">{$pages}</div>
+		<div class="uc_line"></div>
+		<h3 class="uc_title">体验金获取及使用说明</h3>
+		<ol class="rule">
+			<li>体验金是玖财通发放给用户，用于体验投资的一种虚拟本金；</li>
+			<li>体验金只可在体验标进行投资；</li>
+			<li>体验金投资到期后，产生的收益全部归用户，体验金部分将由平台回收；</li>
+			<li>目前体验金只在注册时可获得。</li>
+		</ol>
+		<p class="C_red">本活动规则解释权归玖财通所有，如有疑问请联系在线客服或拨打400-650-8706。</p>
+	</div>
+</div>

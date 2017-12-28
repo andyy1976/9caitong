@@ -1,0 +1,162 @@
+﻿@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0}
+body{ font-family:microsoft yahei}
+.PR{ position:relative}
+
+/*砸金蛋 赢加息*/
+.zdan_index{ position:absolute; top:1%; right:-45%; z-index:1;}
+.zdan_list{ position:absolute; top:8px; right:4%; z-index:1; width:70px;}
+.zdan_list_djs{ position:absolute; top:44%; right:3%; z-index:21;}
+.zdan_list p{font-size:9px;color:#fb643c;margin-left:11px;margin-top:-5px;}
+.zdan_index a,.zdan_list a{ display:block;text-align:center;overflow:hidden; }
+.zdan_index a{ width:80px; margin-top:-5px; height:80px;background:url(../Images/index_dan.gif) no-repeat; background-size:100% auto;}
+.zdan_list a{ width:65px; margin-left:10px; margin-top:-5px;  height:65px;background:url(../Images/list_dan.gif) no-repeat; background-size:100% auto;}
+
+.zdan_index a.danopen,.zdan_list a.danopen{background:url(../Images/index_open.png) no-repeat;  background-size:100% auto;cursor:default}
+
+.zdan_index span,.zdan_list span{ color:#fb643c;font-weight:bold; font-family:Arial; display:block;margin-top:-3px }
+.zdan_index span{ font-size:18px;}
+.zdan_list span{ font-size:16px;}
+.zdan_list_djs span{ color:#fff}
+
+.zdan_index span.jx_over,.zdan_list span.jx_over{ font-weight:normal}
+.zdan_index span.jx_over{ font-size:14px;}
+.zdan_list span.jx_over{ font-size:12px;}
+
+.zd_jx{width:85px;}
+.lis_jx{width:70px;}
+
+/*弹框*/
+.imgauto{ display:block; max-width:100%; height:auto; margin:0 auto}
+.zhezhao{background:#000; position:fixed; bottom:0; left:0; z-index:99; width:100%; height:100%;opacity: 0.75;}
+.tkbox{ background:#ffc53b;  position:fixed; top:20%; left:8%; z-index:100005; width:84%;border-radius:8px; padding-bottom:6%;}
+.tktit{ width:84%; margin:0 auto; margin-top:-14%}
+.tktyb{ width:82%; margin:0 auto; margin-top:3%}
+.tktybcon{ width:71%; position:absolute; top:0; right:2%; height:93%; text-align:center; font-family:Arial}
+.tktybcon h3{ font-size:48px; color:#ee6749; height:30%; padding-top:18%}
+.tktybcon p{ color:#888; font-size:12px}
+
+.tkbnt{ width:86%; margin:0 auto; margin-top:4%}
+.tkbntton{ display:block; width:100%; height:42px; line-height:42px; color:#fff; font-size:20px; text-align:center; border-radius:8px; text-decoration:none; box-shadow:0 3px #d43e1b; background:#f1603f;}
+.tkbnt a:hover{color:yellow;}
+.tkhdgz{ width:86%; margin:0 auto; margin-top:30px; border-top:1px solid #e6a134; color:#b46d1a;}
+.tkhdgz h3{ font-size:14px; font-weight:normal; width:100px; text-align:center; height:20px; line-height:20px; margin:0 auto; margin-top:-10px; background:#ffc53b}
+.tkhdgz p{ margin-top:5px; line-height:21px; font-family:Arial; font-size:13px}
+
+/*new*/
+.tkbntton02{ background:#33d093; box-shadow:0 3px #08bb75}
+
+/*弹框02*/
+.dn{ display:none}
+
+.tkzj02{ top:21%; padding-bottom:8%;}
+.tktyb02{ width:86%; margin:0 auto; -webkit-tap-highlight-color: rgba(0,0,0,0);}
+.xzjl{ font-size:16px; color:#7f4c14; text-align:center;}
+
+.xzbox{ margin-top:12px; padding:18% 0; -webkit-tap-highlight-color: rgba(0,0,0,0); width:100%}
+
+.xzk{ position:absolute; top:38%; left:0; -webkit-tap-highlight-color: rgba(0,0,0,0);}
+.xzk img{ display:block; width:26px;}
+
+.tktybcon02{ position:absolute; top:0%; right:0; width:84%; background:url(../Images/zjd_quan.png) no-repeat; background-size:100% auto; height:100%; -webkit-tap-highlight-color: rgba(0,0,0,0);}
+.jl02{ width:70%; float:right; height:100%;margin-right:3%;}
+.jl02 h3{color:#ee6749;font-size:40px; text-align:center; height:75px; line-height:85px; font-family:Arial}
+.jl02 p{ text-align:center; color:#888; font-size:10px}
+
+.hdshare{ position:fixed; top:0; left:0; z-index:100}
+
+
+@media only screen and (max-width:320px){
+	.zdan_index{ right:-42%}
+	.zdan_index a{ width:65px; height:65px;}
+	.zdan_index span{ font-size:16px;}
+	
+	.zdan_list{right:3%;}
+	.zdan_list a{ width:55px; height:55px}
+	.zdan_list span{ font-size:14px;}
+	
+	.tktybcon h3{ font-size:36px; height:30%; padding-top:16%}
+	.tkbntton{ height:38px; line-height:38px; box-shadow:0 4px #d43e1b; font-size:18px}
+
+	.tkhdgz p{font-size:12px}
+	.tkbox{ height:66%; top:17%}
+	.zdan_list_djs{top:50%}
+	
+	.zdivli .ivli_01{width:28%}
+	.zdivli .ivli_02{width:18%}
+	
+	.zd_jx{width:70px;}
+	.zdan_list p{font-size:9px;margin-top:-2px;}
+		
+	/*new*/
+	.xzjl{ font-size:14px}
+	.tkzj02{ height:inherit; top:22%}
+	.jl02 h3{ font-size:30px; height:55px; line-height:65px}
+	.xzk img{ width:20px}
+	.tktybcon02{ width:86%}
+	.xzbox{ margin-top:10px}
+	.tkbntton{ font-size:16px; box-shadow:none}
+	.tkbox{ height:78%; top:12%}
+	}
+
+@media only screen and (max-height:480px){
+	.zdan_index{ right:-80%}
+	.zdan_index a{ width:60px; height:60px;}
+	.zdan_index span{ font-size:14px;}
+	.tkbox{ height:68%; top:16%}
+	.tkhdgz p { height:52px; overflow:scroll; overflow-x:hidden; height:25px}
+	.zd_jx{width:70px;}
+	.zdan_list{right:3%;}
+	/*new*/
+	.tkzj02{ height:inherit; top:18%}
+	}
+
+
+/*安卓 Iphone6*/	
+@media only screen and (min-width:360px)and (max-width:381px){
+	.tkbox{ background:#ffc53b;  position:fixed; top:11%; left:8%; z-index:100005; width:84%;border-radius:8px; padding-bottom:6%;}
+	.zdan_index span{ font-size:17px; }
+	.zdan_index{ right:-59%}
+	.zdan_index a{ width:75px; height:75px;}
+	
+	.zdan_list a{ width:62px; height:62px}
+	.zdan_list span{ font-size:15px;}
+	
+	.tktybcon h3{ font-size:42px}
+	.tkbntton{ height:40px; height:40px; font-size:20px}
+	/*new*/
+	.tkbox{ top:15%}
+	.xzk img{ width:24px}
+	.jl02 h3{ height:65px; line-height:75px; font-size:36px}
+	.tkbntton{ font-size:18px}
+	.zdan_list p{font-size:10px;margin-left:9px;}
+	}	
+
+
+/*6plus*/		
+@media only screen and (min-width:382px)and (max-width:479px){
+     .zdan_list{right:5%;}
+     /*new*/
+	.tkbox{ top:19%}
+	.jl02 p{ font-size:12px}
+	.zdan_list p{font-size:10px;margin-left:10px;}
+	}
+	
+@media only screen and (min-height:660px)and (max-height:680px){
+	.zdan_index{right:-60%;}
+	}	
+	
+	
+/*480小米*/		
+@media only screen and (min-width:480px)and (max-width:540px){
+	/*new*/
+	.jl02 p{ font-size:13px}
+	}
+	
+@media only screen and (min-width:541px){
+	/*new*/
+	.jl02 p{ font-size:14px}
+	
+	}
+

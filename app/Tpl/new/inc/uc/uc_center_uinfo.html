@@ -1,0 +1,138 @@
+<div class="user_top_title bgfb">
+	<a class="current">账户总览</a>
+</div>
+<div class="user_center_con">
+	<div class="blank20"></div>
+	<div class="uc01 ofh">
+		<ul class="equal3 interval25 balance ofh">
+			<li class="available">
+				<i>&#57392;</i>总资产（元）
+				<p class="money">{function name="format_price" v="$total_general" f=2}</p>
+				<div>
+					<p>存管账户</p>
+					<span>{function name="format_price" v="$custody_assets" f=2}</span>
+				</div>
+				<div>
+					<p>普通账户</p>
+					<span>{function name="format_price" v="$ordinary" f=2}</span>
+				</div>	
+			</li>
+			<li class="all">
+				<i>&#57393;</i>可用余额（元）
+				<p class="money">{function name="format_price" v="$Pctotal" f=2}</p>
+				<div>
+					<p>存管账户</p>
+					<span>{function name="format_price" v="$Pcrecharge_money" f=2}</span>
+				</div>
+				<div>
+					<p>普通账户</p>
+					<span>{function name="format_price" v="$Pcordinary" f=2}</span>
+				</div>	
+			</li>
+			<li class="frozen">
+				<i>&#57402;</i>在投金额（元）
+				<p class="money">{function name="format_price" v="$user_amount" f=2}</p>
+				<div>
+					<p>存管账户</p>
+					<span>{function name="format_price" v="$reinvestment" f=2}</span>
+				</div>
+				<div>
+					<p>普通账户</p>
+					<span>{function name="format_price" v="$user_ordinary" f=2}</span>
+				</div>				
+			</li>
+		</ul>
+		<div class="blank20"></div>
+		<p class="fl mg0 coupon">
+			<a class="uck1 dp-ib" href="{url x="index" r="uc_bonus#index" p="red_type=1"}">红包：<em>￥{function name="format_price" v="$money_total.red_money"}</em></a>
+			<a class="uck1 dp-ib" href="{url x="index" r="uc_coupon#index"}">加息卡：<em>{if $money_total.Plus_card}{$money_total.Plus_card}{else}0{/if}张</em></a>
+			<a class="uck1 dp-ib" href="{url x="index" r="uc_learn#index"}">体验金：<em>￥{function name="format_price" v="$expload_money"}</em></a>
+		</p>
+		<div class="fr">
+			<a class="ucbt1 bgC_orange1 C_white dp-ib b_r_3" href="{url x="index" r="uc_money#incharge"}">充值</a>
+			<a class="ucbt1 bgC_blue1 C_white dp-ib b_r_3" href="{url x="index" r="uc_money#carry"}">提现</a>
+		</div>
+	</div>
+	<!--<div class="uc_line"></div>
+	<h3 class="uc_title">出借统计</h3>
+	<div class="uc01">
+		<ul class="equal3 interval13 I_statistic ofh">
+			<li class="bgf4">
+				<p>出借总额：<span>￥{function name="format_price" value="$money_total.invest_total_money"}</span></p>
+				<p>出借笔数：<span>{if $user_statics.load_count eq ''}0{else}{$user_statics.load_count}{/if}笔</span></p>
+			</li>
+			<li class="bgf4">
+				<p>充值总额：<span>￥{function name="format_price" value="$user_statics.incharge_money"}</span></p>
+				<p>&nbsp;</p>
+			</li>
+			<li class="bgf4">
+				<p>
+				已挣利息：<span>￥{function name="format_price" value="$money_total.load_repay_money"}</span>
+				 待收本金：<span>￥{function name="format_price" value="$user_statics.load_wait_self_money"}</span> </p>
+				<p>待收利息：<span>{function name="format_price" value="$money_total.load_wait_earnings"}</span>&nbsp;</p>
+			</li>
+		</ul>
+	</div>-->
+	<div class="blank20"></div>
+	<h3 class="uc_title">近三月待收款</h3>
+	<div class="sl_wrap">
+		<div class="sl_key">资金账户：</div>
+		<div class="sl_value">
+			<ul>
+
+				{foreach from="$uc_centerdeal" item="paging" key=key}
+                		<li><a href="{$paging.url}#deallist" {if $key eq $total_assets} class="cur"{/if}>{$paging.name}</a></li>
+            	{/foreach}
+				<!-- <li><a href="" class="cur">存管账户</a></li>
+				<li><a href="">普通账户</a></li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="uc01">
+		{if $day_repay_list}
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc_table_list">
+				<tbody>
+					
+					<tr border="0" >
+						<th style="width:20%">回款日期</th>
+						<th style="width:20%">项目名称</th>
+						<th style="width:20%">回款类型</th>
+						<th style="width:20%">期数</th>
+						<th style="width:20%">回款金额（元）</th>
+					</tr>
+					{foreach from="$day_repay_list" item="item" key=key}
+					<tr class="{if $key mod 2 eq 1}bgf7{/if}">
+						<td>{function name="to_date" v=$item.repay_time f="Y-m-d"} </td>
+						<td>{$item.name} </td>
+						<td class="ta_c">
+							{if $item.l_key_index==$item.month_time}
+								本金+利息
+							{else}
+								利息
+							{/if}
+						</td>
+						<td>
+							{$item.l_key_index}/{$item.month_time}
+						</td>
+						<td>{$item.repay_money_format}</td>
+					</tr>
+					{/foreach}
+				</tbody>
+			</table>
+		{else}	
+			<div align="center" style="padding:20px 0">暂无记录</div>
+		{/if}
+	</div>
+	<div class="pages">{$pages}</div>
+</div> 
+<input type="hidden" id="isPopup_cg" value="{$cunguan_tip}" />
+<div class="Popup_cg hide">
+	<img src="/new/images/img_cgTips.jpg" />
+	<p>您尚未开通宜宾银行资金存管账户，请先开通</p>
+	<!--企业用户开户链接区分开-->
+	{if $user_info.user_type eq 1}
+	<a href="{url x="index" r="user#company_steptwo"}">立即开通</a>
+	{else}
+    <a href="{url x="index" r="uc_depository_account#index"}">立即开通</a>
+	{/if}
+</div>

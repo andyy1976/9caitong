@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>{$cate_title}</title>
+    <link rel="stylesheet" type="text/css" href="new/find/css/reset_ph_v=2016.css">
+    <script src="new/find/js/jquery-1.11.3.min.js"></script>
+    <script src="new/find/js/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="new/find/css/wap_mall_v_2017.css">
+    <script src="new/find/js/fastclick.js"></script>
+	<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+</head>
+<body>
+<section class="container container-details cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="{url x="index" r="find#new_mall"}" class="back-icon"><img src="new/find/images/wap2/my/icon_back.png" width="10" height="18"></a>{$goods.sub_name}</div>
+	<?php } ?> 
+    <!-- 积分商城-商品详情-实物 -->
+    <div class="details">
+    	<img src="{$goods.img}" />
+    	<div class="details-content">
+
+    		<p><b>{$goods.sub_name}</b><span>已兑换:{$goods.exchange}个</span></p>
+    		<p><b>{$goods.score}<em> 积分</em></b>{if $goods.is_vip eq 1}&nbsp;&nbsp;&nbsp;&nbsp; 会员:<font color="blue">{$goods.Consumer_integration}积分</font>{elseif $goods.discount_score}<del>{$goods.discount_score}积分</del>{/if}<span>剩余:{$goods.max_bought}个</span></p>
+    	</div>
+    </div>
+    <div class="goods-describe">
+    	<div class="goods-describe-title">图文详情</div>
+		{$goods.description}
+    	<!-- <img src="{$goods.img}" width="100%" />
+    	<p style="font-size: 1.2rem; color: #486079; line-height: 24px; text-indent: 2em;">{$goods.description}</p>
+    	
+    	<img src="{$goods.img}" width="100%" /> -->
+    </div>
+    <div class="details-tip cf">
+    	<p>兑换说明</p>
+		{$conf}
+    	<!-- <dl><dt>1、</dt><dd>请在地址栏准确填写收件信息，资料不完整或错误可能导致商品无法送达；</dd></dl>
+    	<dl><dt>2、</dt><dd>兑换成功后，通常在两周之内发货，具体收货时间以快递配送时间为准，如长时间未收到，可联系客服咨询；</dd></dl>
+    	<dl><dt>3、</dt><dd>礼品尺寸手工测量，与描述略有偏差的以实物为准；</dd></dl>
+    	<dl><dt>4、</dt><dd>积分商品无质量问题，不接受退换货；</dd></dl>
+    	<dl><dt>5、</dt><dd>快递签收前请当场开箱确认完好无误后再验收，如有破损请拒收快件，并联系客服反馈；若您未能当场开箱验收，讲自动默认验收成功；</dd></dl>
+    	<dl><dt>6、</dt><dd>礼品非销售商品均不提供发票，请您谅解；</dd></dl>
+    	<dl><dt>7、</dt><dd>售后问题可拨打客服电话：400-650-8706；</dd></dl>
+    	<dl><dt>8、</dt><dd>积分商城最终解释权归玖财通平台所有。 </dd></dl> -->
+    </div>
+	{if $goods.is_ground eq 0}
+		<a href="javascript:;" class="btn-exchange-gray">已下架</a>
+	{else}
+		{if $score gte $goods.score && $goods.max_bought gt 0}
+			<a href="javascript:;" class="btn-exchange" id="btn-exchange">我要兑换</a>
+		{elseif $score gte $goods.score && $goods.max_bought lte 0}
+			<a href="javascript:;" class="btn-exchange-gray">已兑换完</a>
+		{else}
+			<a href="{$wap_cloumn_url}" class="btn-exchange-gray">积分不足，快去赚取积分</a>
+		{/if}
+	{/if}
+</section>
+<script>
+	$('#btn-exchange').click(function(){
+	  /*user_score = {$score};
+	  user_login = {if $user_login}{$user_login}{else}0{/if};
+	  goods_score ={$goods.score};
+	  if(!user_login){
+	  layer.open({
+				className: 'toast',
+				content: '<p>未登陆</p>',
+				shade: 0,
+				time:2
+			});
+	  }
+	  if(user_score<goods_score){
+		  layer.open({
+				className: 'toast',
+				content: '<p>积分不足</p>',
+				shade: 0,
+				time:2
+			});
+	  }else{*/
+	 $.ajax({
+			url:"{url x="index" r="find#exchange_limit" p="id=$goods.id"}",
+			data:"",
+			dataType:"json",
+			success:function(data){
+			if(data.status==1){
+				window.location.href="{url x="index" r="find#mall_exchange" p="id=$goods.id"}";
+			}else if(data.status==0){
+				layer.open({
+				className: 'toast toast-2',
+				content: '<p>'+data.info+'</p>',
+				shade: 1,
+				time:2
+			});
+			}
+	  
+		}
+	  });
+		
+	 // }
+		
+	});
+</script>
+</body>
+</html>

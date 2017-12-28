@@ -1,0 +1,394 @@
+<?php
+//require APP_ROOT_PATH.'app/Lib/uc.php';
+class company_register{
+	public function index()
+	{
+	    $switch = $GLOBALS['db']->getAll("select * from ".DB_PREFIX."switch_conf where switch_id = 1 or switch_id = 2");
+	    foreach ($switch as $k=>$v){
+	        if($v['status']!=1){
+	            $root['response_code'] = 0;
+	            $root['show_err'] = '系统正在升级，请稍后再试';
+	            output($root);
+            }
+        }
+		$root = get_baseroot();
+		$user_pwd = strim(base64_decode($GLOBALS['request']['user_pwd']));//密码	
+		$mobile = strim(base64_decode($GLOBALS['request']['mobile']));
+		$mobile_code = strim(base64_decode($GLOBALS['request']['mobile_code']));
+		$referer = strim(base64_decode($GLOBALS['request']['referer']));
+		$verify = strim(base64_decode($GLOBALS['request']['verify']));
+		$device = explode("|||",es_session::get('MachineInfo'));
+		$wx_openid = strim(base64_decode($GLOBALS['request']['wx_openid']));	//open_id 微信	
+		$user_name = "w".$mobile;
+		$source_id = strim(base64_decode($GLOBALS['request']['source_id']));//渠道商编号
+		es_session::set("source_id",$source_id);//渠道商编号
+		es_session::set("device",$device[0]);//来源设备
+		if(isset($GLOBALS['request']['r'])){
+			$referer_id = intval(base64_decode($GLOBALS['request']['r']));
+            if($referer_id){
+                $wap_referer = get_user_info("user_name","id=".$referer_id,"ONE");
+                $root['wap_referer'] = $wap_referer;
+            }			
+		}
+		$root['program_title'] = "注册";
+		
+		$user_data = array(
+			'mobile'        => $mobile,
+			'user_name'     => $user_name,
+			'user_pwd'      => $user_pwd,		
+			'referer'		=> $referer,
+			'verify'		=> $verify,
+            'device'        => $device[0],
+		);		
+		if(isset($user_data['referer']) && $user_data['referer']!=""){
+            //$p_user_data = get_user_info("id,user_type","mobile_encrypt =AES_ENCRYPT('".$user_data['referer']."','".AES_DECRYPT_KEY."') OR user_name='".$user_data['referer']."'");
+            //zhuxiang  2017513
+            $p_user_data = get_user_info("id,user_type","mobile_encrypt =AES_ENCRYPT('".$user_data['referer']."','".AES_DECRYPT_KEY."')");
+			if($p_user_data){
+                if($p_user_data["user_type"] == 3){
+                    $user_data['referer_memo'] = $p_user_data['id'];
+                    $user_data['pid'] = 0;
+                }else{
+                    $user_data['pid'] = $p_user_data["id"];
+                    if($user_data['pid'] > 0){
+                        $refer_count = $GLOBALS['db']->getOne("SELECT count(*) FROM ".DB_PREFIX."user WHERE pid='".$user_data['pid']."' ");
+                        if($refer_count == 0){
+                            $user_data['referral_rate'] = (float)trim(app_conf("INVITE_REFERRALS_MIN"));
+                        }elseif((float)trim(app_conf("INVITE_REFERRALS_MIN")) + $refer_count*(float)trim(app_conf("INVITE_REFERRALS_RATE")) > (float)trim(app_conf("INVITE_REFERRALS_MAX"))){
+                            $user_data['referral_rate'] =(float)trim(app_conf("INVITE_REFERRALS_MAX"));
+                        }else{
+                            $user_data['referral_rate'] =(float)trim(app_conf("INVITE_REFERRALS_MIN")) + $refer_count*(float)trim(app_conf("INVITE_REFERRALS_RATE"));
+                        }
+                        if(intval(app_conf("REFERRAL_IP_LIMIT")) > 0 && $GLOBALS['db']->getOne("SELECT count(*) FROM ".DB_PREFIX."user WHERE register_ip ='".CLIENT_IP."' AND pid='".$user_data['pid']."'") > 0){
+                            $user_data['referral_rate'] = 0;
+                        }
+                    }else{
+                        $user_data['pid'] = 0;
+                    }
+                }
+            }else{
+                $root['response_code'] = 0;
+                $root['show_err'] = "邀请码不存在";
+                output($root);
+            }
+		}
+	
+		$check_status = $this->check_user($user_data);		
+		if ($check_status['status'] == 1){
+			//短信验证码
+			if($mobile_code != $GLOBALS['db']->getOne("select verify_code from ".DB_PREFIX."mobile_verify_code where mobile = '".$mobile."' and create_time>=".(TIME_UTC-180)." ORDER BY id DESC"))
+			{
+				$root['response_code'] = 0;
+				$root['show_err'] = "短信验证码错误或已失效";
+				output($root);			
+			}else{
+				require_once APP_ROOT_PATH."system/libs/user.php";
+				
+				$user_id = $this->add_user($user_data);
+
+				
+				if($user_id)
+				{
+                    if(isset($user_data['referer']) && $user_data['referer']!=""){
+                        $invite['uid'] = $user_id;
+                        $invite['pid'] = $user_data['pid'];
+                        $invite['type'] = 1;
+                        $invite['reward'] = '无';
+                        $invite['create_time'] = TIME_UTC;
+                        $GLOBALS['db']->autoExecute(DB_PREFIX."user_referer_log",$invite,'INSERT');
+                        //建立的邀请关系的用户，彼此添加抢红包为好友
+                        $this->insert_packet_friends($user_id,$user_data['pid']);
+                        $this->insert_packet_friends($user_data['pid'],$user_id);
+                    }
+					$result = user_login($mobile,$user_pwd);					
+					if($result['status'])
+					{	
+						$user_data = $GLOBALS['user_info'];//$result['user'];
+						// 注册成功成长值
+			            require_once APP_ROOT_PATH."system/user_level/Level.php";
+			            $level=new Level();
+			            $level->get_grow_point(1);
+						//open_id处理
+						if($wx_openid){
+							$GLOBALS['db']->query("update ".DB_PREFIX."user set wx_openid='".$wx_openid."' where id=".$user_data['id']);
+                            /************绑定后微信模板消息开始*********************/
+                            if(app_conf('WEIXIN_TMPL')){
+                                $tmpl_url =app_conf('WEIXIN_TMPL_URL') ;
+                                $tmpl_datas = array();
+                                $tmpl_datas['first'] = '恭喜您的玖财通账户与微信绑定成功！';
+                                $tmpl_datas['keyword1'] = $mobile;
+                                $tmpl_datas['keyword2'] = date('Y-m-d H:i:s');
+                                //$tmpl_datas['time'] = date('Y-m-d H:i:s');
+                                $tmpl_datas['remark'] = '您将可以享受如下服务：微信官网免密登录、账户信息及时提醒、用微信快捷登录APP等众多服务。';
+                                $tmpl_data = create_request_data('4',$wx_openid,app_conf('WEIXIN_JUMP_URL'),$tmpl_datas);
+                                $resl = request_curl($tmpl_url,$tmpl_data);
+                                $tmpl_msg['dest'] = $wx_openid;
+                                $tmpl_msg['send_type'] = 4;
+                                $tmpl_msg['content'] = serialize($tmpl_datas);
+                                $tmpl_msg['send_time'] = time();
+                                $tmpl_msg['create_time'] = time();
+                                $tmpl_msg['user_id'] = $user_data['id'];
+                                $tmpl_msg['title'] = '绑定成功';
+                                if($resl===true){
+                                    $GLOBALS['db']->query("update ".DB_PREFIX."user set wx_openid_status=1 where id=".$user_data['id']);
+                                    $tmpl_msg['is_send'] = 1;
+                                    $tmpl_msg['result'] = '发送成功';
+                                    $tmpl_msg['is_success'] = 1;
+                                }else{
+                                    $tmpl_msg['is_send'] = 0;
+                                    $tmpl_msg['result'] = $resl['message'];
+                                    $tmpl_msg['is_success'] = 0;
+                                }
+                                $GLOBALS['db']->autoExecute(DB_PREFIX."weixin_msg_list",$tmpl_msg,'INSERT','','SILENT');
+
+                            }
+                            /************绑定成功后微信模板消息结束*********************/
+						}
+						$root['response_code'] = 1;
+						$root['user_login_status'] = 1;//用户登陆状态：1:成功登陆;0：未成功登陆
+						$root['show_err'] = "注册成功";
+						$root['id'] = $user_data['id'];
+						$root['user_name'] = $user_data['mobile'];
+						$root['user_pwd'] = $user_data['user_pwd'];
+						$root['tip_msg'] = '去开通企业存管账户!';
+						$root['realname_url'] = WAP_SITE_DOMAIN.'/member.php?ctl=uc_center&act=identity';
+                        $root['three_go_code'] = '1';
+                        $root['is_company'] = '1';
+						$root['three_go_url'] = WAP_SITE_DOMAIN.'/member.php?ctl=user&act=company_steptwo';
+						/*$user_statics = get_user_money_info($user_data['id']);
+						$root['user_money'] = number_format($user_data['money'],2);
+						$root['user_money_format'] = number_format($user_data['money'],2);				//用户金额	
+						$root['total_money'] = number_format($user_statics["total_money"],2);  			//总金额  		
+						$root['yesterday_invert'] = number_format($user_data['money'],2);  				//昨日金额
+						$root['cum_money'] = number_format($user_statics["invest_total_interest"],2); */	//累计收益
+						//获取移动端设备信息 存入session
+						if($GLOBALS['request']['MachineInfo']){
+							es_session::set('MachineInfo',base64_decode($GLOBALS['request']['MachineInfo']));
+							$GLOBALS['MachineInfo'] = es_session::get('MachineInfo');
+							if($GLOBALS['MachineInfo'] != base64_decode($GLOBALS['request']['MachineInfo'])){
+								es_session::delete('MachineInfo');
+							}
+						}								
+						output($root);
+					
+					}else{
+						$root['response_code'] = 0;
+						$root['user_login_status'] = 0;//用户登陆状态：1:成功登陆;0：未成功登陆
+						$root['show_err'] = "会员注册失败.";
+						output($root);
+					}
+				}else
+				{
+					$root['response_code'] = 0;
+					$root['user_login_status'] = 0;//用户登陆状态：1:成功登陆;0：未成功登陆
+					$root['show_err'] = "会员注册失败.";
+					output($root);
+				}
+			}			
+		}else{
+			$root['response_code'] = 0;
+			$root['user_login_status'] = 0;//用户登陆状态：1:成功登陆;0：未成功登陆
+			$root['show_err'] = $check_status['error_msg'];
+			output($root);
+		}
+		output($root);
+	}
+	
+	function check_user($user_data){
+		//开始数据验证
+		$res = array('status'=>1,'info'=>'','data'=>'','error_msg'=>''); //用于返回的数据
+		if(trim($user_data['user_pwd'])=='')
+		{
+			$res['status'] = 0;
+			$res['error_msg'] = $GLOBALS['lang']['USER_PWD_ERROR'];
+			return  $res;
+		}		
+		if($res['status'] == 1 && trim($user_data['mobile'])=='')
+		{
+			$field_item['field_name'] = 'mobile';
+			$field_item['error']	=	EMPTY_ERROR;
+			$res['status'] = 0;
+			$res['data'] = $field_item;			
+		}
+			
+		if($res['status'] == 1 && !check_mobile(trim($user_data['mobile'])))
+		{
+			$field_item['field_name'] = 'mobile';
+			$field_item['error']	=	FORMAT_ERROR;
+			$res['status'] = 0;
+			$res['data'] = $field_item;			
+		}
+		
+		if($res['status'] == 1 && $user_data['mobile']!=''&&$GLOBALS['db']->getOne("select count(*) from ".DB_PREFIX."user where mobile_encrypt = AES_ENCRYPT('".trim($user_data['mobile'])."','".AES_DECRYPT_KEY."') and id <> ".intval($user_data['id']))>0)
+		{
+			$field_item['field_name'] = 'mobile';
+			$field_item['error']	=	EXIST_ERROR;
+			$res['status'] = 0;
+			$res['data'] = $field_item;			
+		}
+		
+		if ($res['status'] == 0){
+			$error = $res['data'];
+			$error_msg = "";
+			if(!$error['field_show_name'])
+			{
+				$error['field_show_name'] = $GLOBALS['lang']['USER_TITLE_'.strtoupper($error['field_name'])];
+			}
+			if($error['error']==EMPTY_ERROR)
+			{
+				$error_msg = sprintf($GLOBALS['lang']['EMPTY_ERROR_TIP'],$error['field_show_name']);
+			}
+			if($error['error']==FORMAT_ERROR)
+			{
+				//$error_msg = sprintf($GLOBALS['lang']['FORMAT_ERROR_TIP'],$error['field_show_name']);
+				$error_msg = '请输入正确的手机号码';
+			}
+			if($error['error']==EXIST_ERROR)
+			{
+				//$error_msg = sprintf($GLOBALS['lang']['EXIST_ERROR_TIP'],$error['field_show_name']);
+				$error_msg = '手机号码已被注册';
+			}
+		
+			$res['error_msg'] = $error_msg;			
+		}
+		
+		return $res;
+	}	
+	
+	/**
+	 * 生成会员数据
+	 * @param $user_data  提交[post或get]的会员数据
+	 * @param $mode  处理的方式，注册或保存
+	 * 返回：data中返回出错的字段信息，包括field_name, 可能存在的field_show_name 以及 error 错误常量
+	 * 不会更新保存的字段为：score,money,verify,pid
+	 */
+	function add_user($user_data)
+	{		
+		//验证结束开始插入数据
+		$user_id = 0;		
+		$user['user_name'] = $user_data['user_name'];
+		$user['mobile'] = $user_data['mobile'];
+		$user['create_time'] = TIME_UTC;
+		$user['create_date'] = to_date(TIME_UTC,"Y-m-d");
+		$user['update_time'] = TIME_UTC;
+		$user['pid'] = (int)$user_data['pid'];	
+		$user['referer_memo'] = $user_data['referer_memo'];
+		$user['referer'] = $user_data['referer'];
+		$user['user_type'] = 1; //企业用户
+        if($user_data['referer']){
+            $user['referer_time']=time();
+        }
+		$device = es_session::get("device");
+		$user['device']=$device;
+		//获取默认会员组, 即升级积分最小的会员组
+		$user['group_id'] = $GLOBALS['db']->getOne("select id from ".DB_PREFIX."user_group order by score asc limit 1");
+        $user['cunguan_register'] = 1;
+		$user['is_effect'] = 1;
+		$user['mobile_encrypt'] = $user_data['mobile'];
+		$user['mobilepassed'] = 1;//是否已经绑定手机；1：是；0：否; 手机注册的，直接就绑定手机了;
+		$user['code'] = ''; //默认不使用code, 该值用于其他系统导入时的初次认证
+		if(strlen($user_data['user_pwd']) == 32){
+			$user['user_pwd'] = $user_data['user_pwd'].$user['code'];
+		}else{
+			$user['user_pwd'] = md5($user_data['user_pwd'].$user['code']);
+		}	
+		
+		/*
+		//载入会员整合，手机端没填：email，暂时不做会员整合;
+		$integrate_code = trim(app_conf("INTEGRATE_CODE"));
+		if($integrate_code!='')
+		{
+			$integrate_file = APP_ROOT_PATH."system/integrate/".$integrate_code."_integrate.php";
+			if(file_exists($integrate_file))
+			{
+				require_once $integrate_file;
+				$integrate_class = $integrate_code."_integrate";
+				$integrate_obj = new $integrate_class;
+			}
+		}
+		
+		//同步整合
+		if($integrate_obj)
+		{
+			$res = $integrate_obj->add_user($user_data['user_name'],$user_data['user_pwd'],$user_data['email']);
+			$user['integrate_id'] = intval($res['data']);
+	
+			if(intval($res['status'])==0) //整合注册失败
+			{
+				return $res;
+			}
+		}
+		
+		$s_api_user_info = es_session::get("api_user_info");
+		$user[$s_api_user_info['field']] = $s_api_user_info['id'];
+		es_session::delete("api_user_info");
+		*/
+		if($GLOBALS['db']->autoExecute(DB_PREFIX."user",$user,'INSERT'))
+		{
+			$user_id = $GLOBALS['db']->insert_id();
+			 $source_id = es_session::get("source_id");//渠道商编号
+			$device = es_session::get("device");//来源设备;
+			if(!empty($source_id)){
+				addsource($source_id,$device,$user_id,1,1);
+			} 
+
+			//创建session
+			$sess['user_id'] = $user_id;
+			$sess['session_id'] = es_session::id();
+			$sess['session_data'] = date("Y-m-d H:i:s",TIME_UTC);
+			$sess['session_time'] = TIME_UTC;
+			$GLOBALS['db']->autoExecute(DB_PREFIX."session",$sess,"INSERT");
+
+            $this->insert_packet_friends($user_id,$user_id);
+			if((int)app_conf("OPEN_IPS") > 0){
+				$email = get_site_email($user_id);
+				$GLOBALS['db']->query("UPDATE ".DB_PREFIX."user SET email_encrypt = AES_ENCRYPT('".$email."','".AES_DECRYPT_KEY."') where id=".$user_id);
+			}				
+			
+			//send_register_reward($user_id,"",$user['pid'],$user_data['device']);
+
+
+			// if(app_conf("SMS_ON")==1)
+   //          {
+   //              $user_info=$GLOBALS['db']->getRow("select user_name,mobile from ".DB_PREFIX."user where id=".$user_id);
+   //              $tmpl_content =  $GLOBALS['db']->getOne("select content from ".DB_PREFIX."msg_template where name = 'TPL_SMS_REGISTER_SUCCESS'");
+   //              // $notice['user_name'] = $user_info['user_name'];
+   //              // $notice['release_date'] = to_date(TIME_UTC,"Y-m-d");
+   //              // $notice['site_name'] = app_conf("SHOP_TITLE");
+   //              // // $notice['recharge_money'] = round($storage['money'],2);
+   //              // $GLOBALS['tmpl']->assign("notice",$notice);
+   //              $msg = $GLOBALS['tmpl']->fetch("str:".$tmpl_content);
+
+   //              $msg_data['dest'] = $user_info['mobile'];
+   //              $msg_data['send_type'] = 0;
+   //              $msg_data['title'] = "注册成功短信通知";
+   //              $msg_data['content'] = addslashes($msg);
+   //              $msg_data['send_time'] = time();
+   //              $msg_data['is_send'] = 0;
+   //              $msg_data['create_time'] = TIME_UTC;
+   //              $msg_data['user_id'] = $user_id;
+   //              $msg_data['is_html'] = 0;
+   //              send_sms_email($msg_data);
+   //              $GLOBALS['db']->autoExecute(DB_PREFIX."deal_msg_list",$msg_data); //插入
+   //          }
+
+		}		
+		return $user_id;
+	}
+
+    /**
+     * 抢红包好友入库
+     * @param $user_id
+     * @param $friend_id
+     * @author:zhuxiang
+     */
+	function insert_packet_friends($user_id,$friend_id){
+        //注册成功创建红包好友关系
+        $red_data['user_id'] = $user_id;
+        $red_data['friend_id'] = $friend_id;
+        $red_data['status'] = 0;
+        $red_data['addtime'] = TIME_UTC;
+        $GLOBALS['db']->autoExecute(DB_PREFIX."red_packet_friends",$red_data,"INSERT");
+    }
+}
+?>

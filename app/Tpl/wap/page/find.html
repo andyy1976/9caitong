@@ -1,0 +1,171 @@
+{include file="inc/header.html"}
+<script type='text/javascript' src='//webchat.7moor.com/javascripts/7moorInit.js?accessId=429139a0-8bd8-11e7-b6e0-9d5793fc455a&autoShow=false' async='async'></script> 
+<body>
+<script>
+function subLogin(){
+    window.location.href = "{url x="index" r="user#login"}&jumpUrl={url x="index" r="find"}";
+}
+</script>
+<section class="container">
+    <ul class="fi_list">
+    {foreach from=$wap_cloumn item="item"}
+        {if $item.is_login eq 1}
+            {if !$user_id}
+                <li><a href="javascript:;" onclick="subLogin()"><img src="{$item.img}"><span>{$item.name}</span></a></li>
+            {else}
+                {if $item.app_page eq 12}
+                    <li><a onclick="qimoChatClick();"><img src="{$item.img}"><span>{$item.name}</span></a></li>
+                {else}            
+                    <li><a href="{$item.url}"><img src="{$item.img}"><span>{$item.name}</span></a></li>
+                {/if}
+            {/if}
+        {else}           
+            <li><a href="{$item.url}"><img src="{$item.img}"><span>{$item.name}</span></a></li>
+        {/if}
+    {/foreach} 
+    </ul>
+    <div class="fi_redbag">
+        <div class="fi_redbag_ban">
+            <a href="{url x="index" r="find#w647"}"><img src="{$TMPL}/images/wap2/fi/icon_rob.png"></a>
+        </div>
+        <!-- <div class="fi_data">
+            <div class="fi_data_item"><p id="totalMoney">{$red_packet.money}</p><span>平台共计发放现金(元)</span></div>            
+            <i class="fi_data_line"></i>
+            <div class="fi_data_item"><p id="currentNumber">{$red_packet.count}</p><span>当前参与人数(人)</span></div>
+            
+        </div> -->
+        <!-- <div class="fi_rank_wrap">
+            <div class="fi_rank_box">
+                <div class="fi_rank_title"><span class="active">全平台排名</span><span>好友排名</span></div>
+                <div class="fi_rank_list">
+                    <div class="swiper-wrapper">
+                        <ul class="swiper-slide fi_rank_item">
+                        {foreach from=$pt_list item="item"}
+                            <li>
+                                <i class="pt{$item.key}"></i>
+                            {if $item.header_url}
+                                <img src="{$item.header_url}" style="border-radius: 50%">
+                            {else}
+                                <img src="{$TMPL}/images/wap2/fi/img_portrait.png">
+                            {/if}
+                                <span>{$item.real_name}</span>
+                                <p><b>{$item.money}</b>元</p>
+                            </li>
+                        {/foreach}
+                        </ul>
+                        <style type="text/css">
+                            .swiper-slide .login{width: 100%;font-size: 16px;display: block;text-align: center;margin-left: 0px;line-height:4rem;color:#918c68}
+                            .swiper-slide .login a{color:#e73c35;font-size: 18px}
+                        </style>
+                        <ul class="swiper-slide fi_rank_item">
+                        {if $red_list}
+                        {foreach from=$red_list item="item" key="key"}
+                            <li>
+                                <i class="pt{$key}"></i>
+                            {if $item.header_url}
+                                <img src="{$item.header_url}" style="border-radius: 50%">
+                            {else}
+                                <img src="{$TMPL}/images/wap2/fi/img_portrait.png">
+                            {/if}
+                                <span>{$item.real_name}</span>
+                                <p><b>{$item.money}</b>元</p>
+                            </li>
+                        {/foreach}
+                        {else}
+                        <span class="login">请<a href="{url x="index" r="user#login"}">登录</a>后查看</span>
+                        {/if}
+                        </ul>
+                    </div>
+                </div>
+                <div class="swiper-pagination fi_rank_btn"><a href="javascript:;"></a><a href="javascript:;"></a></div>
+            </div>
+        </div> -->
+    </div>
+    <div class="fi_mall">
+        <p class="fi_public_title">积分商城</p>
+        <ul class="fi_mall_list">
+        {foreach from=$goods item="item"}
+            <li>
+                <a href="./index.php?ctl=find&act=mall_details_goods&id={$item.id}" class="fi_mall_img">
+                    {if $item.is_flash_sale eq 1}<span class="discount">限时折扣</span>{else}<span class="new">新品</span>{/if}
+                    <p><img src="{$item.banner_img}"></p>
+                </a>
+                <p class="product_name">
+                    <span>{$item.sub_name}</span><span>{$item.score}积分</span>
+                </p>
+            </li>
+        {/foreach}
+            
+        </ul>
+        <p class="fi_public_more"><a href="{url x="index" r="find#new_mall"}">查看更多&gt;</a></p>
+    </div>
+    <div class="fi_active">
+        <p class="fi_public_title">活动中心</p>
+        <ul class="fi_active_list">
+        {foreach from=$list item = item}
+            <li>
+                <a href="{$item.appwap_url}"><img src="{$item.wapimg}"></a>
+                <h3>{$item.name}<span style="float: right;color: #97a8b2;font-size: 12px">进行中</span></h3>
+                <!-- <p><span>{$item.title}</span></p> -->
+            </li>
+        {/foreach}  
+        </ul>
+        <p class="fi_public_more"><a href="{url x="index" r="find#find_ago"}">往期活动&gt;</a></p>
+    </div>
+    <!-- 导航-footer -->
+    {include file="inc/footer.html"} 
+</section>
+<script type="text/javascript" src="{$TMPL}/js/flexible.js"></script>
+<script type="text/javascript">
+$(function(){
+    //排名切换轮播效果
+    var mySwiperRank = new Swiper ('.fi_rank_list', {
+        loop: true,
+        pagination: {
+          el: '.fi_rank_btn',
+        },
+        on: {
+            slideChangeTransitionEnd: function(){
+                if(this.activeIndex == 2 || this.activeIndex == 0){
+                    $('.fi_rank_title span').removeClass('active').eq(1).addClass('active');
+                }else{
+                    $('.fi_rank_title span').removeClass('active').eq(0).addClass('active');
+                }
+            }
+        }
+    });
+    $('.fi_rank_title span').click(function(){
+        var i = $(this).index();
+        if(i == 0 && $('.fi_rank_title span').eq(0).hasClass('active')){
+            return;
+        }
+        if(i == 1 && $('.fi_rank_title span').eq(1).hasClass('active')){
+            return;
+        }
+        $('.fi_rank_title span').removeClass('active').eq(i).addClass('active');
+        mySwiperRank.slideTo(i+1,1000,false);
+    });
+    //数据滚动
+    var totalMoney = deleteSign($("#totalMoney").html(),"");
+    var currentNumber = deleteSign($("#currentNumber").html(),"");
+    var dataTotalMoney = new CountUp("totalMoney", 0, Number(totalMoney), 0, 1);
+    var dataCurrentNumber = new CountUp("currentNumber", 0, Number(currentNumber), 0, 1);
+    dataTotalMoney.start();
+    dataCurrentNumber.start();
+    //通过正则去掉数据中的“,”
+    function deleteSign(str,signB){
+        return str.replace(/,/g,signB);
+    }
+});
+function ToProductList(url){
+    window.location.href = url;
+}
+function iosToProductList(url){
+    window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jifenRecoder","url":url});
+}
+function androidToProductList(url){
+     window.jiucaitong.FromH5ToJump("jifenRecoder",url);  //返回项目列表
+}
+</script>
+</body>
+</html>

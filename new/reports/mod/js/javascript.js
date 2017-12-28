@@ -1,0 +1,1 @@
+$(document).ready(function(){layer.alert("辛苦了！同志们",{icon:6,title:"加油"})});

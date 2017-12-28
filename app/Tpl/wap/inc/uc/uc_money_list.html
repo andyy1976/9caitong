@@ -1,0 +1,89 @@
+<body>
+<section class="container cf">
+    <div class="header"><a href="{url x="index" r="uc_money"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>资金明细</div>
+    <div class="my-invest-title">
+        <p> 
+        {foreach from="$invest" item="vo" key=key}
+            <a href="{$vo.url}" {if $key eq $invest_type}class="active"{/if}>{$vo.name}</a>
+        {/foreach}
+        </p>
+    </div>
+    {if !$details}
+    <div class="pt-coupon-no">
+        <img src="{$TMPL}/images/wap2/pt/10.png"  class="pt-in-false-img pt-coupon-no-img">
+        <h2>这里空空如也！</h2>
+    </div>
+    {else}
+	<!-- 资金明细 -->
+    <div class="moneyList">
+    {foreach from = $details item=item key=key}
+    <h3 class="my-re-month">{$key}</h3>
+    <ul class="my-re-list">
+    <!-- $type==1 || $type==47 ||$type==24||$type==13||$type==5 -->
+        {foreach from=$item item=vo}
+        <!--<li {if $vo.type == 1 || $vo.type == 47 }class="my-cash-cz"{elseif $vo.type == 2 || $vo.type == 8}class="my-cash-aa"{elseif $vo.type == 8 || $vo.type == 20}class="my-cash-bb"{elseif $vo.type == 28}class="my-cash-cc"{elseif $vo.type == 27}class="my-cash-dd"{/if}>-->
+        <li class = "{$vo.icon}">
+        <a>
+            <p class="my-re-time"><span>{$vo.week}</span><span style="font-size: 12px">{$vo.time}</span></p>
+            <p class="my-re-action"><i></i><span>{$vo.memo}</span><span>{$vo.create_time}</span></p>
+            <p class="my-re-num">{$vo.money}</p>
+        </a>
+        </li>
+        {/foreach}        
+    </ul>
+    {/foreach}
+    {/if}
+    </div>
+</section>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var invest_type = {$invest_type};
+        $.ajax({
+            type:'POST',
+            url:"{url x="index" r="uc_money#ajaxMoney"}",
+            data:{'invest_type':invest_type},
+            dataType:'json',
+            success:function(msg){
+                console.log(msg);
+                if(parseInt(msg-{$page})>0){
+                  scroll(msg);
+                }
+            }
+        })
+        function scroll(msg){
+            var range = 50;             //距下边界长度/单位px
+            var elemt = 500;            //插入元素高度/单位px           //设置加载最多次数
+            var page = 1;
+            var totalheight = 0; 
+            $(window).scroll(function(){
+                var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+                var invest_type = {$invest_type};
+                totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+                if(($(document).height()-range) <= totalheight) {
+                    page++;
+                    var nums=parseInt((msg/{$page})+1);
+                    if(page<=nums) {
+                        getJSON(page,invest_type);
+                    }                   
+                }
+            });
+        }
+        // 请求数据加载到页面中。。。
+        function getJSON(page,invest_type){
+            page=parseInt(page);
+            $.ajax({
+                type:"POST",
+                url:"{url x="index" r="uc_money#moneyList"}",
+                data:{'page':page,'invest_type':invest_type},
+                success :function (str){
+                    var main = $(".moneyList");
+                    if(str!='false'){
+                        main.append(str);
+                    }
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

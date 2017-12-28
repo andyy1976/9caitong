@@ -1,0 +1,46 @@
+<div class="user_top_title bgfb">
+	<a class="current">修改登录密码</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<form method="post" name="reset_login_psw" id="reset_login_psw" ajax_url="{url x="index" r="uc_account#save_password"}">
+		<input type="hidden" id="user_mobile" value="{$user_info.mobile}" >
+		<table cellpadding="5" cellspacing="0" border="0"  class="uc_table_form">
+			<tbody>
+				<tr>
+					<td class="ta_r">当前手机号：</td>
+					<td>{function name="hideMobile" v=$user_info.mobile}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="ta_r">图形验证码：</td>
+					<td><input type="text" id="Verifycode" class="uc_input input_onfocus_shadow" maxlength="4" placeholder="请输入图形验证码" /><input type="hidden" value="{function name="rand"}" id="P_c_rand" /></td>
+					<td><img class="fr" maxlength="4" style="margin-top:0" src="{$APP_ROOT}/verify.php?w=89&h=44&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img" title="看不清楚？换一张" /></td>
+				</tr>
+				<tr>
+					<td class="ta_r">验证码：</td>
+					<td><input type="text" value="" class="uc_input input_onfocus_shadow" name="validateCode" id="validateCode" placeholder="请输入短信验证码" maxlength="6"></td>
+					<td><input type="button" class="ucbt3 bgC_blue1 C_white" id="r_pwd_get_validate_code" value="获取短信验证码" ajax_url="{url x="index" r="ajax#send_phone_verifycode_four"}"></td>
+				</tr>
+				<tr>
+					<td class="ta_r">新的登录密码：</td>
+					<td><input type="password" value="" class="uc_input input_onfocus_shadow" name="password" id="settings-password" placeholder="登录密码(6~16位数字+字母组合)" maxlength="16"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="ta_r">确认密码：</td>
+					<td><input type="password" value="" class="uc_input input_onfocus_shadow" name="password-confirm" id="settings-password-confirm" placeholder="请确认登录密码" maxlength="16"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="button" id="sub_btn_reset_pwd" name="submit" value="{$LANG.SUBMIT_FORM}" class="uc_submit_blue"></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		</form>
+	</div>
+</div>

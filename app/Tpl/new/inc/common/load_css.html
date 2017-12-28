@@ -1,0 +1,31 @@
+<?php
+if(MODULE_NAMEN=="index"){
+	if(ACTION_NAME=="about")	
+		echo "<link rel='stylesheet' href='/new/css/about.css' />";
+	elseif(ACTION_NAME=="guarantee")	
+		echo "<link rel='stylesheet' href='/new/css/guarantee.css' />";
+	elseif(ACTION_NAME=="guide")	
+		echo "<link rel='stylesheet' href='/new/css/guide.css' />";
+	elseif(ACTION_NAME=="deal" ||  ACTION_NAME=="experdeals")	{
+		echo "<link rel='stylesheet' href='/new/css/deal.css' />";
+		echo "<link rel='stylesheet' href='/new/css/prettyPhoto.css' />";}
+	elseif(ACTION_NAME=="deals")	
+		echo "<link rel='stylesheet' href='/new/css/deals.css' />";
+	elseif(ACTION_NAME=="user" && ACTN=="login_reg")
+		echo "<link rel='stylesheet' href='/new/css/userForm.css' />";
+	elseif(ACTION_NAME=="credit")
+		echo "<link rel='stylesheet' href='/new/css/user.css' />";
+	elseif(ACTION_NAME=="notice" || ACTION_NAME=="article" || ACTION_NAME=="acate" || ACTION_NAME=="helpcenter")
+		echo "<link rel='stylesheet' href='/new/css/news.css' />";
+	elseif(ACTION_NAME=="activity")
+		echo "<link rel='stylesheet' href='/new/css/activity.css' />";
+	elseif(ACTION_NAME=="memberlevel")
+		echo "<link rel='stylesheet' href='/new/css/memberlevel.css' />";
+	elseif(ACTION_NAME=="loan")	
+		echo "<link rel='stylesheet' href='/new/css/loan.css' />";
+}
+if(substr(MODULE_NAME,0,3)=="uc_"){
+	echo "<link rel='stylesheet' href='/new/css/font.css' />";
+	echo "<link rel='stylesheet' href='/new/css/user.css' />";
+}
+?>

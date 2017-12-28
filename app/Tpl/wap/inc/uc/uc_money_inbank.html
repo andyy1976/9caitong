@@ -1,0 +1,58 @@
+<body>
+<section class="container cf" style="overflow: hidden; padding-top: 50px;">
+    <?php if(!es_session::get('MachineInfo')) {?>
+        <div class="header" style="width: 100%; position: fixed; top: 0;z-index: 100"><a href="javascript:void(0)" onclick="{$jump.GoBack}()" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>支持银行及限额</div>
+        <!-- <div class="my-bank-title my-bank-tab-title" style="width: 100%; position: fixed; top: 48px;z-index: 100">
+        <p><a href="javascript:;" class="active">宝付支付</a><a href="javascript:;">连连支付</a></p>
+    </div> -->
+    <?php } ?>
+    <?php if(es_session::get('MachineInfo')) {?>
+        <div class="header" style="padding-top: 18px; width: 100%; position: fixed; top: 0;z-index: 100"><a href="javascript:void(0)" onclick="{$jump.GoBack}()" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18" style="padding-top: 18px";></a>支持银行及限额</div>
+        <div style="width: 100%; height: 18px;"></div>
+        <!-- <div class="my-bank-title my-bank-tab-title" style="width: 100%; position: fixed; top: 66px;z-index: 100">
+        <p><a href="javascript:;" class="active">宝付支付</a><a href="javascript:;">连连支付</a></p> -->
+    </div>
+    <?php } ?>
+	<!-- 支持银行页面 -->
+    <table class="my-bank-list-quota" style="display: table">
+        <tr><th>支持银行</th><th>单笔限额（元）</th><th>单日限额（元）</th></tr>
+        {foreach from = $bankInfo item="item"}
+        <tr><td><img src="{$item.icon}"><span>{function name="msubstr" v="$item.name" s="0" l="5" }</span></td><td class="bank-list-quota-td">{$item.cg_single_quota}</td><td class="bank-list-quota-td">{$item.cg_day_limit}</td></tr>
+        {/foreach}
+        <!-- <tr><td class="my-bank-2"><span>农业银行</span></td><td>2万</td><td>5万</td></tr>
+        <tr><td class="my-bank-3"><span>建设银行</span></td><td>5000</td><td>5万</td></tr>
+        <tr><td class="my-bank-4"><span>招商银行</span></td><td>5万</td><td>无限额</td></tr>
+        <tr><td class="my-bank-5"><span>浦发银行</span></td><td><p>首笔2万</p><p>二次及以上5万</p></td><td>5万</td></tr>
+        <tr><td class="my-bank-6"><span>兴业银行</span></td><td><p>首笔5000</p><p>二次及以上5万</p></td><td>无限额</td></tr>
+        <tr><td class="my-bank-7"><span>广发银行</span></td><td><p>首笔1万</p><p>二次及以上50万</p></td><td>5万</td></tr>
+        <tr><td class="my-bank-8"><span>中国银行</span></td><td>5万</td><td>20万</td></tr> -->
+    </table>
+    <!-- <table class="my-bank-list-quota">
+        <tr><th>支持银行</th><th>单笔限额（元）</th><th>单日限额（元）</th></tr>
+        {foreach from = $llBankInfo item="item"}
+        <tr><td><img src="{$item.icon}"><span>{function name="msubstr" v="$item.name" s="0" l="5" }</span></td><td class="bank-list-quota-td">{$item.ll_single_quota}</td><td class="bank-list-quota-td">{$item.ll_day_limit}</td></tr>
+        {/foreach}
+    </table> -->
+</section>
+<script>
+    function jumpToGoBack(){    
+        window.location.href = "javascript:history.go(-1)"; 
+    }
+    //iOS 访问
+    function iosJumpToGoBack(){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToGoBack"}); //跳转到上个页面
+    }
+    //Android访问
+    function androidJumpToGoBack(){
+        window.jiucaitong.FromH5ToJump("jumpToGoBack","");  //跳转到上个页面
+    }
+    $(function(){
+        $('.my-bank-tab-title').find('a').click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+            var index = $(this).index();
+            $('.my-bank-list-quota').hide().eq(index).show();
+        });
+    })
+</script>
+</body>
+</html>

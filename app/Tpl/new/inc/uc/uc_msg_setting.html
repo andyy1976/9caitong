@@ -1,0 +1,105 @@
+<div class="user_top_title bgfb">
+	<a class="current">{$page_title}</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<form method="post" action="{url x="index" r="uc_msg#savesetting"}" name="save_bind_notice">
+			<table width="100%" border="0" cellspacing="1px" class="uc_table_border ta_c" style="margin:10px auto">
+				<tbody>
+	                <tr class="title f_dgray b">
+	                    <th width="25%">消息内容</th>
+	                    <th width="25%"> 站内信</th>
+	                    <th width="25%"> 短信</th>
+	                    <th width="25%">邮件 </th>
+	                </tr>
+					<tr>
+						<td class="ta_l">
+							投标成功
+						</td>
+						<td>
+							<input type="checkbox" name="sms_bidsuccess" value="1" {if $msg_setting.sms_bidsuccess eq 1}checked="checked"{/if} id="settingForm_sms_bidSuccess">
+						</td>
+						<td>
+							<input type="checkbox" name="mobileMsg_bidsuccess" value="1" {if $msg_setting.mobileMsg_bidsuccess eq 1|| !$msg_setting}checked="checked"{/if} id="settingForm_mail_bidSuccess">
+						</td>
+						<td>
+							<input type="checkbox" name="mail_bidsuccess" value="1" {if $msg_setting.mail_bidsuccess eq 1|| !$msg_setting}checked="checked"{/if} id="settingForm_mail_bidSuccess">
+						</td>
+					</tr>
+					<tr>
+						<td class="ta_l">
+							投标流标
+						</td>
+						<td>
+							<input type="checkbox" name="mail_fail" value="1" {if $msg_setting.mail_fail eq 1}checked="checked"{/if} id="settingForm_mail_fail">
+						</td>
+						<td>
+							<input type="checkbox" name="mobileMsg_fail" value="1" {if $msg_setting.sms_fail eq 1 || !$msg_setting}checked="checked"{/if} id="settingForm_fail">
+						</td>
+						<td>
+							<input type="checkbox" name="sms_fail" value="1" {if $msg_setting.sms_fail eq 1 || !$msg_setting}checked="checked"{/if} id="settingForm_fail">
+						</td>
+					</tr>
+						<td class="ta_l">
+							收到一笔还款
+						</td>
+						<td>
+							<input type="checkbox" name="mail_bidrepaid" value="1" {if $msg_setting.mail_bidrepaid eq 1 || !$msg_setting}checked="checked"{/if} id="settingForm_mail_bidRepaid">
+						</td>
+						<td>
+							<input type="checkbox" name="mobileMsg_bidrepaid" value="1" {if $msg_setting.sms_bidrepaid eq 1}checked="checked"{/if} id="settingForm_sms_bidRepaid">
+						</td>
+						<td>
+							<input type="checkbox" name="sms_bidrepaid" value="1" {if $msg_setting.sms_bidrepaid eq 1}checked="checked"{/if} id="settingForm_sms_bidRepaid">
+						</td>
+					</tr>
+					<tr>
+						<td class="ta_l">
+							红包
+						</td>
+						<td>
+							<input type="checkbox" name="mail_redenvelope" value="1" {if $msg_setting.mail_redenvelope eq 1|| !$msg_setting}checked="checked"{/if} id="settingForm_mail_redenvelope">
+						</td>
+						<td>
+							<input type="checkbox" name="mobileMsg_redenvelope" value="1" {if $msg_setting.sms_redenvelope eq 1}checked="checked"{/if} id="settingForm_sms_redenvelope">
+						</td>
+						<td>
+							<input type="checkbox" name="sms_redenvelope" value="1" {if $msg_setting.sms_redenvelope eq 1}checked="checked"{/if} id="settingForm_sms_redenvelope">
+						</td>
+					</tr>
+					<tr>
+						<td class="ta_l">
+							体验金
+						</td>
+						<td>
+							<input type="checkbox" name="mail_redenvelope" value="1" {if $msg_setting.mail_redenvelope eq 1|| !$msg_setting}checked="checked"{/if} id="settingForm_mail_redenvelope">
+						</td>
+						<td>
+							<input type="checkbox" name="mobileMsg_redenvelope" value="1" {if $msg_setting.sms_redenvelope eq 1}checked="checked"{/if} id="settingForm_sms_redenvelope">
+						</td>
+						<td>
+							<input type="checkbox" name="sms_redenvelope" value="1" {if $msg_setting.sms_redenvelope eq 1}checked="checked"{/if} id="settingForm_sms_redenvelope">
+						</td>
+					</tr>
+					<tr>
+						<td class="ta_l">
+							代金券
+						</td>
+						<td>
+							<input type="checkbox" name="mail_redenvelope" value="1" {if $msg_setting.mail_redenvelope eq 1|| !$msg_setting}checked="checked"{/if} id="settingForm_mail_redenvelope">
+						</td>
+						<td>
+							<input type="checkbox" name="mobileMsg_redenvelope" value="1" {if $msg_setting.sms_redenvelope eq 1}checked="checked"{/if} id="settingForm_sms_redenvelope">
+						</td>
+						<td>
+							<input type="checkbox" name="sms_redenvelope" value="1" {if $msg_setting.sms_redenvelope eq 1}checked="checked"{/if} id="settingForm_sms_redenvelope">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="blank20"></div>
+			<input type="submit" value="保存设置" class="ucbt2 bgC_blue1 C_white ta_c fr" />
+		</form>
+	</div>
+</div>

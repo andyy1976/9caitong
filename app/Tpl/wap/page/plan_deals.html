@@ -1,0 +1,235 @@
+{include file="inc/header.html"}
+<body>
+<div id="div1"></div>
+    <section class="container cf">
+        <div class="header"><a href="javascript:;" id="cancel_payment" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>确认出借</div>
+        <!-- 确认出借 -->
+        <ul class="pt-confirm">  
+            <li><p>出借金额</p><span>元</span><input type="tel"  maxlength="8" id="lend_money" value="{$lend_money}" {if $deal.need_money lt  $deal.min_loan_money} disabled="true" {/if}></li>
+            <li><a href="javascript:void(0);" {if $deal.need_money lte $deal.min_loan_money || $deal.is_new eq 1}{else} onclick="redPacketBtn()" {/if}><p>红包</p><b>共{$red_packets}张</b><i></i><span id="red_money">{if $deal.need_money lte $deal.min_loan_money}尾标不可用{elseif $deal.is_new eq 1}新手标不可用{else}{$red_money}{/if}</span></a></li>
+            <li><a href="javascript:void(0);" {if $deal.need_money lte $deal.min_loan_money || $deal.is_new eq 1}{else} onclick="raiseInterestBtn()"{/if}><p>加息卡</p><b>共{$raise_interes}张</b><i></i><span id="coupon_rate">{if $deal.need_money lte $deal.min_loan_money}尾标不可用{elseif $deal.is_new eq 1}新手标不可用{else}{$coupon_rate}{/if}</span></a></li>
+            <li class="pt-in-total"><p>出借总额</p><span>元</span><span id="total_money" class="pt-in-total-money"></span></li>    
+        </ul>
+        <p class="pt-confirm-xy"><input type="checkbox" id="agreement" name="agreement" value="0" tabindex="4" /><span>我已阅读并同意<a href="{url x="index" r="agreement#service" p="id=$deal.id"}">{if $deal.debts}《债权转让及受让协议》{else}《玖财通理财计划服务协议》{/if}</a></span></p>
+        <p class="pt-confirm-xy"><span>理财有风险，出借需谨慎，查看<a href="{url x="index" r="agreement#warning"}">《风险提示书》</a></span></p>
+        <!-- 隐藏参数 -->
+        <input type="hidden" id="red_id" value="{$red_id}">
+        <input type="hidden" id="coupon_id" value="{$coupon_id}">
+        <a href="javascript:;" class="invest-btn-ok" onclick="rushInvestBtn()">确定出借</a>
+    </section>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        if($("input[type='checkbox']").is(':checked') == false){
+            $(".invest-btn-ok").css('background','#aaa');
+        }else{
+            $(".invest-btn-ok").css('background','#4b6bde');
+        }
+    })
+    $("#agreement").click(function(){
+        if($("input[type='checkbox']").is(':checked') == false){
+            $(".invest-btn-ok").css('background','#aaa');
+        }else{
+            $(".invest-btn-ok").css('background','#4b6bde');
+        }
+    })
+    $("input").keyup(function(){
+        if($("#lend_money").val() > {$cungaun_money}){
+            layer.open({
+                className: 'popup-btn',
+                content: '<h3>提示</h3><p>当前可用存管余额'+{$cungaun_money}+'元</p>',
+                shadeClose: true,
+                time:2,
+                end:function(){
+                    $("#lend_money").val({$lend_money});
+                }
+            });
+        }
+        if($("#red_money").html() > 0 || $("#coupon_rate").html() > 0){
+            $.ajax({
+                url:"{url x="index" r="ajax#storage_red_id"}",
+                dataType: "json",
+                data:{'clean':1},
+                type: "POST",
+                success: function(obj){
+                    $("#red_money").html("");
+                    $("#coupon_rate").html("");
+                    $("#red_id").val("");
+                    $("#coupon_id").val("");
+                    loadCount();
+                }
+
+            });
+        }else{
+           loadCount(); 
+        }
+        
+    });
+    $("#lend_money").blur(function(){
+        var patrn=/^([1-9]\d*)(\.\d*[1-9])?$/; 
+        if (!patrn.exec($("#lend_money").val())) {
+            layer.open({
+                className: 'popup-btn',
+                content: '<h3>提示</h3><p>出借金额不能为空</p>',
+                shadeClose: true,
+                time:2,
+                end:function(){
+                    $("#lend_money").val({$lend_money});
+                }
+            });
+        }
+    });
+    loadCount();
+    function loadCount() {
+        if($("#red_money").html() > 0){
+            var red_money = $("#red_money").html();
+        }else{
+            var red_money = 0;
+        }
+        var count_money = Number($("#lend_money").val())+Number(red_money);
+        $(".pt-in-total-money").html(count_money);
+    }  
+    $("#cancel_payment").bind("click",function(){
+        layer.open({
+            className: 'popup-btn',
+            content: '<h3>提示</h3><p>是否取消支付？</p>',
+            btn: ['是','否'],
+            shadeClose: true,
+            yes: function(){
+                //点击确认按钮后要做的动作
+             window.location.href = "{url x="index" r="plandeal" p="id=$deal.id"}";
+            },
+            no: function(){
+                //点击确认按钮后要做的动作
+            }
+        });
+    });
+    //跳转到红包列表
+    function redPacketBtn(){
+        var query = new Object();
+        query.money = $("#lend_money").val();
+        query.deal_id = {$deal.id};
+        query.repay_time = {$deal.repay_time};
+        $.ajax({
+            url:"{url x="index" r="ajax#storage"}",
+            dataType: "json",
+            data:query,
+            type: "POST",
+            success: function(obj){
+                if(obj.status){
+                    window.location.href = "{url x="index" r="deal#red_packet"}";
+                }
+            }
+
+        });
+    }
+    //跳转到加息卡选择
+    function raiseInterestBtn(){
+        var query = new Object();
+        query.money = $("#lend_money").val();
+        query.deal_id = {$deal.id};
+        query.repay_time = {$deal.repay_time};
+        $.ajax({
+            url:"{url x="index" r="ajax#storage"}",
+            dataType: "json",
+            data:query,
+            type: "POST",
+            success: function(obj){
+                if(obj.status){
+                    window.location.href = "{url x="index" r="deal#raise_interes"}";
+                }
+            }
+
+        });
+    }
+    //确认投资按钮
+    function rushInvestBtn(){
+        if($("input[type='checkbox']").is(':checked') == false){
+            return false;
+        }
+        var query = new Object();
+        query.plan_id = {$deal.id};
+        query.bid_money = $("#lend_money").val();
+        query.red_id = $("#red_id").val();
+        query.interestrate_id = $("#coupon_id").val();
+        $.ajax({
+            url:"{url x="index" r="deal#bid"}",
+            dataType: "json",
+            data:query,
+            type: "POST",
+            success: function(obj){
+               if(obj.status==0){
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+obj.info+'</p>',
+                        shadeClose: true,
+                        time:2,
+                    });
+                }else if(obj.status==3){
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+obj.info+'</p>',
+                        shadeClose: true,
+                        time:2,
+                    });
+                }else if(obj.status==2){
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+obj.info+'</p>',
+                        shadeClose: true,
+                        time:2,
+                    });
+                     window.setTimeout("time_load()", 2000);
+                    
+                }else if(obj.status==1){
+                    var pc_con = obj.pc_con;
+                    to_load(pc_con);
+                }
+            }
+
+        });
+    }
+    function time_load(){
+        window.location.href = "{url x="index" r="user#login"}";
+    }
+    function to_load(pc_con){      
+        var load=layer.open({type: 2,shadeClose: false});
+        $.ajax({
+            url:"{url x="index" r="deal#dobid"}",
+            dataType: "json",
+            data:{'pc_con':pc_con},
+            type: "POST",
+            success:function(result){
+                if(result.status == 4){
+                    layer.close(load);
+                    $("#div1").html(result.msg);
+                    /*layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',
+                        btn: ['确认'],
+                        shadeClose: true,
+                        yes: function(){
+                            //点击确认按钮后要做的动作
+                         window.location.href = "{url x="member" r="uc_invest#lendlist"}";
+                        },
+                        
+                    });*/
+                }else if(result.status == 1){
+                    layer.close(load);
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',
+                        btn: ['确认'],
+                        shadeClose: true,
+                        yes: function(){
+                            //点击确认按钮后要做的动作
+                         window.location.href = "{url x="member" r="uc_invest#lendlist"}";
+                        },
+                        
+                    });
+                }
+            }
+        });
+    }
+    </script>
+</body>
+</html>

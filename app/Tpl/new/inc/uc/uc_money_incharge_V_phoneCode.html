@@ -1,0 +1,36 @@
+<link rel='stylesheet' href='/new/css/user.css' />
+<div class="user_top_title bgfb">
+	<a class="current">验证手机</a>
+</div>
+
+<div class="user_center_con">
+	<div class="blank20"></div>
+	<div class="uc01">
+		<form id="incharge_form" ajax_url="{url x="index" r="uc_money#incharge_done"}" />
+			<table border="0" cellspacing="0" cellpadding="5" class="uc_table_form">
+				<tbody>
+					<tr>
+					
+						<td width="100px" class="ta_r">充值金额：</td>
+						<td><em>{$money}</em>元</td>
+					</tr>
+					<tr>
+						<td width="100px" class="ta_r">手机号：</td>
+						<td>{function name="hideMobile" v="$mobile"}</td>
+					</tr>
+					<tr>
+						<td class="ta_r">手机验证码：</td>
+						<td><input type="text" value="" class="uc_input input_onfocus_shadow" id="incharge_V_phoneCode" placeholder="请输入手机验证码" maxlength="6" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<input type="hidden" id="Bill_Number" value="{$seqno}" />
+							<input type="button" id="Submit_V_phoneCode" value="确定提交" class="uc_submit_blue" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+</head>
+<body>
+<section class="container cf">
+    <?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>还款成功</div>
+    <?php } ?>
+    <!-- 还款成功 -->
+    <p class="my-result-icon"><img src="{$TMPL}/images/wap2/my/icon_success.png" width="59.5" height="59.5"></p>
+    <p class="my-result-title">支付成功,您的还款申请已提交</p>
+    <p style="width: 70%; margin: 12px auto 0; color: #666;">您的还款状态将在1分钟内更新，请稍后查看。若届时未更新，请致电客服咨询。</p>
+    <div class="my-result-money"><p>还款期数</p><span style="color: #999">{$list.l_key}/{$list.repay_time}期 </span></div>
+    <div class="my-result-money" style="margin-top: 0; border-top: 1px solid #e6e6e6;"><p>还款金额</p><span style="color: #999">{$list.repay_money}元</span></div>
+    <a href="javascript:void(0)" onclick="{$jump.Godeal}()" class="my-re-result-btn">确定</a>
+</section>
+</body>
+</html>
+
+<script>
+    function iosGodeal(){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"Godeal"});
+    }
+
+    function androidGodeal(){
+		var deal_id = "{$list.deal_id}";
+        window.jiucaitong.FromH5ToJump("Godeal",deal_id);
+    }
+</script>

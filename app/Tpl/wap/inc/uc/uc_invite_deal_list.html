@@ -1,0 +1,62 @@
+<body>
+    <section class="container cf">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>{$page_title}</div>
+    <!-- 安全中心 -->
+        <ul class="my-voucher-list my-safe-list cf">
+        {foreach from="$deals" item="vo"}
+            <li class="my-safe-voucher"><a href="{url x="index" r="uc_invest#deal_info" p="id=$vo.id&load_id=$vo.pid"}"><span>{$vo.name}</span><i></i><p class="tel-how">{$vo.total_money}元</p></a></li>
+        {/foreach}
+        </ul>
+    </section>
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var id = {$id};
+        $.ajax({
+            type:'POST',
+            url:"{url x="index" r="uc_invest#ajaxInvestDeal"}",
+            data:{'id':id},
+            dataType:'json',
+            success:function(msg){
+                console.log(msg);
+                if(parseInt(msg-{$page})>0){
+                  scroll(msg);
+                }
+            }
+        })
+        function scroll(msg){
+            var range = 50;             //距下边界长度/单位px
+            var elemt = 500;            //插入元素高度/单位px           //设置加载最多次数
+            var page = 1;
+            var totalheight = 0; 
+            $(window).scroll(function(){
+                var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+                var id = {$id};
+                totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+                if(($(document).height()-range) <= totalheight) {
+                    page++;
+                    var nums=parseInt((msg/{$page})+1);
+                    if(page<=nums) {
+                        getJSON(page,id);
+                    }                   
+                }
+            });
+        }
+        // 请求数据加载到页面中。。。
+        function getJSON(page,id){
+            page=parseInt(page);
+            $.ajax({
+                type:"POST",
+                url:"{url x="index" r="uc_invest#investListDeal"}",
+                data:{'page':page,'id':id},
+                success :function (str){
+                    var main = $(".my-voucher-list");
+                    if(str!='false'){
+                        main.append(str);
+                    }
+                }
+            });
+        }
+    });
+</script>
+</html>

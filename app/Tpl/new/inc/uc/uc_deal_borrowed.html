@@ -1,0 +1,81 @@
+<div class="user_top_title bgfb">
+	<a class="current">我的借款</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<ul class="equal3 interval25 balance ofh">
+			<li class="bgC_blue1">
+				近七日待还(元)
+				<p class="money">{function name="format_price" v="$money_log.invest_money"}</p>
+			</li>
+			<li class="bgC_green1">
+				剩余待还 (元)
+				<p class="money">{function name="format_price" v="$money_log.repay_money"}</p>
+			</li>
+			<li class="bgC_red1">
+				累计借款(元)
+				<p class="money">{if $money_log.loans_money eq ''}0{else}{$money_log.loans_money}{/if}</p>
+			</li>
+		</ul>
+		<div class="blank50"></div>
+		<div class="sl_wrap">
+			<div class="sl_key">借款状态：</div>
+			<div class="sl_value">
+				<ul>
+					<li><a href="{url x="index" r="uc_deal#borrowed"}" {if $ACTION_NAME eq 'borrowed'}class="cur"{/if}>全部</a></li>
+					<li><a href="{url x="index" r="uc_deal#loans"}" {if $ACTION_NAME eq 'loans'}class="cur"{/if}>还款中</a></li>
+					<li><a href="{url x="index" r="uc_deal#over"}" {if $ACTION_NAME eq 'over'}class="cur"{/if}>已还清</a></li>
+				</ul>
+			</div>
+		</div>
+		{if $list}
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc_table_list">
+			<tbody>
+				<tr  border="0">
+					<th>项目</th>
+					<th style="width:8%">借款期限</th>
+					<th style="width:15%">借款利率</th>
+					<th style="width:15%">借款金额(元)</th>
+					<th style="width:15%">放款日期</th>
+					<th style="width:12%">状态</th>
+					<th style="width:10%">操作</th>
+				</tr>
+				{foreach from=$list item="item" key=key}
+				<tr class="{if $key mod 2 eq 1}bgf7{/if}">
+					<td class="ta_l">
+						<a href="{url x="index" r="uc_deal#borrowed_info" p="deal_id=$item.id"}" class="C_coffe">{$item.name}</a>
+					</td>
+					<td>
+						{$item.repay_time}个月
+					</td>
+					<td>
+	                    {$item.rate}
+					</td>
+					<td>
+						{$item.borrow_amount}
+					</td>
+					<td>
+						{if $item.repay_start_time eq ''}暂未放款{else}{$item.repay_start_time}{/if}
+					</td>
+					<td>
+							{if $item.deal_status eq 4}
+							还款中
+							{elseif $item.deal_status eq 5}
+							已完成 
+							{/if}
+					
+					</td>
+					<td>
+						{if $item.deal_status eq 4 && $item.debts eq 0}<a href="{url x="index" r="uc_deal#borrowed_info" p="deal_id=$item.id"}" class="C_blue1">立即还款</a>{else}-{/if} 
+					</td>   
+				</tr>
+				{/foreach}
+			</tbody>
+		</table>
+		<div class="pages">{$pages}</div>
+		{else}	
+		<div align="center" style="padding:20px 0">暂无记录</div>
+		{/if}
+	</div>
+</div>

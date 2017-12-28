@@ -1,0 +1,37 @@
+<body>
+<style type="text/css">
+.realName{padding-right: 30px}
+</style>
+<section class="container cf">
+    <div class="header"><a href="{url x="member" r="uc_center"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>个人信息</div>
+	<!-- 个人信息 -->
+    <ul class="my-acc-list my-info-list cf">   	
+        <li>{if $user_info_list['real_name'] eq ""}<a href="{url x="index" r="uc_depository_account"}"><span>真实姓名</span><i></i><p>去认证</p></a>{else}<span>真实姓名</span><p class="realName">{$user_info_list.real_name}<!-- {function name="utf_substr" v="$user_info_list.real_name"} -->{/if}</p></li>
+        <li>{if $user_info_list['idno'] eq ""}<a href="{url x="index" r="uc_depository_account"}"><span>身份证号</span><i></i><p>去认证</p></a>{else}<span>身份证号</span><p class="realName">{function name="hideIdnoCard" v="$user_info_list.idno"}{/if}</p></li>
+        <li><a href="{url x="index" r="uc_account#mobile"}"><span>手机号码</span><i></i><p>{function name="hideMobile" v="$user_info_list.mobile"}</p></a></li>
+        <li style="margin-top: 10px"><a href="{url x="index" r="agreement#questionnaire"}"><span>风险评估</span><i></i></a></li>
+    </ul>
+    <a href="javascript:;" class="my-btn-loginout" onclick="exit();">退出登录</a>
+</section>
+<script>
+    //退出登录弹出框
+    function exit(){
+        layer.open({
+            className: 'popup-btn',
+            content: '<h3>提示</h3><p>确定要退出当前账号？</p>',
+            btn: ['确认', '取消'],
+            shadeClose: true,
+            yes: function(){
+                //点击确认按钮后要做的动作
+                layer.open({content: '确认退出登录', time: 2 });
+                window.location.href="{url x="index" r="user#loginout"}";
+            }, 
+            no: function(){
+                //点击取消按钮后要做的动作
+                layer.open({content: '取消', time: 1});
+            }
+        });
+    }
+</script>
+</body>
+</html>

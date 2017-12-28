@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<title>活动详情页模板页(自定义页面名称)</title>
+		<meta name="keywords" content="{if $page_keyword}{$page_keyword}{/if}{$site_info.SHOP_KEYWORD}" />
+		<meta name="description" content="{if $page_description}{$page_description}{/if}{$site_info.SHOP_DESCRIPTION}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="/new/activity/W1/css/style.css"/>
+		<script src="/new/sp_public/jquery-1.8.3.min.js" type="text/javascript" ></script>
+		<script src="/new/activity/W1/js/fastclick.js" type="text/javascript" ></script>
+		<script>
+	    	//处理移动端click事件300ms延迟
+	    	if ('addEventListener' in document) {
+			    document.addEventListener('DOMContentLoaded', function() {
+			        FastClick.attach(document.body);
+			    }, false);
+			}
+	    </script>
+	</head>
+	<body>
+<!--可编辑内容区域-->
+<div class="container">
+    <img src="/new/activity/W1/images/banner.png">
+    <div class="content">
+    	<div class="active-1">
+    		<div class="box">
+                <h3>我的出借金额：<span>XXX元</span></h3>
+                <a href="javascript:;" class="btn"></a>
+                <div class="title">
+                    <p>本月累计邀请<br>出借人数达(人)</p><span class="money">奖励（元）</span><p class="operate">操作</p>
+                </div>
+                <ul class="list">
+                    <li><p>5人以下</p><span>10</span><b><a href="javascript:;">可领取</a></b></li>
+                    <li><p>5</p><span>30</span><b><a href="javascript:;">可领取</a></b></li>
+                    <li><p>6</p><span>40</span><b><a href="javascript:;">可领取</a></b></li>
+                    <li><p>7</p><span>40</span><b><a href="javascript:;">可领取</a></b></li>
+                    <li><p>8</p><span>70</span><b>不可领取</b></li>
+                    <li><p>9</p><span>80</span><b>不可领取</b></li>
+                    <li><p>10</p><span>120</span><b>不可领取</b></li>
+                    <li><p>15</p><span>150</span><b>不可领取</b></li>
+                    <li><p>20</p><span>300</span><b>不可领取</b></li>
+                    <li><p>40</p><span>400</span><b>不可领取</b></li>
+                    <li><p>50</p><span>800</span><b>不可领取</b></li>
+                    <li><p>100</p><span>1500</span><b>不可领取</b></li>
+                </ul>
+            </div>
+    	</div>
+    	<div class="active-2">
+    		<div class="box box-2">
+                <h3>活动期间我的邀请信息<a href="javascript:;">点击查看</a></h3>
+                <a href="javascript:;" class="btn"></a>
+                <div class="title">
+                    <p>本月被邀请人累计<br>出借折标金额达(元)</p><span class="money">奖励（元）</span><p class="operate">操作</p>
+                </div>
+                <ul class="list">
+                    <li><p>1000</p><span>5</span><b><a href="javascript:;">可领取</a></b></li>
+                    <li><p>5000</p><span>30</span><b><a href="javascript:;">可领取</a></b></li>
+                    <li><p>10000</p><span>30</span><b><a href="javascript:;">可领取</a></b></li>
+                    <li><p>50000</p><span>150</span><b><a href="javascript:;">可领取</a></b></li>
+                    <li><p>100000</p><span>300</span><b>不可领取</b></li>
+                    <li><p>200000</p><span>800</span><b>不可领取</b></li>
+                    <li><p>500000</p><span>2000</span><b>不可领取</b></li>
+                    <li><p>1000000</p><span>3000</span><b>不可领取</b></li>
+                    <li><p>2000000</p><span>4000</span><b>不可领取</b></li>
+                    <li><p>3000000</p><span>4500</span><b>不可领取</b></li>
+                    <li><p>4000000</p><span>6000</span><b>不可领取</b></li>
+                    <li><p>5000000</p><span>8000</span><b>不可领取</b></li>
+                </ul>
+            </div>
+    	</div>
+    </div>
+    <div class="active-3">
+        <h3></h3>
+        <div class="tips">
+            <dl><dt>1、</dt><dd>邀请好友在活动期间注册并出借，达到指定数量，邀请人可获得相应数额的活动奖励；</dd></dl>
+            <dl><dt>2、</dt><dd>活动期间，被邀请人出借达到指定金额，邀请人可获得相应数额的活动奖励；</dd></dl>
+            <dl><dt>3、</dt><dd>以邀请人当月累计出借满2000元为时间节点，在该节点时间前完成的任务，活动奖励以代金券的形式发放；在该节点时间后完成的任务，活动奖励以红包的形式发放；</dd></dl>
+            <dl><dt>4、</dt><dd>本活动中所有统计金额均为真实出借金额，不含代金券、红包、体验金等虚拟货币；</dd></dl>
+            <dl><dt>5、</dt><dd>本活动中所有出借标的不包含体验标及新手标；</dd></dl>
+            <dl><dt>6、</dt><dd>本活动最终解释权归玖财通所有。</dd></dl>
+        </div>
+    </div>
+<!--/可编辑内容区域-->
+	</body>
+</html>

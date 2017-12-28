@@ -1,0 +1,70 @@
+<body>
+    <section class="container cf">
+        <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>身份验证</div>
+        <!-- 修改绑定手机号 -->
+        <div class="my-real-list" style="margin-top: 10px">
+            <!-- 修改绑定手机第一步 -->
+            <form class="step-one">
+                <p><span>真实姓名</span><input type="text" id="real_name" placeholder="您的真实姓名"></p>
+                <p><span>身份证号</span><input type="text" id="idno" maxlength="18" placeholder="您的身份证号码"></p>
+                <a href="javascript:;" class="my-btn" id="submit">下一步</a>
+            </form>
+        </div>
+    </section>
+    <script>
+    $(document).ready(function(){
+        if($("#real_name").val().length != 0 && $("#idno").val().length != 0){
+             $(".my-btn").css('background','#4b6bde');
+        }
+    });
+    $("#real_name").keyup(function(){
+        if($("#real_name").val().length == 0){
+            $(".my-btn").css('background','#aaa');
+            return false;
+        }else if($("#idno").val().length == 0){
+            $(".my-btn").css('background','#aaa');
+            return false;
+        }else{
+            $(".my-btn").css('background','#4b6bde');
+        }
+    })
+    $("#idno").keyup(function(){
+        if($("#real_name").val().length == 0){
+            $(".my-btn").css('background','#aaa');
+            return false;
+        }else if($("#idno").val().length == 0){
+            $(".my-btn").css('background','#aaa');
+            return false;
+        }else{
+            $(".my-btn").css('background','#4b6bde');
+        }
+    })
+    $("#submit").click(function(){
+        if($("#real_name").val().length == 0 || $("#idno").val().length == 0)
+            return false;
+        var query = new Object();
+        query.real_name = $("#real_name").val();
+        query.idno = $("#idno").val();
+        var ajaxurl = "{url x="index" r="uc_account#get_authentication"}";
+        $.ajax({
+            url: ajaxurl,
+            data:query,
+            type: "POST",
+            dataType: "json",
+            success:function(result){
+                if(result.status == 1){
+                    window.location.href = "{url x="index" r="uc_account#mobile_step_two"}";
+                }else{
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',
+                        shadeClose: true,
+                        time: 2
+                    });
+                }
+            }
+        })
+    })
+    </script>
+</body>
+</html>

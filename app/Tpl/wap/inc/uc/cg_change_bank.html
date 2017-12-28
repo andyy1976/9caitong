@@ -1,0 +1,299 @@
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18" /></a>绑定银行卡<a href="javascript:;" class="cg-help"><img src="{$TMPL}/images/wap2/cg/icon-help.png" /></a></div>
+<?php } ?>
+	<!-- 存管开户-绑定银行卡 -->
+    <form>
+    	<ul class="cg-list">
+    		<li>
+    			<span>银行名称</span>
+	    		<select class="choose-bank" id="bank_name">
+	    			<option value="" selected>请选择所属银行</option>
+                    {foreach from=$banks item=bank key=key}
+                        <option value="{$bank.bankid}">{$bank.name}</option>
+                    {/foreach}
+
+	    		</select>
+    		</li>
+    	</ul>
+        <!--<div class="bank-quota"><span class="bank-quota-single">单笔：-</span><span class="bank-quota-total">单日：-</span></div>-->
+    	<ul class="cg-list">
+    		<li><span>银行卡号</span><input id="bank_card" type="text" placeholder="持卡人储蓄卡卡号" /></li>
+    		<li><span>预留手机</span><input id="bank_mobile" type="text" placeholder="银行预留手机号" /></li>
+    		<li class="cg-list-code"><span>验证码</span><input id="sms_code" type="text" placeholder="手机验证码" /><a href="javascript:;" class="code-btn" id="get_regsms_code"></a></li>
+    	</ul>
+        <input type="hidden" id="seqno" value="{$seqno}"/>
+    </form>
+    <a href="javascript:;" class="cg-btn cg-btn-bank">确认绑定</a>
+    <img src="{$TMPL}/images/wap2/cg/logo.png" style="margin-top: 90px;width: 100%" />
+</section>
+</body>
+<script type="text/javascript">
+    //处理移动端click事件300ms延迟
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+    //输入数字时，每四位后加一个空格
+	$('#bank_card').on('keyup', function(e) {
+       //只对输入数字时进行处理
+       if((e.which >= 48 && e.which <= 57) || (e.which >= 96 && e.which <= 105 )){
+            //获取当前光标的位置
+            var caret = this.selectionStart;
+            //获取当前的value
+            var value = this.value;
+            //从左边沿到坐标之间的空格数
+            var sp =  (value.slice(0, caret).match(/\s/g) || []).length;
+            //去掉所有空格
+            var nospace = value.replace(/\s/g, '');
+           //重新插入空格
+            var curVal = this.value = nospace.replace(/(\d{4})/g, "$1 ").trim();
+           //从左边沿到原坐标之间的空格数
+            var curSp = (curVal.slice(0, caret).match(/\s/g) || []).length;
+          //修正光标位置
+        	this.selectionEnd = this.selectionStart = caret + curSp - sp;
+        }
+    });
+    $("#bank_name").change(function(){
+        if($("#bank_name").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+		}else if($("#bank_card").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if($("#bank_mobile").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else{
+            $("#get_regsms_code").css('background','#f99c1c');
+            $(".cg-btn").css('background','#4b6bde');
+            $(".cg-btn").css('border','1px solid #4b6bde');
+        }
+    })
+
+    $("#bank_card").keyup(function(){
+        if($("#bank_name").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if($("#bank_card").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if($("#bank_mobile").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else{
+            $("#get_regsms_code").css('background','#f99c1c');
+            $(".cg-btn").css('background','#4b6bde');
+            $(".cg-btn").css('border','1px solid #4b6bde');
+        }
+    })
+
+    $("#bank_mobile").keyup(function(){
+        if($("#bank_name").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if($("#bank_card").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if($("#bank_mobile").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else{
+            $("#get_regsms_code").css('background','#f99c1c');
+            $(".cg-btn").css('background','#4b6bde');
+            $(".cg-btn").css('border','1px solid #4b6bde');
+        }
+    })
+
+    $("#sms_code").keyup(function(){
+        if($("#bank_name").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if($("#bank_card").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if($("#bank_mobile").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if($("#sms_code").val().length == 0){
+            $(".cg-btn").css('background','#aaa');
+            $(".cg-btn").css('border','1px solid #aaa');
+            return false;
+        }else{
+            /*$("#get_regsms_code").css('background','#f99c1c');*/
+            $(".cg-btn").css('background','#4b6bde');
+            $(".cg-btn").css('border','1px solid #4b6bde');
+        }
+    })
+
+    var regsiter_vy_time = null;    //定义时间
+    var is_lock_send_vy = false;    //解除锁定
+    var left_rg_time = 0;           //开始时间
+    function left_time_to_send_regvy(){
+        clearTimeout(regsiter_vy_time);
+        if(left_rg_time > 0){
+            regsiter_vy_time = setTimeout(left_time_to_send_regvy,1000);
+            $("#get_regsms_code").css('background','#aaa');
+            $("#get_regsms_code").html(left_rg_time+"秒后重新获取");
+            $("#get_regsms_code").addClass("btn_disable");
+            left_rg_time -- ;
+        }
+        else{
+            is_lock_send_vy = false;
+            $("#get_regsms_code").removeClass("btn_disable");
+            $("#get_regsms_code").css('background','#f99c1c');
+            $("#get_regsms_code").html("重新获取验证码");
+            left_rg_time = 0;
+        }
+    }
+
+    //$(document).ready(function() {
+        $('#get_regsms_code').html('获取验证码');
+        $("#get_regsms_code").css('background','#aaa');
+        $(".cg-btn").css('background','#aaa');
+        $(".cg-btn").css('border','1px solid #aaa');
+        $("#get_regsms_code").click(function () {
+            if ($("#bank_card").val().length == 0 || $("#bank_mobile").val().length == 0) {
+                return false;
+            }
+
+            if (is_lock_send_vy || $(this).hasClass(".btn_disable")) {
+                return false;
+            }
+            //验证银行卡号正则表达式
+            if(!( /^(\d{16}|\d{19})$/.test($.trim($("#bank_card").val()).replace(/\s+/g,"")))){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>银行卡号格式不正确</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                return false;
+            }
+
+            if (!(/^1[3|4|5|7|8]\d{9}$/.test($("#bank_mobile").val()))) {
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>姓名/身份证号/手机号不匹配</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                $("#bank_mobile").focus();
+                return false;
+            }
+            is_lock_send_vy = true;
+            regsmsCode();
+        });
+
+        $(".cg-btn").bind("click", function () {
+            $(".cg-btn").attr("disabled", "disabled");
+            if ($("#bank_card").val().length == 0 || $("#bank_mobile").val().length == 0 || $("#sms_code").val().length == 0 || $("#bank_name").val().length == 0 || $("#seqno").val().length == 0) {
+                return false;
+            }
+            //验证银行卡号正则表达式
+            if(!( /^(\d{16}|\d{19})$/.test($.trim($("#bank_card").val()).replace(/\s+/g,"")))){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>银行卡号格式不正确</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                return false;
+            }
+
+            if (!(/^1[3|4|5|7|8]\d{9}$/.test($("#bank_mobile").val()))) {
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>姓名/身份证号/手机号不匹配</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                $("#bank_mobile").focus();
+                return false;
+            }
+            var ajaxurl = "{url x="index" r="uc_depository_addbank#change_bank"}";
+            var query = new Object();
+            query.bank_code = $.trim($("#bank_name").val());
+            query.cardId = $.trim($("#bank_card").val());
+            query.mobile = $.trim($("#bank_mobile").val());
+            query.sms_code = $.trim($("#sms_code").val());
+            query.businessSeqNo = $.trim($("#seqno").val());
+            console.log(query);
+            $.ajax({
+                url: ajaxurl,
+                data: query,
+                type: "POST",
+                dataType: "json",
+                success: function (result) {
+                    if (result.status) {
+
+						window.location.href = "{url x="index" r="uc_depository_addbank#cg_bank_success"}";
+
+                    } else {
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>' + result.info + '</p>',
+                            shadeClose: true,
+                            time: 2
+                        });
+                        return false;
+                    }
+                }
+            });
+        });
+    //}
+    function regsmsCode() {
+        var query = new Object();
+        query.mobile = $("#bank_mobile").val();
+        query.verify = $.trim($("#verify").val());
+        var ajaxurl = "{url x="index" r="ajax#cg_res_identity_bank_code"}";
+        $.ajax({
+            url:ajaxurl,
+            data:query,
+            type: "POST",
+            dataType: "json",
+            success: function(result){
+                if(result.status==1){
+                    left_rg_time = 60;
+                    left_time_to_send_regvy();
+                    to_send_msg = true;
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<br><p>已将验证码发送到</p><p>'+$("#bank_mobile").val()+'</p><p>请注意查收</p>',
+                        btn: ['确认'],
+                        shadeClose: true,
+                        no: function(){
+                            //点击确认按钮后要做的动作
+                        }
+                    });
+                }else if(result.status==2){
+                    $("#get_regsms_code").css('background','#aaa');
+                    $(".bank-img-code").show();
+                    is_lock_send_vy = false;
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',
+                        shadeClose: true,
+                        time: 2
+                    });
+                    return false;
+                }else{
+                    is_lock_send_vy = false;
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',
+                        shadeClose: true,
+                        time: 2,
+                    });
+                    return false;
+                }
+            },error:function(){
+                is_lock_send_vy = false;
+            }
+        })
+    }
+
+
+</script>

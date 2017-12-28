@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- x5内核浏览器（QQ浏览器、QQ微信内置浏览器）强制竖屏 -->
+	<meta name="x5-orientation" content="portrait">
+	<!-- x5内核浏览器（QQ浏览器、QQ微信内置浏览器）强制全屏 -->
+	<meta name="x5-fullscreen" content="true">
+	<!-- UC浏览器强制竖屏 -->
+	<meta name="screen-orientation" content="portrait">
+	<!-- UC浏览器强制全屏 -->
+	<meta name="full-screen" content="yes">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 禁止识别电话号码和邮箱号码 -->
+    <meta name="format-detection" content="telephone=no,email=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>运营报告</title>
+    <link rel="stylesheet" href="{$TMPL}/css/reset_ph_v=2016_2.css">
+    <link rel="stylesheet" href="{$TMPL}/css/yybg_16_4_wap_2.css">
+    <script src="{$TMPL}/js/jquery-1.11.3.min.js"></script>
+    <script src="{$TMPL}/js/fastclick.js"></script>
+	<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+    <script type="text/javascript">
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+</head>
+<body>
+<div class="container">
+    <a name="to_top"></a>
+    <img src="{$TMPL}/images/4jidu/banner.png">
+    <a name="business"></a>
+    <img src="{$TMPL}/images/4jidu/img1.png">
+    <img src="{$TMPL}/images/4jidu/img2.png">
+    <a name="portrait"></a>
+    <img src="{$TMPL}/images/4jidu/img3.png">
+    <img src="{$TMPL}/images/4jidu/img4.png">
+    <a name="project"></a>
+    <img src="{$TMPL}/images/4jidu/img5.png">
+    <a name="active"></a>
+    <img src="{$TMPL}/images/4jidu/img6.png">
+    <div class="active">
+        <ul class="active_list cf">
+            <li><img src="{$TMPL}/images/4jidu/active_img/1.png"><p>国庆七天乐-2亿全民乐</p><p class="active_time">活动时间：<span>2016.10.01-2016.10.07</span></p></li>
+            <li><img src="{$TMPL}/images/4jidu/active_img/2.png"><p>重阳月登高日，五彩茱萸好运至</p><p class="active_time">活动时间：<span>2016.10.08-2016.10.18</span></p></li>
+            <li><img src="{$TMPL}/images/4jidu/active_img/3.png"><p>加息多多,“壕在这里”</p><p class="active_time">活动时间：<span>2016.11.01-2016.11.30</span></p></li>
+            <li><img src="{$TMPL}/images/4jidu/active_img/4.png"><p>圣诞礼物到，许愿红包</p><p class="active_time">活动时间：<span>2016.12.23-2016.12.31</span></p></li>
+        </ul>
+        <a href="javascript:;" class="active_ago"><img src="{$TMPL}/images/4jidu/active_ago.png"></a>
+    </div>
+    <a name="rank"></a>
+    <img src="{$TMPL}/images/4jidu/img7.png">
+    <img src="{$TMPL}/images/4jidu/img8.png">
+    <img src="{$TMPL}/images/4jidu/img9.png">
+    <a name="events"></a>
+    <img src="{$TMPL}/images/4jidu/img10.png">
+    <img src="{$TMPL}/images/4jidu/img11.png">
+    <div class="nav">
+        <ul class="nav_list">
+            <li><a href="#business">我们的业务</a></li>
+            <li><a href="#portrait">用户画像</a></li>
+            <li><a href="#project">项目</a></li>
+            <li><a href="#active">平台活动</a></li>
+            <li><a href="#rank">出借龙虎榜</a></li>
+            <li><a href="#events">大事记</a></li>
+        </ul>
+        <a href="javascript:;" class="icon nav_btn"><img src="{$TMPL}/images/4jidu/nav.png"></a>
+        <a href="#to_top" class="icon"><img src="{$TMPL}/images/4jidu/totop.png"></a>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.nav_btn').click(function(){
+        $('.nav_list').show();
+    });
+    $('.nav_list').find('a').click(function(){
+        $('.nav_list').hide();
+    })
+</script>
+</body>
+</html>

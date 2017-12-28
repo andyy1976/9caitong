@@ -1,0 +1,129 @@
+<body>
+<section class="container container2 cf">
+    <div class="header"><a href="{url x="index" r="uc_voucher#wapindex"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>出借红包<a href="javascript:;" class="my-re-record" onclick="publicPop();">使用说明</a></div>
+    <!-- 代金券、红包 -->
+    <div class="my-coupon" style="display: block;">
+        <div class="my-coupon-title">
+            <p>
+            {foreach from="$invest" item="vo" key=key}
+            <a href="{$vo.url}" {if $key eq $invest_type}class="active"{/if}>{$vo.name}</a>
+            {/foreach}
+            </p>
+        </div>
+        {if $invest_type eq 1}
+        <ul class="my-coupon-list my-coupon-list-used" style="display: block;">
+        {elseif $invest_type eq 2}
+        <ul class="my-coupon-list my-coupon-list-overdue" style="display: block;">
+        {else}
+        <ul class="my-coupon-list" style="display: block;">
+        {/if}
+        {foreach from=$list item=voucher key=key}
+        {if $list eq ""}
+        <div class="pt-coupon-no">
+            <img src="{$TMPL}/images/wap2/pt/img_coupon_no.png" width="284" height="167" class="pt-in-false-img pt-coupon-no-img">
+            <p class="pt-in-false-t1 pt-coupon-no-t1">很遗憾</p>
+            <p class="pt-in-false-t2 pt-coupon-no-t2">您暂无出借红包</p>
+        </div>
+        {else}
+            <li>
+                <div class="my-coupon-l"><span>{$voucher.money}</span>&yen;</div>
+                <div class="my-coupon-r"><p>{$voucher.ratio}元可用</p><p>{$voucher.use_condition}个月项目</p><p>{function name="to_date" value="$voucher.begin_time" f="Y-m-d"}至{function name="to_date" value="$voucher.end_time" f="Y-m-d"}</p></div>
+            </li>
+        {/if}
+        {/foreach}
+        </ul>
+    </div>
+    
+    <!-- 使用说明、规则等遮罩层共用结构  -->
+    <div class="public-pop">
+        <div class="public-pop-title">出借红包使用说明 </div>
+        <div class="public-pop-box">{$red_explain}</div>
+        <div class="public-pop-close"><img src="{$TMPL}/images/wap2/my/chahao.png" width="19" height="19"></div>
+    </div>
+</section>
+<script>
+    //使用说明、规则等遮罩层（内容多时可滚动并隐藏滚动条）
+    function publicPop(){
+        $('.public-pop').show();
+        $(document).on("touchmove",function(ev){ //阻止页面滑动事件的默认行为，不阻止遮罩层中的滑动事件的默认行为
+            var e = ev || event;
+            var target = e.target || e.srcElement;
+            if( target.className.indexOf("public-pop") >= 0) {
+                e.preventDefault();
+            }
+        });
+        if(window.addEventListener){
+            simpScroller(document.querySelector(".public-pop-box"), {
+                hideScrollBar: true
+            });
+        }
+        $('.public-pop-close').click(function(){    
+            $('.public-pop').hide();
+        });
+    }
+    //选项卡切换
+    /*$(function(){
+        $('.my-coupon-top').find('a').click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+            var index = $(this).index();
+            $('.my-coupon').hide().eq(index).show();
+        });
+    });
+    $(function(){
+        $('.my-coupon-title').find('a').click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+            var index = $(this).index();
+            $('.my-coupon-list').hide().eq(index).show();
+        });
+    })*/
+	$(document).ready(function(){
+        var invest_type = {$invest_type};
+        $.ajax({
+            type:'POST',
+            url:"{url x="index" r="uc_voucher#ajaxRed"}",
+            data:{'invest_type':invest_type},
+            dataType:'json',
+            success:function(msg){
+                console.log(msg);
+                if(parseInt(msg-{$page})>0){
+                  scroll(msg);
+                }
+            }
+        })
+        function scroll(msg){
+            var range = 50;             //距下边界长度/单位px
+            var elemt = 500;            //插入元素高度/单位px           //设置加载最多次数
+            var page = 1;
+            var totalheight = 0; 
+            $(window).scroll(function(){
+                var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+                var invest_type = {$invest_type};
+                totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+                if(($(document).height()-range) <= totalheight) {
+                    page++;
+                    var nums=parseInt((msg/{$page})+1);
+                    if(page<=nums) {
+                        getJSON(page,invest_type);
+                    }                   
+                }
+            });
+        }
+        // 请求数据加载到页面中。。。
+        function getJSON(page,invest_type){
+            page=parseInt(page);
+            $.ajax({
+                type:"POST",
+                url:"{url x="index" r="uc_voucher#redList"}",
+                data:{'page':page,'invest_type':invest_type},
+                success :function (str){
+                    var main = $(".my-coupon-list");
+                    if(str!='false'){
+                        main.append(str);
+                    }
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

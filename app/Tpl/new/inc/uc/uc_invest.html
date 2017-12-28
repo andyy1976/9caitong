@@ -1,0 +1,208 @@
+<div class="user_top_title bgfb">
+	<a class="current">我的出借</a>
+</div>
+<div class="user_center_con">
+	<div class="blank20"></div>
+	<div class="uc01">
+		<ul class="equal3 interval25 balance ofh">
+			<li class="bgC_blue1">
+				在投金额(元)
+				<p class="money">{function name="format_price" v="$money_log.count_lend_money"}</p>
+				<div>
+					<p>存管账户</p>
+					<span>{function name="format_price" v="$money_log.lend_invest_money"}</span>
+				</div>
+				<div>
+					<p>普通账户</p>
+					<span>{function name="format_price" v="$money_log.invest_money"}</span>
+				</div>
+			</li>
+			<li class="bgC_green1">
+				累计收益(元)
+				<p class="money">{function name="format_price" v="$money_log.count_lend"}</p>
+				<div>
+					<p>存管账户</p>
+					<span>{function name="format_price" v="$money_log.lend_repay_money"}</span>
+				</div>
+				<div>
+					<p>普通账户</p>
+					<span>{function name="format_price" v="$money_log.load_repay_money"}</span>
+				</div>
+			</li>
+			<li class="bgC_red1">
+				出借总笔数
+				<p class="money">{if $money_log.count_load eq ''}0{else}{$money_log.count_load}{/if}</p>
+				<div>
+					<p>存管账户</p>
+					<span>{if $money_log.load_count_invest eq ''}0{else}{$money_log.load_count_invest}{/if}</span>
+				</div>
+				<div>
+					<p>普通账户</p>
+					<span>{if $money_log.load_count eq ''}0{else}{$money_log.load_count}{/if}</span>
+				</div>
+			</li>
+		</ul>
+		<div class="blank50"></div>
+		{if $list}
+		<div class="sl_wrap">
+			<div class="sl_key">项目类型：</div>
+			<div class="sl_value">
+				<ul>
+					{foreach from="$loan_type" item="paging" key=key}
+					
+					<li><a href="{$paging.url}#deallist" {if $key eq $deal_type} class="cur"{/if}>{$paging.name}</a></li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+		<div class="sl_wrap">
+			<div class="sl_key">资金账户：</div>
+			<div class="sl_value">
+				<ul>
+				{foreach from="$account_url" item="paging" key=key}
+                	<li><a href="{$paging.url}#deallist" {if $key eq $standard_account} class="cur"{/if}>{$paging.name}</a></li>
+           		{/foreach}
+				</ul>
+			</div>
+		</div>
+		<div class="sl_wrap">
+			<div class="sl_key">出借状态：</div>
+			<div class="sl_value">
+				<ul>
+					
+					{foreach from="$state_url" item="paging" key=key}
+                		<li><a href="{$paging.url}#deallist" {if $key eq $condition_paging} class="cur"{/if}>{$paging.name}</a></li>
+           			{/foreach}
+				</ul>
+			</div>
+		</div>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc_table_list">
+			<tbody>
+				<tr  border="0">
+					<th>项目</th>
+					<th style="width:8%">出借期限</th>
+					<th style="width:12%">年化收益率</th>
+					<th style="width:12%">出借金额(元)</th>
+					<!--<th style="width:12%">红包(元)</th>-->
+					<th style="width:10%">出借日期</th>
+					<th style="width:10%">结息日期</th>
+					<th style="width:8%">状态</th>
+					{if $deal_type neq 1}<th style="width:10%">合同</th>{/if}
+					{if $debts eq 1}<th style="width:10%">转让</th>{/if}
+				</tr>
+
+				{foreach from=$list item="item" key=key}
+				<tr class="{if $key mod 2 eq 1}bgf7{/if}">
+					<td class="ta_l">
+						<a href="{url x="index" r="uc_invest#invite_info" p="load_id=$item.load_id&deal_type=$item.deal_type"}" class="C_coffe">{$item.name}</a>
+					</td>
+					<td>
+                        {if $item.deal_debts eq 1}{$item.debts_repay_time}{else}{$item.repay_time}{/if}{if $item.repay_time_type eq 0}天{else}个月{/if}
+					</td>
+					<td>
+	                    {function name="number_format" v="$item.rate" f="1"}%<!--{if $item.user_bid_rebate gt 0}+{$item.user_bid_rebate}%{/if}-->
+					</td>
+					<td>
+						{function name="format_price" v="$item.u_load_money"}
+					</td>
+					<!--<td>
+						{function name="format_price" v="$item.red_ecv"}
+						 //{function name="format_price" v="$item.red"} / {function name="format_price" v="$item.ecv_money"}
+					</td>-->
+					<td>
+	                    {$item.create_date}
+					</td>
+					<td>
+						{if $item.last_repay_date}
+							{$item.last_repay_date}
+						{else}
+							审核中
+						{/if}
+					</td>
+					<td>
+						<font color='orange'>
+						<!-- {$item.deal_load_status} -->
+							{if $item.deal_status eq 1}
+							募集中
+							{elseif $item.deal_status eq 2}
+							已满标
+							{elseif $item.deal_status eq 3}
+							已流标
+							{elseif $item.deal_status eq 4}
+							还款中
+							{elseif $item.deal_status eq 5}
+							已完成
+							{/if}
+						</font>
+					</td>
+					{if $deal_type neq 1}
+					<td>
+					<!-- <a target="_blank" href="{url x="index" r="uc_invest#down_contract" p="id=$item.id&load_id=$item.load_id"}" class="C_blue1">点击下载</a> -->
+							{if $item.deal_status eq 1}
+							审核中
+							{elseif $item.deal_status eq 2}
+							审核中
+							{elseif $item.deal_status eq 3}
+							-
+							{elseif $item.deal_status eq 4}
+							<a target="_blank" href="{url x="index" r="uc_invest#down_contract" p="id=$item.id&load_id=$item.load_id"}" class="C_blue1">点击下载</a>
+							{elseif $item.deal_status eq 5}
+							<a target="_blank" href="{url x="index" r="uc_invest#down_contract" p="id=$item.id&load_id=$item.load_id"}" class="C_blue1">点击下载</a>
+							{/if}
+							<!-- <a href="{url x="index" r="uc_invest#down_contract" p="id=$item.id"}" class="C_blue1">合同下载</a> -->
+					</td>
+					{/if}
+					{if $item.debts eq 0 && $debts eq 1}
+					<td>
+						<a target="_blank" href="{url x="index" r="uc_debts#add" p="deal_id=$item.id&load_id=$item.load_id"}" class="C_blue1">转让</a>
+					</td>
+					{elseif $item.debts eq 1 && $debts eq 1}
+					<td>
+						已转让
+					</td>
+					{elseif $item.debts eq 2 && $debts eq 1}
+					<td>
+						---
+					</td>
+					{/if}
+				</tr>
+				{/foreach}
+			</tbody>
+		</table>
+		<div class="pages">{$pages}</div>
+		{else}
+		<div class="sl_wrap">
+			<div class="sl_key">项目类型：</div>
+			<div class="sl_value">
+				<ul>
+					{foreach from="$loan_type" item="paging" key=key}
+					<li><a href="{$paging.url}#deallist" {if $key eq $deal_type} class="cur"{/if}>{$paging.name}</a></li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+		<div class="sl_wrap">
+			<div class="sl_key">资金账户：</div>
+			<div class="sl_value">
+				<ul>
+				{foreach from="$account_url" item="paging" key=key}
+                		<li><a href="{$paging.url}#deallist" {if $key eq $standard_account} class="cur"{/if}>{$paging.name}</a></li>
+           		{/foreach}
+				</ul>
+			</div>
+		</div>
+		<div class="sl_wrap">
+			<div class="sl_key">出借状态：</div>
+			<div class="sl_value">
+				<ul>
+					
+					{foreach from="$state_url" item="paging" key=key}
+                		<li><a href="{$paging.url}#deallist" {if $key eq $condition_paging} class="cur"{/if}>{$paging.name}</a></li>
+           			{/foreach}
+				</ul>
+			</div>
+		</div>
+		<div align="center" style="padding:20px 0">暂无记录</div>
+		{/if}
+	</div>
+</div>

@@ -1,0 +1,24 @@
+{include file="inc/nheader.html"}
+<div class="wraper bgf8 ofh">
+	<div class="center">
+		<div class="blank80"></div>
+		<div class="user_menu bgf4">
+			{include file="inc/uc/uc_cate.html"}
+		</div>
+		<div class="user_box">
+			{include file="$inc_file"}
+		</div>
+		<div class="blank50"></div>
+	</div>
+</div>
+{include file="inc/ufooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+			});
+			seajs.use(["/new/js/page/user"])
+		</script>
+</body></html>

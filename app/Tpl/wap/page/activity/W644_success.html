@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>玖财通官网 - 玖财通</title>
+    <meta name="keywords" content="玖财通,玖财通官网,玖财通APP,玖财通安全吗,玖财通怎么样,玖财通体验金,手机理财,投资,理财,理财产品,理财产品排行,投资理财,个人理财,理财APP,定期理财产品,互联网金融" />
+    <meta name="description" content="玖财通是创新的互联网理财平台，致力于打造安全、稳定、规范的互联网理财产品，为用户提供便捷的投资理财服务。" />
+    <link rel="stylesheet" href="new/activity/W644/css/reset_ph_v=2016.css">
+    <script src="new/activity/W644/js/jquery-1.11.3.min.js"></script>
+    <script src="new/activity/W644/js/layer/layer.js"></script>
+    <link rel="stylesheet" href="new/activity/W644/css/style.css">
+    <script src="new/activity/W644/js/fastclick.js"></script>
+    <script>
+        //处理移动端click事件300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+</head>
+<body>
+<div class="success">
+	<p>注册奖励已派发到您的帐户，请下载玖财通APP查看，或者关注微信公众号查看。</p>
+	<a href="javascript:;" class="btn-download" onclick="yu()">下载app</a>
+</div>
+</body>
+<script>
+    //在微信中点击下载按钮弹出提示遮罩层
+    function popBox(){
+    var popBox = document.getElementById('popBox');
+    var popBg = document.getElementById('popBg');
+    //弹出层
+    popBg.style.display = popBox.style.display = 'block';
+    popBoxPos();
+    popBgStyle();
+    //当页面滚动的时候，弹出框跟随滚动
+    window.onscroll = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+    window.onresize = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //设置弹出框的位置
+    function popBoxPos(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+        popBox.style.top = scrollTop + 'px';
+    }
+    //设置灰色背景的宽高
+    function popBgStyle(){
+        popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+        popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+    }
+    //关闭弹出框
+    popBox.onclick = popBg.onclick = function(){
+        popBg.style.display = popBox.style.display = 'none';
+    }
+
+
+}
+    function yu(){
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+        var explorer = window.navigator.userAgent ;
+        if(isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1){
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                //$('#gg').show();//在微信中打开
+                //$('#erwema').hide();//在微信中打开
+				alert("请在浏览器打开");
+            }
+            else(
+                    window.location.href='https://d.9caitong.com/{$source_id}jiucaitong.apk'//安卓下载地址
+            )
+        }  
+        if(isiOs= !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)){
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+               // $('#jj').show();//在微信中打开
+                //$('#erwema').hide();//在微信中打开
+				window.location.href='https://itunes.apple.com/cn/app/jiu-cai-tong/id1101080761?mt=8'//ios下载地址
+            }
+            if (explorer.indexOf("Safari") >= 0) {
+                window.location.href='https://itunes.apple.com/cn/app/jiu-cai-tong/id1101080761?mt=8'//ios下载地址
+            }
+            else{
+//          $('#jj').show();
+                window.location.href='https://itunes.apple.com/cn/app/jiu-cai-tong/id1101080761?mt=8';//ios下载地址
+            }
+        }
+
+    }
+</script>
+</html>

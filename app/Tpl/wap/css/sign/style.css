@@ -1,0 +1,79 @@
+html,body{
+    color:#000;
+    background:#FFF;
+    font-family: "Microsoft Yahei";  
+    font-style: 14px;
+    width: 100%;
+    height: 100%;
+}
+img{ margin: 0; padding: 0; width: 100%; height: auto;}
+a{text-decoration: none;color: #666666; cursor: pointer;}
+body,div,dl,dt,dd,ul,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{
+    margin:0;
+    padding:0;
+}
+h1,h2,h3,h4,h5,h6{ font-weight: normal;}
+ul{
+     list-style:none;
+    }
+q:before,q:after{
+    content:'';
+}
+input,textarea,select{
+   font-family:inherit;
+   font-size:inherit;
+   font-weight:inherit;
+   *font-size:100%;
+}
+ul,ul li{ list-style:none; margin:0;  padding:0;}
+::-moz-placeholder { color: #fff; }
+::-webkit-input-placeholder { color:#fff; }
+:-ms-input-placeholder { color:#fff; }
+
+.clear{ clear:both; width:0; height:0; overflow:hidden;}
+/*头部*/
+header{ position: relative; background: #4771de;background: -webkit-gradient(linear, 0 0, 0 100%, from(#4c6bde), to(#4771de));}
+.head-perv{ position: absolute; width: 0.2rem; top: 0.35rem;  left: 0.3rem;}
+header h1{ font-size: 0.36rem; color: #fff;line-height: 1rem; text-align: center;}
+/*---con-warp---*/
+.con-warp{background: #fff;}
+.con1{background: url(/app/Tpl/wap/images/sign/con1-bg.jpg) no-repeat; background-size: 100% 8.68rem; height: 8.68rem;}
+.calendar-warp{ width: 6.7rem; height: 4.5rem; margin: 0 auto;}
+#calendar{ padding-top: 0.4rem;}
+.sign_main{ position: relative;}
+.calendar_month_next,.calendar_month_prev{ font-size: 0; position: absolute; top: 0.1rem; width: 0.15rem; height: 0.15rem; }
+.calendar_month_prev{background: url(/app/Tpl/wap/images/sign/month_prev.jpg) no-repeat;background-size: 0.15rem 0.15rem; left: 2rem;}
+.calendar_month_next{background: url(/app/Tpl/wap/images/sign/month_next.jpg) no-repeat;background-size: 0.15rem 0.15rem; right: 2rem;}
+.calendar_month_span{ font-size: 0.26rem; color: #697984; text-align: center; display: block;}
+.sign{ padding: 0.3rem;}
+.sign table{border-collapse: collapse;border-spacing: 0; width:100%;}
+.sign tr:first-child{ background: #e6e6e6; font-size: 0.22rem; color: #697984; font-weight: normal; height: 0.4rem; line-height: 0.4rem; border-radius: 5px;}
+.sign th,.sign td {height: 0.5rem; line-height: 0.5rem;text-align: center; font-weight: normal;}
+.sign td { font-size: 0.22rem; color: #999999;vertical-align: middle;}   
+.sign .on {background:url(/app/Tpl/wap/images/sign/c-tips.png) 0.3rem 0.16rem no-repeat; background-size: 0.32rem 0.38rem; color: #333333;}
+.sign-text{ font-size: 0.36rem; color: #fff; text-align: center; padding-top: 0.2rem;}
+.sign-text1{ font-size: 0.24rem; color: #cedcff; text-align: center;}
+.sign-text1 span{ color: #fff300; font-size: 0.3rem;}
+.sign-a{ display: block; position: relative; margin: 1.5rem auto 0.2rem; font-size: 0.36rem; color: #795d0d; text-align: center; line-height: 1.19rem; background: url(/app/Tpl/wap/images/sign/sign-btn.png) no-repeat; width: 7.13rem; height: 1.17rem; background-size:7.13rem 1.17rem;}
+.sign-b{ display: block; position: relative; margin: 1.5rem auto 0.2rem; font-size: 0.36rem; color: #795d0d; text-align: center; line-height: 1.19rem; background: url(/app/Tpl/wap/images/sign/sign-btn.png) no-repeat; width: 7.13rem; height: 1.17rem; background-size:7.13rem 1.17rem;}
+.sign-b span.tips{ display: block; position: absolute; top: -1.25rem; left: 50%; margin-left: -1.1rem; background: url(/app/Tpl/wap/images/sign/sign.png) no-repeat; width: 2.46rem; height: 1.39rem; background-size: 2.46rem 1.39rem;}
+/*--con2--*/
+.con2-h2{ text-align: center; padding-top: 0.15rem;}
+.con2-h2 img{ width: 6.1rem;}
+.con2-ul{padding: 0.5rem 0; height: 2rem;}
+.con2-ul li{ position: relative; float: left; margin-left: 0.35rem;}
+.con2-ul li a{ display: block; font-size: 0.24rem; color: #666666; text-align: center; line-height: 180%;}
+.con2-ul li img{ width: 1.46rem; display: block;}
+.con2-ul li span.tips{ position: absolute; z-index: 20; top: -0.1rem; left: -0.2rem; display: block; width: 0.58rem; height: 0.58rem; color: #fff; font-size: 0.22rem; text-align: center; line-height: 0.58rem;
+ background: url(/app/Tpl/wap/images/sign/g-tips.png) no-repeat; background-size: 0.58rem 0.58rem;}
+ .gift{ position: absolute; z-index: 10; top: 0; left: 0; width: 1.46rem; height: 1.47rem; background: rgba(0,0,0,.5); color: #fff; text-align: center; line-height: 1.47rem; font-size: 0.24rem; border-radius: 50%;}
+ .show{display: block;}
+ .hidden{display: none;}
+
+ .pop-bg{ display: none; position: fixed; top: 0; left: 0; z-index: 100; background: rgba(0, 0, 0, 0.5); width: 100%; height: 100%;}
+ .pop-con{ display: none; position: absolute; top: 0; left: 0; width: 100%; z-index: 200; }
+ .pop-close{ position: fixed; top: 2rem; right: 1rem; background: url(/app/Tpl/wap/images/sign/close.png) no-repeat; background-size: 0.67rem 0.67rem; width: 0.67rem; height: 0.67rem;}
+ .gongxi{ position: fixed; top: 3rem; left: 50%; margin-left: -1.1rem; width: 2.53rem; display: block; }
+ .pop-text{ position: fixed;top: 3.8rem; left: 50%; margin-left: -50%; width: 100%; text-align: center; color: #fff; font-size: 0.36rem; line-height: 1rem;}
+ .pop-img{ position: fixed;top: 5rem; left: 50%; margin-left: -2.8rem; width: 5rem;}
+ .pop-a{ display: block;position: fixed; left: 50%; margin-left: -1.62rem; bottom: 1.6rem; background: #4a6ede; border-radius: 5px; width: 3.25rem; height: 0.9rem; line-height: 0.9rem; text-align: center; color: #fff; font-size: 0.28rem;}

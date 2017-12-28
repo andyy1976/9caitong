@@ -1,0 +1,25 @@
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>关于玖财通</div>
+<?php } ?>
+	<!-- 设置-关于玖财通 -->
+    <p class="my-set-logo my-set-logo2"><img src="{$TMPL}/images/wap2/my/icon_logo_2.png" width="74" height="76"></p>
+    <div class="my-aboutus cf">
+        <p>玖财通是中国创新移动互联网金融信息服务平台，融合互联网、大数据和领先科技为全球用户提供安全稳健、便捷高效、可持续发展的优质金融信息服务。玖财通平台始终以合规运营为基础、大数据为支撑、技术创新为驱动，专注于互联网科技金融服务领域。平台拥有严格的风险管控体系、数据安全保障和系统稳定保障，在提高金融服务质量与效率的同时，扩大金融服务范围，为全球用户提供持续创新的金融服务。</p>
+        <p>目前，玖财通平台的实名用户突破百万，遍及全球十多个国家及地区，已取得计算机软件著作权、ICP许可证、及中国金融认证中心CFCA电子认证，并与宜宾市商业银行正式签约“银行资金存管合作协议”。与此同时，玖财通与中国政法大学绿色发展研究院联合成立“玖财通绿色金融创新公建中心”，并荣获2016“互联网金融行业诚信品牌奖”和2016“中国互联网金融行业优秀示范企业”等多项荣誉。2017年，玖财通获批成为北京市通信行业协会的核心会员单位。</p>
+        <p>未来，玖财通将立足中国，布局全球，秉承“信至上，仁义为本、礼智兼修”的价值理念，始终将公司信誉作为企业发展生命线，坚持以科学布局、规范管理、创新驱动成就企业发展动力，致力于为全球缺乏投融资渠道的用户打造一个安全、诚信、高效的信息服务平台，为用户提供投融资全方位解决方案。</p>
+    </div>
+    <!-- <div id="gallery" class="gallery">
+        <a href="{$TMPL}/images/wap2/my/aboutus/img1_big.jpg"><img src="{$TMPL}/images/wap2/my/aboutus/img1.jpg"></a>
+        <a href="{$TMPL}/images/wap2/my/aboutus/img2_big.jpg"><img src="{$TMPL}/images/wap2/my/aboutus/img2.jpg"></a>
+        <a href="{$TMPL}/images/wap2/my/aboutus/img3_big.jpg"><img src="{$TMPL}/images/wap2/my/aboutus/img3.jpg"></a>
+        <a href="{$TMPL}/images/wap2/my/aboutus/img4_big.jpg"><img src="{$TMPL}/images/wap2/my/aboutus/img4.jpg"></a>
+    </div> -->
+</section>
+<script>
+    //关于我们相册效果
+    $('#gallery').rebox({ selector: 'a' });
+</script>
+</body>
+</html>

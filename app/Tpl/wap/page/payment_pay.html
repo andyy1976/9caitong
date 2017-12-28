@@ -1,0 +1,28 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+   <!--  <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>充值结果</div> -->
+   
+	<div class="header"><a href="javascript:void(0)" onclick="{$jump.MyPage}()" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>充值结果</div>
+    <!-- 充值结果-成功 -->
+    <p class="my-result-icon"><img src="{$TMPL}/images/wap2/my/icon_success.png" width="59.5" height="59.5"></p>
+    <p class="my-result-title">恭喜,受理充值中</p>
+    <div class="my-result-money"><p>充值金额</p><span>{$payment_notice}元</span></div>
+    <a onclick="{$jump.MyPage}()" class="my-re-result-btn" onclick="myRealNameTips()">确定</a>
+</section>
+</body>
+<script type="text/javascript">
+//wap跳转
+function ToMyPage(){
+    window.location.href = "{url x="index" r="uc_center"}";
+}
+//iOS跳转
+function iosToMyPage(){
+    window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToMyPage"});
+}
+//Android跳转
+function androidToMyPage(){
+	 window.jiucaitong.FromH5ToJump("jumpToMyPage","");  //返回项目列表
+}
+</script>
+</html>

@@ -1,0 +1,31 @@
+<div class="user_top_title bgfb">
+	<a href="{url x="index" value="uc_voucher"}">代金券</a>
+	<a class="current">代金券记录</a>
+</div>
+<div class="user_center_con">
+	<div class="blank20"></div>
+	<div class="uc01">
+		{if $result}
+		<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="uc_table_list">
+			<tr border="0">
+				<th style="width:20%">时间</th>
+				<th style="width:20%">交易类型</th>
+				<th style="width:20%">面额(元)</th>
+				<th>说明</th>
+			</tr>
+            {foreach from=$result item=vouchers key=key}
+			<tr class="{if $key mod 2 eq 1}bgf7{/if}">
+				<td class="tl pl10">{if $vouchers.status==0}{function name="to_time" value=$vouchers.begin_time}{elseif $vouchers.status==1}{function name="to_time" value=$vouchers.create_time}{/if}</td>
+                <td>{if $vouchers.status==0}获取{elseif $vouchers.status==1}使用{/if}</td>
+				<td class="tc">{$vouchers.money}</td>
+				<td class="tl lh28">{if $vouchers.status==0}{$vouchers.name}{elseif $vouchers.status==1}{$vouchers.sub_name}{/if}</td>
+				<td>
+			</tr>
+            {/foreach}
+		</table>
+        <div class="pages">{$pages}</div>
+        {else}
+        <p>暂无代金券使用记录！</p>
+        {/if}
+	</div>
+</div>

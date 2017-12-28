@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">     
+<meta content="yes" name="apple-mobile-web-app-capable">     
+<meta content="black" name="apple-mobile-web-app-status-bar-style">     
+<meta content="telephone=no" name="format-detection">  
+<title>任务详情</title>
+<link rel="stylesheet" type="text/css" href="/new/css/member_level/style.css" />
+<script type="text/javascript" src="/new/js/page/resize.js"></script>
+</head>
+<body>
+	<div class="main-bg">
+	<?php if(!es_session::get('MachineInfo')) {?>
+	<header>
+		<!-- <a href="javascript:;" onclick="window.history.go(-1);" class="head-perv"> -->
+		<a href="{url x="index" r="memberLevel"}"  class="head-perv">
+			<img src="/new/images/memberLevel/head-ico1.png" alt="" />
+		</a>
+		<a href="#" class="head-close">
+			<img src="/new/images/memberLevel/head-ico2.png" alt="" />
+		</a>
+		<h1>任务详情</h1>
+		<a href="#" class="head-question">
+			<img src="/new/images/memberLevel/head-ico4.png" alt="" />
+		</a>
+	</header>
+	<?php } ?> 
+	<ul class="details-ul">
+		<li><a href="{url x="index" r="memberLevel#member_details1"}">新手任务</a></li>
+		<li><a href="{url x="index" r="memberLevel#member_details2"}" class="details-select-a">充值任务</a></li>
+		<li><a href="{url x="index" r="memberLevel#member_details3"}">成长任务</a></li>
+		<li><a href="{url x="index" r="memberLevel#member_details4"}">出借任务</a></li>
+	</ul>
+	<div class="clear"></div>
+	<ul class="record-ul" id="details-ul">
+	{foreach from="$newbie_task" item="item" key=key}
+		<li>
+			<p class="details-li-p1">{$item.short_name}<br><span>{$item.desc}</span></p>			
+			<p class="details-li-p2">+{$item.grow_point}点</p>
+			{if $item.is_finished eq 1}
+			<a class="details-li-a2" href="javascript:;">已完成</a>
+			{elseif $item.url}
+			<a class="details-li-a1" href="{$item.url}">去完成</a>
+			{else}
+			<a class="details-li-a1" href="javascript:;">去完成</a>
+			{/if}
+		</li>
+	{/foreach}
+		<!-- <li>
+			<p class="details-li-p1">首次充值<br><span>完成首次账户充值</span></p>			
+			<p class="details-li-p2">+30点</p>
+			<a class="details-li-a2" href="javascript:;">已完成</a>
+		</li>
+		<li>
+			<p class="details-li-p1">充值任意一笔金额<br><span>M=任意一笔金额/100</span></span></p>			
+			<p class="details-li-p2">+M点</p>
+			<a class="details-li-a1" href="javascript:;">去完成</a>
+		</li> -->
+		
+	</ul>
+	</div>
+	<div class="pop-bg"></div>
+	<div class="pop-con">
+		<div class="pop-text-box">
+			<h3 class="pop-h3">个人信息填写</h3>
+			<div class="pop-text">
+				<p>1.设置个人信息包括（性别、职业收货地址、如何知道玖财通）</p>
+			</div>
+		</div>
+		<a class="pop-close">关闭</a>	
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="/new/js/page/jquery.js"></script>
+<script type="text/javascript" src="/new/js/page/pop.js"></script>
+<script>
+$('.pop-close').click(function(event) {
+	/* Act on the event */
+	close_pop();
+});
+
+$('.head-question').click(function(event) {
+	/* Act on the event */
+	show_pop();
+});
+</script>

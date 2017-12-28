@@ -1,0 +1,15 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a><!-- {$article.title} -->详情</div>
+	<!-- 设置-消息中心详情 -->
+    <div class="my-news-details">
+        <h2>{$article.title}</h2>
+        <h3>{function name="to_date" v=$article.create_time f="Y-m-d"}</h3>
+        <p>{$article.content}</p>
+       	<div style="text-align:right;color:#97a8b2;padding-top:30px;padding-right:20px">玖财通团队</div>
+       	<div style="text-align:right;color:#97a8b2;padding-right:20px">{function name="to_date" v=$article.create_time f="Y年m月d日"}</div>
+    </div>
+</section>
+</body>
+</html>

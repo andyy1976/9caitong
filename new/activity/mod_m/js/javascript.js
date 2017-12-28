@@ -1,0 +1,1 @@
+$(document).ready(function(){layer.open({content:"辛苦了！同志们",btn:"加油"})});

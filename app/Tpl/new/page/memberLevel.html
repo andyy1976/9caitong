@@ -1,0 +1,161 @@
+{include file="inc/nheader.html"}
+		<div class="wrapper">
+			<div class="nav_L">
+				<div class="center">
+					<ul class="ta_r">
+						<li class="cur"><a href="{url x="index" r="memberlevel"}">会员首页</a></li>
+						<li><a href="{url x="index" r="memberLevel#privilege"}">会员特权</a></li>
+						<li><a href="{url x="index" r="memberLevel#GrowthMission"}">成长任务</a></li>
+					</ul>
+				</div>					
+			</div>
+			<div class="blank10"></div>
+			<div class="blank50"></div>
+			<div class="banner_L">
+				<div class="center">
+					<div class="user_info ta_c fr">
+						<div class="img mlra ofh">
+							<span></span>
+							{if $user_img}
+								<img src="{$user_img}" alt="" />
+							{else}
+								<img src="/new/images/memberLevel/center-photo.jpg" alt="" />
+							{/if}
+						</div>
+						<p class="C_white fs_18">你好，{$data.user_name}</p>
+						<div class="level mlra">
+							<span>成长值：{$data.grow_point}</span>
+							<img src="/new/images/memberLevel/level{$data.user_level}.png" />
+						</div>
+						<p class="C_white">距离v{$data.next_level}会员还差： {$data.else_point}点</p>
+						<a href="{url x="index" r="memberLevel#GrowthMission"}">提升等级</a>
+					</div>
+				</div>					
+			</div>
+			<div class="wrap_f0">
+				<div class="center bgff">
+					<div class="pd60 ofh">
+						<h1 class="title ta_c fw100">会员等级</h1>
+						<p class="ta_r"><a href="{url x="index" r="memberLevel#privilege"}" class="a1">查看详情></a></p>
+						<div class="memberLevel">
+							<ul class="list_chart">
+								<li class="ml_01"><span></span></li>
+								<li class="ml_02"><span></span></li>
+								<li class="ml_03"><span></span></li>
+								<li class="ml_04"><span></span></li>
+								<li class="ml_05"><span></span></li>
+								<li class="ml_06"><span></span></li>
+								<li class="ml_07"><span></span></li>
+							</ul>
+							<span id="levelBorder"><i></i></span>
+							<div class="line"></div>
+						</div>
+						<div class="blank20"></div>
+						<ul class="privilege ta_c ofh" id="LevelPrivilege">
+							<li level="0">
+								<img src="/new/images/memberLevel/icon1.png" />
+								<p>生日问候</p>
+							</li>
+							<li level="0">
+								<img src="/new/images/memberLevel/icon2.png" />
+								<p>生日好礼</p>
+							</li>
+							<li level="1">
+								<img src="/new/images/memberLevel/icon3.png" />
+								<p>周年感恩礼</p>
+							</li>
+							<li level="1">
+								<img src="/new/images/memberLevel/icon4.png" />
+								<p>节日加息礼包</p>
+							</li>
+							<li level="1">
+								<img src="/new/images/memberLevel/icon5.png" />
+								<p>出借积分加倍</p>
+							</li>
+							<li level="2">
+								<img src="/new/images/memberLevel/icon6.png" />
+								<p>vip专属商品</p>
+							</li>
+							<li level="2">
+								<img src="/new/images/memberLevel/icon7.png" />
+								<p>商品专属价格</p>
+							</li>
+							<li level="3">
+								<img src="/new/images/memberLevel/icon8.png" />
+								<p>投资人见面会</p>
+							</li>
+							<li level="4">
+								<img src="/new/images/memberLevel/icon9.png" />
+								<p>免费提现</p>
+							</li>
+							<li level="5">
+								<img src="/new/images/memberLevel/icon10.png" />
+								<p>参与重大活动</p>
+							</li>
+							<li level="5">
+								<img src="/new/images/memberLevel/icon11.png" />
+								<p>健康关爱</p>
+							</li>
+							<li level="6">
+								<img src="/new/images/memberLevel/icon12.png" />
+								<p>旅游基金</p>
+							</li>
+						</ul>
+						<h1 class="title ta_c fw100">专属商品</h1>
+						<ul class="list1 ta_c" id="Pgoods">
+						{foreach from="$goods" item="item" key=key}
+							<li>
+								<img src="{$item.img}" />
+								<p class="fs_18">{$item.name}</p>
+								<p>积分： {$item.discount_score}</p>
+								<p class="C_orange">会员积分：{$item.Consumer_integration}</p>
+								<a href="javascript:void(0);">到app兑换</a>
+							</li>
+						{/foreach}
+							<!-- <li>
+								<img src="/new/images/grt1.png" />
+								<p class="fs_18">按摩器靠垫</p>
+								<p>积分： 7500</p>
+								<p class="C_orange">会员积分：5500</p>
+								<a href="javascript:void(0);">到app兑换</a>
+							</li>
+							<li>
+								<img src="/new/images/grt1.png" />
+								<p class="fs_18">按摩器靠垫</p>
+								<p>积分： 7500</p>
+								<p class="C_orange">会员积分：5500</p>
+								<a href="javascript:void(0);">到app兑换</a>
+							</li>
+							<li>
+								<img src="/new/images/grt1.png" />
+								<p class="fs_18">按摩器靠垫</p>
+								<p>积分： 7500</p>
+								<p class="C_orange">会员积分：5500</p>
+								<a href="javascript:void(0);">到app兑换</a>
+							</li> -->
+						</ul>
+					</div>
+				</div>
+				<div class="blank20"></div>
+			</div>
+		</div>
+<div class="ta_c hide" id="goApp">
+	<div class="blank20"></div>
+	<img src="/new/images/QRcode_appdown.png" />
+	<p>此商品为APP专属商品</p>
+	<p>请扫码下载玖财通APP兑换</p>
+	<a href="javascript:void(0);" class="closeAllLayer btn1">确认</a>
+	<div class="blank20"></div>
+</div>
+{include file="/inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+			});
+			seajs.use(["/new/js/page/memberlevel"])
+		</script>
+	</body>
+</html>

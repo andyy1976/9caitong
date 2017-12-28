@@ -1,0 +1,125 @@
+<body>
+<section class="container container2 cf">
+    <!-- 我的账户 -->
+    <div class="my-data">
+        <div class="sale-center">
+            {if $header}
+                <img src="{$header}" width="36" height="36" class="my-head">
+            {else}
+                <img src="{$TMPL}/images/wap2/my/head_img.png" width="60" height="60" class="my-head">
+            {/if}
+        </div>
+    </div>
+    <style type="text/css">
+    .sale-center{margin: 0 auto;width: 60px;height:45px;padding: 40px;}
+    .sale-tip{height: 40px;margin: 100px 0 50px 0px}
+    .my-money li{color: #fff}
+    .sale-list{margin-top: 20px;width: 100%;height:125px}
+    .sale-list li{width:18%;float: left;text-align: center;height: 67.5px;display: block;margin: 0px 7.5%}
+    .sale-list img{height:67.5px;width:100%}
+    .sale-card{margin: 20px 6%;height: 100px}
+    .sale-card li{line-height: 30px;font-size:16px;}
+    .clear{clear: both;}
+    .sale-tg span{margin: 20px 4%;}
+    .sale-list li span{margin-top:5px;color: #000;display: block;font-size: 12px;}
+    .sale-pop-box {width: 80%;margin: 4% auto 0;}
+    .sale-pop1 {width: 100%;height: 100%;background: #000;position: fixed;left: 0;top: 0;z-index: 99999999;display: none;opacity: 0.8;}
+    .sale-pop2 {width: 100%;height: 100%;background: #000;position: fixed;left: 0;top: 0;z-index: 99999999;display: none;opacity: 0.8;}
+    .sale-pop3 {width: 100%;height: 100%;background: #000;position: fixed;left: 0;top: 0;z-index: 99999999;display: none;opacity: 0.8;}
+    .sale-pop-title{width: 80%;height: 8%;margin: 40% auto 0;text-align: center;font-size: 18px;color: #fff;box-sizing: border-box;}
+    .sale-pop-box img{width:120px;height: 120px;margin: 0 auto}
+    .sale-pop-box p{width:120px;height: 120px;margin: 0 auto}
+    #qrcodeCanvas{width: 131px;height: 131px;margin: 30px auto 0;background: url({$TMPL}/images/wap2/fi/bg_ewm.png) no-repeat center bottom;background-size: 131px 131px;overflow: hidden;}
+    .sale-pop-mobile{width: 80%;height: 8%;margin: 10px auto;text-align: center;font-size: 18px;color: #fff;box-sizing: border-box;}
+    .sale-pop1 span{display: block;text-align: center;color: #fff;}
+    </style>
+    <div>
+        <ul class="sale-card">
+            <li>姓名：{$user_data.real_name}</li>
+            <li>联系方式：{function name="hideMobile" v="$user_data.mobile"}</li>
+            <li>归属地：暂无</li>
+        </ul>        
+    </div>
+    <div class="sale-tg">
+        <span>长按以下二维码，完成操作。</span>
+        <ul class="sale-list">
+            <li><a href="javascript:void(0);" onclick="salePop()"><img src="{$TMPL}/images/wap2/sale/icon_ewm.png"></a><span>邀请二维码</span></li>
+            <li><a href="javascript:void(0);" onclick="salePop1()"><img src="{$TMPL}/images/wap2/sale/img_ewm.png"></a><span>下载玖财通二维码</span></li>
+            <li><a href="javascript:void(0);" onclick="salePop2()"><img src="{$TMPL}/images/wap2/sale/ewm.png"></a><span>关注玖财通微信</span></li>
+        </ul>
+        <div class="clear"></div>
+        <span>请填写我的邀请码：{function name="hideMobile" v="$user_data.mobile"}</span>
+    </div>
+    <div class="sale-pop1">
+        <div class="sale-pop-title">让好友扫码或者输入邀请码进行邀请</div>
+        <div class="sale-pop-box"><p id="qrcodeCanvas"></p></div>
+        <div class="sale-pop-mobile">{function name="hideMobile" v="$user_data.mobile"}</div>
+        <span>我的邀请码</span>
+    </div>
+    <div class="sale-pop2">
+        <div class="sale-pop-title">下载玖财通二维码</div>
+        <div class="sale-pop-box"><img src="{$TMPL}/images/wap2/sale/img_ewm.png"></div>
+    </div>
+    <div class="sale-pop3">
+        <div class="sale-pop-title">关注玖财通微信</div>
+        <div class="sale-pop-box"><img src="{$TMPL}/images/wap2/sale/ewm.png"></div>
+    </div>
+</section>
+</head><script type="text/javascript" src="{$TMPL}/js/qrcode/jquery.qrcode.js" ></script>
+<script type="text/javascript" src="{$TMPL}/js/qrcode/qrcode.js" ></script> 
+<script type="text/javascript" src="{$TMPL}/js/qrcode/utf.js" ></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#qrcodeCanvas').qrcode({
+        render    : "canvas",
+        text    : "{$wximg}",
+        width : "110",               //二维码的宽度
+        height : "110",              //二维码的高度
+        correctLevel : QRErrorCorrectLevel.M,
+        src: 'logo.png'             //二维码中间的图片
+    }); 
+    $("canvas").css({"padding-left":"10px","padding-top":"10px"});
+});
+function salePop(){
+    $('.sale-pop1').show(); 
+    $(document).on("touchmove",function(ev){ //阻止页面滑动事件的默认行为，不阻止遮罩层中的滑动事件的默认行为
+        var e = ev || event;
+        var target = e.target || e.srcElement;
+        if( target.className.indexOf("sale-pop1") >= 0) {
+            e.preventDefault();
+        }
+    });
+    $('.sale-pop1').click(function(){    
+        $('.sale-pop1').hide();
+    });
+}
+function salePop1(){
+    $('.sale-pop2').show(); 
+    $(document).on("touchmove",function(ev){ //阻止页面滑动事件的默认行为，不阻止遮罩层中的滑动事件的默认行为
+        var e = ev || event;
+        var target = e.target || e.srcElement;
+        if( target.className.indexOf("sale-pop2") >= 0) {
+            e.preventDefault();
+        }
+    });
+    $('.sale-pop2').click(function(){    
+        $('.sale-pop2').hide();
+    });
+}
+function salePop2(){
+    $('.sale-pop3').show(); 
+    $(document).on("touchmove",function(ev){ //阻止页面滑动事件的默认行为，不阻止遮罩层中的滑动事件的默认行为
+        var e = ev || event;
+        var target = e.target || e.srcElement;
+        if( target.className.indexOf("sale-pop3") >= 0) {
+            e.preventDefault();
+        }
+    });
+    $('.sale-pop3').click(function(){    
+        $('.sale-pop3').hide();
+    });
+}
+
+</script>
+</body>
+</html>

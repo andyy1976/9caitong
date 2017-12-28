@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* first-concern */
+.wrap{ max-width: 750px; margin: 0 auto; background: #ffebac url("../images/wap2/concern2016/c_bg.png") no-repeat top; background-size: 100%; overflow: hidden; padding-bottom: 5.5rem;}
+.c-logo{ width: 27%; margin: 2.3rem auto 0;}
+.c-logo img,.c-title img,.c-url img{ width: 100%;}
+.c-title{ width: 85%; margin: 1.1rem auto 0;}
+.c-url{ width: 48%; margin: 1.25rem auto 0;}
+.c-form{ width: 90%; height: 39rem; margin: .45rem auto 0; position: relative;}
+.c-form-bg{ width: 100%; height: 100%; position: absolute; left: 0; top: 0; z-index: 1;}
+.c-form-bg img{ width: 100%; height: 100%;}
+.c-form-box{ width: 100%; position: absolute; left: 0; top: 0; z-index: 2;}
+.c-form-box span{ width: 71.85%; line-height: 3rem; display: block; margin: 10.7rem auto 0; font-size: 1.4rem; color: #ffe979;}
+.c-form-box p{ width: 71.85%;/* height: 4rem; */margin: 1rem auto 0; border-radius: 5px;background: white;}
+.c-form-box p input{width: 90%;/* height: 1rem; *//* line-height: 1rem; */padding: 1rem 0 1rem 6%; border: none;font-size: 1.2rem; color: #666;border-radius: 5px;}
+.c-btn{ width: 71.85%; height: 4rem; line-height: 4rem; margin: 2.6rem auto 0;background:url("../images/wap2/concern2016/c_btn_bg.png") no-repeat 0 0; display: block; font-size: 1.4rem; color: #fff5f4; font-weight: bold; background-size: 100% 100%; text-align: center;}
+.c-rule{ margin-top: .15rem; overflow: hidden;font-size: 1.3rem; font-weight: bold;}
+.c-rule h3,.c-rule h3 img,.c-rule b img{ width: 100%;}
+.c-rule p{ width: 74%; line-height: 3rem; margin: 0 auto;color: #555;}
+.c-rule p:first-of-type{ margin-top: 2.45rem;}
+.c-rule span{ width: 74%; line-height: 3rem; margin: 0 auto; color: #93520b; display: block;text-align: center;}
+.c-rule span:first-of-type{ margin-top: 2rem; margin-bottom: .3rem; text-align: center;}
+.c-rule span:last-of-type{ margin-top: .5rem;}
+.c-rule b{ width: 35.33%; margin: 0 auto; display: block;}
+.c-tip-content{ width: 76%; background: #e53c1d; border-radius: 6px; color: #feeaab;}
+.c-tip-content p{ width: 78%; margin: 0 auto; padding: 0 0 1.4rem; font-size: 2rem;}
+.c-tip-content span.c-tip-regist{ display: block; padding: 1rem 0 2.8rem; font-size: 1.4rem; border-top: 1px solid #feeaab;}
+.c-tip-content .layermcont{ padding-bottom: 0;}
+.c-tip-content .layermbtn{ border: 0; padding-bottom: 2.4rem;}
+.c-tip-content .layermbtn span{ width: 58.85%; height: 4.15rem; line-height: 4.15rem; background: #f9cf96; border-radius: 0; font-size: 1.2rem; color: #e53c1d;}
+.c-tip-content .layermbtn:before{ width: 0;}
+/* regist */
+.r-wrap{ padding-bottom: 6rem;}
+.r-title{ width: 71.2%; margin: .3rem auto 0;}
+.r-title img{ width: 100%;}
+.r-form{ width: 100%; height: 65.5rem; margin: 0 auto; position: relative;}
+.r-form-bg{ width: 100%; height: 100%; position: absolute; left: 0; top: 0; z-index: 1;}
+.r-form-bg img{ width: 100%; height: 100%;}
+.r-form-box{ width: 88%; position: absolute; left: 5.6%; top: 20rem; z-index: 2;}
+.r-list li{ width: 100%; float: left; margin-bottom: 1.6rem;}
+.r-list span{ width: 21%;line-height: 4rem; float: left; margin-right: 3%; font-size: 1.4rem; color: #ffe979; font-weight: bold; text-align: right;}
+.r-list p{ width: 72%;/* height: 5.25rem; */ float: left;border-radius: 5px;background: white;}
+.r-list p input{    border-radius: 5px; width: 90%;/* height: 2.25rem; *//* line-height: 2.25rem; */padding: 1rem 0; margin-left: 1rem; border: none; font-size: 1.2rem; color: #666;}
+.r-list li:last-of-type p{ width: 38%;}
+.r-list li:last-of-type .r-code{ width: 30%;height: 3.2rem;line-height: 3.2rem; float: left; margin-left: 4%; text-align: center; background: #fedd20; border-radius: 5px; font-size: 1.4rem; color: #c63311;}
+.r-tip{ padding-left: 24%; font-size: 1.4rem; color: #0a0200; font-weight: bold;height: 30px}
+.r-list{height: 250px}

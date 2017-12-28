@@ -1,0 +1,111 @@
+.container img {
+  width: 100%;
+}
+.content {
+  width: 100%;
+  height: 40.8rem;
+  background: url(../images/bg_content.png);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.num {
+  line-height: 2.16rem;
+  font-size: 0.56rem;
+  color: #4855dd;
+  text-align: center;
+}
+.list {
+  width: 11.72rem;
+  height: 7.48rem;
+  margin: 0 auto;
+}
+.list li {
+  width: 11.72rem;
+  height: 7.48rem;
+  float: left;
+  margin-bottom: 0.24rem;
+  background: url(../images/bg_redbag_1.png);
+  background-size: 100% 100%;
+}
+.list .li-2 {
+  background-image: url(../images/bg_redbag_2.png);
+}
+.list .li-3 {
+  background-image: url(../images/bg_redbag_3.png);
+}
+.list .li-4 {
+  background-image: url(../images/bg_redbag_4.png);
+}
+.list .li-5 {
+  background-image: url(../images/bg_redbag_5.png);
+}
+.list p,
+.list span,
+.list a {
+  display: block;
+  margin-left: 1.04rem;
+  color: #fff;
+}
+.list .li-4 p,
+.list .li-4 span,
+.list .li-5 p,
+.list .li-5 span {
+  margin-left: 0.6rem;
+}
+.list p {
+  margin-top: 0.96rem;
+  line-height: 1.8rem;
+  font-size: 1rem;
+}
+.list .li-3 p,
+.list .li-4 p,
+.list .li-5 p {
+  font-size: 0.48rem;
+}
+.list .li-3 em,
+.list .li-4 em,
+.list .li-5 em {
+  font-size: 1rem;
+}
+.list b {
+  font-size: 1.64rem;
+  padding-right: 0.12rem;
+}
+.list span {
+  line-height: 1.72rem;
+  font-size: 0.52rem;
+}
+.list a {
+  width: 5.16rem;
+  height: 1.46rem;
+  line-height: 1.46rem;
+  margin: 0.12rem auto 0;
+  font-size: 0.68rem;
+  color: #fd6a58;
+  background: #fff;
+  border-radius: 0.12rem;
+  text-align: center;
+}
+.rule {
+  width: 100%;
+  height: 21.86rem;
+  background: url(../images/bg_rule.png);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.rule span,
+.rule p {
+  width: 86%;
+  display: block;
+  margin: 0 auto;
+  font-size: 0.56rem;
+  color: #fff;
+}
+.rule span {
+  line-height: 1.76rem;
+  margin-top: 0.6rem;
+}
+.rule p {
+  line-height: 0.68rem;
+  margin-bottom: 0.6rem;
+}

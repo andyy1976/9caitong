@@ -1,0 +1,35 @@
+<div class="user_top_title bgfb">
+	<a class="current">修改手机</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<form method="post" name="ModifyPhone" id="ModifyPhone">
+		<table cellpadding="5" cellspacing="0" border="0"  class="uc_table_form">
+			<tbody>
+				<tr>
+					<td>当前手机号：</td>
+					<td>{function name="hideMobile" v=$user_phone.mobile}<input type="hidden" id="old_phone" value="{$user_phone.mobile}" /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="ta_r">图形验证码：</td>
+					<td><input type="text" id="Verifycode" class="uc_input input_onfocus_shadow" maxlength="4" placeholder="请输入图形验证码" /><input type="hidden" value="{function name="rand"}" id="P_c_rand" /></td>
+					<td><img src="{$APP_ROOT}/verify.php?w=89&h=44&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img" title="看不清楚？换一张" /></td>
+				</tr>
+				<tr>
+					<td class="ta_r">{$LANG.VERIFY_CODE}：</td>
+					<td><input name="oldvalidateCode" id="oldvalidateCode" class="uc_input input_onfocus_shadow" placeholder="请输入短信{$LANG.VERIFY_CODE}" maxlength="6" /></td>
+					<td><input type="button" class="ucbt3 bgC_blue1 C_white" id="sendOldPhoneCode" value="获取短信验证码" ajax_url="{url x="index" r="ajax#send_phone_verifycode_four"}" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="button" id="sub_btn_validateoldPhone" name="submit" value="下一步" class="uc_submit_blue" /></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		</form>
+	</div>
+</div>

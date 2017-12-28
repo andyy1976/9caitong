@@ -1,0 +1,108 @@
+﻿@charset "utf-8";
+/* CSS Document */
+*{ margin:0px; padding:0px; list-style:none;}
+body{font-family: microsoft yahei; font-size:16px;}
+img { border:none;}
+a{outline:none;text-decoration:none;}
+a,a:active {outline: none; }
+a:hover{ color:none;}
+.dn{ display:none}
+
+
+/*------------------------------弹框---------------------------*/
+.jyzhezhao{ width:100%; height:100%; position:fixed; background:#000;filter:alpha(opacity=75);-moz-opacity:0.75;-khtml-opacity: 0.75;opacity: 0.75;z-index:10000; top:0; left:0}
+.jyimg{ width:100%; height:100%; position:fixed; z-index:10001; background:url(../Images/jybg.png) no-repeat; background-size:100% auto; background-position:0% 25%;}
+
+.cont01{ display:block;width:100%; background:url(../Images/jytk.png) no-repeat; background-size:100% auto; height:100%;position:absolute;top:25%; left:0;
+		animation: peoleft 800ms;
+		-moz-animation: peoleft 800ms;	/* Firefox */
+		-webkit-animation: peoleft 800ms;	/* Safari 和 Chrome */
+		-o-animation: peoleft 800ms;	/* Opera */
+	}
+
+@keyframes peoleft{
+	from{ opacity: 0;top:-200px;}
+	to { opacity: 1;top:25%;}
+	}
+
+@-webkit-keyframes peoleft {
+	from{ opacity: 0;top:-200px;}
+	to { opacity: 1;top:25%;}
+}
+@-moz-keyframes peoleft {
+	from{ opacity: 0;top:-200px;}
+	to { opacity: 1;top:25%;}
+}
+@-ms-keyframes peoleft {
+	from{ opacity: 0;top:-200px;}
+	to { opacity: 1;top:25%;}
+}
+
+
+
+
+.cont01_1{display:block;width:100%; background:url(../Images/jytk.png) no-repeat; background-size:100% auto; height:100%;position:absolute;top:25%; left:0;	
+		-webkit-animation: peoone 1s linear infinite;
+		-moz-animation: peoone 1s linear infinite;
+		-ms-animation: peoone 1s linear infinite;
+		-o-animation: peoone 1s linear infinite;
+		animation: peoone 1s linear infinite; }	
+		
+@keyframes peoone{
+	0% { transform: rotate(-0deg); }
+    25% { transform: rotate(1deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@-webkit-keyframes peoone{
+	0% { -webkit-ransform: rotate(0deg); }
+    25% { -webkit-transform: rotate(1deg); }
+    50% { -webkit-transform: rotate(0deg); }
+    75% { -webkit-transform: rotate(2deg); }
+    100% { -webkit-transform: rotate(0deg); }
+}
+
+
+@-moz-keyframes peoone{
+	0% { -moz-transform: rotate(0deg); }
+    25% { -moz-transform: rotate(1deg); }
+    50% { -moz-transform: rotate(0deg); }
+    75% { -moz-transform: rotate(2deg); }
+    100% { -moz-transform: rotate(0deg); }
+}
+
+@-ms-keyframes peoone{
+	0% { -ms-transform: rotate(0deg); }
+    25% { -ms-transform: rotate(1deg); }
+    50% { -ms-transform: rotate(0deg); }
+    75% { -ms-transform: rotate(2deg); }
+    100% { -ms-transform: rotate(0deg); }
+}	
+
+/*---------------------------------------内容--------------------------------------*/
+.jyimage{ width:100%; height:auto; overflow:hidden}
+.jyimage img{ display:block; max-width:100%}
+.jymain{ width:100%; height:auto; overflow:hidden; background:url(../Images/contimg.jpg) repeat-y; background-size:100% auto; padding-top:4%}
+.jymain h3{ font-size:26px; color:#c12516; text-align:center; font-weight:normal}
+.jybody{ width:80%; margin:0 auto; height:auto; overflow:hidden; margin-top:15px}
+.jybody p{ border-bottom:1px dotted #d6b164; color:#9e7216; text-indent:2em; padding:8px 0; font-size:14px; line-height:25px}
+
+/*--------------------*/
+
+
+/*安卓 ios6*/	
+@media only screen and (min-width:360px)and (max-width:375px){
+	}	
+
+/*6plus 480小米*/		
+@media only screen and (min-width:376px)and (max-width:540px){
+	.jybody p{  padding:10px 0; font-size:15px; line-height:27px}
+	}
+	
+@media only screen and (min-width:541px){
+	.jybody p{  padding:10px 0; font-size:16px; line-height:28px}
+	.jymain{ max-width:640px}
+	}
+		

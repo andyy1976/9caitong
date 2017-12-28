@@ -1,0 +1,77 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>邀请记录</div>
+<?php } ?>
+	<!-- 邀请记录 -->
+    <table class="fi-invite-list">
+    {if !$list}
+    <div class="pt-coupon-no">
+        <img src="{$TMPL}/images/wap2/pt/10.png" class="pt-in-false-img pt-coupon-no-img" style="width: 50%; margin-top: 120px;">
+        <h2 style="font-size: 20px; margin-top: 25px;">这里空空如也！</h2>
+    </div>
+    {else}
+        <tr><th width="20%">好友</th><th width="20%">状态</th><th>邀请状态</th><th>时间</th></tr>
+        {foreach from=$list item=vo key=key}
+        <tr>
+            <td>{$vo.real_name}</td>
+            <td>{$vo.type}</td>
+            <td>{$vo.invite_type}</td>
+            <td>{$vo.create_date}</td>
+        </tr>
+        {/foreach}
+    {/if}
+    </table>
+</section>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type:'POST',
+            url:"{url x="index" r="invite#ajaxInvite"}",
+            dataType:'json',
+            success:function(msg){
+                console.log(msg);
+                if(parseInt(msg-{$page})>0){
+                  scroll(msg);
+                }
+            }
+        })
+        function scroll(msg){
+            var range = 50;             //距下边界长度/单位px
+            var elemt = 500;            //插入元素高度/单位px           //设置加载最多次数
+            var page = 1;
+            var totalheight = 0; 
+            $(window).scroll(function(){
+                var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+                totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+                if(($(document).height()-range) <= totalheight) {
+                    page++;
+                    var nums=parseInt((msg/{$page})+1);
+                    if(page<=nums) {
+                        getJSON(page);
+                    }                   
+                }
+            });
+        }
+        // 请求数据加载到页面中。。。
+        function getJSON(page){
+            page=parseInt(page);
+            $.ajax({
+                type:"POST",
+                url:"{url x="index" r="invite#inviteList"}",
+                data:{'page':page},
+                success :function (str){
+                    var main = $(".fi-invite-list");
+                    if(str!='false'){
+                        main.append(str);
+                    }
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

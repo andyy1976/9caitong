@@ -1,0 +1,69 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+	<?php if(!es_session::get('MachineInfo')) {?>
+	<div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>分享体验金</div>
+	<?php } ?>
+	<!-- 分享体验金 -->
+	<p class="t-banner"><img src="{$TMPL}/images/wap2/fi/img_taste_banner.png"></p>
+	<div class="t-box t-box-share">
+		{foreach from=$taste_info.item item="item"}
+		{if $item.button_status eq 5}
+		<div class="t-list t-list-blue">
+			<div class="t-list-top"><h3>{$item.title}</h3><span>{$item.time}天</span></div>
+			<ul class="t-list-data">
+				<li><p><b>{$item.money}</b>元</p><span>金额</span></li>
+				<li><p>{$item.rate}%</p><span>年化收益</span></li>
+				<li><p><b>{$item.income}</b>元</p><span>收益</span></li>
+			</ul>
+			
+			<!--<a href="javascript:;" class="t-btn" onclick="tasteBtn({$taste_info.user_id},{$item.id},'wap',{$item.button_status})" >{$item.button}</a>-->
+			<a href="javascript:;" class="t-btn" onclick="{if $device eq 'Android'}android(){else}ios(){/if}" >分享解冻</a>
+		</div>
+		{/if}
+		{/foreach}
+		<!-- <div class="t-list">
+			<div class="t-list-top"><h3>微信活动体验金</h3><span>11天</span></div>
+			<ul class="t-list-data">
+				<li><p><b>100000</b>元</p><span>金额</span></li>
+				<li><p>14.8%</p><span>年化收益</span></li>
+				<li><p><b>20.27</b>元</p><span>收益</span></li>
+			</ul>
+			<a href="javascript:;" class="t-btn">已领取</a>
+		</div> -->
+		<p class="t-friends-link"><img src="{$TMPL}/images/wap2/fi/bg_share_link.png"></p>
+		<div class="t-friends">
+			<h4>邀请的好友 (邀请3位好友可解冻)</h4>
+			<ul class="t-friends-list">
+				{if $friend_info.friend_info}
+				{foreach from=$friend_info.friend_info item="friend_info"}
+				<li><p>{$friend_info.mobile}</p><p>{if $friend_info.taste_status}成功{else}已注册{/if}</p><p>{$friend_info.create_time}</p></li>
+				{/foreach}
+				{else}
+				<li style="text-align: center">暂未邀请好友</li>
+				{/if}
+			</ul>
+		</div>
+		<p class="t-rule-title">说明：</p>
+		<ul class="t-rule">
+			<li>1、分享体验金处于冻结状态，需要解冻后才可使用。</li>
+			<li>2、解冻方法为：分享给三个好友注册并在30天内实名认证，且好友均使用注册体验金后，即可解冻。</li>
+			<li>3、好友注册后，将获得84442元体验金+50元代金券，奖励丰厚！</li>
+			<li>4、分享体验金有效期30天，收益有效期10天，请在有效期内使用。</li>
+		</ul>
+	</div>
+</section>
+<script>
+	var mobile = {$mobile};
+	var url_path = "{$url}";
+	function ios(){
+		window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpShareBase","title":"送你万元体验金+代金券+更多豪礼！","icon":url_path+"/app/Tpl/wap/images/wap2/fi/icon.png","content":"玖财通——优质小额抵押车贷的佼佼者。2016年率先实现银行存管，保障资金安全；最高11.5%的预期年化收益，为您财富增值。","url":url_path+"/index.php?ctl=user&act=wapRegister&code="+mobile}); //微信朋友圈
+	}
+	function android(){
+		window.jiucaitong.showShareF("送你万元体验金+代金券+更多豪礼！",url_path+"/app/Tpl/wap/images/wap2/fi/icon.png","玖财通——优质小额抵押车贷的佼佼者。2016年率先实现银行存管，保障资金安全；最高11.5%的预期年化收益，为您财富增值。",url_path+"/index.php?ctl=user&act=wapRegister&code="+mobile);
+	}
+</script>
+
+
+</body>
+</html>

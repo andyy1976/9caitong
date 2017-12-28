@@ -1,0 +1,300 @@
+{include file="inc/nheader.html"}
+		<div class="wrapper">
+			<div class="nav_L">
+				<div class="center">
+					<ul class="ta_r">
+						<li><a href="{url x="index" r="memberLevel"}">会员首页</a></li>
+						<li class="cur"><a href="{url x="index" r="memberLevel#privilege"}">会员特权</a></li>
+						<li><a href="{url x="index" r="memberLevel#GrowthMission"}">成长任务</a></li>
+					</ul>
+				</div>					
+			</div>
+			<div class="blank10"></div>
+			<div class="blank50"></div>
+			<div class="wrap_f0">
+				<div class="blank200"></div>
+				<div class="center bgff">
+					<div class="pd60 pst_re">
+						<div class="user_info_privilege ta_c">
+							<p class="C_orange fs_20">我的特权</p>
+							<img src="{if $user_img}{$user_img} {else}/new/images/about_06_02.jpg{/if}" class="user_pic" />
+							<p><img src="/new/images/memberLevel/level{$data.user_level}.png" /></p>
+							<p>成长值： <span class="fs_30 C_orange">{$data.grow_point}</span></p>
+						</div>
+						<div class="blank200"></div>
+						<ul class="privilege ta_c ofh" id="LevelExplain">
+							<li class="have">
+								<img src="/new/images/memberLevel/icon1.png" />
+								<p>生日问候</p>
+								<div class="privilege_explain hide">
+									<!--后台可编辑-->
+									<p>用户首次升级成为V1-V6等级会员，可分别获得不同金额的升级欢迎礼包。</p>
+									<!--/后台可编辑-->
+								</div>
+								<div class="rule_explain hide">
+									<!--后台可编辑-->
+									<ol>
+										<li>用户首次升级成为V1-V6等级会员，可获得升级欢迎礼包，等级越高获得礼包奖励力度越大；</li>
+										<li>奖励将自动发放至用户的玖财通账户，请到“我的-优惠券”查看；</li>
+										<li>如用户会员等级跨级提升，则可一次性获得该等级及以下所有等级的升级欢迎礼包；</li>
+									</ol>
+									<p>升级欢迎礼包中所有出借红包有效期均为10天；</p>
+									<p>注：每个等级升级欢迎礼包，每位用户仅限获取一次，不可重复获取。</p>
+									<!--/后台可编辑-->
+								</div>
+								<div class="welfare_info hide">
+									<!--后台可编辑-->
+									生日问候-后台可编辑福利详情
+									<!--/后台可编辑-->
+								</div>
+							</li>
+							<li class="have">
+								<img src="/new/images/memberLevel/icon2.png" />
+								<p>生日好礼</p>
+								<div class="privilege_explain hide">
+									生日好礼-后台可编辑特权说明
+								</div>
+								<div class="rule_explain hide">
+									生日好礼-后台可编辑规则说明
+								</div>
+								<div class="welfare_info hide">
+									生日好礼-后台可编辑福利详情
+								</div>
+							</li>
+							<li class="have">
+								<img src="/new/images/memberLevel/icon3.png" />
+								<p>周年感恩礼</p>
+								<div class="privilege_explain hide">
+									周年感恩礼-后台可编辑特权说明
+								</div>
+								<div class="rule_explain hide">
+									周年感恩礼-后台可编辑规则说明
+								</div>
+								<div class="welfare_info hide">
+									周年感恩礼-后台可编辑福利详情
+								</div>
+							</li>
+							<li class="gray">
+								<img src="/new/images/memberLevel/icon4.png" />
+								<p>节日加息礼包</p>
+								<div class="privilege_explain hide">
+									节日加息礼包-后台可编辑特权说明
+								</div>
+								<div class="rule_explain hide">
+									节日加息礼包-后台可编辑规则说明
+								</div>
+								<div class="welfare_info hide">
+									节日加息礼包-后台可编辑福利详情
+								</div>
+							</li>
+							<li class="gray">
+								<img src="/new/images/memberLevel/icon5.png" />
+								<p>出借积分加倍</p>
+								<div class="privilege_explain hide">
+									出借积分加倍-后台可编辑特权说明
+								</div>
+								<div class="rule_explain hide">
+									出借积分加倍-后台可编辑规则说明
+								</div>
+								<div class="welfare_info hide">
+									出借积分加倍-后台可编辑福利详情
+								</div>
+							</li>
+							<li class="gray">
+								<img src="/new/images/memberLevel/icon6.png" />
+								<p>vip专属商品</p>
+								<div class="privilege_explain hide">
+									vip专属商品-后台可编辑特权说明
+								</div>
+								<div class="rule_explain hide">
+									vip专属商品-后台可编辑规则说明
+								</div>
+								<div class="welfare_info hide">
+									vip专属商品-后台可编辑福利详情
+								</div>
+							</li>
+							<li class="gray">
+								<img src="/new/images/memberLevel/icon7.png" />
+								<p>商品专属价格</p>
+								<div class="privilege_explain hide">
+									商品专属价格-后台可编辑特权说明
+								</div>
+								<div class="rule_explain hide">
+									商品专属价格-后台可编辑规则说明
+								</div>
+								<div class="welfare_info hide">
+									商品专属价格-后台可编辑福利详情
+								</div>
+							</li>
+							<li class="gray">
+								<img src="/new/images/memberLevel/icon8.png" />
+								<p>投资人见面会</p>
+								<div class="privilege_explain hide">
+									投资人见面会-后台可编辑特权说明
+								</div>
+								<div class="rule_explain hide">
+									投资人见面会-后台可编辑规则说明
+								</div>
+								<div class="welfare_info hide">
+									投资人见面会-后台可编辑福利详情
+								</div>
+							</li>
+							<li class="gray">
+								<img src="/new/images/memberLevel/icon9.png" />
+								<p>免费提现</p>
+								<div class="privilege_explain hide">
+									免费提现-后台可编辑特权说明
+								</div>
+								<div class="rule_explain hide">
+									免费提现-后台可编辑规则说明
+								</div>
+								<div class="welfare_info hide">
+									免费提现-后台可编辑福利详情
+								</div>
+							</li>
+							<li class="gray">
+								<img src="/new/images/memberLevel/icon10.png" />
+								<p>参与重大活动</p>
+								<div class="privilege_explain hide">
+									参与重大活动-后台可编辑特权说明
+								</div>
+								<div class="rule_explain hide">
+									参与重大活动-后台可编辑规则说明
+								</div>
+								<div class="welfare_info hide">
+									
+								</div>
+							</li>
+							<li class="gray">
+								<img src="/new/images/memberLevel/icon11.png" />
+								<p>健康关爱</p>
+								<div class="privilege_explain hide">
+									
+								</div>
+								<div class="rule_explain hide">
+									健康关爱-后台可编辑规则说明
+								</div>
+								<div class="welfare_info hide">
+									健康关爱-后台可编辑福利详情
+								</div>
+							</li>
+							<li class="gray">
+								<img src="/new/images/memberLevel/icon12.png" />
+								<p>旅游基金</p>
+								<div class="privilege_explain hide">
+									旅游基金-后台可编辑特权说明
+								</div>
+								<div class="rule_explain hide">
+									
+								</div>
+								<div class="welfare_info hide">
+									旅游基金-后台可编辑福利详情
+								</div>
+							</li>
+						</ul>
+						<h1 class="title1 ofh"><span></span>特权说明</h1>
+						<div id="privilege_box"></div>
+						<h1 class="title1 ofh"><span></span>规则说明</h1>
+						<div id="rule_box"></div>
+						<h1 class="title1 ofh"><span></span>福利详情</h1>
+						<div id="welfare_info"></div>
+					</div>
+				</div>
+				<div class="blank20"></div>
+				<div class="center bgff">
+					<div class="pd60 ofh">
+						<h1 class="title ta_c fw100">会员特权</h1>
+						<table border="0" class="table3 ta_c" cellspacing="1" cellpadding="" width="100%">
+							<tr>
+								<th class="bg1" width="16%">会员特权</th>
+								<th width="12%"><img src="/new/images/memberLevel/alevel0.png" /></th>
+								<th width="12%"><img src="/new/images/memberLevel/alevel1.png" /></th>
+								<th width="12%"><img src="/new/images/memberLevel/alevel2.png" /></th>
+								<th width="12%"><img src="/new/images/memberLevel/alevel3.png" /></th>
+								<th width="12%"><img src="/new/images/memberLevel/alevel4.png" /></th>
+								<th width="12%"><img src="/new/images/memberLevel/alevel5.png" /></th>
+								<th width="12%"><img src="/new/images/memberLevel/alevel6.png" /></th>
+							</tr>
+						{foreach from="$level_privilege" item="item" key=key}
+							<tr>
+								<th class="bg1" width="16%">{$item.privilege_name}</th>
+								<th width="12%">{$item.rate.0}</th>
+								<th width="12%">{$item.rate.1}</th>
+								<th width="12%">{$item.rate.2}</th>
+								<th width="12%">{$item.rate.3}</th>
+								<th width="12%">{$item.rate.4}</th>
+								<th width="12%">{$item.rate.5}</th>
+								<th width="12%">{$item.rate.6}</th>
+							</tr>
+						{/foreach} 
+						</table>
+					</div>
+				</div>
+				<div class="blank20"></div>
+				<div class="center bgff">
+					<div class="pd60">
+						<h1 class="title ta_c fw100">成长经历</h1>
+						<table class="table4 ta_c" border="0" cellspacing="1" cellpadding="" width="100%">
+							<tr>
+								<th width="33%">时间</th>
+								<th width="34%">事项</th>
+								<th width="33%">成长值</th>
+							</tr>
+							{foreach from="$list" item="item" key=key}
+							<tr>
+								<td>{$item.create_date}</td>
+								<td>{$item.intro}</td>
+								<td>{$item.grow_point}</td>
+							</tr>
+							{/foreach}
+							<!-- <tr>
+								<td>2017-8-8 18:25:01</td>
+								<td>开通存管账户</td>
+								<td>30</td>
+							</tr>
+							<tr>
+								<td>2017-8-8 18:25:01</td>
+								<td>绑定银行卡</td>
+								<td>30</td>
+							</tr>
+							<tr>
+								<td>2017-8-8 18:25:01</td>
+								<td>设置存管交易密码</td>
+								<td>30</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr> -->
+						</table>
+						<div class="pages">{$pages}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<div class="ta_c hide" id="goApp">
+	<div class="blank20"></div>
+	<img src="/new/images/QRcode.png" />
+	<p>此商品为APP专属商品</p>
+	<p>请扫码下载玖财通APP兑换</p>
+	<a href="javascript:void(0);" class="closeAllLayer btn1">确认</a>
+	<div class="blank20"></div>
+</div>
+{include file="/inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+			});
+			seajs.use(["/new/js/page/memberlevel"])
+		</script>
+	</body>
+</html>

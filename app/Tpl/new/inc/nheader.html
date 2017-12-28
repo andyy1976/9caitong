@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="utf-8" />
+		<title>{if $page_title}{$page_title} - {/if}{if $show_site_titile eq 1}{function name='app_conf' value='SHOP_SEO_TITLE'} - {/if}{$site_info.SHOP_TITLE}</title>
+		<meta name="keywords" content="{if $page_keyword}{$page_keyword}{/if}{$site_info.SHOP_KEYWORD}" />
+		<meta name="description" content="{if $page_description}{$page_description}{/if}{$site_info.SHOP_DESCRIPTION}" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
+		<link rel="stylesheet" href="/new/css/font.css" media="none" onload="if(media!='all')media='all'" />
+		<link rel="stylesheet" href="/new/css/common.css" />
+		{include file="inc/common/load_css.html"}
+		<!--[if lt IE 9]>
+		<script src="/new/js/lib/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>	
+		<header class="header">
+			<div class="ntop">
+				<div class="center">
+					<div class="logo nlogo">
+						<a href="/"><img id="logo" src="/new/images/logo_s.png" /></a>
+					</div>
+					<!--<div class="nav_m">
+			{if $MODULE_NAME <> 'user' && $MODULE_NAME <> 'manageagency' && $MODULE_NAME <> 'authorized' && $MODULE_NAME <> 'agency_money'}-->
+				<!--{foreach from=$nav_list item=nav_item}					
+						<a href="{$nav_item.url}" target="{if $nav_item.blank eq 1}_blank{/if}"{if $nav_item.current==1} style="color:#bb9669"{/if}>{$nav_item.name}</a>
+				{/foreach}
+			{/if}
+					</div>-->
+					<div class="nav_m">
+						<ul>
+							<li>
+								<a href="/">首页</a>
+							</li>
+							<li>
+								<a href="{url x="index" r="deals"}">我要出借</a>
+							</li>
+							<!--<li>
+								<a href="{url x="index" r="guide"}">新手专区</a>
+							</li>-->
+							
+							<li>
+								<a href="#">活动专区<i>&#57351;</i></a>
+								<ul>
+									<li><a href="{url x="index" r="activity"}">热门活动</a></li>
+									<li><a href="{url x="index" r="guide"}">新手福利</a></li>
+									<!--<li><a href="{url x="index" r="activity#P633"}">首尾标</a></li>-->
+								</ul>
+							</li>
+							<li><a href="{url x="index" r="memberlevel"}">会员中心</a></li>
+							<li>
+								<a href="#">信息披露<i>&#57351;</i></a>
+								<ul>
+									<li><a href="{url x="index" r="guarantee#hehui"}">合规之路</a></li>
+									<li><a href="{url x="index" r="guarantee#xiaojiu"}">小玖课堂</a></li>
+									<li><a href="{url x="index" r="guarantee"}">安全保障</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="{url x="index" r="about"}">关于我们</a>
+							</li>
+						</ul>
+					</div>
+					{if $user_info.user_type neq 1}
+					<div class="VersionSwitch">
+						<a href="https://jct.9caitong.com">存管版</a>
+						<div>点击切换到<span>普通版</span></div>
+					</div>
+					{/if}
+					{if $user_info}
+					<div class="logined">
+						<a href="{url x="shop" r="uc_center"}" class="usercenter">用户中心</a>
+						<ul>
+							<li><a href="{url x="index" r="uc_money#incharge"}">充值</a></li>
+							<li><a href="{url x="index" r="uc_money#carry"}">提现</a></li>
+							{if $user_info.user_type neq 1}
+							<li><a href="{url x="index" r="uc_invest"}">出借管理</a></li>
+							{/if}
+							<!-- <li class="ui-nav-dropdown-item">
+								<a href="{url x="index" r="uc_msg"}">我的{$LANG.MSG_COUNT}{if $msg_count>0}(11){/if}</a>
+							</li> -->
+							<li class="exit"><a href="{url x="shop" r="user#loginout"}">退出登录</a></li>
+						</ul>
+					</div>
+					{else}
+					<div class="nologin">
+						<a href="{url x="index" u="user#register" }" class="reg">注册</a>
+						<a href="javascript:void(0)" class="login" id="layer_login">登录</a>
+					</div>
+					{/if}
+				</div>
+			</div>
+		</header>

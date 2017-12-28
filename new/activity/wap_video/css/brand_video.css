@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* 企业视频 */
+html{ background: #fff;}
+.container{ max-width: 750px; margin: 0 auto; padding-bottom: 0;}
+.header{ line-height: 48px; background: linear-gradient(to bottom, #575cde 0%, #4672de 100%); overflow: hidden; color: white; text-align: center; font-size: 1.8rem; font-weight: bold; position: relative;}
+.header .back-icon{ position: absolute; left: 0; top: 0; padding: 15px 4%;}
+.video{ overflow: hidden;}
+.video li{ width: 40%; height: 14.5rem; float: left; margin: 2.2rem 5% 0; position: relative;}
+.video a{ display: block;}
+.video img{ width: 100%; height: 10rem;}
+.video a img{ position: absolute; left: 0; top: 0; z-index: 1;}
+.video p{ width: 100%; height: 4rem; line-height: 2rem; margin-top: .5rem; font-size: 1.2rem; color: #486079; overflow: hidden; text-align: center;}
+.video-show{ width: 320px; margin: 20px auto;}
+.video-title{ line-height: 2; font-size: 1.5rem; color: #13334d; text-align: center;}
+.video-details{ width: 90%; margin: 4px auto 0; padding: 10px 0; border-top: 1px solid #e3e6ea;}

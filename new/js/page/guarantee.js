@@ -1,0 +1,1 @@
+define("new/js/page/guarantee",["$","new/js/mod/login","new/js/mod/viceNav","new/js/mod/goTop"],function(e){e("$");e("new/js/mod/login"),e("new/js/mod/viceNav"),e("new/js/mod/goTop")});

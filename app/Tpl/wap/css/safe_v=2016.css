@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+.container{ max-width: 100%; margin: 0 auto; background: white; padding-bottom: 16px;}
+.container img{ width: 100%;}
+
+.ac{ background: #fafafa; overflow: hidden;}
+.summary{ width: 92%; margin: 0 auto; font-size: 12px; color: #646464; line-height: 2; text-indent: 2em;}
+.list{ width: 94%; margin: 0 auto;}
+.list li{ width: 100%; height: 74px; float: left; margin: 5px 0; border: 1px dotted #f54245; border-radius: 8px;}
+.list p{ width: 93%; margin: 8px auto 0; font-size: 14px; color: black; font-weight: bold;}
+.list span{ width: 93%; margin: 0 auto; display: block; font-size: 12px; color: #646464;}
+.data-security{ line-height: 35px; font-weight: bold; color: black; font-size: 14px; padding-left: 5.8%;}
+.data-security span{ color: #f19149; padding-left: 2px;}
+.d-s-list li{ width: 46.4%; height: 112px; float: left; margin: .7%; background: #eb6100; color: #fafafa;}
+.d-s-list li:nth-of-type(1),.d-s-list li:nth-of-type(3){ margin-left: 2.9%;}
+.d-s-list h3{ height: 34px; line-height: 34px; background: #f19149; text-align: center;}
+.d-s-list p{ width: 90%; margin: 12px auto 0; font-size: 11px; line-height: 1.6;}
+.compliance-list{ width: 100%; overflow: hidden; margin-top: 6px; padding-bottom: 16px;}
+.compliance-list li{ width: 42%; height: 180px; margin: 12px 4%; float: left;}
+.compliance-list h3{ font-size: 11px; color: #f54245; line-height: 2.4; font-weight: bold; text-align: center;}
+.compliance-list span{ font-size: 10px; color: #666;}

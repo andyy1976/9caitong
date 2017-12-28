@@ -1,0 +1,83 @@
+html,body{
+    color:#000;
+    background:#FFF;
+    font-family: "Microsoft Yahei";  
+    font-style: 14px;
+    width: 100%;
+    height: 100%;
+}
+img{ margin: 0; padding: 0;}
+a{text-decoration: none;color: #666666; cursor: pointer;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{
+    margin:0;
+    padding:0;
+}
+ul{
+     list-style:none;
+    }
+q:before,q:after{
+    content:'';
+
+}
+input,textarea,select{
+   font-family:inherit;
+   font-size:inherit;
+   font-weight:inherit;
+   *font-size:100%;
+}
+::-moz-placeholder { color: #fff; }
+::-webkit-input-placeholder { color:#fff; }
+:-ms-input-placeholder { color:#fff; }
+
+ul,ul li{ list-style:none;}
+.clear{ clear:both; width:0; height:0; overflow:hidden;}
+.banner{ position: relative; background: url(../image/banner.png) top center no-repeat; height: 585px;}
+.banner-reg{ position: absolute; top: 155px; left: 50%; margin-left: 188px;}
+.r-form li{ position: relative; width: 320px; border:1px solid #5298f9; border-radius: 4px; height: 45px; margin-bottom: 22px;}
+.r-form li span{ width:40px; height: 45px; display: block; text-align: center; float: left; }
+.r-form li span img{ margin-top: 10px;  width: 19px; height: 23px;}
+.r-form li input{width:250px; height:45px; line-height:45px;font-size:14px; color: #fff; text-indent:0.4rem; background: none;  
+  float: left; border: none; outline: none; }
+//.r-form li i{ width:280px; height:64px; position: absolute; top:0rem; right:0rem;}
+.r-form li input.r-input{ width:140px;}
+.r-form li #Jverify_img{position: absolute; right: -138px;width:123px; height: 47px; cursor: pointer; background: #fff; border-radius: 4px;}
+.r-form li.r-form-li a{ position: absolute; right: -138px; background: url(../image/banner-btn1.png) no-repeat;
+ width:123px; line-height: 47px;height: 47px; border-radius: 4px; text-align: center; font-size:14px; color: #fff;}
+.r-form li.r-form-li a.gray{ background: #dfe5eb;  color: #666666; font-size: 14px;}
+.r-form li.r-form-li{width:185px; }
+.r-form li .tip{ position: absolute; left: 11px; top:48px; font-size:12px;  font-weight: normal; color: #ffffff;}
+.r-btn a{ display: block;margin: 40px 0 0 35px; width: 256px;height: 46px; color: #fff; text-align: center; font-size: 0px; line-height: 40px; background: url(../image/banner-btn2.png) no-repeat;}
+
+.wrap-con{background: #306ade;}
+.con1{ background: url(../image/con1.png) top center no-repeat;  height: 245px;}
+.con1-ul{ width: 1120px; margin: 0 auto;}
+.con1-ul li{ background: url(../image/con1-img1.png) no-repeat; width: 334px; height: 215px; float: left; margin-left: 30px;}
+.con1-ul li img{ float: left; margin:58px 5px 0 20px; }
+.con1-ul li img.con1-img{margin:58px 5px 0 15px;}
+.con1-ul li p{ float: left; text-align: center; font-size: 24px; color: #616ef7;}
+.con1-p1{width: 170px;  padding-top: 65px;}
+.con1-p2{width: 180px;  padding-top: 65px;}
+.con1-p3{width: 196px;  padding-top: 50px;}
+.con1-ul li p span{ display: block; font-size: 18px; line-height: 150%; padding-top: 11px;}
+.con1-ul li p.con1-p3 span{ text-align: left;}
+
+.con2{ background: url(../image/con2.png) top center no-repeat; height: 430px;}
+.con2-ul{width: 1200px; margin: 0 auto; padding-top: 20px;}
+.con2-ul li{ position: relative; margin-left: 65px; float: left;}
+.con2-ul li a{ position: absolute; bottom: 40px; left: 157px; display: block; cursor: pointer; width: 185px; height: 60px;  
+  font-size: 0; }
+
+.con3{ background: url(../image/con3.png) top center no-repeat; height: 508px;}
+.con3-h2{ text-align: center; font-size: 30px; color: #fff; line-height: 155px; font-weight: normal;}
+.con3-ul{width: 1160px; margin: 25px auto 0;}
+.con3-ul li{ position: relative; float: left; margin-left: 110px;}
+.con3-ul li p{ font-size: 14px; color: #ffffff; line-height: 180%; text-align: center;}
+.con3-ul li p span{display: block; font-size: 24px; padding: 30px 0 10px 0;}
+.con4{background: url(../image/con4.png) top center no-repeat; height: 342px;}
+.con4 p{ font-size: 16px; color: #ffffff; line-height: 30px; padding-top: 15px; width: 1140px; margin: 0 auto;}
+.con4-a{ display: block; margin: 20px auto 0; width: 215px; height: 47px; border-radius: 45px; border:1px solid #fff; color: #fff;  font-size: 14px; line-height: 47px; text-align: center;}
+
+.con4 p.con-p{ font-size: 12px; color: #fff; text-align: center;padding-top: 8px;}
+
+.erweima{ position: fixed; top: 20%; right:110px;}
+.erweima img{ width: 175px; height: 198px;}

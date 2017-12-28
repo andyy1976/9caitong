@@ -1,0 +1,58 @@
+<div class="user_top_title bgfb">
+	<a class="current">银行卡管理</a>
+</div>
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+			{if $cg_bank_list }
+				<div class="banklist">
+					<h3>
+						<img src="{$cg_bank_list.icon}" alt="{$cg_bank_list.bank_name}" />
+						<span>{$cg_bank_list.name}</span>
+						<!--<a href="javascript:void(0);" id="change_bank">更换银行卡</a>-->
+						<!--<a href="javascript:void(0);" id="change_bank" >更换银行卡</a>-->
+					</h3>
+					<h1>{$cg_bank_list.bankcard}</h1>
+					<ul>
+						<li>支付额度：单笔<span>{$cg_bank_list.cg_single_quota}</span>元，单日累计<span>{$cg_bank_list.cg_day_limit}</span>元</li>
+						<!--<li>持卡人姓名：<span>{if $bank_list.qu}{$bank_list.addr}{else}{$bank_list.procity}{/if}</span></li>-->
+						<li>持卡人姓名：<span>{$cg_bank_list.real_name}</span></li>
+						<li>手机号：<span>{$cg_bank_list.bank_mobile}</span></li>
+					</ul>
+				</div>
+			{elseif $company_bank}
+			<!--<a href="javascript:void(0);" class="a_link" id="add_bank" style="display:inline-block;">-->
+			<div class="banklist">
+					<h3>
+						
+						<span style="margin-left: 20px">{$company_bank.corpAccBankNm}</span>
+						<!--<a href="javascript:void(0);" id="change_bank">更换银行卡</a>-->
+						
+					</h3>
+					<h1>{$company_bank.corpacc}</h1>
+					<ul>
+						
+						<!--<li>持卡人姓名：<span>{if $bank_list.qu}{$bank_list.addr}{else}{$bank_list.procity}{/if}</span></li>-->
+						<li>持卡人姓名：<span></span></li>
+						<li>手机号：<span></span></li>
+					</ul>
+				</div>
+			{else}
+			<a href="{url x="index" r="uc_depository_addbank#check_pwd"}" class="a_link" style="display:inline-block;">
+			<div class="banklist ta_c">
+				<div class="blank80"></div>
+		         <img src="/new/images/add_bank.png" alt="添加银行卡" />
+				 <p>添加银行卡</p>
+			</div>
+			</a>
+			{/if}
+		<div class="uc_line"></div>
+		<h3 class="uc_title">绑定银行卡规则：</h3>
+		<ol class="rule">
+			<li>为能顺利操作充值，提现，请您绑定本人名下可用有效的储蓄卡。</li>
+			<li>为了您的账户资金安全，玖财通遵循同卡进出原则，您仅能绑定一张本人名下的储蓄卡用于充值提现。</li>
+			<li>如当前绑定银行卡丢失或者销卡，需您及时联系客服人工审核更换银行卡。</li>
+			<li>绑卡过程中遇到问题，请联系客服：400-650-8706。</li>
+		</ol>
+	</div>
+</div>

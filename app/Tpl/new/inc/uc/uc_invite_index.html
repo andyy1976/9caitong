@@ -1,0 +1,100 @@
+<div class="user_top_title bgfb">
+	<a href="{url x="index" r="uc_invite#index"}" class="current">邀请好友</a>
+	<a href="{url x="index" r="uc_invite#reward"}">邀请奖励</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<ul class="equal3 interval25 ofh invite_way C_white ta_c">
+			<li class="QRcode">
+				<p>方式一：好友扫码注册</p>
+				<a id="get_invite_QRcode">点击获得二维码</a>
+				<div class="hide ta_c" id="invite_QRcode"><img src="http://qr.topscan.com/api.php?text={$qrcode_url}"></div>
+			</li>
+			<li class="link">
+				<p>方式二：分享链接给好友</p>
+				<input class="hide" id="invite_link" value="{$share_url_mobile}">
+				<a id="copy_invite_link" rel="#invite_link">点击复制链接</a>
+			</li>
+			<li class="code">
+				<p>方式三：将邀请码发给好友</p>
+				<span>{$user_info.mobile}</span>
+			</li>
+		</ul>
+		<!--<div class="uc_line"></div>
+		<h3 class="uc_title">赚代金券流程</h3>
+		<div class="blank20"></div>
+		<ul class="uc_process ta_c ofh">
+			<li>
+				<span class="p1"></span>
+				<p>通过以上三种方式<br />把链接给好友</p>
+			</li>
+			<li class="arrow"><i>&#57373;</i></li>
+			<li>
+				<span class="p2"></span>
+				<p>好友通过链接注册<br />并完成实名认证</p>
+			</li>
+			<li class="arrow"><i>&#57373;</i></li>
+			<li>
+				<span class="p3"></span>
+				<p>成功赚取20元代金<br />券上限50张</p>
+			</li>
+		</ul>-->
+		<div class="uc_line"></div>
+		<h3 class="uc_title">邀请好友记录</h3>
+		{if $friends_info}
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc_table_list" id="invite_list">
+			<tr >
+				<th>注册时间</th>
+				<th>好友手机号</th>
+				<th>好友姓名</th>
+				<!--<th>代金券奖励(元)</th>
+				<th>红包奖励(元)</th>
+				<th>现金奖励(元)</th>-->
+				<th>用户状态</th>
+			</tr>
+			{foreach from=$friends_info item=f_info key=key}
+			<tr class="{if $key mod 2 eq 1}bgf7{/if}">
+				<td>{$f_info.create_date}</td>
+				<td>{function name="hideMobile" v=$f_info.mobile}</td>
+				{if $f_info.real_name eq '' or $f_info.idcardpassed eq 0}
+				<td class="C_red">未实名认证</td>
+				{else}
+				<td>{$f_info.real_name}</td>
+				{/if}
+				<!--<td>
+					{if $f_info.money eq ''}
+					0
+					{else}
+					{$f_info.money}
+					{/if}
+				</td>
+				<td>0</td>
+				<td>0</td>-->
+				
+				<td>
+				{if !empty($f_info.friend_deal_list)}
+				已出借
+				{elseif $f_info.real_name neq '' and $f_info.idcardpassed eq 1}
+				已实名认证
+				{else}
+				已注册
+				{/if}
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+		<div class="pages">{$pages}</div>
+		{else}
+		<p>暂无邀请好友记录！</p>
+		{/if}
+		<!--<div class="uc_line"></div>-->
+		<!--<h3 class="uc_title">现金奖励</h3>-->
+		<!--<ol class="rule">-->
+			<!--<li>当邀请人邀请好友时，被邀请人在15天内成功注册并投资，邀请人可根据被邀请人首次投资金额获得相应的现金红包奖励。</li>-->
+			<!--<li>现金奖以现金红包的形式，发放到您的账户-优惠券中。</li>-->
+			<!--<li>现金红包可直接提取到账户余额，之后进行提现。</li>-->
+		<!--</ol>-->
+	</div>
+</div>

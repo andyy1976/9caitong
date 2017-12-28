@@ -1,0 +1,125 @@
+@r: 50rem;
+
+.header{ line-height: 48px; background: linear-gradient(to bottom, #575cde 0%, #4672de 100%); overflow: hidden; color: white; text-align: center; font-size: 36/@r; font-weight: bold; position: relative;}
+.header .back-icon{ position: absolute; left: 0; top: 0; padding: 15px 4%;}
+
+.rules{
+    background: #edf2f6;
+    img{
+        width: 100%;
+    }
+}
+.list{
+    width: 100%;
+    margin: 23/@r auto 0;
+    padding: 0 4%;
+    background: #fff;
+    li{
+        width: 100%;
+        float: left;
+        margin-top: 43/@r;
+        padding-bottom: 46/@r;
+        border-bottom: 1/@r solid #e7ebef;
+    }
+    li:last-of-type{
+        border-bottom: 0;
+    }
+    .rule-img{
+        width: 200/@r;
+        height: 140/@r;
+        float: left;
+        margin-top: 1/@r;
+        margin-right: 36/@r;
+    }
+    .rule-word{
+        width: 454/@r;
+        float: left;
+        line-height: 30/@r;
+        span{
+            width: 100%;
+            display: block;
+            font-size: 24/@r;
+        }
+        span:first-child{
+            font-size: 28/@r;
+            color: #140e0e;
+            font-weight: bold;
+            line-height: 44/@r;
+        }
+        span:nth-of-type(2){
+            height: 66/@r;
+            line-height: 34/@r;
+            color: #7d7d7d;          
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        span:last-child{
+            color: #bebebe;
+            text-align: right;
+            margin-top: 4/@r;
+            b{
+                font-weight: normal;
+                background: url(../images/icon_time.png) no-repeat;
+                background-size: 17/@r 17/@r;
+                background-position: 0 6/@r;
+                padding-left: 24/@r;
+            }
+        }
+    }
+}
+.topTop{
+    width: 85.5/@r;
+    height: 85.5/@r;
+    display: block;
+    background: url(../images/icon_totop.png) no-repeat;
+    background-size: 100% 100%;
+    position: fixed;
+    right: 22/@r;
+    bottom: 60/@r;
+}
+//遮罩弹出层
+.public-pop{ width: 100%; height: 100%; background: #000; position: fixed; left: 0; top: 0; z-index: 99999999; display: none;}
+.public-pop-title{ width: 100%; height: 128/@r; line-height: 128/@r; margin: 32/@r auto 0; text-align: center; font-size: 30/@r; color: #fff;}
+.public-pop-img{ width: 750/@r; height: 560/@r; background: #fff; display: table-cell; vertical-align: middle;}
+.public-pop-img img{ margin: 0 auto;}
+.public-pop-box{
+    overflow: hidden;
+    color: #fff;
+    h3{
+        width: 88%;
+        height: 80/@r;
+        line-height: 80/@r;
+        margin: 32/@r auto 0;
+        font-size: 28/@r;
+        font-weight: bold;
+    }
+    .public-pop-word{
+        width: 88%;
+        height: 144/@r;
+        line-height: 36/@r;
+        margin: 0 auto;
+        font-size: 24/@r;
+    }
+}
+.public-pop-close{ width: 100%; height: 200/@r; margin-top: 24/@r; overflow: hidden;}
+.public-pop-close img{ width: 36/@r; height: 36/@r; margin: 32/@r auto 0;}
+//遮罩弹出层滚动条样式
+.scroller_vertical,
+.scroller_horizontal {  
+    border-radius: 2.5px;
+    background-color: rgba(255,255,255,.35);
+    -webkit-transition: opacity .5s;
+            transition: opacity .5s;
+    position: absolute;
+    opacity: 0;
+}
+.scroller_vertical {
+    width: 5px;
+    right: 0;
+}
+.scroller_horizontal {
+    height: 5px;
+    bottom: 0;
+}

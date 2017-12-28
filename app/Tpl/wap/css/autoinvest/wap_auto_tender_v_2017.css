@@ -1,0 +1,68 @@
+@charset "utf-8";
+/*自动投标*/
+/*auto-tender*/
+html{ background: #edf2f6;}
+.container{ max-width: 750px; margin: 0 auto; padding-bottom: 0;}
+.header{ line-height: 48px; background: linear-gradient(to bottom, #575cde 0%, #4672de 100%); overflow: hidden; color: white; text-align: center; font-size: 1.8rem; font-weight: bold; position: relative;}
+.header .back-icon{ position: absolute; left: 0; top: 0; padding: 15px 2% 15px 4%;}
+.header .help-icon { position: absolute; right: 0; top: 0; padding: 14px 4% 15px 2%;}
+.banner img{ width: 100%;}
+.statistics{ height: 42px; line-height: 42px; background: #fff; margin-top: 3px; padding: 0 5%;}
+.statistics p{ float: right;}
+.statistics p.rank{ float: left;}
+.statistics span{ color: #3d77ea;}
+.list{ margin-top: 2px; background: #fff;}
+.list a{ display: block;}
+.title{ height: 46px; line-height: 46px; padding: 0 5%; border-bottom: 1px solid #edf2f6;}
+.title p{ float: left;}
+.title span:first-of-type,#addSwitchBtn span:first-of-type{ width: 45px; height: 24px; border-radius: 12px; position: relative; float: right; margin-top: 10px;}
+.title span:first-of-type span,#addSwitchBtn span:first-of-type span{ width: 21px; height: 21px; border-radius: 10.5px; position: absolute; background: white; box-shadow: 0px 1px 2px rgba(0,0,0,0.4); margin: 0;}
+.open1{ background: rgba(61,119,234,1);}
+.open2{ top: 1px; right: 1px;}
+.close1{ background: rgba(255,255,255,0.4); border:1px solid rgba(0,0,0,0.15); border-left: transparent;}
+.close2{ left: 0px; top: 0px; border:1px solid rgba(0,0,0,0.1);}
+.info{ padding: 16px 0 9px 5%; overflow: hidden;}
+.info p{ width: 26%; height: 66px; float: left; text-align: center; color: #999;}
+.info p span{ line-height: 30px; display: block;}
+.info p:first-of-type{ width: 36%;}
+.info p:last-of-type{ width: 32%;}
+.info p span:first-of-type{ line-height: 36px; font-size: 15px; color: #666;}
+.info p:first-of-type span:first-of-type{ color: #ff9000;}
+.info i{ width: 10px; height: 18px; float: left; margin-top: 24px; background: url(../../images/autoinvest/wap2/auto/icon_more.png); background-size: 100% 100%;}
+.btn-add{ width: 90%; height: 50px; line-height: 50px; margin: 14px auto 0; display: block; background: #3d77ea; border-radius: 4px; text-align: center; font-size: 18px; color: #fff;}
+.word{ width: 90%; line-height: 20px; margin: 0 auto; font-size: 12px; color: #666;}
+.word a{ color: #4d6ade;}
+.word:first-of-type{ margin-top: 10px;}
+.word:last-of-type{ margin-bottom: 10px;}
+/*新增自动投标*/
+.add-list{ padding: 0 5%; height: 48px; line-height: 48px; background: #fff; border-bottom: 1px solid #edf2f6; color: #666;}
+.add-list-first{ margin-top: 4px;}
+.add-l{ float: left;}
+.add-r{ float: right;}
+#addSwitchBtn span:first-of-type{ margin-top: 12px;}
+.add-tip{ padding: 0 5%; line-height: 44px; color: #666;}
+.money-box{ float: right; text-align: right;}
+.money{ width: 45%; height: 18px; line-height: 18px; padding: 6px; margin-top: 8px; text-align: right; border: 1px solid #999;}
+.money-unit{ display: inline-block; margin-left: 4px;}
+.types{ color: #999;}
+.times span{ display: inline-block; margin-left: 35px; padding-left: 32px; background: url(../../images/autoinvest/wap2/auto/btn_radio_1.png) no-repeat left; background-size: 21px 20px;}
+.times span.choose{ background-image: url(../../images/autoinvest/wap2/auto/btn_radio_2.png);}
+.time-range{ height: 52px; background: #fff; display: none;}
+.time-range input{ width: 39.2%; height: 30px; margin-top: 11px; padding: 5px 14px; float: left; border: 1px solid #999; border-radius: 4px; color: #666; background: url(../../images/autoinvest/wap2/auto/icon_choose.png) no-repeat 90%; background-size: 7px 13px; box-sizing: border-box;}
+.time-range input::-webkit-input-placeholder{ color: #666;}
+.time-range input::placeholder{ color: #666;}
+.time-range input:first-child{ margin-left: 6.3%;}
+.time-range-word{ width: 9%; height: 52px; line-height: 52px; float: left; text-align: center;}
+.btns{ margin-top: 22px; overflow: hidden;}
+.btns a{ width: 42%; height: 44px; line-height: 44px; float: left; margin: 0 1.2%; background: #fff; border-radius: 4px; text-align: center; color: #666;}
+.btns a:first-of-type{ margin-left: 6.8%;}
+.btns a.btn-save{ background: #3d77ea; color: #fff;}
+/*标的类型选择弹框*/
+/* .pop-types{ width: 80%; border-radius: 8px;}
+.pop-types .layui-layer-content{ padding: 0;}
+.pop-types .layui-layer-content span{ width: 35%; height: 30px; line-height: 30px; float: left; margin-left: 10%; margin-top: 18px; border: 1px solid #999; color: #999; text-align: center; box-sizing: border-box;}
+.pop-types .layui-layer-content span.choose{ border-color: #3d77ea; color: #2958b3; background: url(../../images/autoinvest/wap2/auto/icon_choose_type.png) no-repeat right top; background-size: 13px 12px;}
+.types-choose{ overflow: hidden; padding-bottom: 18px;}
+.pop-types .layui-layer-btn{ padding: 0; position: relative;}
+.pop-types .layui-layer-btn0{ width: 100%; height: 44px; line-height: 44px; margin: 0; padding: 0; background: #fff; font-size: 16px; color: #666; border: 0; border-radius: 8px; text-align: center; position: absolute; left: 0; top: 8px;}
+.pop-types .layui-layer-btn a:hover,.pop-types .layui-layer-btn a:active{ opacity:1;} */

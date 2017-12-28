@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="zh-CN">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- 优先使用 IE 最新版本 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 忽略将数字变为电话号码-->
+<meta name="format-detection" content="telephone=no">
+<!--让国产浏览器默认采用高速模式渲染页面-->
+<meta name="renderer" content="webkit">
+<!-- 强制图片显示 -->
+<meta name="imagemode" content="force">
+<!--启用 WebApp 全屏模式-->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- 设置状态栏颜色 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>{$cate_title}</title>
+<link rel="stylesheet" type="text/css" href="{$TMPL}/css/invite/reset_ph_v=2016.css">
+<link rel="stylesheet" type="text/css" href="{$TMPL}/css/invite/wap_fi_v_2017.css">
+<script src="{$TMPL}/js/invite/jquery-1.11.3.min.js"></script>
+<script src="{$TMPL}/js/invite/fastclick.js"></script>
+<script src="{$TMPL}/js/layer/layer.js"></script>
+<script src="{$TMPL}/js/android/ShareSDK.js"></script>
+<script>
+    //处理移动端click事件300ms延迟
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+</script>
+</head>
+<body >
+<?php if(!es_session::get('MachineInfo')) {?>
+        <div class="header"><a href="javascript:history.go(-1)"  class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>邀请好友</div>
+    <?php } ?>
+<!-- 新版邀请好友 -->
+<div class="fi_invite_banner"><p>2017.12.14 - 2018.01.31</p></div>
+<div class="fi_invite_gift">
+    <div class="fi_invite_invest">
+        <p><span>好友首投1000-4999</span><span>享<b>15元</b>现金红包</span></p>
+        <p><span>好友首投5000-9999</span><span>享<b>40元</b>现金红包</span></p>
+        <p><span>好友首投≥1万</span><span>享<b>80元</b>现金红包</span></p>
+    </div>
+    <div class="fi_invite_redbag">
+        <p>邀请2人得<b>30元</b>出借红包</p>
+        <p>邀请4人得<b>70元</b>出借红包</p>
+    </div>
+</div>
+<div class="fi_invite_rule_btn">
+    <a href="./index.php?ctl=invite&act=newinvite_rule">活动规则</a>
+</div>
+<!-- 1207px 460px -->
+<div class="fi_invite_strategy"></div>
+<div class="fi_invite_btns">
+    <a href="javascript:;" class="btn_wechat" onclick="{if $user_id}{$jump.wx}{else}subLogin(){/if}"></a>
+    <a href="javascript:;" class="btn_pyq" onclick="{if $user_id}{$jump.pyq}{else}subLogin(){/if}"></a>
+    <a href="javascript:;" class="btn_qq" onclick="{if $user_id}{$jump.qq}{else}subLogin(){/if}"></a>
+    <a href="javascript:;" class="btn_ewm" onclick="{if $user_id}popBox('popBox_ewm'){else}subLogin(){/if}"></a>
+    <a {if $user_id}href="./index.php?ctl=invite&act=newinvite_record"{else}onclick="subLogin()"{/if} class="btn_invite_record"></a>
+    <a {if $user_id}href="./index.php?ctl=invite&act=invete_repair"{else}onclick="subLogin()"{/if} class="btn_invite_code"></a>
+</div>
+<!-- 快捷邀请弹出层 -->
+<div id="popBg"></div>
+<div id="popBox_invite" class="popBox_invite">
+    <img src="{$TMPL}/images/wap2/fi/invite/bg_share_invite.png">
+</div>
+<div id="popBox_ewm" class="popBox_ewm">
+    <h3>让好友扫码或者输入邀请码进行邀请</h3>
+    <p><img src="{$TMPL}/images/wap2/fi/invite/img_ewm.png"></p>
+    <b>{$mobile}</b>
+    <span>我的邀请码</span>
+</div>
+<script src="{$TMPL}/js/invite/flexible.js"></script>
+<script type="text/javascript">
+//快捷邀请弹出层，邀请成功后返回当前页面后记得关闭弹出层
+function popBox(popBox){
+    var popBox = document.getElementById(popBox);
+    var popBg = document.getElementById('popBg');
+    //弹出层
+    popBg.style.display = popBox.style.display = 'block';
+    popBoxPos();
+    popBgStyle();
+    //当页面滚动的时候，弹出框跟随滚动
+    window.onscroll = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+    window.onresize = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //设置弹出框的位置
+    function popBoxPos(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+        popBox.style.top = scrollTop + 'px';
+    }
+    //设置灰色背景的宽高
+    function popBgStyle(){
+        popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+        popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+    }
+    //关闭弹出框
+    popBox.onclick = popBg.onclick = function(){
+        popBg.style.display = popBox.style.display = 'none';
+    }
+}
+function invite_record(){
+    parent.location.href ="{url x="index" r="invite#newinvite_record"}";
+}
+function invete_repair(){
+    parent.location.href ="{url x="index" r="invite#invete_repair"}";
+}
+function uuu(){
+    parent.location.href ="{$jumpUrl}";
+}
+//IOS 邀请
+{if $mobile}
+    var url_path = "{$url}";
+    var invite_url = "http://jctwapcg.9caitong.com";
+    var url = invite_url+"/index.php?ctl=find&act=W644&code="+{$mobile};
+    
+{/if}
+    function WxScript() {
+         window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToWechatFriends","title":"快来抢8888元体验金+518元红包","icon":url_path+"/app/Tpl/wap/images/wap2/fi/icon.png","content":"您的好友送福利了，除了惊喜豪礼，更有超高收益新手标","url":url}); //打开微信好友
+    }
+    function WxqScript() {
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToWechatFriendCircle","title":"快来抢8888元体验金+518元红包","icon":url_path+"/app/Tpl/wap/images/wap2/fi/icon.png","content":"您的好友送福利了，除了惊喜豪礼，更有超高收益新手标","url":url}); //微信朋友圈
+    }
+    function QqScript(){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToQQ","title":"快来抢8888元体验金+518元红包","icon":url_path+"/app/Tpl/wap/images/wap2/fi/icon.png","content":"您的好友送福利了，除了惊喜豪礼，更有超高收益新手标","url":url}); //扣扣
+    }
+//Android 邀请 
+     function WxAndroid() {
+        var params = {
+            "text" : "您的好友送福利了，除了惊喜豪礼，更有超高收益新手标",
+            "imageUrl" : url_path+"/app/Tpl/wap/images/wap2/fi/icon.png",
+            "title" : "快来抢8888元体验金+518元红包",
+            "url" : url,
+            "type" : $sharesdk.ContentType.WebPage
+            };
+            $sharesdk.shareContent(22, params, function (reqId, platform, state, shareInfo, error) {
+            });
+    }
+    function WxqAndroid() {
+       var params = {
+            "text" : "您的好友送福利了，除了惊喜豪礼，更有超高收益新手标",
+            "imageUrl" : url_path+"/app/Tpl/wap/images/wap2/fi/icon.png",
+            "title" : "快来抢8888元体验金+518元红包",
+            "url" : url,
+            "type" : $sharesdk.ContentType.WebPage
+            };
+            $sharesdk.shareContent(23, params, function (reqId, platform, state, shareInfo, error) {
+            });
+    }
+    function QqAndroid(argument) {
+        var params = {
+            "text" : "您的好友送福利了，除了惊喜豪礼，更有超高收益新手标",
+            "imageUrl" : url_path+"/app/Tpl/wap/images/wap2/fi/icon.png",
+            "title" : "快来抢8888元体验金+518元红包",
+            "titleUrl" : url,
+            };
+        $sharesdk.shareContent(24, params, function (reqId, platform, state, shareInfo, error) {
+        });
+    }
+	function subLogin(){
+    var subLogin=layer.open({
+        className: 'popup-btn',
+        btn: ['确认','取消'], //按钮
+        content: '<h3>提示</h3><p>需登录后才能邀请好友，现在去登录吗？</p>', 
+        shadeClose: true,
+        yes: function(){
+            layer.close(subLogin);
+            //点击确认按钮后要做的动作
+            {if $jump.login eq "iosLogin"}
+            window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToLogin"}); //返回项目列表
+            {elseif $jump.login eq "AndroidLogin" }
+            window.jiucaitong.FromH5ToJump("jumpToLogin","");  //返回项目列表
+            {else}
+            parent.location.href = "{url x="index" r="user#login"}&jumpUrl={url x="index" r="invite"}";
+            {/if}
+        },
+        no: function(){
+        }
+    });
+}
+    function initialization()
+        {          
+            //android的平台配置信息跟ShareSDK.xml一致；
+             var sinaConf = 
+            {
+            "Id" : "1",
+            "SortId" : "1",
+            "AppKey" : "568898243",
+            "AppSecret" : "38a4f8204cc784f81f9f0daaf31e02e3",
+            "RedirectUrl" : "http://www.sharesdk.cn",
+            "ShareByAppClient" : "false",
+            "Enable" : "true"
+            };
+            //platformConfig平台配置信息可为null，此时用ShareSDK.xml
+            var platformConfig = {}; 
+            platformConfig[$sharesdk.PlatformID.SinaWeibo] = sinaConf;
+
+            $sharesdk.initSDKAndSetPlatfromConfig("113f48b687bfe", platformConfig);
+        } 
+		initialization();
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<body>
+<section class="container cf">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>回款明细</div>
+	<!-- 回款明细 -->
+    <table class="my-bank-list my-return-list">
+        <tr><th>还款日期</th><th><p>应收本息</p><p>（元）</p></th><th><p>应收利息</p><p>（元）</p></th><th><p>应收本金</p><p>（元）</p></th></tr>
+        {foreach from=$temp_user_load item=vo}
+        <tr><td>{$vo.repay_date}</td><td>{$vo.money}</td><td>{$vo.interest_money}</td><td>{$vo.self_money}</td></tr>
+        {/foreach}
+    </table>
+    {if $user_load}
+    <div class="my-money-info">
+    	<p>最后一期应收本息：</p>
+	    {if $deal_type neq 1}
+	    <p><span class="my-money-span">募集期间利息：</span><span>{$user_load.raise_money}</span></p>
+		{/if}
+	    <p><span class="my-money-span">应收本金：</span><span>{$user_load.self_money}</span><span class="my-money-span-two">应收利息：</span><span>{$user_load.interest_money}</span></p>
+	    <p><span class="my-money-span">合计：</span><span>{$user_load.count_money}</span></p>
+    </div>
+    {/if}
+    
+</section>
+</body>
+</html>

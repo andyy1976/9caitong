@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">     
+<meta content="yes" name="apple-mobile-web-app-capable">     
+<meta content="black" name="apple-mobile-web-app-status-bar-style">     
+<meta content="telephone=no" name="format-detection">  
+<title>十一中秋提钱放假</title>
+<link rel="stylesheet" type="text/css" href="new/activity/W648/css/style.css?13" />
+<script src="new/activity/W646/js/jquery-1.11.3.min.js?11"></script>
+<script type="text/javascript" src="new/activity/W648/js/resize.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?da0f22482647b9ecba0a227ab3f07197";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body>
+	<div class="banner"></div>
+
+    <div class="con-warp">
+        <div class="con1">
+            <h2 class="con-h2"><img src="new/activity/W648/images/con1-h2.png" alt="DIY月饼这个中秋月更圆" /></h2>
+            <p class="con3-p1">活动期间每日签到可得到相应制作月饼工具及原料等，客户可制作成月饼礼盒。制作出月饼礼盒的客户可换取五芳斋月饼礼盒一份，限量100份，数量有限，先到先得哦~~~</p> 
+            <div class="con1-box">
+                <p class="con1-p">今日签到人数: {$num}人</p>
+                {if $todaybuqian==0}
+                <a href="javascript:;" class="con1-a miss"><span class="miss_span">点击补签</span></a>
+                {else}
+                   {if $forgetsign==0}
+                <a href="javascript:;" class="con1-a missun">漏签<span class="miss_span">{$forgetsign}</span>次</a>
+                    {else}
+                    <a href="javascript:;" class="con1-a miss">漏签<span class="miss_span">{$forgetsign}</span>次</a>
+                    {/if}
+                {/if}
+                <p class="con1-p1">今日签到获得</p>
+                <div class="line"></div>
+                <ul class="con1-ul">
+                    <li>
+                        <img src="new/activity/W648/images/con1-img{$now_award.num}.jpg" alt="{$now_award.prizename}" class="con1-img" />
+                        <p class="con1-p2">{$now_award.prizename}</p>
+                    </li>
+                    
+                    
+                </ul>
+                <div class="active-time">
+                {foreach from=$award item="vo"}
+                      
+                           <a href="javascript:;" class="{$vo.class}">
+                           	<span class="active-date">{$vo.id}</span>
+                           	<i class="miss_i"></i>
+                           	<span class="miss_s"></span>
+                           </a>
+                     
+                {/foreach}
+                    
+                </div>
+            </div>
+        </div>
+        <div class="con2">
+            <h3 class="con2-h3"><i class="con2-ico"></i>我已获得的月饼原料及工具</h3>
+            <p class="con2-p">前100名集齐可获得月饼礼盒一份！</p>
+            <ul class="con2-ul">
+
+                {foreach from=$award  item="vo"}
+                       {if $vo.class =="select"}
+                <li><a href="javascript:;" class="con2-img con2-img{$vo.num}"></a><p>{$vo.prizename}</p></li>        
+                       {else}
+                <li><a href="javascript:;" class="con2-img con2-gray-img{$vo.num}"></a><p>{$vo.prizename}</p></li>
+                       {/if}
+                {/foreach}
+
+                <!-- <li><a href="javascript:;" class="con2-img con2-gray-img1"></a><p>月模</p></li>
+                <li><a href="javascript:;" class="con2-img con2-gray-img2"></a><p>烤箱</p></li>
+                <li><a href="javascript:;" class="con2-img con2-gray-img3"></a><p>面粉</p></li>
+                <li><a href="javascript:;" class="con2-img con2-gray-img4"></a><p>鸡蛋</p></li>
+                <li><a href="javascript:;" class="con2-img con2-gray-img5"></a><p>植物油</p></li>
+                <li><a href="javascript:;" class="con2-img con2-gray-img6"></a><p>酒</p></li>
+                <li><a href="javascript:;" class="con2-img con2-gray-img7"></a><p>莲蓉</p></li>
+                <li><a href="javascript:;" class="con2-img con2-gray-img8"></a><p>鲜肉</p></li>
+                <li><a href="javascript:;" class="con2-img con2-gray-img9"></a><p>栗蓉</p></li>
+                <li><a href="javascript:;" class="con2-img con2-gray-img10"></a><p>五仁</p></li>
+                <li><a href="javascript:;" class="con2-img con2-gray-img11"></a><p>豆沙</p></li> -->
+            </ul>
+            <div class="clear"></div>  
+        </div>        
+        <div class="con3">
+            <div class="con3-box1">
+                <p class="con3-p1"><strong>注：</strong>如用户忘记签到，活动期间可在玖财通存管版，分享玖财通APP中天天免费抢红包界面，可额外得到一次补签机会，客户每天只可获得一次补签机会，补签按漏签顺序来排。</p> 
+                <h2 class="con3-h2"><img src="new/activity/W648/images/con3-h2.png" alt="庆十一新用户抢投即有奖" /></h2>
+                <p class="con3-p2">凡活动期间注册玖财通平台的新用户除享受平台现有新用户福利外，抢先出借普通标的达到一定金额可获得相应的活动奖品（如下图）</p>
+            </div>
+            <div class="con3-box2">
+                <ul class="con3-ul">
+                    <li>
+                        <p>新用户出借额</p>
+                        <p>对应奖品</p>
+                    </li>
+                    <li>
+                        <p>单笔抢投5000以上</p>
+                        <p>玖财通吉祥物（限量100个）</p>
+                    </li>
+                    <li>
+                        <p>单笔抢投10000以上</p>
+                        <p>玖财通定制空气净化器（限量77个）</p>
+                    </li>
+                </ul>
+                <a href="javascript:;" class="con3-btn" id="chujie">立即出借</a>
+            </div>
+            <div class="con3-box3">
+                <p class="con3-p2">注：</p>
+                <ol>
+                    <li>
+                        <p class="con3-p2">本活动客户出借金额均为折标后金额；<br>举个栗子：新用户小玖出借10000元12个预期年化9.8%月标的，10000*9.8%=可得到利息980元，额外还可以得到相应实物奖励；</p></li>
+                    <li>
+                        <p class="con3-p2">本活动客户出借标的均为存管版普通标的不包含新手标等特殊标的；</p>
+                    </li>
+                    <li>
+                        <p class="con3-p2">由于正值十一、中秋双节，参与本活动客户过多，奖品数量有限，望客     户迅速行动以免出现抢投不成功等现象；</p>
+                    </li>
+                    <li>
+                        <p class="con3-p2">本活动实物奖品发放时间为活动结束后的10个工作日内由客服主动和     中奖用户联系进行发放，请您保持手机畅通；</p>
+                    </li>
+                </ol>
+            </div>  
+        </div>          
+    </div>
+    <div class="pop-bg"></div>
+    <div class="pop-con">
+        <p class="pop-p">分享天天免费抢红包页面<br>可获得一次补签机会哦~</p>
+        <ul class="pop-ul">
+            <li><a href="javascript:;" class="cancel">取消</a></li>
+            <li><a href="javascript:;" class="share">去分享</a></li>
+        </ul>
+    </div>     
+    <div class="pop-con1">
+        <p class="pop-p1">今日签到成功！打开页面即可完成当日签到哦~</p>        
+    </div>
+    <div class="pop-con3">
+        <p class="pop-p1">今日签到成功！打开页面即可完成当日签到哦~</p>        
+    </div>
+    <div class="pop-con2">
+        <p>将页面分享给好友！可获得一次补签机会哦~</p> 
+        <a href="javascript:;" class="pop-con2-a">确定</a>   
+    </div>   
+    <div id="popBg" style="display: none;"></div>
+    <div id="popBox">
+	    <a href="javascript:;"><img src="new/activity/W646/images/bg_share.png"></a>
+	</div>   
+</body>
+</html>
+
+
+<script type="text/javascript">
+  var issign="{$issign}";
+  var prizename="{$now_award.prizename}";
+
+  window.onload = function(){
+
+	   if(issign==0){
+        $('.pop-con3').find('p').html("今日签到成功！打开页面即可完成当日签到哦~!");
+        $('.pop-con').css('display', 'none');
+        $('.pop-con3').css('display', 'block');
+        $('.pop-bg').css('display', 'block');
+        pop_fixed($('.pop-con3'));
+        scrollWindow($('.pop-con3'));
+        time1=3;
+        stime1=setInterval(time2,1000);//三秒倒计时
+	   }
+  }
+
+ $("#chujie").click(function(){
+
+    if("{$jump.ToProductList}" == "iosToProductList")//ios跳转
+    {
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToProductList"});
+    }else if("{$jump.ToProductList}" == "androidToProductList")//Android跳转
+    {
+        window.jiucaitong.FromH5ToJump("jumpToProductList","");
+    }else{//wap
+    	window.location.href = "{url x="index" r="deals"}";
+    }
+
+  });
+</script>
+<script type="text/javascript">
+    var mobile = "{$mobile}";
+    var invite_url = "http://wapcg.9caitong.com";
+  $(".miss").click(function(){
+  	$.ajax( {  
+	     url:"{url x="index" r="ajax_activity#buqian"}",
+	     data:{},  
+	     type:'post',  
+	     dataType:'json',  
+	     success:function(data) { 
+	         if(data.status==1){
+	         	$('.pop-con1').find('p').html("补签成功!");
+		        $('.pop-con').css('display', 'none');
+		        $('.pop-con1').css('display', 'block');
+		        $('.pop-bg').css('display', 'block');
+		        pop_fixed($('.pop-con1'));
+        		scrollWindow($('.pop-con1'));
+		        time1=3;
+		        stime1=setInterval(time2,1000);//三秒倒计时
+
+	         }else if(data.status==-1){
+	         	$('.pop-con1').find('p').html("您今天已经补签过了!");
+		        $('.pop-con').css('display', 'none');
+		        $('.pop-con1').css('display', 'block');
+		        $('.pop-bg').css('display', 'block');
+		        pop_fixed($('.pop-con1'));
+        		scrollWindow($('.pop-con1'));    
+		        time1=3;
+		        stime1=setInterval(time,1000);//三秒倒计时
+	         	//layer.msg('您今天已经补签过了！');
+	         }else{
+	         	if(!isWeiXin()&&"{$jump.ToProductList}" != "iosToProductList"&&"{$jump.ToProductList}" != "androidToProductList")
+	         	{
+	         	  pop_fixed($('.pop-con2'));
+                  scrollWindow($('.pop-con2'));
+                  $('.pop-con').css('display', 'none');
+                  $('.pop-con1').css('display', 'none');
+                  $('.pop-con2').css('display', 'block');
+                  $('.pop-bg').css('display', 'block');
+	         	  return false;
+	         	}
+	         		show_pop();         	
+	         }
+	           
+	      },  
+	     error : function() {    
+	        
+	     }  
+    });
+  });
+ //判断是否为微信浏览器
+function isWeiXin(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        return true;
+    }else{
+        return false;
+    }
+}
+/*关闭浏览器弹窗窗口*/
+$('.pop-con2-a').click(function(event) {
+    /* Act on the event */
+    $('.pop-bg').css('display', 'none');
+    $('.pop-con').css('display', 'none');
+    $('.pop-con1').css('display', 'none');
+    $('.pop-con2').css('display', 'none');
+});
+
+/*3秒倒计时*/
+function time(){
+    if(time1>1){                
+        time1=time1-1;
+    }else{
+        clearInterval(stime1);
+        $('.pop-bg').css('display', 'none');
+        $('.pop-con1').css('display', 'none');
+        $('.pop-con3').css('display', 'none');
+    }
+}
+/*3秒倒计时*/
+function time2(){
+    if(time1>1){                
+        time1=time1-1;
+    }else{
+        clearInterval(stime1);
+        $('.pop-bg').css('display', 'none');
+        $('.pop-con1').css('display', 'none');
+        $('.pop-con3').css('display', 'none');
+        location.reload();
+    }
+}
+/*页面滚动*/
+function scrollWindow(scroll_obj){
+    $(window).scroll(function(event) {
+        /* Act on the event */
+        pop_fixed(scroll_obj);
+    });
+}
+//判断是否为iphone
+function ismobile(){
+    var u = navigator.userAgent, app = navigator.appVersion;
+    if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+     if(window.location.href.indexOf("?mobile")<0){
+      try{
+       if(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent)){
+        return '0';
+       }else{
+        return '1';
+       }
+      }catch(e){}
+     }
+    }else if( u.indexOf('iPad') > -1){
+        return '0';
+    }else{
+        return '1';
+    }
+};
+//窗口定位
+function pop_fixed(obj){
+    if(parseInt(ismobile())!=0){
+        var top=(document.body.clientHeight-obj.innerHeight())/2 + window.scrollY;  
+         obj.css({
+            top: parseInt(top),          
+        });       
+    }  
+    var margin_left=parseInt(obj.innerWidth()/2);  
+        obj.css({           
+            'margin-left': '-'+margin_left+'px'
+        }); 
+}
+
+function hiden_pop(){
+    $('.pop-bg').css('display', 'none');
+    $('.pop-con').css('display', 'none');
+}
+
+function popBox(){
+        var popBox = document.getElementById('popBox');
+        var popBg = document.getElementById('popBg');
+        //弹出层
+        popBg.style.display = popBox.style.display = 'block';
+        popBoxPos();
+        popBgStyle();
+        //当页面滚动的时候，弹出框跟随滚动
+        window.onscroll = function() {
+            popBoxPos();
+            popBgStyle();
+        }
+        //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+        window.onresize = function() {
+            popBoxPos();
+            popBgStyle();
+        }
+        //设置弹出框的位置
+        function popBoxPos(){
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+            popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+            if(parseInt(ismobile())!=0){
+                popBox.style.top = scrollTop + 'px';
+            }
+        }
+        //设置灰色背景的宽高
+        function popBgStyle(){
+            popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+            popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+        }
+        //关闭弹出框
+        popBox.onclick = popBg.onclick = function(){
+            hiden_pop();
+            popBg.style.display = popBox.style.display = 'none';
+        }
+    }
+
+function show_pop(){
+ 	pop_fixed($('.pop-con'));
+    scrollWindow($('.pop-con'));
+    $('.pop-bg').css('display', 'block');
+    $('.pop-con').css('display', 'block');
+}
+/*点击取消按钮*/
+$('.cancel').click(function(event) {
+    /* Act on the event */
+    hiden_pop();
+});
+//点击分享按钮
+$('.share').click(function(event) {
+    /* Act on the event */
+    
+    if("{$jump.ToProductList}" == "iosToProductList"){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpShareBase","title":"免费抢红包,抢到即可提现","icon":"https://oss.9caitong.com/Ossimg/2017/09/08/14/59b23551b31c8.jpg","content":"我正在免费抢红包，你也来试试手气吧！","url":invite_url+"/index.php?ctl=find&act=W645&&code="+mobile}); //微信朋友圈
+    }else if("{$jump.ToProductList}" == "androidToProductList"){
+       window.jiucaitong.showShareF("免费抢红包,抢到即可提现","https://oss.9caitong.com/Ossimg/2017/09/08/14/59b23551b31c8.jpg","我正在免费抢红包，你也来试试手气吧！",invite_url+"/index.php?ctl=find&act=W645&&code="+mobile);
+    }else{
+        popBox();
+    }
+	                        
+});
+</script>

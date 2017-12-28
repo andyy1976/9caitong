@@ -1,0 +1,108 @@
+html,body{
+    color:#000;
+    background:#FFF;
+    font-family: "Microsoft Yahei";  
+    font-style: 14px;
+    width: 100%;
+    height: 100%;
+}
+img{ margin: 0; padding: 0;}
+a{text-decoration: none;color: #666666; cursor: pointer;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{
+    margin:0;
+    padding:0;
+}
+ul{
+     list-style:none;
+    }
+q:before,q:after{
+    content:'';
+
+}
+input,textarea,select{
+   font-family:inherit;
+   font-size:inherit;
+   font-weight:inherit;
+   *font-size:100%;
+}
+ul,li{ list-style:none;}
+.clear{ clear:both; width:0; height:0; overflow:hidden;}
+
+.banner{ position: relative; background: url(/new/images/yindaoye/banner.jpg) top center no-repeat; height: 872px;}
+.banner-img{ position: absolute;}
+.banner-img1{ top: 35px; left: 50%; margin-left: -205px;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;  
+ background: url(/new/images/yindaoye/banner-img1.png) no-repeat; width:411px; height:62px;}
+.banner-img2{ top: 120px; left: 50%; margin-left: -255px;
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  animation-delay:1s;
+-webkit-animation-delay:1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+ background: url(/new/images/yindaoye/banner-img2.png) no-repeat; width:510px; height:132px;}
+.banner-img3{ top: 260px; left: 50%; margin-left: -254px;
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  animation-delay:1s;
+-webkit-animation-delay:1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+ background: url(/new/images/yindaoye/banner-img3.png) no-repeat; width:509px; height:128px;}
+.banner-img4{ top: 400px; left: 50%; margin-left: -185px;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  animation-delay:1.75s;
+-webkit-animation-delay:1.75s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+ background: url(/new/images/yindaoye/banner-img4.png) no-repeat; width:369px; height:106px;}
+.banner-img5{ bottom: 95px; left: 50%; margin-left: -510px;
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  animation-delay:2.5s;
+-webkit-animation-delay:2.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+ background: url(/new/images/yindaoye/banner-img5.png) no-repeat; width:1029px; height:108px;}
+
+
+.top{ width: 1200px; height: 45px; margin: 0 auto; }
+.top-left{ float: left;}
+.top-left p,.top-p{ font-size: 12px; color: #666; line-height: 45px;}
+.top-right{ float: right;}
+.top-p{background: url(/new/images/yindaoye/top-ico.png) 0 no-repeat; text-indent: 20px;}
+.top-p a{color: #4270ae;}
+.top-a1{ margin-right: 5px; margin-left: 20px;}
+.top-a2{ margin-left: 5px;}
+.main{ background: url(/new/images/yindaoye/main-bg.png) repeat;}
+.con{ width: 1200px; margin: 0 auto;}
+.con-p-box{ padding-top: 35px;}
+.con-p-box p{ padding-top: 5px;}
+.con1{ padding-top: 50px;}
+.con-h2{ text-align: center;}
+.con1-box{ padding: 40px 20px 30px 30px;}
+.con1-box img{float: left;}
+.p-box{float: left; width: 740px; margin-left: 50px;}
+.p-box p,.con-p-box p{ font-size: 18px; color: #4270ae; text-indent: 2em; line-height: 180%;}
+.con2{ padding-bottom: 135px;}
+.con2-ul{ padding-top: 80px;}
+.con2-ul li{ float: left; width: 230px; margin: 0 35px;}
+.con2-p1,.con2-p2{ color: #4270ae; text-align: center; padding-top: 15px; }
+.con2-p1{ font-size: 26px;}
+.con2-p2{ font-size: 16px;line-height: 180%;}
+
+.con3-img1{ background: url(/new/images/yindaoye/con3-img1.png) top center no-repeat; width: 100%; height:365px; }
+.con3-img1 p {text-align: center; line-height: 100px; font-size: 18px; color: #fff; padding-top: 126px;}
+.con3-img2{ background: url(/new/images/yindaoye/con3-img2.png) top center no-repeat; width: 100%; height:320px; }
+.con3-img3{ background: url(/new/images/yindaoye/con3-img3.png) top center no-repeat; width: 100%; height:354px; }
+
+.con4{padding: 80px 0 180px 0;}
+.con4-ul { padding-top: 80px; margin-left: 25px;}
+.con4-ul li{ background: url(/new/images/yindaoye/con4-img1.png) 5px 6px no-repeat; margin-bottom: 45px;}
+.con4-p1{ font-size: 26px; color:#4270ae; text-indent: 50px; line-height: 180%; }
+.con4-p2{font-size: 15px; color:#4270ae; line-height: 40px;text-indent: 50px;}
+.con4-btn{ display: block; margin: 80px auto 0; background: url(/new/images/yindaoye/con4-img2.png) no-repeat; width: 202px; height: 53px;}

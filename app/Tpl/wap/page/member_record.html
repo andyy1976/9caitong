@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">     
+<meta content="yes" name="apple-mobile-web-app-capable">     
+<meta content="black" name="apple-mobile-web-app-status-bar-style">     
+<meta content="telephone=no" name="format-detection">  
+<title>成长记录</title>
+<link rel="stylesheet" type="text/css" href="/new/css/member_level/style.css" />
+<script type="text/javascript" src="/new/js/page/resize.js"></script>
+</head>
+<body>
+	<div class="main-bg">
+    <?php if(!es_session::get('MachineInfo')) {?>
+	<header>
+		<a  href="javascript:;" onclick="window.history.go(-1);"  class="head-perv">
+			<img src="/new/images/memberLevel/head-ico1.png" alt="" />
+		</a>
+		<a href="#" class="head-close">
+			<img src="/new/images/memberLevel/head-ico2.png" alt="" />
+		</a>
+		<h1>成长记录</h1>
+	</header>
+    {?php } ?}
+	<ul class="record-ul">
+	{foreach from="$member_record" item="item" name=goods}
+		<li>
+			<p class="record-li-p1">{$item.day}<br>{$item.create_time}</p>
+			<p class="record-li-p2"><i class="record-ico"></i></p>
+			<p class="record-li-p3">{$item.grow_point}<br>{$item.create_date}</p>
+			<p class="record-li-p4">{$item.intro}</p>
+		</li>
+	{/foreach}
+	</ul>
+	<p class="record-p">没有更多了</p>
+	</div>
+</body>
+</html>
+<script src="/new/js/page/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type:'POST',
+            url:"{url x="index" r="memberlevel#ajax_record"}",
+            dataType:'json',
+            success:function(msg){
+                if(parseInt(msg-{$page})>0){
+                  scroll(msg);
+                }
+            }
+        })
+        function scroll(msg){
+            var range = 50;             //距下边界长度/单位px
+            var elemt = 500;            //插入元素高度/单位px           //设置加载最多次数
+            var page = 1;
+            var totalheight = 0; 
+            $(window).scroll(function(){
+                var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+                totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+                if(($(document).height()-range) <= totalheight) {
+                    page++;
+                    var nums=parseInt((msg/{$page})+1);
+                    if(page<=nums) {
+                        getJSON(page);
+                    }                   
+                }
+            });
+        }
+        // 请求数据加载到页面中。。。
+        function getJSON(page){
+            page=parseInt(page);
+            $.ajax({
+                type:"POST",
+                url:"{url x="index" r="memberlevel#recordList"}",
+                data:{'page':page},
+                success :function (str){
+                	
+                    var main = $(".record-ul");
+                    if(str!='false'){
+                        main.append(str);
+                    }
+                }
+            });
+        }
+    });
+</script>

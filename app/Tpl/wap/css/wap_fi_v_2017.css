@@ -1,0 +1,338 @@
+@charset "utf-8";
+/* 新版发现 */
+/* find_new */
+.fi_list {
+  background: white;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.fi_list li {
+  width: 16%;
+  height: 2.08rem;
+  float: left;
+  margin: 10px 0.86666667rem 0;
+}
+.fi_list li a {
+  display: block;
+}
+.fi_list li img {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: block;
+  margin: 0 auto;
+}
+.fi_list li span {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #13334d;
+}
+.fi_redbag {
+  background: white;
+  overflow: hidden;
+}
+.fi_redbag_ban {
+  width: 92.8%;
+  height: 3.21333333rem;
+  margin: 12px auto 0;
+  background: url(../images/wap2/fi/bg_rob_redbag.png);
+  background-size: cover;
+  position: relative;
+}
+.fi_redbag_ban a {
+  width: 1.78666667rem;
+  height: 1.78666667rem;
+  position: absolute;
+  left: 4.14666667rem;
+  top: 1.06666667rem;
+  border-radius: 50%;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+.fi_redbag_ban a img {
+  width: 100%;
+}
+@-webkit-keyframes glow {
+  0% {
+    -webkit-box-shadow: 0 0 22px #f9e601;
+    border-color: #fff6b0;
+  }
+  100% {
+    -webkit-box-shadow: 0 0 22px #952001;
+    border-color: #ffd20b;
+  }
+}
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 22px #f9e601;
+    border-color: #fff6b0;
+  }
+  100% {
+    box-shadow: 0 0 22px #952001;
+    border-color: #ffd20b;
+  }
+}
+.fi_data {
+  width: 92.8%;
+  margin: 12px auto 0;
+  overflow: hidden;
+}
+.fi_data_item {
+  width: 4.62666667rem;
+  height: 1.46666667rem;
+  float: left;
+  text-align: center;
+}
+.fi_data_item p {
+  line-height: 0.93333333rem;
+  font-size: 21px;
+  color: #e73c35;
+}
+.fi_data_item span {
+  line-height: 0.53333333rem;
+  display: block;
+  font-size: 11px;
+  color: #666;
+}
+.fi_data_line {
+  width: 0.02666667rem;
+  height: 0.93333333rem;
+  float: left;
+  margin-top: 0.4rem;
+  background: url(../images/wap2/fi/icon_line.png);
+  background-size: cover;
+}
+.fi_rank_wrap {
+  width: 91.2%;
+  height: 6.88rem;
+  margin: 12px auto 0;
+}
+.fi_rank_box {
+  height: 6.26666667rem;
+  background: url(../images/wap2/fi/bg_rank.png);
+  background-size: cover;
+  position: relative;
+}
+.fi_rank_title {
+  width: 8.34666667rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  margin: 0 auto;
+  padding-top: 0.32rem;
+}
+.fi_rank_title span {
+  width: 50%;
+  height: 1.2rem;
+  float: left;
+  font-size: 12px;
+  color: #918c68;
+  text-align: center;
+}
+.fi_rank_title span.active {
+  font-size: 14px;
+  color: #e73c35;
+}
+.fi_rank_list {
+  width: 7.14666667rem;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.fi_rank_item li {
+  width: 7.14666667rem;
+  height: 1.52rem;
+  float: left;
+  font-size: 13px;
+  color: #999;
+  border-bottom: 1px solid #f2f0e3;
+}
+.fi_rank_item li:last-child {
+  border: 0;
+}
+.fi_rank_item i {
+  width: 0.42666667rem;
+  height: 0.58666667rem;
+  float: left;
+  margin: 0.46666667rem 0 0 0.29333333rem;
+  
+  background-size: cover;
+}
+.pt0{
+  background: url(../images/wap2/fi/icon_rank_1.png);
+}
+.pt1{
+  background: url(../images/wap2/fi/icon_rank_2.png);
+}
+.pt2{
+  background: url(../images/wap2/fi/icon_rank_3.png);
+}
+.fi_rank_item img {
+  width: 0.72rem;
+  height: 0.72rem;
+  float: left;
+  margin: 0.4rem 0 0 0.74666667rem;
+}
+.fi_rank_item span {
+  width: 2.26666667rem;
+  line-height: 1.52rem;
+  float: left;
+  margin-left: 0.69333333rem;
+}
+.fi_rank_item p {
+  width: 2rem;
+  line-height: 1.52rem;
+  float: left;
+}
+.fi_rank_item p b {
+  color: #e73c35;
+  padding-right: 1px;
+}
+.fi_rank_btn {
+  width: 9.28rem;
+  text-align: center;
+  bottom: -0.61333333rem;
+}
+.fi_rank_btn span {
+  width: 0.16rem;
+  height: 0.16rem;
+  background: #aea990;
+  margin: 0 2px;
+}
+.fi_rank_btn span.swiper-pagination-bullet-active {
+  background: #e73c35;
+}
+.fi_mall,
+.fi_active {
+  margin-top: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.fi_active {
+  margin-bottom: 10px;
+}
+.fi_public_title {
+  line-height: 0.93333333rem;
+  margin-top: 4px;
+  text-align: center;
+  font-size: 15px;
+  color: #333;
+  background: url(../images/wap2/fi/icon_mall_border.png) no-repeat bottom center;
+  background-size: 0.33333333rem 0.04rem;
+}
+.fi_public_more {
+  line-height: 0.66666667rem;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.fi_public_more a {
+  line-height: 0.66666667rem;
+  padding: 0 20px;
+  font-size: 11px;
+  color: #999;
+}
+.fi_mall_list {
+  padding-top: 16px;
+  overflow: hidden;
+}
+.fi_mall_list li {
+  width: 4.32rem;
+  height: 4.24rem;
+  float: left;
+  margin-left: 0.45333333rem;
+  margin-bottom: 5px;
+}
+.fi_mall_list a {
+  width: 100%;
+  height: 3.06666667rem;
+  display: block;
+  border: 1px solid #edf0f2;
+  border-radius: 8px;
+  box-sizing: border-box;
+  position: relative;
+}
+.fi_mall_list a span {
+  height: 0.37333333rem;
+  line-height: 0.37333333rem;
+  padding: 0 8px;
+  position: absolute;
+  left: 0.26666667rem;
+  top: 0.13333333rem;
+  text-align: center;
+  font-size: 11px;
+  color: #fff;
+  border-radius: 1px;
+}
+.fi_mall_list a span.new {
+  background: #6facfe;
+}
+.fi_mall_list a span.discount {
+  background: #fe695c;
+}
+.fi_mall_list a p {
+  width: 2.28rem;
+  height: 2.28rem;
+  margin: 0.61333333rem auto 0;
+}
+.fi_mall_list a img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+.fi_mall_list li p.product_name {
+  text-align: center;
+  margin-top: 0.10666667rem;
+}
+.fi_mall_list li p.product_name span:first-child {
+  display: block;
+  line-height: 0.56rem;
+  font-size: 13px;
+  color: #666;
+}
+.fi_mall_list li p.product_name span:last-child {
+  display: block;
+  line-height: 0.50666667rem;
+  font-size: 11px;
+  color: #ff742f;
+}
+.fi_active_list {
+  padding-top: 14px;
+  overflow: hidden;
+}
+.fi_active_list li {
+  width: 4.32rem;
+  float: left;
+  margin: 0 0 0.29333333rem 0.45333333rem;
+}
+.fi_active_list a {
+  width: 100%;
+  height: 2.30666667rem;
+  display: block;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.fi_active_list a img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+.fi_active_list h3 {
+  line-height: 0.50666667rem;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #333;
+}
+.fi_active_list p {
+  line-height: 0.42666667rem;
+  font-size: 11px;
+  color: #999;
+}
+.fi_active_list p span:last-child {
+  float: right;
+  color: #97a8b2;
+}

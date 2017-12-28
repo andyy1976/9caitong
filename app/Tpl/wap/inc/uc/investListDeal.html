@@ -1,0 +1,5 @@
+
+        {foreach from="$deals" item="vo"}
+            <li class="my-safe-voucher"><a href="{url x="index" r="uc_invest#deal_info" p="id=$vo.id&load_id=$vo.pid"}"><span>{$vo.name}</span><i></i><p class="tel-how">{$vo.total_money}元</p></a></li>
+        {/foreach}
+

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>推广注册</title>
+    <link rel="stylesheet" type="text/css" href="{$TMPL}/css/extend_register/reset_ph_v=2016.css">
+    <script src="{$TMPL}/js/wapRegister/jquery-1.11.3.min.js"></script>
+    <script src="{$TMPL}/js/wapRegister/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="{$TMPL}/css/extend_register/style.css">
+    <script src="{$TMPL}/js/wapRegister/fastclick.js"></script>
+    <script>
+        //处理移动端click事件300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+</head>
+<body>
+<div class="container">
+	<div class="app-download">
+		<a href="javascript:;" class="app-download-btn"><img src="{$TMPL}/images/wap2/register/logo.png" class="logo" /><span>点击下载客户端，理财更方便</span></a>
+		<p class="app-download-close"><span></span></p>
+	</div>
+	<img src="{$TMPL}/images/wap2/register/banner.png" class="banner" />
+	<div class="regist">
+		<form>
+			<div class="item">
+				<span>手机号</span>
+				<div class="input"><input type="tel" placeholder="请输入您的手机号"  maxlength="11" id="mobile" name="username" /></div>
+			</div>
+			<p class="tip-mobile"></p>
+			<div class="item">
+				<span>登录密码</span>
+				<div class="input"><input type="password" name="password" id="password"  placeholder="请输入您的登录密码" /></div>
+			</div>
+			<p class="tip-pwd"></p>
+			<div class="item">
+				<span>邀请码</span>
+				<div class="input"><input type="tel" id="referer"  maxlength="11" placeholder="请输入邀请码" /></div>
+			</div>
+			<p class="tip-referer"></p>
+			<div class="item">
+				<span>验证码</span>
+				<div class="input"><input type="tel" id="sms-code" maxlength="6"  placeholder="请输入验证码" /></div>
+				<a href="javascript:;" id="getCode" class="code-btn code-btn-gray"></a>
+			</div>
+			<p class="tip-sms"></p>
+			<a href="javascript:;" id="submit" class="btn"></a>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+$("#mobile").keyup(function(){
+	$(".tip-mobile").html("");
+	if($("#mobile").val().length == 0){
+		$("#getCode").css({'background':'#909090','color':'#fffcfb'});
+		return false;
+	}else if($("#password").val().length == 0){
+		$("#getCode").css({'background':'#909090','color':'#fffcfb'});
+		return false;
+	}else{
+		$("#getCode").css({'background':'#fedd20','color':'#c63311'});
+	}
+})
+$("#password").keyup(function(){
+	$(".tip-pwd").html("");
+	if($("#mobile").val().length == 0){
+		$("#getCode").css({'background':'#909090','color':'#fffcfb'});
+		return false;
+	}else if($("#password").val().length == 0){
+		$("#getCode").css({'background':'#909090','color':'#fffcfb'});
+		return false;
+	}else{
+		$("#getCode").css({'background':'#fedd20','color':'#c63311'});
+	}
+})
+$("#referer").keyup(function(){
+    $(".tip-referer").html("");
+})
+$("#sms-code").keyup(function(){
+    $(".tip-sms").html("");
+})
+var regsiter_vy_time = null;    //定义时间
+var is_lock_send_vy = false;    //解除锁定
+var left_rg_time = 0;           //开始时间
+function left_time_to_send_regvy(){
+    clearTimeout(regsiter_vy_time);
+    if(left_rg_time > 0){
+        regsiter_vy_time = setTimeout(left_time_to_send_regvy,1000);
+        $("#getCode").html(left_rg_time+"秒后获取");
+        $("#getCode").addClass("btn_disable");
+       	$("#getCode").css({'background':'#909090','color':'#fffcfb'});
+        left_rg_time -- ;
+    }
+    else{
+        is_lock_send_vy = false;
+        $("#getCode").removeClass("btn_disable");
+        $("#getCode").html("重新获取验证码");
+        $("#getCode").css({'background':'#fedd20','color':'#c63311'});
+        left_rg_time = 0;
+    }
+}
+$(document).ready(function(){
+	$("#getCode").html("获取验证码");
+	$("#getCode").click(function () {
+        var mobile = $("#mobile").val();
+        var password = $("#password").val();
+        var referer = $("#referer").val();
+        if(mobile.length == 0 ||password.length == 0)
+		return false;
+        if(is_lock_send_vy || $(this).hasClass(".btn_disable")){
+            return false;
+        }
+        is_lock_send_vy = true;
+        if(!(/^1[3|4|5|7|8]\d{9}$/.test(mobile))){
+            $(".tip-mobile").html("请输入正确的手机号码");
+            $("#mobile").focus();
+            is_lock_send_vy = false;
+            return false; 
+        }
+        var reg_pwd=/^[a-zA-z0-9]{6,16}$/;  
+        var regs_pwd=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+        if(reg_pwd.test(password)){  
+            if(!regs_pwd.test(password)){
+                $(".tip-pwd").html("密码应为6-16位数字字母组合");
+                $("#password").focus();
+                is_lock_send_vy = false;
+                return false;
+            }
+        }else{
+            $(".tip-pwd").html("密码应为6-16位数字字母组合");
+            $("#password").focus();
+            is_lock_send_vy = false;
+            return false;
+        }
+        loadSubmitCode();
+    });
+});
+function loadSubmitCode(){
+    var ajaxurl = "{url x="index" r="ajax#get_wap_register_verify_code"}";
+    var query = new Object();
+    query.user_mobile =  $.trim($("#mobile").val());
+    query.smsverify =  $.trim($("#img-code").val());
+    $.ajax({ 
+        url: ajaxurl,
+        data:query,
+        type: "POST",
+        dataType: "json",
+        success: function(result){
+            if(result.status==1){
+                left_rg_time = 60;
+                left_time_to_send_regvy();
+                to_send_msg = true;
+                layer.open({
+                    title:false,
+                    skin: 'popup-pop',
+                    content: '<p>已将验证码发送到</p><p>'+$.trim($("#mobile").val())+'</p><p>请注意查收</p>',
+                    end: function(){
+                        var img = document.getElementById("imgCode");  
+                        img.src = "{$APP_ROOT}/verify.php?w=89&h=44&rand="+ Math.random();
+                    }
+                });
+            }else if(result.status==2){
+            	$(".tip-mobile").html(result.info);
+                $("#mobile").focus();
+                is_lock_send_vy = false;
+                return false;
+            }else{   
+                is_lock_send_vy = false;
+                $(".r-tip").html(result.info);
+                return false;
+            }
+        },error:function(){
+            is_lock_send_vy = false;
+        }
+    });
+}
+$("#submit").click(function(){
+	var mobile = $("#mobile").val();
+    var password = $("#password").val();
+    var referer = $("#referer").val();
+    var sms_code = $("#sms-code").val();
+    if(!(/^1[3|4|5|7|8]\d{9}$/.test(mobile))){
+        $(".tip-mobile").html("请输入正确的手机号码");
+        $("#mobile").focus();
+        return false; 
+    }
+    if(password.length==0){
+        $(".tip-pwd").html("登录密码不能为空");
+        $("#password").focus();
+        return false;
+    }
+    var reg_pwd=/^[a-zA-z0-9]{6,16}$/;  
+    var regs_pwd=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+    if(reg_pwd.test(password)){  
+        if(!regs_pwd.test(password)){
+            $(".tip-pwd").html("密码应为6-16位数字字母组合");
+            $("#password").focus();
+            return false;
+        }
+    }else{
+        $(".tip-pwd").html("密码应为6-16位数字字母组合");
+        $("#password").focus();
+        return false;
+    }
+    if(sms_code.length==0){
+        $(".tip-sms").html("验证码不能为空");
+        $("#sms-code").focus();
+        return false;
+    }
+    if(referer.length != 0){
+        var ajaxurl = "{url x="index" r="user#doreferer"}";
+        var query = new Object();
+        query.referer = referer;
+        $.ajax({
+            url: ajaxurl,
+            data:query,
+            type: "POST",
+            dataType: "json",
+            success:function(result){
+                if(result.status){
+                    doregister();
+                }else{
+                    $(".tip-referer").html("邀请码不存在");
+                    $("#referer").focus();
+                    return false;
+                }
+            }
+        });
+    }else{
+         doregister();
+    } 
+})
+function doregister(){
+	var mobile = $("#mobile").val();
+    var password = $("#password").val();
+    var referer = $("#referer").val();
+    var sms_code = $("#sms-code").val();
+	var ajaxurl = "{url x="index" r="user#doregister"}"; 
+    var query = new Object();
+    query.referer = referer;
+    query.mobile = mobile;
+    query.user_pwd = password;
+    query.sms_code = sms_code;
+    query.user_name = "w"+mobile;
+    var load = layer.load(3, {
+        shade: [0.1,'#000'] //0.1透明度的白色背景
+    });
+    $.ajax({
+        url: ajaxurl,
+        data:query,
+        type: "POST",
+        dataType: "json",
+        success:function(result){
+            if(result.status){
+                layer.close(load);
+                window.location.href = "{url x="index" r="user#register_success"}";
+            }else{
+                layer.close(load);
+                $(".tip-sms").html(result.info);
+                $("#mobile").focus();
+            }
+            
+        }
+    });  
+}
+//关闭app下载提示条
+$('.app-download-close').click(function(){
+	$('.app-download').remove();
+	$('.banner').css('margin-top',0);
+})
+//温馨提示弹出框
+function tipPop(){
+	layer.open({
+		title: false,
+		skin: 'tip-pop',
+		content:'<p class="tip-words">您是未注册用户，请先完成注册!</p>',
+		shadeClose: true
+	})
+}
+</script>
+</body>
+</html>

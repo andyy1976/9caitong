@@ -1,0 +1,35 @@
+{if $type eq 0}
+{foreach from=$news_list item=news}
+    <li>
+        <a href="{$news.url}">
+            <h4>{function name="msubstr" v=$news.title s=0 e=16}</h4>
+            <p>{function name="msubstr" v=$news.content s=0 e=56}</p>
+            <span>{$news.create_time}</span>
+        </a>
+    </li>
+{/foreach}
+{elseif $type eq 1}
+{foreach from=$news_list item=news}
+    <li>
+        <a href="{$news.url}">
+            <div>
+                <h5>{function name="msubstr" v=$news.title s=0 e=30}</h5>
+                <span>{$news.create_time}</span>
+            </div>
+            <img src="{$news.img}" />
+        </a>
+    </li>
+{/foreach}
+{else}
+{foreach from=$news_list item=news}
+    <li>
+        <a href="{$news.url}">
+            <div>
+                <h5>{function name="msubstr" v=$news.title s=0 e=30}</h5>
+                <span>{$news.create_time}</span>
+            </div>
+            <img src="{$news.img}" />
+        </a>
+    </li>
+{/foreach}
+{/if}

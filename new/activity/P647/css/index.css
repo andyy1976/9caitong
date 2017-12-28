@@ -1,0 +1,93 @@
+.top1{
+	width:100%; 
+	height:606px;
+	background:url(../images/top_01.png) no-repeat 0 0;
+	background-size:100% 100%;
+}
+.imp{
+	height: :100px;
+	width: :100%;
+}
+.imp p{
+	text-align:center;
+	padding: 40px 0;
+}
+.exca{
+	width:100%; 
+	height:154px;
+	background:url(../images/bg_03.png) no-repeat 0 0;
+	background-size:100% 100%;
+}
+.count {
+	width:100%; 
+	background:#fddec6;
+}
+.red_wars{
+	width:1200px; 
+	height:815px;
+	margin:0 auto;
+}
+.red_wars div {
+	width: 600px;
+	float: left;
+}
+.qredp {
+	text-align: center;
+	margin-top:56px;
+}
+.noredp {
+	margin-left: 210px;
+	margin-top: 43px;
+}
+.qred {
+	margin-left: 90px;
+}
+.nored {
+	margin-left: 72px;
+}
+.btn {
+	margin:70px 31%;
+}
+.monnow {
+	width:918px; 
+	height:1265px;
+	margin:0 auto;
+}
+.tittwo {
+	margin-left: 30px;
+}
+.poemoney {
+	margin-left:10px;
+}
+.money {
+	margin-left: 10px;
+	margin-top:112px;
+}
+.monnow div{
+	float: left;
+	margin-top: 62px;
+}
+.phone2{
+	margin-left: 40px;
+}
+.monnow2 div{
+	float: left;
+	margin-top: 50px;
+}
+.monnow2 {
+	width:918px; 
+	height:1034px;
+	margin:0 auto;
+}
+.monnow3{
+	height: 392px;
+}
+.monnow3 p{
+	text-align: center;
+}
+.er{
+	margin-top: 30px;
+}
+.xia {
+	margin-top:20px;
+}

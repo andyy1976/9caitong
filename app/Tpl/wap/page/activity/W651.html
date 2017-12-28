@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html style="background: #40031c">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>幸运大抽奖</title>
+    <link rel="stylesheet" href="new/activity/W651/css/reset_ph_v=2016.css">
+    <script src="new/activity/W651/js/jquery-1.11.3.min.js"></script>
+    <script src="new/activity/W651/js/fastclick.js"></script>
+    <script src="new/activity/W651/js/awardRotate.js"></script>
+    <script src="new/activity/W651/js/jquery.kxbdMarquee.js"></script>
+    <script src="new/activity/W651/js/layer-v3.0.3/layer.js"></script>
+    <link rel="stylesheet" href="new/activity/W651/css/style.css?11">
+	<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })();
+    </script>
+</head>
+<body>
+<div class="container">
+    <!-- <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="new/activity/W651/images/icon_back.png" width="10" height="18"></a>幸运大抽奖</div> -->
+	<div class="content">
+        <div class="others">
+            <a href="{url x="index" r="find#W651_record"}"><i></i><span>记录</span></a>
+
+            <a href="javascript:;" class="share"><i></i><span>分享</span></a>
+            
+            <div class="record-marquee">
+                <div class="record-list" id="recordList">
+
+                    <ul>
+                    {foreach from=$prizesinfo item="vo"}
+                        <li>{$vo.mobile} 抽中 {$vo.prizename}</li>
+                    {/foreach}
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bracket">
+            <div class="turntable-bg">
+                <div class="pointer"><img src="new/activity/W651/images/pointer.png" alt="pointer"/></div>
+                <div class="rotate" ><img id="rotate" src="new/activity/W651/images/turntable.png" alt="turntable"/></div>
+            </div>
+            {if $score>0}
+            <div class="points">我的积分：<span>{$score}</span></div>
+            {else}
+            <div class="points">我的积分：<span>暂无积分</span></div>
+            {/if}
+        </div>
+        <div class="join-times">
+            <p>今日参与<span>{$todaynum}</span>次</p>
+            <p>累计参与<span>{$allnum}</span>次</p>
+        </div>
+        <a href="javascript:;" class="ruleBtn" onclick="popBox('popBox2','popBg2')"></a>   
+    </div>
+</div>
+<div id="popBg"></div>
+<div id="popBox">
+    <a href="javascript:;"><img src="new/activity/W651/images/bg_share.png"></a>
+</div>
+<div id="popBg2"></div>
+<div id="popBox2">
+    <h3>抽奖规则</h3>
+    <p>1、每人每天限抽5次，扣除的积分将不予退还；</p>
+    <p>2、抽奖获得的积分，系统将直接发放至积分账户，可在“积分商城--积分”中查看；实物奖品将于中奖后5个工作日内专人联系沟通配送事宜，如超过5个工作日未被联系到的用户，请拨打客服电话：400--650-8706补全地址，20个工作日内未能核实地址的将视为自动放弃；话费将于五个工作日内直接充值到用户注册时的手机上；红包、加息券(加息5天)有效期30天，可在“我的-优惠券”中查看；</p>
+    <p>3、抽奖过程中，如发现违规行为，将取消中奖资格；</p>
+    <p>4、中奖商品不开具发票，不可折现，不支持退换；</p>
+    <p>5、最终解释权归玖财通所有。</p>
+    <a href="javascript:;" id="popClose"></a>      
+</div>
+<script>
+//中奖纪录滚动播放
+$("#recordList").kxbdMarquee({isEqual:false});
+/* 抽奖转盘 */
+$(function (){
+    var score="{$score}";
+    var num="{$num}";
+    var $_rotate = $('#rotate');
+    var bRotate = false;
+    var rotateFn = function (awards, angles, txt){ //awards：第几个奖品(要+1)；angles：角度；txt：奖品名字
+        bRotate = !bRotate;
+        $_rotate.rotate({
+            angle:0,
+            animateTo:angles+1800,
+            duration:3000,
+            callback:function (){
+            	//转盘动画效果结束时弹窗
+                layer.open({
+                    skin: 'rotate-pop',
+                    title: false,
+		            content: '<div class="rotate-pop-top"><i></i></div><div class="rotate-pop-bot">恭喜您获得<span>'+txt+'</span></div>',                  
+                    yes:function(i){
+                
+                        layer.close(i);
+                        location.reload();
+                    }
+				});
+                bRotate = !bRotate;
+
+            }
+        });
+    };
+    $('.pointer').click(function (){
+
+        //转动时无法再次点击
+        if(bRotate)return;
+        //积分不够、抽奖次数用完时弹出框
+        if(score<9){
+            layer.open({
+                skin: 'rotate-pop',
+                title: false,
+                content: '<div class="rotate-pop-top"><i class="cry"></i></div><div class="rotate-pop-bot">小主，您的积分不够，快去赚取积分吧</div>'
+            });
+            return false;
+        }
+        if(num>4){
+            layer.open({
+                skin: 'rotate-pop',
+                title: false,
+                content: '<div class="rotate-pop-top"><i class="cry"></i></div><div class="rotate-pop-bot">小主，您今天的抽奖次数已用完</div>'
+            });
+            return false;
+        }
+
+
+         $.ajax( {  
+         url:"{url x="index" r="ajax_activity#W651_receive"}",
+         data:{},  
+         type:'post',  
+         dataType:'json',  
+         success:function(data) { 
+            if(data.status==1){
+                //每个奖品的范围空间
+                var num0 = rnd(319,356);
+                var num1 = rnd(274,311);
+                var num2 = rnd(229,266);
+                var num3 = rnd(184,221);
+                var num4 = rnd(139,176);
+                var num5 = rnd(94,131);
+                var num6 = rnd(49,86);
+                var num7 = rnd(4,41);
+                //获得一个0-5之间的随机数
+                var item = data.prizenum;
+                /*switch (item) {
+                case 0://300-360
+                    rotateFn(0, 347, '10倍积分');
+                    break;
+                case 1://240-300
+                    rotateFn(1, 259, 'ipad mini 4');
+                    break;
+                case 2://180-240
+                    rotateFn(2, 190, '100M流量');
+                    break;
+                case 3://120-180
+                    rotateFn(3, 142, '30话费');
+                    break;
+                case 4://60-120
+                    rotateFn(4, 84, '3积分');
+                    break;
+                case 5://0-60
+                    rotateFn(5, 33, '玖财通定制抱枕');
+                    break;
+                }*/
+
+                switch (item) {
+                    case 0://315-360
+                        rotateFn(0, num0, '5元出借红包');
+                        break;
+                    case 1://270-315
+                        rotateFn(1, num1, '6％加息券');
+                        break;
+                    case 2://225-270
+                        rotateFn(2, num2, '10元话费');
+                        break;
+                    case 3://180-225
+                        rotateFn(3, num3, '玖财通定制抱枕');
+                        break;
+                    case 4://135-180
+                        rotateFn(4, num4, '小米净化器pro');
+                        break;
+                    case 5://90-135
+                        rotateFn(5, num5, '3积分');
+                        break;
+                    case 6://45-90
+                        rotateFn(6, num6, '再来一次');
+                        break;
+                    case 7://0-45
+                        rotateFn(7, num7, '5倍积分');
+                        break;
+                }
+             }else{
+                layer.open({
+                    skin: 'rotate-pop',
+                    title: false,
+                    content: '<div class="rotate-pop-top"><i class="cry"></i></div><div class="rotate-pop-bot">请稍后再试！</div>'
+                });
+                return false;        
+             }
+               
+          },  
+         error : function() {    
+            
+         }  
+    });
+
+        
+    });
+});
+function rnd(n, m){
+    return Math.floor(Math.random()*(m-n+1)+n)
+}
+//分享提示弹出层
+function popBox(popBox, popBg){
+    var popBox = document.getElementById(popBox);
+    var popBg = document.getElementById(popBg);
+    //禁止滚动
+    popBox.ontouchmove = popBg.ontouchmove = function(){
+        return false;
+    }
+    //弹出层
+    popBg.style.display = popBox.style.display = 'block';
+    popBoxPos();
+    popBgStyle();
+    //当页面滚动的时候，弹出框跟随滚动
+    window.onscroll = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+    window.onresize = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //设置弹出框的位置
+    function popBoxPos(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+        popBox.style.top = scrollTop + 'px';
+    }
+    //设置灰色背景的宽高
+    function popBgStyle(){
+        popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+        popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+    }
+    //关闭弹出框
+    popBox.onclick = popBg.onclick = function(){
+        popBg.style.display = popBox.style.display = 'none';
+    }
+}
+
+//判断是否为微信浏览器
+function isWeiXin(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+var invite_url = "http://wapcg.9caitong.com";
+
+$('.share').click(function (){
+    /* Act on the event */   
+    if("{$jump.ToProductList}" == "iosToProductList"){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpShareBase","title":"九积分赚豪礼 净化器pro等着你！","icon":"http://wxgl.jiuchengjr.com/attachment/images/jfcj.jpg","content":"各种姿势各种转，点击百分百有奖！","url":invite_url+"/index.php?ctl=find&act=W653"}); //微信朋友圈
+    }else if("{$jump.ToProductList}" == "androidToProductList"){
+       window.jiucaitong.showShareF("九积分赚豪礼 净化器pro等着你！","http://wxgl.jiuchengjr.com/attachment/images/jfcj.jpg","各种姿势各种转，点击百分百有奖！",invite_url+"/index.php?ctl=find&act=W653");
+    }else{
+
+        if(!isWeiXin()&&"{$jump.ToProductList}" != "iosToProductList"&&"{$jump.ToProductList}" != "androidToProductList")
+                {
+                  layer.msg("请在微信中打开此页面进行分享");
+                  return false;
+                }
+        popBox('popBox','popBg');
+    }
+   
+
+});
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?da0f22482647b9ecba0a227ab3f07197";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>

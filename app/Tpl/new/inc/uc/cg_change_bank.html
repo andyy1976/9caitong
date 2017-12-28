@@ -1,0 +1,99 @@
+<div class="user_top_title bgfb">
+	<a class="current">银行卡</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<form name="form666" id="addbank_from" action="{url x="index" r="uc_depository_addbank#change_bank"}" method="post">
+			<table border="0" cellspacing="0" cellpadding="5" class="uc_table_form">
+				<tr>
+					<td width="90px" class="ta_r">真实姓名:</td>
+					<td><input type="text" name="real_name" id="Jbank_real_name" placeholder="请输入真实姓名" class="uc_input input_onfocus_shadow" {if $vo.real_name} value="{$vo.real_name}"  disabled="true"{/if} /></td>
+				</tr>
+				<tr>
+					<td class="ta_r">身份证号:</td>
+					<td><input type="text" name="idno" id="uc_IDcard" class="uc_input input_onfocus_shadow" placeholder="请输入身份证号" {if $vo.idno} value="{$vo.idno}" disabled="true"{/if} /></td>
+				</tr>
+				<tr>
+					<td class="ta_r" valign="top">选择银行:</td>
+					<td>
+						<p class="Quota"><span class="fl" id="bank_quota">限额：单笔<i id="S_quota">0万</i>，单日<i id="SD_quota">0万</i></span></p>
+						<ul id="addBank_list" class="ofh clear">
+
+
+							{foreach from=$banks item=bank key=key}
+
+								<li bank_id="{$bank.bankid}" S_quota="100" SD_quota="100" >
+									<img src="{$bank.icon}" />
+									{$bank.name}
+								</li>
+							{/foreach}
+
+
+							<!--<li bank_id="1" S_quota="100" SD_quota="100" >
+						 		<img src="/new/images/p2p_bottom_large_img.jpg" />
+						 		工商银行
+							</li>
+							<li bank_id="2" S_quota="200" SD_quota="200" >
+						 		<img src="/new/images/p2p_bottom_large_img.jpg" />
+						 		工商银行
+							</li>
+							<li bank_id="3" S_quota="300" SD_quota="300" >
+						 		<img src="/new/images/p2p_bottom_large_img.jpg" />
+						 		工商银行
+							</li>
+							<li bank_id="4" S_quota="400" SD_quota="400" >
+						 		<img src="/new/images/p2p_bottom_large_img.jpg" />
+						 		工商银行
+							</li>
+							<li bank_id="5" S_quota="500" SD_quota="500" >
+						 		<img src="/new/images/p2p_bottom_large_img.jpg" />
+						 		工商银行
+							</li>
+							<li bank_id="6" S_quota="600" SD_quota="600" >
+						 		<img src="/new/images/p2p_bottom_large_img.jpg" />
+						 		工商银行
+							</li>
+							<li bank_id="7" S_quota="700" SD_quota="700" >
+						 		<img src="/new/images/p2p_bottom_large_img.jpg" />
+						 		工商银行
+							</li>-->
+						</ul>
+						<input type="hidden" name="bank_code" id="bank_id" />
+					</td>
+				</tr>
+				<tr>
+					<td class="ta_r">银行卡号:</td>
+					<td><input type="text" name="cardId" id="Jbank_bankcard" placeholder="请输入银行卡号" class="uc_input input_onfocus_shadow ui-textbox" style='font-weight:bolder;width: 270px;' /></td>
+				</tr>
+				<tr>
+					<td class="ta_r">手机号:</td>
+					<td><input type="text" name="mobile" id="bankphone" maxlength="11" placeholder="请输入银行预留手机号" class="uc_input input_onfocus_shadow" /></td>
+				</tr>
+				<tr>
+					<td class="ta_r">图形验证码:</td>
+					<td>
+						<input id="Verifycode" class="uc_input input_onfocus_shadow fl" placeholder="请输入图形验证码" maxlength="4" style='width: 170px;' />
+						<img class="fl" style="border: none;margin-top:0" src="{$APP_ROOT}/verify.php?w=89&h=44&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img" title="看不清楚？换一张" />
+					</td>
+				</tr>
+				<tr>
+					<td class="ta_r">验证码:</td>
+					<td>
+						<input name="validateCode" id="validateCode" class="uc_input input_onfocus_shadow" placeholder="请输入短信验证码" maxlength="6" />
+						<input type="button" id="get_bankMobile_code" class="ucbt3 bgC_blue1 C_white" value="获取短信验证码" />
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input type="hidden" name="businessSeqNo" value="{$seqno}">
+						<input type="button" value="提交" class="uc_submit_blue" id="add_bank_sunbmit" />
+					</td>
+				</tr>			
+			</table>
+			<br>
+		</form>
+	</div>
+</div>

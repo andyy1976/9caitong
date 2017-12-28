@@ -1,0 +1,87 @@
+<body>
+<section class="container">
+    <div class="header"><a href="{url x="index" r="uc_center#index"}" class="back-icon"><img src="{$TMPL}/images/autoinvest/wap2/my/icon_back.png" width="10" height="18"></a>自动投标<a href="{url x="index" r="uc_autoinvest#rule"}" class="help-icon"><img src="{$TMPL}/images/autoinvest/wap2/auto/icon_help.png" width="20" height="20" /></a></div>
+    <!-- 自动投标列表 -->
+    <div class="banner"><img src="{$TMPL}/images/autoinvest/wap2/auto/banner1.jpg" /></div>
+    <div class="statistics">
+    	{if $rank gt 0}<p class="rank">当前排名：<span>{$rank}</span></p>{/if}
+    	<p><span>{$start_num}</span>人已开启</p>
+    </div>
+    {foreach from=$list item=config key=key name="config"}
+    <div class="list">
+    	<div class="title">
+    		<p>自动投标</p>
+    		{if $config.status eq 1}
+	    	<span class="open1" id="switch" data-cid="{$config.id}">
+		        <span class="open2"></span>
+		    </span>
+		    {else}
+		    <span class="close1" id="switch" data-cid="{$config.id}">
+		        <span class="close2"></span>
+		    </span>
+		    {/if}
+    	</div>
+    	<a href="{url x="index" r="uc_autoinvest#add" p="id=$config.id"}">
+    		<div class="info">
+    			<p><span>{$config.money}</span><span>投标金额（元）</span></p>
+    			<p><span>{$config.deadline_str}</span><span>投标期限</span></p>
+    			<p><span>{$config.del_str}</span><span>标的类型</span></p>
+    			<i></i>
+    		</div>
+    	</a>
+    </div>
+    {/foreach}
+    {if $count lt 3}
+    <a href="{url x="index" r="uc_autoinvest#add"}" class="btn-add">添加</a>
+    {/if}
+    <p class="word">您最多可以新增3条自动投标设置</p>
+    <p class="word">启动自动投标即表示您同意并签署<a href="{url x="index" r="uc_autoinvest#protocol"}">《玖财通自动投标授权协议》</a></p>
+</section>
+<script>
+//处理移动端click事件300ms延迟
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
+
+//按钮开关切换1111113333332222
+var title = document.getElementsByClassName('title');
+for(var i=0;i<title.length;i++){
+	switchBtn(title[i]);
+}
+function switchBtn(title){
+	var span = title.getElementsByTagName('span');
+	span[0].onclick=function(){
+		
+		
+        var id = $(this).attr("data-cid");
+        if(span[0].className == "close1"){
+        	var isopen = 1;
+        }else if(span[0].className == "open1"){
+        	var isopen = 0;
+        }
+        var ajaxurl = "{url x="index" r="uc_autoinvest#autoinvest_switch"}";
+        $.ajax({
+            url:ajaxurl,
+            data:{"isopen":isopen,"id":id},
+            type:"POST",
+            dataType:"json",
+            success:function(data){
+                if(data.status == 1){
+                	window.location.href = data.jump;
+                    return false; 
+                }else if(data.status == 2){
+                	//点击按钮时，判断当前是哪个class，并设置对应的class
+                    span[0].className="close1";
+                    span[1].className="close2";
+                    layer.msg(data.info);
+                }else{
+                	layer.msg("系统繁忙，请稍后再试");
+                }
+            }
+        });
+    }
+}
+</script>
+</body>

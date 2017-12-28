@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="zh-CN">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<!-- 优先使用 IE 最新版本 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- 忽略将数字变为电话号码-->
+	<meta name="format-detection" content="telephone=no">
+	<!--让国产浏览器默认采用高速模式渲染页面-->
+	<meta name="renderer" content="webkit">
+	<!-- 强制图片显示 -->
+	<meta name="imagemode" content="force">
+	<!--启用 WebApp 全屏模式-->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- 设置状态栏颜色 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title></title>
+	<link rel="stylesheet" href="new/activity/W654/css/reset_ph_v=2016.css">
+	<script src="new/activity/W654/js/jquery-1.11.3.min.js"></script>
+	<script src="new/activity/W654/js/jquery.kxbdMarquee.js"></script>
+	<script src="new/activity/W654/js/layer-v3.0.3/layer/layer.js"></script>
+	<link rel="stylesheet" href="new/activity/W654/css/style.css">
+	<script src="new/activity/W654/js/fastclick.js"></script>
+	<script>
+		//处理移动端click事件300ms延迟
+		if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+	</script>
+	<script>
+		//设置根字体大小
+		(function(){
+			var html = document.documentElement;
+			var htmlWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = htmlWidth/15 + 'px';
+		})()
+	</script>
+</head>
+<body>
+<div class="container">
+	<div class="content">
+		<p class="rule"><a href="/index.php?ctl=find&act=W654_rule">规则</a></p>
+		<p class="logo"><img src="new/activity/W654/images/logo.png"></p>
+		<div class="record-marquee">
+			<div class="record-list" id="recordList">
+				<ul>
+
+					{foreach from =$red_packet_log key=k item=v}
+					<li><p>{$v.realname}已抢到<br>{$v.money}元现金红包</p></li>
+					{/foreach}
+
+				</ul>
+			</div>
+		</div>
+		<div class="box">
+			<div class="step_1" style="display: block;">
+				{if $header}
+				<p class="head_img"><img src="{$header}"></p>
+				{else}
+				<p class="head_img"><img src="{$TMPL}/images/wap2/my/head_img.png" style="width:56px; height:56px;"></p>
+				{/if}
+				<p class="friend">您的好友  {$frealname}</p>
+				<p class="friend_word">已在玖财通抢到现金红包</p>
+				<p class="friend_money"><span>{$user_rob}</span>元</p>
+				<a href="javascript:;" class="btn btn1"></a>
+				<p class="tip">所抢红包需进入APP －“抢红包”活动进行提现</p>
+			</div>
+			<div class="step_2" style="display: none;">
+				<p class="myself_word">恭喜您抢到现金红包</p>
+				<p class="myself_money"><span>{$rand_red_packet}</span>元</p>
+				<a href="javascript:;" class="btn btn2"></a>
+				<p class="tip">所抢红包需进入APP －“抢红包”活动进行提现</p>
+			</div>
+			<div class="step_3" style="display: none;">
+				<p class="regist_word">输入手机号红包立即到账<br>并获得每日10次抢红包机会</p>
+				<form>
+					<div class="item item_tel">
+						<span></span><input id="phone_number" type="tel" placeholder="输入手机号" maxlength="11" />
+						<i style="display:none;" class ="info1"></i>
+					</div>
+					<div class="item item_yzm">
+						<!--<span></span><input id="img_code" type="text" placeholder="图形验证码" maxlength="4" /><img class="yzm" src="new/activity/W654/images/yzm.png">-->
+						<span></span><input type="text"  id="img_code" placeholder="输入图文验证码" maxlength="4" /><img  maxlength="4"  src="/verify.php?w=89&h=44&rand=947024808" onclick="this.src='/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img" title="看不清楚？换一张" class="yzm" />
+						<i style="display:none;" class ="info2"></i>
+					</div>
+					<div class="item item_code">
+						<!--<span></span><input id="phone_code" type="tel" placeholder="输入验证码" /><a href="javascript:;" class="btn_code" style="background: #aaa;">获取验证码</a>-->
+						<span></span><input type="tel" id="phone_code" maxlength="6" placeholder="输入短信验证码" /><a id="btnCode" href="javascript:;" class="btn_code" >获取验证码</a>
+						<i style="display:none;" class ="info3"></i>
+					</div>
+				</form>
+				<a href="javascript:;" class="btn btn3"></a>
+				<p class="tip">所抢红包需进入APP －“抢红包”活动进行提现</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="login_pwd" style="display: none;">
+	<p class="login_pwd_title">设置登录密码</p>
+	<form>
+		<input id="login_pwd_inp" type="password" placeholder="6-16位数字和字母组合" maxlength="16" />
+		<input type="hidden" value="{$fpid}" id="sourceuid" />
+		<input type="hidden" value="{$randcode}" id="randcode" />
+	</form>
+	<a class="login_pwd_btn">前往玖财通提现</a>
+</div>
+<script>
+
+	$("#recordList").kxbdMarquee({isEqual:false});
+
+	$('.btn1').click(function(){
+		$('.step_1').hide();
+		$('.step_2').show();
+	});
+	$('.btn2').click(function(){
+		$('.step_2').hide();
+		$('.step_3').show();
+	});
+	$('.btn3').click(function(){
+		if(!$('#phone_number').val()){
+			layer.tips('请输入手机号','#phone_number',{
+				tips: [3,'#7383f4'],
+				time: 2000
+			});
+			$('#phone_number').focus();
+		}else if(!$('#img_code').val()){
+			layer.tips('请输入图形验证码','#img_code',{
+				tips: [3,'#7383f4'],
+				time: 2000
+			});
+			$('#img_code').focus();
+		}else if(!$('#phone_code').val()){
+			layer.tips('请输入手机验证码','#phone_code',{
+				tips: [3,'#7383f4'],
+				time: 2000
+			});
+			$('#phone_code').focus();
+		}else{
+
+			var query = new Object();
+			query.mobile =$("#phone_number").val();
+			query.imgcode =$("#img_code").val();
+			query.phoneCode =$("#phone_code").val();
+//			query.login_pwd =$('#login_pwd_inp').val();
+			$.ajax({
+				type: "post",
+				url: "/index.php?ctl=find&act=ajax_phone_verify",
+				dataType: "json",
+				data: query,
+				async: true,
+				success: function (obj) {
+					if(obj.status ==0){
+						layer.tips(obj.info,obj.input_name,{
+							tips: [3,'#7383f4'],
+							time: 2000
+						});
+
+					}else{
+						layer.open({
+							skin: 'login_pwd_pop',
+							type: 1,
+							title: false,
+							content: $('.login_pwd')
+						});
+
+					}
+
+				}
+			});
+
+
+		}
+	});
+
+	//第三步
+	$('.login_pwd_btn').click(function(){
+		if(!$('#login_pwd_inp').val()){
+			layer.tips('请输入登录密码','#login_pwd_inp',{
+				tips: [3,'#fc4d3c'],
+				time: 2000
+			});
+		}else{
+
+			var query = new Object();
+			query.mobile =$("#phone_number").val();
+			query.imgcode =$("#img_code").val();
+			query.phoneCode =$("#phone_Code").val();
+			query.login_pwd =$("#login_pwd_inp").val();
+			query.pid =$('#sourceuid').val();//邀请人ID
+			query.randcode =$("#randcode").val();
+			$.ajax({
+				type: "post",
+				url: "/index.php?ctl=find&act=ajax_senduser_redpacket",
+				dataType: "json",
+				data: query,
+				async: true,
+				success: function (obj) {
+//                    console.log(obj);
+					if(obj.status ==0){
+						layer.tips(obj.info,'#login_pwd_inp',{
+							tips: [3,'#7383f4'],
+							time: 2000
+						});
+
+					}else{
+					location.href ="https://wapcg.9caitong.com/index.php?ctl=agreement&act=wap_download&source_id=1020";
+					}
+
+				}
+			})
+
+		}
+	});
+
+
+	var is_lock_send_vy = false;    //解除锁定
+	var left_rg_time;
+	var regsiter_vy_time;
+	function left_time_to_send_regvy(){
+		clearTimeout(regsiter_vy_time);
+		if(left_rg_time > 0){
+
+			regsiter_vy_time = setTimeout(left_time_to_send_regvy,1000);
+			$("#btnCode").html(left_rg_time+"秒后获取");
+			$("#btnCode").addClass("gray");
+			left_rg_time -- ;
+		}
+		else{
+			is_lock_send_vy = false;
+			$("#btnCode").removeClass('gray');
+			$("#btnCode").html("获取验证码");
+			left_rg_time = 0;
+		}
+	}
+
+
+	$('#btnCode').click(function() {
+
+		if (is_lock_send_vy || $(this).hasClass(".gray")) {
+
+			return false;
+		}
+
+		var phone = $.trim($("#phone_number").val());
+		if (phone.length == 0) {
+
+			layer.tips('请输入手机号','#phone_number',{
+				tips: [3,'#7383f4'],
+				time: 2000
+			});
+
+			//$('#phone').focus();
+			return false;
+		} else if (isPhoneNo(phone) == false) {
+			layer.tips('手机格式不正确','#phone_number',{
+				tips: [3,'#7383f4'],
+				time: 2000
+			});
+
+			//$('#phone').focus();
+			return false;
+		}
+
+		var query2 = new Object();
+		query2.mobile=phone;
+        query2.imgcode =$("#img_code").val();
+		$.ajax({
+			type:"post",
+			url:"/index.php?ctl=find&act=send_phone_verifycode_seven",
+			dataType:"json",
+			data:query2,
+			async:true,
+			success:function (obj) {
+
+//				console.log(obj);
+//				layer.close(index);
+				if (obj.status == 1) {
+					$('#btnCode').css('background','#aaa');
+					layer.tips(obj.info,obj.input_name,{
+						tips: [3,'#7383f4'],
+						time: 2000
+					});
+					is_lock_send_vy = true;
+					left_rg_time = 60;
+					left_time_to_send_regvy();
+				} else if(obj.status == 2){//手机号问题
+					layer.tips(obj.info,obj.input_name,{
+						tips: [3,'#7383f4'],
+						time: 2000
+					});
+					return false;
+				}else if(obj.status == 0){//手机验证码问题
+					layer.tips(obj.info,obj.input_name,{
+						tips: [3,'#7383f4'],
+						time: 2000
+					});
+					return false;
+				}
+			},
+
+
+		});
+
+
+
+	})
+
+	// 验证手机号
+	function isPhoneNo(phone) {
+		var pattern = /^1[34578]\d{9}$/;
+		return pattern.test(phone);
+	}
+
+
+
+</script>
+</body>
+</html>

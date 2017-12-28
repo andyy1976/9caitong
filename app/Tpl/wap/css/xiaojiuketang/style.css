@@ -1,0 +1,75 @@
+.header {
+  line-height: 48px;
+  background: linear-gradient(to bottom, #575cde 0%, #4672de 100%);
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: bold;
+  position: relative;
+}
+.header .back-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 15px 4%;
+}
+.classroom {
+  width: 100%;
+  background: url('../../images/wap2/xiaojiuketang/bg1.jpg') repeat-y;
+  background-size: 100% 0.4rem;
+}
+.classroom img {
+  width: 100%;
+}
+.law {
+  width: 100%;
+  height: 41.9rem;
+  background: url('../../images/wap2/xiaojiuketang/bg2.png') no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.law h3 {
+  line-height: 0.82rem;
+  font-size: 0.56rem;
+  color: #ff8a00;
+  text-indent: 0.8rem;
+  margin-top: 1.32rem;
+}
+.law h3:first-child {
+  margin-top: 1.64rem;
+}
+.law p {
+  width: 84%;
+  line-height: 0.72rem;
+  margin: 0 auto;
+  font-size: 0.48rem;
+  color: #333;
+  text-indent: 2em;
+}
+.file {
+  width: 100%;
+  height: 9.62rem;
+  background: url('../../images/wap2/xiaojiuketang/bg3.png') no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.file ul {
+  width: 84%;
+  margin: 2rem auto 0;
+  border-top: 0.02rem solid #e0e0e0;
+  font-size: 0.48rem;
+}
+.file li {
+  width: 100%;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  float: left;
+  border-bottom: 0.02rem solid #e0e0e0;
+  background: url('../../images/wap2/xiaojiuketang/pin.png') no-repeat;
+  background-size: 0.54rem 0.56rem;
+  background-position: 11.56rem 0.42rem;
+}
+.file a {
+  color: #333;
+}

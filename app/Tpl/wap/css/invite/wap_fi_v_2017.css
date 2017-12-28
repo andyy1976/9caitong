@@ -1,0 +1,617 @@
+@charset "utf-8";
+/* 新版发现 */
+/* find_new */
+.fi_list {
+  background: white;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.fi_list li {
+  width: 16%;
+  height: 2.08rem;
+  float: left;
+  margin: 10px 0.86666667rem 0;
+}
+.fi_list li a {
+  display: block;
+}
+.fi_list li img {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: block;
+  margin: 0 auto;
+}
+.fi_list li span {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  color: #13334d;
+}
+.fi_redbag {
+  background: white;
+  overflow: hidden;
+}
+.fi_redbag_ban {
+  width: 92.8%;
+  height: 3.21333333rem;
+  margin: 12px auto 0;
+  background: url(/app/Tpl/wap/images/wap2/fi/invite/bg_rob_redbag.png);
+  background-size: cover;
+  position: relative;
+}
+.fi_redbag_ban a {
+  width: 1.78666667rem;
+  height: 1.78666667rem;
+  position: absolute;
+  left: 4.14666667rem;
+  top: 1.06666667rem;
+  border-radius: 50%;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+.fi_redbag_ban a img {
+  width: 100%;
+}
+@-webkit-keyframes glow {
+  0% {
+    -webkit-box-shadow: 0 0 22px #f9e601;
+    border-color: #fff6b0;
+  }
+  100% {
+    -webkit-box-shadow: 0 0 22px #952001;
+    border-color: #ffd20b;
+  }
+}
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 22px #f9e601;
+    border-color: #fff6b0;
+  }
+  100% {
+    box-shadow: 0 0 22px #952001;
+    border-color: #ffd20b;
+  }
+}
+.fi_data {
+  width: 92.8%;
+  margin: 12px auto 0;
+  overflow: hidden;
+}
+.fi_data_item {
+  width: 4.62666667rem;
+  height: 1.46666667rem;
+  float: left;
+  text-align: center;
+}
+.fi_data_item p {
+  line-height: 0.93333333rem;
+  font-size: 21px;
+  color: #e73c35;
+}
+.fi_data_item span {
+  line-height: 0.53333333rem;
+  display: block;
+  font-size: 11px;
+  color: #666;
+}
+.fi_data_line {
+  width: 0.02666667rem;
+  height: 0.93333333rem;
+  float: left;
+  margin-top: 0.4rem;
+  background: url(/app/Tpl/wap/images/wap2/fi/invite/icon_line.png);
+  background-size: cover;
+}
+.fi_rank_wrap {
+  width: 91.2%;
+  height: 6.88rem;
+  margin: 12px auto 0;
+}
+.fi_rank_box {
+  height: 6.26666667rem;
+  background: url(/app/Tpl/wap/images/wap2/fi/invite/bg_rank.png);
+  background-size: cover;
+  position: relative;
+}
+.fi_rank_title {
+  width: 8.34666667rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  margin: 0 auto;
+  padding-top: 0.32rem;
+}
+.fi_rank_title span {
+  width: 50%;
+  height: 1.2rem;
+  float: left;
+  font-size: 12px;
+  color: #918c68;
+  text-align: center;
+}
+.fi_rank_title span.active {
+  font-size: 14px;
+  color: #e73c35;
+}
+.fi_rank_list {
+  width: 7.14666667rem;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.fi_rank_item li {
+  width: 7.14666667rem;
+  height: 1.52rem;
+  float: left;
+  font-size: 13px;
+  color: #999;
+  border-bottom: 1px solid #f2f0e3;
+}
+.fi_rank_item li:last-child {
+  border: 0;
+}
+.fi_rank_item i {
+  width: 0.42666667rem;
+  height: 0.58666667rem;
+  float: left;
+  margin: 0.46666667rem 0 0 0.29333333rem;
+  background: url(/app/Tpl/wap/images/wap2/fi/invite/icon_rank_1.png);
+  background-size: cover;
+}
+.fi_rank_item img {
+  width: 0.72rem;
+  height: 0.72rem;
+  float: left;
+  margin: 0.4rem 0 0 0.74666667rem;
+}
+.fi_rank_item span {
+  width: 2.26666667rem;
+  line-height: 1.52rem;
+  float: left;
+  margin-left: 0.69333333rem;
+}
+.fi_rank_item p {
+  width: 2rem;
+  line-height: 1.52rem;
+  float: left;
+}
+.fi_rank_item p b {
+  color: #e73c35;
+  padding-right: 1px;
+}
+.fi_rank_btn {
+  width: 9.28rem;
+  text-align: center;
+  bottom: -0.61333333rem;
+}
+.fi_rank_btn span {
+  width: 0.16rem;
+  height: 0.16rem;
+  background: #aea990;
+  margin: 0 2px;
+}
+.fi_rank_btn span.swiper-pagination-bullet-active {
+  background: #e73c35;
+}
+.fi_mall,
+.fi_active {
+  margin-top: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.fi_active {
+  margin-bottom: 10px;
+}
+.fi_public_title {
+  line-height: 0.93333333rem;
+  margin-top: 4px;
+  text-align: center;
+  font-size: 15px;
+  color: #333;
+  background: url(/app/Tpl/wap/images/wap2/fi/invite/icon_mall_border.png) no-repeat bottom center;
+  background-size: 0.33333333rem 0.04rem;
+}
+.fi_public_more {
+  line-height: 0.66666667rem;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.fi_public_more a {
+  line-height: 0.66666667rem;
+  padding: 0 20px;
+  font-size: 11px;
+  color: #999;
+}
+.fi_mall_list {
+  padding-top: 16px;
+  overflow: hidden;
+}
+.fi_mall_list li {
+  width: 4.32rem;
+  height: 4.24rem;
+  float: left;
+  margin-left: 0.45333333rem;
+  margin-bottom: 5px;
+}
+.fi_mall_list a {
+  width: 100%;
+  height: 3.06666667rem;
+  display: block;
+  border: 1px solid #edf0f2;
+  border-radius: 8px;
+  box-sizing: border-box;
+  position: relative;
+}
+.fi_mall_list a span {
+  height: 0.37333333rem;
+  line-height: 0.37333333rem;
+  padding: 0 8px;
+  position: absolute;
+  left: 0.26666667rem;
+  top: 0.13333333rem;
+  text-align: center;
+  font-size: 11px;
+  color: #fff;
+  border-radius: 1px;
+}
+.fi_mall_list a span.new {
+  background: #6facfe;
+}
+.fi_mall_list a span.discount {
+  background: #fe695c;
+}
+.fi_mall_list a p {
+  width: 2.28rem;
+  height: 2.28rem;
+  margin: 0.61333333rem auto 0;
+}
+.fi_mall_list a img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+.fi_mall_list li p.product_name {
+  text-align: center;
+  margin-top: 0.10666667rem;
+}
+.fi_mall_list li p.product_name span:first-child {
+  display: block;
+  line-height: 0.56rem;
+  font-size: 13px;
+  color: #666;
+}
+.fi_mall_list li p.product_name span:last-child {
+  display: block;
+  line-height: 0.50666667rem;
+  font-size: 11px;
+  color: #ff742f;
+}
+.fi_active_list {
+  padding-top: 14px;
+  overflow: hidden;
+}
+.fi_active_list li {
+  width: 4.32rem;
+  float: left;
+  margin: 0 0 0.29333333rem 0.45333333rem;
+}
+.fi_active_list a {
+  width: 100%;
+  height: 2.30666667rem;
+  display: block;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.fi_active_list a img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+.fi_active_list h3 {
+  line-height: 0.50666667rem;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #333;
+}
+.fi_active_list p {
+  line-height: 0.42666667rem;
+  font-size: 11px;
+  color: #999;
+}
+.fi_active_list p span:last-child {
+  float: right;
+  color: #97a8b2;
+}
+/* invite_new */
+.header {
+  line-height: 48px;
+  background: linear-gradient(to bottom, #575cde 0%, #4672de 100%);
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+}
+.header .back-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 15px 4%;
+}
+.fi_invite_banner {
+  height: 7.06666667rem;
+  background: url(/app/Tpl/wap/images/wap2/fi/invite/banner_invite.jpg);
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+.fi_invite_banner p {
+  width: 100%;
+  line-height: 0.29333333rem;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 5.25333333rem;
+}
+.fi_invite_gift {
+  height: 8rem;
+  background: url(/app/Tpl/wap/images/wap2/fi/invite/bg_gift.jpg);
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+.fi_invite_invest {
+  width: 5.70666667rem;
+  height: 1.6rem;
+  position: absolute;
+  left: 2.13333333rem;
+  top: 3.28rem;
+}
+.fi_invite_invest p,
+.fi_invite_redbag p {
+  line-height: 0.45333333rem;
+  padding: 0 6px;
+  font-size: 0.32rem;
+  color: #fff;
+}
+.fi_invite_invest p span:first-child {
+  float: left;
+}
+.fi_invite_invest p span:last-child {
+  float: right;
+}
+.fi_invite_invest p b,
+.fi_invite_redbag p b {
+  color: #eef93c;
+  padding: 0 0.01333333rem;
+}
+.fi_invite_redbag {
+  width: 4rem;
+  height: 1.2rem;
+  position: absolute;
+  left: 4.85333333rem;
+  top: 6.42666667rem;
+}
+.fi_invite_rule_btn {
+  height: 2rem;
+  background: url(/app/Tpl/wap/images/wap2/fi/invite/bg_rule.jpg);
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+.fi_invite_rule_btn a {
+  width: 2.73333333rem;
+  height: 0.90666667rem;
+  line-height: 0.85333333rem;
+  text-align: center;
+  font-size: 12px;
+  color: #eef93c;
+  font-weight: bold;
+  position: absolute;
+  left: 2.13333333rem;
+  top: 0.66666667rem;
+}
+.fi_invite_strategy {
+  height: 6.13333333rem;
+  background: url(/app/Tpl/wap/images/wap2/fi/invite/bg_strategy.jpg);
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+.fi_invite_btns {
+  height: 9.96rem;
+  background: url(/app/Tpl/wap/images/wap2/fi/invite/bg_btns.jpg);
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+.fi_invite_btns a {
+  width: 1.17333333rem;
+  height: 1.25333333rem;
+  display: inline-block;
+  position: absolute;
+}
+.fi_invite_btns a.btn_wechat {
+  left: 2.68rem;
+  top: 2.33333333rem;
+}
+.fi_invite_btns a.btn_pyq {
+  left: 4.30666667rem;
+  top: 3.10666667rem;
+}
+.fi_invite_btns a.btn_qq {
+  left: 5.21333333rem;
+  top: 1.52rem;
+}
+.fi_invite_btns a.btn_ewm {
+  left: 6.73333333rem;
+  top: 2.22666667rem;
+}
+.fi_invite_btns a.btn_invite_record {
+  width: 2.4rem;
+  height: 0.93333333rem;
+  left: 2.42666667rem;
+  top: 5.41333333rem;
+}
+.fi_invite_btns a.btn_invite_code {
+  width: 3.89333333rem;
+  height: 0.93333333rem;
+  left: 5.12rem;
+  top: 6.05333333rem;
+}
+#popBg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: black;
+  opacity: 0.8;
+  z-index: 1000000;
+  display: none;
+}
+#popBox,
+.popBox_invite {
+  width: 10rem;
+  height: 8.8rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000001;
+  display: none;
+}
+#popBox img,
+.popBox_invite img {
+  width: 100%;
+}
+.popBox_ewm {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000001;
+  display: none;
+}
+.popBox_ewm h3 {
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  margin-top: 80px;
+}
+.popBox_ewm p {
+  width: 131px;
+  height: 131px;
+  margin: 30px auto 0;
+  background: url(/app/Tpl/wap/images/wap2/fi/invite/bg_ewm.png) no-repeat center bottom;
+  background-size: 131px 131px;
+  overflow: hidden;
+}
+.popBox_ewm p img {
+  width: 110px;
+  height: 110px;
+  display: block;
+  margin: 10.5px;
+}
+.popBox_ewm b {
+  display: block;
+  color: #ffd200;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 14px;
+}
+.popBox_ewm span {
+  display: block;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+/* invite_record_new */
+.fi_invite_title {
+  width: 92%;
+  height: 0.76rem;
+  line-height: 0.76rem;
+  margin: 0.46666667rem auto 0;
+  background: rgba(73, 116, 219, 0.2);
+  border-radius: 4px;
+  font-size: 0.32rem;
+  color: #4677f6;
+}
+.fi_invite_title span,
+.fi_invite_list li span {
+  display: inline-block;
+  width: 2rem;
+  text-align: center;
+}
+.fi_invite_title span:first-child,
+.fi_invite_list li span:first-child {
+  width: 2.26666667rem;
+}
+.fi_invite_title span:last-child,
+.fi_invite_list li span:last-child {
+  width: 2.4rem;
+  margin-left: 0.53333333rem;
+}
+.fi_invite_list {
+  width: 92%;
+  margin: 0.32rem auto 0;
+}
+.fi_invite_list li {
+  width: 100%;
+  line-height: 1.09333333rem;
+  font-size: 0.34666667rem;
+  color: #486079;
+}
+/* invite_rule_new */
+.fi_rule_title {
+  width: 100%;
+  margin: 0.66666667rem 0 0.4rem;
+}
+.fi_rule_box {
+  width: 72%;
+  margin: 0 auto 0.4rem;
+  font-size: 0.32rem;
+  color: #fff;
+}
+.fi_rule_box p {
+  width: 4.50666667rem;
+  height: 0.61333333rem;
+  line-height: 0.61333333rem;
+  margin: 0 auto 0.05333333rem;
+  text-align: center;
+  border: 0.01333333rem solid #ffffff;
+  border-radius: 8px;
+}
+.fi_rule_box dl {
+  width: 100%;
+  line-height: 0.50666667rem;
+  padding: 6px 0;
+  border-bottom: 0.01333333rem dashed #7bccf0;
+  overflow: hidden;
+}
+.fi_rule_box dl:last-child {
+  border: 0;
+}
+.fi_rule_box dl dt {
+  width: 8%;
+  float: left;
+}
+.fi_rule_box dl dd {
+  width: 92%;
+  float: left;
+}
+/* popup-btn */
+.layui-m-layer0 .popup-btn{ width: 68%; font-size: 1.5rem; border-radius: 8px;}
+.popup-btn .layui-m-layercont{ padding: 8px 26px 12px;}
+.popup-btn h3{ border: 0; padding: 0; height: 34px; line-height: 34px; font-weight: bold;}
+.popup-btn .layui-m-layerbtn{ height: 44px; line-height: 44px; background: none;}
+.popup-btn .layui-m-layerbtn span{ font-size: 15px;}
+.popup-btn h4{ color: #ff532b; font-size: 18px; line-height: 26px; font-weight: normal;}

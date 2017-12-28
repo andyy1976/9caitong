@@ -1,0 +1,86 @@
+<div class="user_top_title bgfb">
+	<a href="{url x="index" r="uc_invite#index"}">邀请好友</a>
+	<a href="{url x="index" r="uc_invite#reward"}" class="current">邀请奖励</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<!--<div class="invest_reward">
+			<div class="img"><img src="/new/images/icon_reward1.png" /></div>
+			<div class="tex">
+				<ol>
+					<li>被邀请好友项目出借，邀请人可获得好友年化出借金额*0.3%的佣金奖励。</li>
+					<li>佣金以现金红包的形式自动发放至账户中，可点击申请提现</li>
+				</ol>
+				<p>例：被邀请人出借10万元6个月的项目，邀请人可获得佣金100000*6/12*0.3%=150元</p>
+			</div>
+		</div>
+		<div class="uc_line"></div>-->
+		<div class="invest_reward">
+			<div class="img"><img src="/new/images/icon_reward2.png" /></div>
+			<div class="tex">
+				<table width="357" border="0" cellpadding="0" cellspacing="1">
+					<tr>
+						<th width="198">被邀请人出借</th>
+						<th>邀请人获得</th>
+					</tr>
+					<tr>
+						<td>1000≤出借金额＜5000</td>
+						<td>15元</td>
+					</tr>
+					<tr>
+						<td>5000≤出借金额＜10000</td>
+						<td>40元</td>
+					</tr>
+					<tr>
+						<td>出借金额≥10000</td>
+						<td>80元</td>
+					</tr>
+				</table>
+				<ol>
+					<li>当邀请人邀请好友时，被邀请人在15天内成功注册并投资，邀请人可根据被邀请人首次投资金额获得相应的现金红包奖励；</li>
+					<li>现金奖以现金红包的形式，发放到您的账户-优惠券中；</li>
+					<li>现金红包可直接提取到账户余额，之后进行提现；</li>
+					<li>现金红包有效期为7天，逾期将失效。</li>
+				</ol>
+			</div>
+		</div>
+		<div class="uc_line"></div>
+		<div class="invest_reward">
+			<div class="img"><img src="/new/images/icon_reward3.png" /></div>
+			<div class="tex">
+				<ol>
+					<li>每个自然月邀请满2人可得30元出借红包，邀请满4人可再得70元出借红包；</li>
+					<li>被邀请人需首次投资满1000元，视邀请人邀请成功；</li>
+					<li>此奖励规则每个自然月重新计算。</li>
+				</ol>
+				<p>例：本月用户成功邀请5位好友，那么该用户将获得30元+70元两张出借红包。</p>
+			</div>
+		</div>
+		<p class="C_Bray">注：被邀请用户必须为“真实用户”，绑定手机号必须真实有效，否则玖财通有权没收邀请双方一切活动所得，并保留最终处理权。</p>
+		<div class="blank20"></div>
+		<h3 class="uc_title">奖励记录</h3>
+		{if 1}
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc_table_list" id="invite_list">
+			<tr >
+				<th>日期</th>
+				<th>奖励类型</th>
+				<th>金额(元)</th>
+				<th>说明</th>
+			</tr>
+			{foreach from="$invite_list" item="vo"}
+			<tr>
+				<td>{$vo.create_date}</td>
+				<td>{if $vo.grant_type eq 2}出借红包{else}现金红包{/if}</td>
+				<td>{$vo.money}</td>
+				<td>{$vo.content}</td>
+			</tr>
+			{/foreach}
+		</table>
+		<div class="pages">{$pages}</div>
+		{else}
+		<p>暂无邀请好友记录！</p>
+		{/if}
+	</div>
+</div>

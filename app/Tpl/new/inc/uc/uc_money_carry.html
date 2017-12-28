@@ -1,0 +1,109 @@
+<script type="text/javascript">
+	/* var json_fee = {$json_fee}; */
+</script>
+<div class="user_top_title bgfb">
+	<a href="{url x="index" value="uc_money#carry"}" class="current">账户提现</a>
+	<a href="{url x="index" value="uc_money#carry_log&invest_type=2"}">提现记录</a>
+</div>
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<form id="ips_carry_form"autocomplete="off"  ajax_url="{url x="index" r="uc_money#savecarry"}">
+			<table border="0" cellspacing="0" cellpadding="5" class="uc_table_form">
+				<tr>
+					<td width="90px" class="ta_r">账户总余额：</td>
+					<td>
+						<em id="max_carry">{$sum_money}</em>元
+					</td>
+				</tr>
+				<tr>
+					<td class="ta_r">提现账户：</td>
+					<td>
+						{if $bank_list.bankcard}
+						<label class="w100"><input type="radio" id="carry_A_1" name="u_carray_account" value="1" style="position: absolute;left: -9999px;" checked>普通账户（余额：{$old_money}元）</label>
+						<label><input type="radio" id="carry_A_2" name="u_carray_account" value="2" style="position: absolute;left: -9999px;">存管账户（余额：{$recharge_money}元）</label>
+						{else}
+						<label class="w100"><input type="radio" id="carry_A_2" name="u_carray_account" value="2" style="position: absolute;left: -9999px;" checked>存管账户（余额：{$recharge_money}元）</label>
+						{/if}
+					</td>
+				</tr>
+				<tr>
+					<td class="ta_r">提现金额：</td>
+					<input type="hidden" id="oldMoney" value="{$old_money}" />
+					<td><input type="text" id="carry_money" autocomplete="off" name="carry_money" class="uc_input input_onfocus_shadow" placeholder="可提现金额{$old_money}元" value="" />&nbsp;&nbsp;元<span id="r_carry_tips" class="C_red"></span></td>
+				</tr>
+				{if $bank_list.bankcard}
+				<tr id="ordinary_bank">
+					<td class="ta_r">提现银行：</td>
+					<td>
+						<p class="dp-ib cbank"><img src="{$bank_list.icon}" />{$bank_list.name}({$bank_list.last_four})</p>
+					</td>
+				</tr>
+				<tr id="dep_bank" class="dp-n">
+					<td class="ta_r">提现银行：</td>
+					<td>
+						<p class="dp-ib cbank"><img src="{$cg_bank_list.icon}" />{$cg_bank_list.name}({$cg_bank_list.last_four})</p>
+					</td>
+				</tr>
+				<tr id="carray_paypwd">
+					<td class="ta_r">交易密码：</td>
+					<td>
+						<input type="password" autocomplete="off" class="uc_input input_onfocus_shadow" name="paypassword" id="J_PAYPASSWORD" placeholder="请输入普通版交易密码" />
+						&nbsp;&nbsp;<a href="{url x="index" r="uc_account#paypassword"}" target="_blank" class='f_blue'>忘记普通版交易密码？</a>
+					</td>
+				</tr>
+				{elseif $cg_bank_list.bankcard}
+				<tr id="dep_bank">
+					<td class="ta_r">提现银行：</td>
+					<td>
+						<p class="dp-ib cbank"><img src="{$cg_bank_list.icon}" />{$cg_bank_list.name}{$cg_bank_list.last_four}</p>
+					</td>
+				</tr>
+				{else}
+				<tr id="dep_bank">
+					<td class="ta_r">提现银行：</td>
+					<td>
+						<p class="dp-ib cbank">账户尾号:{$cg_bank_list.name}{$cg_bank_list.last_four}</p>
+					</td>
+				</tr>
+				{/if}
+				<tr>
+					<td></td>
+					<td>
+						<input type="hidden" name="LOGIN_KEY" id="LOGIN_KEY" value="{insert name="get_login_key"}" />
+						<input type="hidden" name="list_id" id="list_id" value="{$bank_list.id}" />
+						<input type="hidden" name="cg_list_id" id="cg_list_id" value="{$cg_bank_list.id}" />
+						<input id="Jcarry_totalAmount" type="hidden" value="{$user_info.money}" />
+						<input id="Jcarry_nmc_amount" type="hidden" value="{$user_info.nmc_amount}" />
+						<input id="Jcarry_old_money" type="hidden" value="{$old_money}" />
+						<input id="Jcarry_recharge_money" type="hidden" value="{$recharge_money}" />
+						<input type="hidden" id="json_fee" value='{$json_fee}' />
+
+                        {if $aaaaa eq 1}
+                             <input type="button" value="申请提现"  class="uc_submit_blue" id="uki" />
+                        {elseif $aaaaa neq 1}
+						    <input type="button" value="申请提现" class="uc_submit_blue" id="carry_done" />
+                        {/if}
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div class="uc_line"></div>
+		<h3 class="uc_title">温馨提示</h3>
+		<ol class="rule">
+			<li>普通版提现：只支持提取普通账户资金且只能提现到普通版账户绑定的银行卡，提现按原规则执行；</li>
+			<li>
+                存管版提现：具体提现规则如下<br><br>
+                （1）用户单笔提现金额最低10元起，上限依据银行规定执行；<br><br>
+                （2）体验金收益、邀请好友收益等提现金额可低于10元；<br><br>
+                （3）充值资金当天不可提现，次日方可提现。<br><br>
+                （4）为防止恶意转帐等行为，充值资金未出借部分，提现时将收取0.5%手续费，单笔提现手续费最低 1元起；<br><br>
+                （5）已出借到期资金和利息提现不收取手续费；<br><br>
+                （6）工作日，在9：00-17：00时段单笔提现申请无上限；其它时段单笔提现申请上线为50万；<br><br>
+                （7）工作日，在15点前提交提现申请，资金当日到帐；在15点后提交提现申请，资金次日到帐，具体到账时间以银行到账时间为准；<br><br>
+                （8）周六日和法定节假日，单笔提现金额50万以下，在15点前提交提现申请，资金当日到帐；在15点后提交提现申请，资金次日到帐；具体到账时间以银行到账时间为准。<br><br>
+            </li>
+			<!--<p class="C_red">普通版提现：只支持提取普通账户资金且只能提现到普通版账户绑定的银行卡，提现按原规则执行；</p>-->
+		</ol>
+	</div>
+</div>

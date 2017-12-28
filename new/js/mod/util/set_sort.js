@@ -1,0 +1,1 @@
+define("new/js/mod/util/set_sort",[],function(t,e){e.set_sort=function(t,e){layer.load(1);var o="/index.php?ctl=ajax&act=set_sort&type="+t+"&module="+e;$.ajax({url:o,success:function(){location.reload()}})}});

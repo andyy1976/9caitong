@@ -1,0 +1,220 @@
+{include file="inc/nheader.html"}
+		<div class="wrapper wrap_f0">
+			<div class="center">
+				<div class="invest_bd">
+					<div class="invest_info">
+						<div class="i_tit">
+							<h2>{$deal.name}</h2>
+							<ul class="invest_icon">
+								<li>
+									<span class="minQuota"><i>&#57404;</i>0成本</span>
+								</li>
+								<li>
+									<span class="interest"><i>&#57405;</i>赚收益</span>
+								</li>
+								<li>
+									<span class="principal"><i>&#57406;</i>使用体验金</span>
+								</li>
+							</ul>
+						</div>						
+						<ul class="info_box">
+							<li>
+								<em id="rate">{$deal.rate}</em><span>%</span>
+								<p>预期年化收益率</p>
+							</li>
+							<li>
+								<em id="term" termUnit="{if $deal.repay_time_type eq 0}1{else}2{/if}">{$deal.repay_time}</em><span>{if $deal.repay_time_type eq 0}天{else}个月{/if}</span>
+								<p>项目期限</p>
+							</li>
+							<li>
+								<em>{$deal.borrow_amount}</em><span>元</span>
+								<p>项目总额 </p>
+							</li>
+						</ul>
+						<div class="progress_box">
+							<span class="num" style="left: {if  $deal.deal_status gte 4}100{else}{function name="round" v=$deal.progress_point f=2}{/if}%;">{if  $deal.deal_status gte 4}100{else}{function name="round" v=$deal.progress_point f=2}{/if}%</span>							
+							<div class="progress"><div class="complete" style="width: {if  $deal.deal_status gte 4}100{else}{function name="round" v=$deal.progress_point f=2}%{/if};"></div></div>
+						</div>
+						<div class="grade">
+							<!--<img src="/new/images/money.png" class="mm" />
+							<img src="/new/images/grade.png" />
+							<img src="/new/images/grade.png" />
+							<img src="/new/images/grade.png" />
+							<span>本金、收益稳定(内部评级，仅供参考）</span>-->
+						</div>
+					</div>
+					<div class="invest_box">
+						<ul>							
+							{if $deal.deal_status eq 1 &&  $deal.start_time lte TIME_UTC}
+								<input type="hidden" name="id" value="{$deal.id}" id="deal_id" />
+								<input type="hidden" name="ajax_url" value="{url x="index" r="experdeals#ebid"}" id="ajax_url" />
+								<input type="hidden" value="{$deal.id}" id="deal_id" />
+								<li>
+									<span class="i_title">可投金额：</span><em id="max_money">{if $deal.uloadtype eq 0}¥{$deal.need_money}{else}{$deal.need_portion}{/if}</em>
+								</li>
+								{if $user_info}
+									<li>
+										<span class="i_title">预估收益：</span>
+										<em id="E_Profit" class="fs_18">¥0</em>
+									</li>
+									<li>
+										<span class="i_title">出借金额：</span>
+										<input type="text" class="ivt_money pd_l_3" id="experience_money" placeholder="点击选择体验金" readOnly="true" />
+										<span class="unit ps">元</span>
+										<a href="{url x="index" r="uc_money#incharge"}" target="_blank" class="recharge">充值</a>
+										<input type="hidden" name="FictitiousMoney_ids" id="FictitiousMoney_ids" value="" />
+										
+									</li>
+									<li>
+										<input type="hidden" name="LOGIN_KEY" id="LOGIN_KEY" value="{insert name="get_login_key"}" />
+										<input type="button" class="submit_invest" id="experience_deal_submit" value="立即出借" />
+									</li>
+								{else}
+									<li>
+										<span class="i_title">出借金额：</span>
+										<input type="text" class="ivt_money pd_l_3"  disabled="true" placeholder="登录后可见" />
+										<span class="unit ps">元</span>
+										<a href="{url x="index" r="uc_money#incharge"}" target="_blank" class="recharge">充值</a>
+									</li>
+									{if $deal.use_ecv eq 1}
+									<li>
+										<span class="i_title">使用红包：</span>
+										<input type="text" class="ivt_money pd_l_3 input_onfocus_shadow"  disabled="true"  placeholder="登录后可见" id="ecv_id" readOnly="true" /><span class="hint" style="margin-left:5px;display: none;">余额：¥<span id="ivt_balance">{$user_info.red_money}</span></span></li>
+									{/if}
+									{if $deal.use_interestrate eq 1}
+									<li>
+										<span class="i_title">代&nbsp;金&nbsp;券&nbsp;：&nbsp;</span>
+										<input type="text" class="ivt_money pd_l_3"  disabled="true" placeholder="登录后可见"  /><input type="hidden" name="interestrate_id" id="interestrate_id" value="" /></li>
+									{/if}
+									<li><a class="submit_login" id="layer_logins" />立即登录</a></li>
+								{/if}
+							{elseif $deal.deal_status eq 1 && $deal.start_time lte TIME_UTC && $deal.remain_time lte 0}
+								<li class="seal_box ta_c">
+									<img src="/new/images/icon_deal_overdue.png" />
+								</li>
+							{elseif $deal.deal_status eq 1 && $deal.load_money gte $deal.borrow_amount}
+							<li class="seal_box ta_c">
+								<img src="/new/images/icon_deal_full.png" />
+							</li>
+							{elseif $deal.deal_status eq 2}
+								<li class="seal_box ta_c">
+									<img src="/new/images/icon_deal_full.png" />
+								</li>
+							{elseif $deal.deal_status eq 4}
+								<li class="seal_box ta_c">
+									<img src="/new/images/icon_deal_repayment.png" />
+								</li>
+							{elseif $deal.deal_status eq 5}
+								<li class="seal_box ta_c">
+									<img src="/new/images/icon_deal_over.png" />
+								</li>
+							{else}
+								<li class="seal_box ta_c">
+									<img src="/new/images/icon_deal_over.png" />
+								</li>
+							{/if}
+							<li class="protocol_bar"><p>借贷有风险，出借需谨慎，查看<a href="javascript:void(0);" id="protocol_risk">《风险提示书》</a></p></li>
+						</ul>
+					</div>
+				</div>
+				<div class="project_bd">
+					<span id="nav_line"></span>
+					<ul class="project_tit" id="tab_tit">
+						<li>项目详情</li>
+						<li>体验说明</li>
+						<li>体验记录</li>
+					</ul>
+					<div class="project_con" id="tab_con_list">
+						<div class="tab_con info">
+							<h3 class="info_tit"><i>&#57410;</i>项目介绍</h3>
+							<div class="info_con">{$deal.description}</div>
+						</div>
+						<div class="tab_con info">
+							{$deal.invest_notice}
+						</div>
+						
+						<div class="tab_con investorList">
+							<table width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<th>出借人</th>
+									<th>出借金额</th>
+									<th>出借时间</th>
+								</tr>
+								{foreach from="$load_list" item="load" name="name"}
+								<tr>
+									<td>{function name="hideMobile" v="$load.mobile"}</td>
+                                    <td>{$load.money}</td>
+									<td>{function name="to_date" v="$load.create_time" f="Y-m-d"} {function name="to_date" v="$load.create_time" f="H:i"}</td>
+								</tr>
+								{/foreach}
+							</table>
+							<div class="pages">{$pages}</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="blank50"></div>
+		</div>
+{include file="/inc/nfooter.html"}
+<div class="protocol_con hide">
+	<p class="ti_0 fw_b">致尊敬的玖财通用户:</p>
+	<p>恭喜您成为北京玖承资产管理有限公司（以下简称“玖财通”）平台的注册用户。您可根据您的资金出借需求，自愿选择通过玖财通平台进行资金出借，以期获得相应预期收益。</p>
+	<p>当您点击“投资”、“确认”、 “同意”、“加入”或其他类似含义的选项时，即视为您已经充分理解并确认《网络借贷风险和禁止性行为提示书》和《资金来源合法承诺书》的相关内容，对您出借资金来源的合法性作出保证性承诺，并自愿承担网络借贷所产生的相应风险。</p>
+	<h3 class="ta_c fw_b">网络借贷风险和禁止性行为提示书：</h3>
+	<h3>一、网络借贷风险提示：在您通过玖财通平台进行资金出借的过程中，也许会面临以下可能导致您出借资金及收益受损的各种风险。请您在进行资金出借前仔细阅读以下内容，了解融资项目信贷风险，确保自身具备相应的投资风险意识、风险认知能力、风险识别能力和风险承受能力，拥有非保本类金融产品投资的经历并熟悉互联网，并请您根据自身的风险承受能力选择是否出借资金及出借资金的数额。</h3>
+	<ol class="cl_222">
+		<li>法律及监管风险：因许多法律和法规相对较新且可能发生变化，相关官方解释和执行可能存在较大不确定性等因素引起的风险。有些新制定的法律、法规或修正案的生效可能被延迟；有些新颁布或生效的法律法规可能具有追溯力从而对您的投资利益造成不利影响。</li>
+		<li>政策风险：因国家宏观政策、财政政策、货币政策、监管导向、行业政策、地区发展政策等因素引起的风险。</li>
+		<li>市场风险：因市场资金面紧张或利率波动、行业不景气、企业效益下滑等因素引起的风险。</li>
+		<li>借款人信用风险：针对平台上的债权，玖财通仅在债权形成前对借款人的借款需求及相关信息进行必要审核，但是玖财通不对借款人的还款能力做出任何明示或默示的担保或保证，并且如果发生债权转让，玖财通不会在债权转让时再次对借款人进行信用审核，您受让的债权可能在其受让前已经存在逾期情况。当借款人因收入情况、财产状况发生变化、人身出现意外、发生疾病、死亡等情况，短期或者长期丧失还款能力，或者借款人的还款意愿发生变化时，您的出借资金可能无法按时回收甚至无法回收，您的预期收益可能无法实现。玖财通可对逾期的本息以及费用进行垫付或未经委托对借款人进行追索。</li>
+		<li>资金流动性风险：针对您的出借本金或者回款再出借资金，玖财通会根据网络借贷相关协议约定积极协助您寻找、推荐借款人，以完成资金出借、获取收益之目的，但玖财通寻找、推荐借款人的时间存在一定不确定性。同时，玖财通将根据网络借贷相关协议约定在您提出需要时，努力帮助您寻找、向您推荐愿意受让债权的第三方，以完成您的债权转让，但玖财通不对债权转让的实现以及实现时间做出任何承诺和保证。</li>
+		<li>技术风险：由于无法控制和不可预测的系统故障、设备故障、通讯故障、电力故障、网络故障、黑客或计算机病毒攻击、以及其它因素，可能导致平台出现非正常运行或者瘫痪，由此导致您无法及时进行查询、充值、出借、提现等操作。</li>
+		<li>不可抗力风险：由于战争、动乱、自然灾害等不可抗力因素的出现而可能导致您出借资金损失的风险。</li>
+	</ol>
+	<h3>二、网络借贷禁止性行为提示：玖财通平台作为网络借贷信息中介平台，将严格依据《网络借贷信息中介机构业务活动管理暂行办法》的规定，不予从事或者接受委托从事下列活动，请您知悉并共同进行监督：</h3>
+	<ol class="cl_222">
+		<li>为自身或变相为自身融资；</li>
+		<li>直接或间接接受、归集出借人的资金；</li>
+		<li>直接或变相向出借人提供担保或者承诺保本保息；</li>
+		<li>自行或委托、授权第三方在互联网、固定电话、移动电话等电子渠道以外的物理场所进行宣传或推介融资项目；</li>
+		<li>发放贷款，但法律法规另有规定的除外；</li>
+		<li>将融资项目的期限进行拆分；</li>
+		<li>自行发售理财等金融产品募集资金，代销银行理财、券商资管、基金、保险或信托产品等金融产品；</li>
+		<li>开展类资产证券化业务或实现以打包资产、证券化资产、信托资产、基金份额等形式的债权转让行为；</li>
+		<li>除法律法规和网络借贷有关监管规定允许外，与其他机构投资、代理销售、经纪等业务进行任何形式的混合、捆绑、代理；</li>
+		<li>虚构、夸大融资项目的真实性、收益前景，隐瞒融资项目的瑕疵及风险，以歧义性语言或其他欺骗性手段等进行虚假片面宣传或促销等，捏造、散布虚假信息或不完整信息损害他人商业信誉，误导出借人或借款人；</li>
+		<li>向借款用途为投资股票、场外配资、期货合约、结构化产品及其他衍生品等高风险的融资提供信息中介服务；</li>
+		<li>从事股权众筹等业务。</li>
+	</ol>
+	<p class="ta_r">风险提示方：北京玖承资产管理有限公司</p>
+	<h3 class="ta_c fw_b">资金来源合法承诺书</h3>
+	<p class="fw_b">当您选择通过玖财通平台进行资金出借时，玖财通向您进行出借资金反洗钱、反恐怖融资告知及警示，您也需对出借资金来源的合法性做出保证和承诺。</p>
+	<ol class="cl_222">
+		<li>玖财通平台在用户进行资金出借前对用户进行实名认证，以达到客户身份识别的目的，玖财通有权拒绝为身份不明的用户或者涉嫌洗钱、进行可疑交易的用户提供资金出借、协助其进行资金划拨、流转操作等任何服务。因此当您在玖财通平台进行实名认证时，您须保证并承诺：您向玖财通平台提供的身份证明、银行账户、联系方式等信息真实、准确、完整，不存在任何虚假、错误、误导或者遗漏。</li>
+		<li>
+			根据《中华人民共和国反洗钱法》、《中华人民共和国刑法》等法律法规的规定，“洗钱”是指将违法所得及其产生的收益，通过各种手段掩饰、隐瞒其来源和性质，使其在形式上合法化的行为。因此当您通过玖财通平台进行资金出借时，您须保证并承诺：
+			<ol class="lt_0">
+				<li>您的出借资金来源合法，并非毒品犯罪、黑社会性质组织犯罪、恐怖活动犯罪、走私犯罪、贪污贿赂犯罪、破坏金融管理秩序犯罪、金融诈骗犯罪等任何犯罪或者其他任何非法活动所得及/或其产生的收益，您是出借资金的合法所有人，完全有权出借该笔资金。</li>
+				<li>您不会将在玖财通平台出借资金及/或其产生的收益用作任何反国家、恐怖融资等违法犯罪活动，或以出借资金及所得收益支持、资助或变相帮助反国家、恐怖组织从事非法活动。</li>
+			</ol>
+		</li>
+	</ol>
+	<p class="fw_b">“本人已经阅读《网络借贷风险和禁止性行为提示书》和《资金来源合法承诺书》的所有内容，充分了解并清楚知晓相应的权利义务，并愿意承担相关风险及法律后果。”</p>
+	<div class="blank80"></div>
+	<div class="closebtn"><a href="javascript:void(0);">关闭</a></div>
+</div>
+<script src="/new/js/lib/sea.js"></script>
+<script>
+    seajs.config({
+        alias:{
+            "$":"new/js/lib/jquery-1.8.3",
+            "layer":"new/js/lib/layer"
+        },
+        paths:{"new":"/new"},
+        map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+    });
+    seajs.use(["new/js/page/experience_deal"])
+</script>
+</body>
+</html>

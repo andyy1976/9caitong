@@ -1,0 +1,373 @@
+.container {
+  width: 15rem;
+  margin: 0 auto;
+}
+.header {
+  line-height: 48px;
+  background: linear-gradient(to bottom, #575cde 0%, #4672de 100%);
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+}
+.header .back-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 15px 2% 15px 4%;
+}
+.content {
+  width: 100%;
+  height: 24.7rem;
+  background: url(../images/bg.jpg);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.others {
+  height: 1.4rem;
+  margin: 0.4rem 0.4rem 0;
+}
+.others a {
+  width: 1.12rem;
+  height: 1.4rem;
+  display: inline-block;
+  float: right;
+}
+.others a i {
+  width: 0.74rem;
+  height: 0.74rem;
+  margin: 0 auto;
+  display: block;
+  background: url(../images/icon_share.png);
+  background-size: 100% 100%;
+}
+.others a:nth-of-type(1) i {
+  background-image: url(../images/icon_record.png);
+}
+.others a span {
+  height: 0.66rem;
+  line-height: 0.66rem;
+  display: block;
+  text-align: center;
+  font-size: 0.4rem;
+  color: #fff;
+}
+.record-marquee {
+  width: 9.8rem;
+  height: 0.8rem;
+  border-radius: 0.36rem;
+  margin-left: 1.6rem;
+  float: left;
+  background: rgba(40, 3, 20, 0.6);
+  position: relative;
+}
+.record-list {
+  width: 9rem;
+  height: 0.8rem;
+  position: absolute;
+  left: 0.4rem;
+  top: 0;
+  overflow: hidden;
+  color: #fff;
+  font-size: 12px;
+}
+.record-list li {
+  line-height: 0.8rem;
+  float: left;
+  margin: 0 10px;
+}
+/*抽奖转盘*/
+.bracket {
+  width: 15rem;
+  height: 14rem;
+  margin: 4.72rem auto 0;
+  background: url(../images/bg_bracket.png);
+  background-size: 100% 100%;
+}
+.turntable-bg {
+  width: 12.32rem;
+  height: 12.32rem;
+  margin: 0 auto;
+  background: url(../images/bg_turntable.png);
+  background-size: 100% 100%;
+  position: relative;
+}
+.turntable-bg .rotate {
+  width: 10.96rem;
+  height: 10.96rem;
+  position: absolute;
+  left: 0.68rem;
+  top: 0.68rem;
+  z-index: 2;
+}
+.turntable-bg .rotate img,
+.turntable-bg .pointer img {
+  width: 100%;
+}
+.turntable-bg .pointer {
+  width: 3.48rem;
+  height: 4.34rem;
+  position: absolute;
+  left: 4.42rem;
+  top: 3.8rem;
+  z-index: 3;
+  cursor: pointer;
+}
+.points {
+  line-height: 1rem;
+  margin-top: 0.64rem;
+  text-align: center;
+  font-size: 0.48rem;
+  color: #fff;
+}
+.points span {
+  font-weight: bold;
+}
+.rotate-pop {
+  width: 11.16rem;
+  height: 6.42rem;
+  background: url(../images/bg_rotate_pop.png);
+  background-size: 100% 100%;
+}
+.rotate-pop .layui-layer-setwin {
+  display: none;
+}
+.rotate-pop .layui-layer-btn {
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  top: 6.42rem;
+  margin-left: -0.4rem;
+}
+.rotate-pop .layui-layer-btn0 {
+  padding: 0;
+  margin: 0;
+  width: 0.78rem;
+  height: 1.98rem;
+  background: url(../images/btn_close2.png);
+  background-size: 100% 100%;
+  font-size: 0;
+  border: 0;
+}
+.rotate-pop .layui-layer-content {
+  padding: 0;
+}
+.rotate-pop-top {
+  height: 3.82rem;
+  overflow: hidden;
+}
+.rotate-pop-top i {
+  width: 2.16rem;
+  height: 2.16rem;
+  display: block;
+  margin: 0.88rem auto 0;
+  background: url(../images/icon_smile.png);
+  background-size: 100% 100%;
+}
+.rotate-pop-top i.cry {
+  background-image: url(../images/icon_cry.png);
+}
+.rotate-pop-bot {
+  height: 2.6rem;
+  line-height: 2.6rem;
+  text-align: center;
+  font-size: 0.6rem;
+  color: #666;
+}
+.rotate-pop-bot span {
+  color: #d79413;
+  padding-left: 0.4rem;
+}
+.ruleBtn {
+  width: 10.64rem;
+  height: 1.88rem;
+  margin: 1.4rem auto 0;
+  display: block;
+  background: url(../images/btn_rule.png);
+  background-size: 100% 100%;
+}
+.ruleBtns {
+  width: 10.64rem;
+  height: 1.88rem;
+  margin: 1.4rem auto 0;
+  display: block;
+  background: url(../images/11.png);
+  background-size: 100% 100%;
+}
+.rule {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+#popBg,
+#popBg2 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: black;
+  opacity: 0.8;
+  z-index: 1000000;
+  display: none;
+}
+#popBox,
+#popBox2 {
+  width: 15rem;
+  height: 13.2rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000001;
+  display: none;
+}
+#popBox2 {
+  height: auto;
+}
+#popBox img {
+  width: 100%;
+}
+#popBox2 h3 {
+  width: 88%;
+  text-align: center;
+  margin: 24px auto 12px;
+  line-height: 1.8rem;
+  font-size: 0.8rem;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+#popBox2 p {
+  width: 88%;
+  line-height: 1.12rem;
+  margin: 0 auto;
+  font-size: 0.56rem;
+  color: #fff;
+}
+#popClose {
+  width: 2.8rem;
+  height: 2.8rem;
+  display: block;
+  margin: 2rem auto 0;
+  background: url(../images/btn_close.png);
+  background-size: 100% 100%;
+}
+/*抽奖记录*/
+.record {
+  margin-top: 10px;
+  padding-bottom: 0.8rem;
+  overflow: hidden;
+}
+.record li {
+  width: 100%;
+  height: 64px;
+  float: left;
+  padding: 6px 0 0;
+  background: white;
+  color: #90a2ad;
+  border-bottom: 1px solid #e7ebee;
+}
+.record li:last-of-type {
+  border: 0;
+}
+.record p {
+  float: left;
+}
+.record span {
+  line-height: 20px;
+}
+.record p:first-of-type {
+  width: 16%;
+  margin-left: 4%;
+}
+.record p:first-of-type span {
+  display: block;
+}
+.record p:first-of-type span:first-of-type {
+  text-indent: 2px;
+  margin-top: 10px;
+}
+.record p:nth-of-type(2) {
+  width: 32%;
+}
+.record p:nth-of-type(2) i {
+  width: 26px;
+  height: 26px;
+  float: left;
+  margin: 16px 12px 8px 0;
+  background: url(../images/icon_rotate.png) no-repeat left;
+  background-size: 26px 26px;
+}
+.record-use p:nth-of-type(2) i {
+  background-image: url(../images/icon_rotate.png);
+}
+.record p:nth-of-type(2) span {
+  display: block;
+  font-size: 12px;
+  color: #90a2ad;
+}
+.record p:nth-of-type(2) span:first-of-type {
+  font-size: 15px;
+  color: #13334d;
+  margin-top: 11px;
+}
+.record p:nth-of-type(3) {
+  line-height: 56px;
+  float: right;
+  margin-right: 4%;
+  color: #13334d;
+  font-size: 15px;
+}
+.no-record {
+  width: 100%;
+  margin-top: 6rem;
+  overflow: hidden;
+}
+.no-record img {
+  width: 100%;
+}
+.no-record p {
+  line-height: 3.2rem;
+  font-weight: bold;
+  color: #90a2ad;
+  text-align: center;
+}
+
+/*11月11日新加*/
+.ruleBtn {
+  width: 10.64rem;
+  height: 1.88rem;
+  margin: 0.2rem auto 0;
+  display: block;
+  background: url(../images/btn_rule.png);
+  background-size: 100% 100%;
+}
+.rule {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.join-times {
+  margin-top: 1rem;
+  font-size: 12px;
+  color: #fff;
+  overflow: hidden;
+}
+.join-times p {
+  width: 44%;
+}
+.join-times p:first-of-type {
+  float: left;
+  text-align: right;
+}
+.join-times p:last-of-type {
+  float: right;
+}
+.join-times p span {
+  font-weight: bold;
+  padding: 0 2px;
+}
+/**/

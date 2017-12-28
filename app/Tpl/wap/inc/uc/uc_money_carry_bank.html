@@ -1,0 +1,275 @@
+<body>
+    <section class="container cf">
+        <div class="header"><a href="{url x="index" r="uc_center"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>提现<a href="{url x="index" r="uc_money#carry_log"}" class="my-re-record">提现记录</a></div>
+        <!-- 提现 -->
+        <!--<div class="my-re-ban">
+            <p>可提现余额（元）</p>
+            <p>{$money}</p>
+        </div>-->
+        <div class="my-re-ban">
+		    <div class="swiper-container">
+			    <div class="swiper-wrapper">
+			        <div class="swiper-slide">
+				        <p>存管账户余额（元）</p>
+				        <p>{$cg_money}</p>
+			        </div>
+			        <div class="swiper-slide">
+				        <p>普通账户余额（元）</p>
+				        <p>{$money}</p>
+			        </div>
+			    </div>
+			    <div class="swiper-pagination"></div>
+		    </div>
+		</div>
+        <div class="my-re-box">
+            <form name="Jcarry_From" id="Jcarry_From" action="{url x="index" r="uc_money#savecarry"}" method="post">
+                <!--<div class="my-res-bank"><a><img src="{$bank_list.icon}" width="30" height="30">
+                    <ul>
+                        <li>{$bank_list.name}</li>
+                        <li>尾号{$bank_list.sub_card}</li>
+                    </ul><i></i>
+                </a></div>
+                <p class="my-re-input"><span>金额</span><input type="text"  id="money" maxlength="11" name="amount" placeholder="请输入提现金额"><b>元</b></p>-->
+				<div class="cg-switch-bank cf" id="cgAccBank" style="display: block;">
+					<a href="javascript:;">
+						<img src="{$cg_bank_list.icon}" width="38" height="38" />
+						<dl><dt>{$cg_bank_list.name}</dt><dd>尾号{$cg_bank_list.sub_card}</dd></dl>
+					</a>
+				</div>
+				<div class="cg-switch-bank cf my-2-bank" id="commenAccBank">
+					<a href="javascript:;">
+						<img src="{$bank_list.icon}" width="38" height="38" />
+						<dl><dt>{$bank_list.name}</dt><dd>尾号{$bank_list.sub_card}</dd></dl>
+						<i></i>
+					</a>
+				</div>
+	        	<div class="cg-switch-uc cf">
+	        		<span>提现账户</span>
+	        		<div class="cg-switch-top" id="cgSwitchTop">
+	        			<select class="cg-acc-type" id="cgAccSelect">
+	        				<option value="2">存管帐户</option>
+	        				<option id="pt_acc" value="1">普通帐户</option>
+	        			</select>
+	        		</div>
+	        	</div>
+	        	<p class="my-re-input"><span>提现金额</span><input id="cgAccMoney" type="text" placeholder=""><b>元</b></p>
+                <input type="hidden" name="list_id" id="bank_list_id" value="{$bank_list.id}" />
+				<input type="hidden" name="cg_list_id" id="cg_bank_list_id" value="{$cg_bank_list.id}" />
+                <a href="javascript:;"  class="my-btn my-btn-gray">提现</a>
+            </form>
+            <p class="my-re-bank"><a onclick = "publicPop()">提现规则</a></p>
+        </div>
+        <!-- 使用说明、规则等遮罩层共用结构  -->
+        <div class="public-pop">
+            <div class="public-pop-title">提现规则</div>
+            <div class="public-pop-box">{$withdraw_explain}</div>
+            <div class="public-pop-close"><img src="{$TMPL}/images/wap2/my/chahao.png" width="19" height="19"></div>
+        </div>
+        <script type="text/javascript">
+        	var withdrawalamount; 
+			//存管金额与普通金额切换
+			var mySwiper = new Swiper ('.swiper-container', {
+				loop: true, 
+				pagination: '.swiper-pagination',
+			});
+			//存管账户与普通账户切换
+			$(document).ready(function(){
+				$.ajax({
+                    url:"{url x="index" r="uc_money#ajaxWithdrawalamount"}",
+                    type:"POST",
+                    dataType:"json",
+                    success:function(data){
+                    	withdrawalamount = data.withdrawalamount;
+                    	$("#cgAccMoney").attr('placeholder','可提现金额：' + withdrawalamount);
+                    }
+                });
+				var money = "{$money}";
+				if($("#bank_list_id").val() < 1){
+					$("#pt_acc").hide();
+				}
+				$("#cgAccSelect").bind("change",function(){
+			        if($("#cgAccSelect").val() == "2"){
+			            $("#cgAccBank").show();
+			            $("#commenAccBank").hide();
+			            $("#cgAccMoney").attr('placeholder','可提现金额：' + withdrawalamount);
+			        }else{
+			            $("#cgAccBank").hide();
+			            $("#commenAccBank").show();
+			            $("#cgAccMoney").attr('placeholder','可提现金额：' + money);
+			        }
+			    });
+			});
+            //使用说明、规则等遮罩层（内容多时可滚动并隐藏滚动条） 
+            function publicPop(){
+                $('.public-pop').show();
+                $(document).on("touchmove",function(ev){ //阻止页面滑动事件的默认行为，不阻止遮罩层中的滑动事件的默认行为
+                    var e = ev || event;
+                    var target = e.target || e.srcElement;
+                    if( target.className.indexOf("public-pop") >= 0) {
+                        e.preventDefault();
+                    }
+                });
+                if(window.addEventListener){
+                    simpScroller(document.querySelector(".public-pop-box"), {
+                        hideScrollBar: true
+                    });
+                }
+                $('.public-pop-close').click(function(){    
+                    $('.public-pop').hide();
+                });
+            }
+            $(".my-2-bank").bind("click",function(){
+                {if $ajax_code eq 1}
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>修改支行信息?</p>',
+                        btn: ['确定','取消'],
+                        yes:function(){
+                            window.location.href = "{url x="index" r="uc_account#bank_info" p="id=$bank_list.id"}"; 
+                        },
+                        no:function(){
+                            
+                        }
+                    });
+                {else}
+                    window.location.href = "{url x="index" r="uc_account#bank_info" p="id=$bank_list.id"}";
+                {/if}
+            })
+            //提现规则
+            function withdrawExplain(){
+                layer.open({
+                    className: 'popup-tip',
+                    content: '<h3>提现规则</h3><div class="see-rule-box">{$withdraw_explain}</div>',
+                    btn: '确认',
+                });
+            }
+            $("#money").keyup(function(){
+                if( $("#money").val().length ==0){
+                    $(".my-btn").css('background','#aaa');
+                    return false;
+                }else{
+                    $(".my-btn").css('background','#4b6bde');
+                }
+            })
+            
+            $(document).ready(function(){
+            	var reg = /^(?!0(\.0{1,2})?$)(?:[1-9][0-9]*|0)(?:\.[0-9]{1,2})?$/;
+                if($("#money").val() != ''){
+                    $(".my-btn").css('background','#4b6bde');
+                }
+                $(".my-btn").click(function(){
+                	var query = new Object();
+                	var ajaxurl = "{url x="index" r="uc_money#savecarry"}";
+                	var withdraw_acc = $("#cgAccSelect").val();
+                	var amount = $("#cgAccMoney").val();
+                	if(withdraw_acc == 1) {
+                		var bid = $("#bank_list_id").val();
+                	}else{
+                		var bid = $("#cg_bank_list_id").val();
+                	}
+                	if(!reg.test(amount)){
+            			layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>请输入正确的金额</p>',
+                            shadeClose: true,
+                            time: 2
+                        });
+                        return false
+            		}/* else if(amount < 2){
+            			layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>提现金额最少为2元</p>',
+                            shadeClose: true,
+                            time: 2
+                        });
+                        return false
+            		} */
+                	if(withdraw_acc == 1){
+                		if(amount > {$user_money}){
+                			layer.open({
+                                className: 'popup-btn',
+                                content: '<h3>提示</h3><p>您的余额不足</p>',
+                                shadeClose: true,
+                                time: 2
+                            });
+                            return false
+                		}
+                		swal({   
+                            title: "请输入交易密码，完成交易。", 
+                            type: "input",
+                            inputType:"password", 
+                            showCancelButton: true,   
+                            closeOnConfirm: false,
+                            cancelButtonText:"取消",
+                            confirmButtonText:"确认",   
+                            animation: "slide-from-bottom",
+                            allowOutsideClick:true, 
+                            inputPlaceholder: "交易密码",
+                        }, 
+                        function(inputValue){  
+                            if (inputValue === false) 
+                                return false;      
+                            if (inputValue === "") {     
+                                swal.showInputError("交易密码不能为空");     
+                                return false   
+                            }      
+                            query.withdraw_acc = withdraw_acc;
+                            query.amount = amount;
+                            query.paypassword = FW_Password(inputValue);
+                            query.bid = bid;
+                            $.ajax({
+                                url:ajaxurl,
+                                data:query,
+                                type:"POST",
+                                dataType:"json",
+                                success:function(data){
+                                    if(data.status == 0){
+                                        swal.showInputError(data.show_err);     
+                                        return false 
+                                    }else{
+                                        window.location.href = data.url;
+                                    }
+                                }
+                            });
+                        });
+                	}else if(withdraw_acc == 2){
+                		if(amount > withdrawalamount){
+                			layer.open({
+                                className: 'popup-btn',
+                                content: '<h3>提示</h3><p>您的可提现金额不足</p>',
+                                shadeClose: true,
+                                time: 2
+                            });
+                            return false
+                		}
+                		query.withdraw_acc = withdraw_acc;
+                        query.amount = amount;
+                        query.bid = bid;
+                		$.ajax({
+                            url:ajaxurl,
+                            data:query,
+                            type:"POST",
+                            dataType:"json",
+                            success:function(data){
+                                if(data.status == 0){
+                                	layer.open({
+                                        className: 'popup-btn',
+                                        content: '<h3>提示</h3><p>'+data.show_err+'</p>',
+                                        shadeClose: true,
+                                        time: 2
+                                    });
+                                    return false 
+                                }else if(data.status == 2){
+                                	window.location.href = data.jump;
+                                }else{
+                                    window.location.href = data.url;
+                                }
+                            }
+                        });
+                	}
+                });
+            });
+        </script>
+    </section>
+</body>
+</html>

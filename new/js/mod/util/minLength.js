@@ -1,0 +1,1 @@
+define("new/js/mod/util/minLength",[],function(n,t){t.minLength=function(n,t,e){var i=$.trim(n).length;return e&&(i=$.getStringLength(n)),i>=t}});

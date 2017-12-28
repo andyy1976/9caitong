@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="zh-CN">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- 优先使用 IE 最新版本 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 忽略将数字变为电话号码-->
+<meta name="format-detection" content="telephone=no">
+<!--让国产浏览器默认采用高速模式渲染页面-->
+<meta name="renderer" content="webkit">
+<!-- 强制图片显示 -->
+<meta name="imagemode" content="force">
+<!--启用 WebApp 全屏模式-->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- 设置状态栏颜色 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>{$cate_title}</title>
+<link rel="stylesheet" type="text/css"
+	href="new/find/css/reset_ph_v=2016.css">
+<link rel="stylesheet" type="text/css" href="new/find/css/LArea.css">
+<script src="new/find/js/jquery-1.11.3.min.js"></script>
+<script src="new/find/js/LAreaData2.js"></script>
+<script src="new/find/js/LArea.js"></script>
+<script src="new/find/js/layer/layer.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="new/find/css/wap_mall_v_2017.css">
+<script src="new/find/js/fastclick.js"></script>
+<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    	var app_tags="{$app_tag}";
+    
+    </script>
+</head>
+<body>
+	<section class="container container-details cf">
+		<?php if(!es_session::get('MachineInfo')) {?>
+		<div class="header">
+			<a href="javascript:history.go(-1)" class="back-icon"><img
+				src="new/find/images/wap2/my/icon_back.png" width="10" height="18"></a>填写收货地址
+		</div>
+		<?php } ?>
+		<!-- 填写收货地址 -->
+		<div class="address-tips">
+			<span>说明：</span>
+			<p>收获地址需准确填写所在省市区（县级）信息，信息不完整将影响派送。</p>
+		</div>
+		<form id="address-list">
+			<div class="address-list">
+				<span class="address-type">姓名</span> <input type="text"
+					value="{$address_info.user_name}" name="user_name"
+					placeholder="请输入您的姓名" />
+			</div>
+			<div class="address-list">
+				<span class="address-type">手机号码</span> <input type="text"
+					value="{$address_info.phone}" name="phone" placeholder="请输入手机号码"
+					maxlength="11" />
+			</div>
+			<div class="address-list">
+				<span class="address-type">所在地区</span> <input id="address"
+					type="text" readonly="" value="{$address_info.area}" name="area"
+					placeholder="请选择您所在的地区" /> <input id="value" type="hidden" />
+			</div>
+			<div class="address-list">
+				<span class="address-type">详细地址</span> <input type="text"
+					value="{$address_info.detail_address}" name="detail_address"
+					placeholder="请输入街道、楼牌号等" />
+			</div>
+			<input type="hidden" name="address_id" value="{$address_info.id}" />
+			<div class="address-list">
+				<span class="address-type">备注</span> <input type="text" name="memo"
+					value="{$address_info.memo}" placeholder="请输入备注" />
+			</div>
+		</form>
+		<a href="javascript:;" class="btn-exchange <!--btn-exchange-gray-->">确认</a>
+	</section>
+	<script>
+$(function(){
+    //选择地区效果初始化
+	var area = new LArea();
+    area.init({
+        'trigger': '#address', //触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+        'valueTo': '#value', //选择完毕后id属性输出到该位置
+        'keys': {
+            id: 'value',
+            name: 'text'
+        }, //绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
+        'type': 2, //数据源类型
+        'data': [provs_data, citys_data, dists_data], //数据源
+        'finish': function(text) {
+        	//选择地区后，把对应的地址的文字信息赋给#value的属性data-address里
+        	$('#value').attr('data-address',text);
+    	}
+    });
+    
+    //信息填写不全时弹出的信息
+    $('.btn-exchange').click(function(){
+    	
+    	var ajaxurl = "{url x="index" r="find#mall_add_address"}"; 
+	var formdata = new FormData($('#address-list')[0]);
+	$.ajax({
+	url: ajaxurl,
+		data: formdata,
+		processData: false,
+		contentType: false,
+        type: "POST",  
+        dataType: "json",
+        success:function(result){
+			if(result.status==1){
+				layer.open({
+					className: 'popup-btn',
+					content: '<p>提交成功</p>',
+					btn: '确定',
+					shade: 1,
+					yes:function(index){
+						//window.history.go(-1);
+						if(app_tags){
+							
+							  if("{$jump.ToProductList}" == "iosToProductList")//ios跳转
+							    {
+							        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToGoBack"});
+							    }else if("{$jump.ToProductList}" == "androidToProductList")//Android跳转
+							    {
+							        window.jiucaitong.FromH5ToJump("jumpToGoBack","");
+							    }
+						}else{
+							window.location.href="{url x="index" r="find#mall_exchange" p="id=$goods_id&"}";
+						}
+						
+					}
+				});
+				layer.close(index);
+			}else{
+				layer.open({
+					className: 'toast',
+					content: '<p>'+result.info+'</p>',
+					shade: 1,
+					time:2
+				});
+				layer.close(index);
+			}
+		}
+	})
+		
+	});
+});   
+</script>
+</body>
+</html>

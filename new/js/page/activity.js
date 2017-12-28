@@ -1,0 +1,1 @@
+define("new/js/page/activity",["$","new/js/mod/login","new/js/mod/goTop"],function(o){o("$");o("new/js/mod/login"),o("new/js/mod/goTop")});

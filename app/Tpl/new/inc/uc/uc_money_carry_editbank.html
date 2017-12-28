@@ -1,0 +1,44 @@
+<form name='editbank_from' id='editbank_from' action='{url x="index" r="uc_money#editbank_save"}' method='post'>
+	<ul class="add_bank">
+		<li>
+			<label>开户地区：</label>
+			<div id="uc_edit_bank">
+				<div class="hide">
+					<div class="fl"></div>
+					<select name='region_lv1' class="f_l ui-select w110 select-w110 mr5" height="240">
+
+
+						{foreach from=$region_lv1 item=lv1}
+						<option {if $lv1.selected eq 1}selected='selected'{/if} value='{$lv1.id}'>{$lv1.name}</option>
+						{/foreach}
+					 </select>		
+				</div>			
+				<div class="fl"></div>
+				<select name='region_lv2'  class="f_l ui-select w110 select-w110 mr5" height="240">
+					<option value='0'>={$LANG.SELECT_PLEASE}=</option>
+				</select>
+				<div class="fl"></div>						
+				<select name='region_lv3'  class="f_l ui-select w110 select-w110 mr5" height="240">
+					<option value='0'>={$LANG.SELECT_PLEASE}=</option>	
+				 </select>
+				<div class="fl"></div>										
+				<select name='region_lv4' class="f_l ui-select w110 select-w110" height="240">
+					<option value='0'>={$LANG.SELECT_PLEASE}=</option>
+				</select>
+			</div>
+		</li>
+		<li>
+			<label>开户支行：</label>
+			<div><input type='text' name='bankzone' id='Jbank_bankzone' class='uc_input input_onfocus_shadow ui-textbox' placeholder="请输入支行信息" style='width: 270px;' value='' /></div>
+		</li>
+		<li>
+			<label></label>
+			<div class="addBank_btn">
+				<input type='button' value='确认修改' class='confirm' id="edit_bank_sunbmit" />
+				<input type='button' value='取消' class='cancel closeAllLayer' />
+			</div>
+		</li>
+	</ul>
+	<div class='tc'>
+   </div>
+</form>

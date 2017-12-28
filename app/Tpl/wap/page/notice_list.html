@@ -1,0 +1,22 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>{$cate.title}</div>
+	<!-- 设置-消息中心 -->
+    <ul class="my-news-list">
+    {foreach from=$list item=item}
+        <li>
+            <a href="{$item.url}">
+                <div class="my-news-l"><i></i><span>{$item.name}</span></div>
+                <div class="my-news-r">
+                    <h3>{function name="msubstr" v=$item.title s=0 e=16}</h3>
+                    <p>{function name="msubstr" v=$item.content s=0 e=50}</p>
+                    <span>{function name="to_date" v=$item.update_time f="Y-m-d"}</span>
+                </div>
+            </a>
+        </li>
+    {/foreach}  
+    </ul>
+</section>
+</body>
+</html>

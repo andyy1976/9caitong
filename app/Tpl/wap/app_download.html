@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{$TMPL}/css/download/reset_ph_v=2016.css">
+    <script src="{$TMPL}/js/download/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{$TMPL}/css/download/style.css">
+    <script src="{$TMPL}/js/download/fastclick.js"></script>
+    <script>
+        //处理移动端click事件300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+</head>
+<body>
+<div class="container">
+	<a href="javascript:void(0)" onclick="app_download()" class="download"></a>
+</div>
+</body>
+<script type="text/javascript">
+function app_download(){
+    var ua = navigator.userAgent.toLowerCase(); 
+    if (ua.match(/MicroMessenger/i)=="micromessenger" && ua.indexOf('iphone') > 0) { 
+        window.location.href="https://itunes.apple.com/us/app/jiu-cai-tong/id1101080761";
+    }else if (ua.match(/MicroMessenger/i)=="micromessenger" && ua.indexOf('android') > 0) { 
+        window.location.href="http://download.jiuchengjr.com/jiucaitong_1.2.8.apk";
+    }else if (ua.match(/MicroMessenger/i)=="micromessenger" && ua.indexOf('ipad') > 0) { 
+        window.location.href="https://itunes.apple.com/us/app/jiu-cai-tong/id1101080761";
+    }else if( ua.indexOf('iphone') > 0) { //需对所有 iOS 系统 UA 信息进行判断 
+        window.location.href="https://itunes.apple.com/us/app/jiu-cai-tong/id1101080761";
+    }else if (ua.indexOf('android') > 0) { //需对所有 Android 系统 UA 信息进行判断 
+        window.location.href="http://download.jiuchengjr.com/jiucaitong_1.2.8.apk";
+    }else if (ua.indexOf('ipad') > 0) { //需对所有 Android 系统 UA 信息进行判断 
+        window.location.href="https://itunes.apple.com/us/app/jiu-cai-tong/id1101080761";
+    }else{ 
+        window.location.href="http://download.jiuchengjr.com/jiucaitong_1.2.8.apk";
+    } 
+}
+
+</script>
+</html>

@@ -1,0 +1,227 @@
+{include file="inc/nheader.html"}
+		<div class="wrapper">
+			<div class="nav_L">
+				<div class="center">
+					<ul class="ta_r">
+						<li><a href="{url x="index" r="memberLevel"}">会员首页</a></li>
+						<li><a href="{url x="index" r="memberLevel#privilege"}">会员特权</a></li>
+						<li class="cur"><a href="{url x="index" r="memberLevel#GrowthMission"}">成长任务</a></li>
+					</ul>
+				</div>					
+			</div>
+			<div class="blank10"></div>
+			<div class="blank50"></div>
+			<div class="wrap_f0">
+				<div class="center bgff">
+					<div class="pd60 ofh">
+						<h1 class="title ta_c fw100">新手任务</h1>
+						<p class="ta_c C_blue1">成长值＋150</p>
+						<ul class="list2 list_blue ofh ta_c">
+						{foreach from="$newbie_task1" item="item1"}
+							<li>
+								<h2>{$item1.short_name}</h2>
+								<h3></h3>
+								<p>成长值： {$item1.grow_point}点</p>
+								{if $item1.is_finished eq 1}
+								<a class="disabled">已完成</a>
+								{elseif $item1.url}
+								<a href="{$item1.url}">去完成</a>
+								{else}
+								<a href="#">去完成</a>
+								{/if}
+							</li>
+						{/foreach} 
+							<!-- <li>
+								<h2>开通存管账户</h2>
+								<h3></h3>
+								<p>成长值： ＋30点</p>
+								<a href="#">去完成</a>
+							</li>
+							<li>
+								<h2>绑定银行卡</h2>
+								<h3></h3>
+								<p>成长值： ＋30点</p>
+								<a href="#">去完成</a>
+							</li>
+							<li>
+								<h2>设置存管<br />交易密码</h2>
+								<h3></h3>
+								<p>成长值： ＋20点</p>
+								<a href="#">去完成</a>
+							</li>
+							<li>
+								<h2>完成风险评估</h2>
+								<h3></h3>
+								<p>成长值： ＋20点</p>
+								<a href="#">去完成</a>
+							</li>
+							<li>
+								<h2>完善个人资料</h2>
+								<h3>（上传头像、收货<br />地址、职业等）</h3>
+								<p>成长值： ＋10点</p>
+								<a href="#">去完成</a>
+							</li>
+							<li>
+								<h2>绑定微信公众号</h2>
+								<h3></h3>
+								<p>成长值： ＋20点</p>
+								<a href="#">去完成</a>
+							</li> -->
+						</ul>
+						<h1 class="title ta_c fw100">充值任务</h1>
+						<ul class="list2 list_green ofh ta_c">
+							{foreach from="$newbie_task2" item="item2"}
+							<li>
+								<h2>{$item2.short_name}</h2>
+								<h3></h3>
+								<p>成长值： {$item2.grow_point}点</p>
+								{if $item2.is_finished eq 1}
+								<a class="disabled">已完成</a>
+								{elseif $item2.url}
+								<a href="{$item2.url}">去完成</a>
+								{else}
+								<a href="#">去完成</a>
+								{/if}
+							</li>
+						{/foreach}
+							<!-- <li>
+								<h2>充值任意<br />一笔金额</h2>
+								<h3></h3>
+								<p>成长值： ＋M点</p>
+								<a href="#">去完成</a>
+							</li> -->
+						</ul>
+						<p>备注：M=任意一笔充值金额/100</p>
+						<h1 class="title ta_c fw100">成长任务</h1>
+						<ul class="list2 list_orange ofh ta_c">
+							{foreach from="$newbie_task3" item="item3"}
+							<li>
+								<h2>{$item3.short_name}</h2>
+								<h3></h3>
+								<p>成长值： {$item3.grow_point}点</p>
+								{if $item3.is_finished eq 1}
+								<a class="disabled">已完成</a>
+								{elseif $item3.is_finished eq 2}
+								<a class="disabled">未完成</a>
+								{elseif $item3.url}
+								<a href="{$item3.url}">去完成</a>
+								{else}
+								<a href="#">去完成</a>
+								{/if}
+							</li>
+						{/foreach}
+							<!-- <li>
+								<h2>累计启动<br />满60天</h2>
+								<h3>（≥60天后登录的）</h3>
+								<p>成长值： ＋50点</p>
+								<a href="#">去完成</a>
+							</li>
+							<li>
+								<h2>使用玖财通<br />满7天</h2>
+								<h3>（≥7天后登录的）</h3>
+								<p>成长值： ＋50点</p>
+								<a href="#">去完成</a>
+							</li>
+							<li>
+								<h2>使用玖财通<br />满30天</h2>
+								<h3>（≥30天后登录的）</h3>
+								<p>成长值： ＋50点</p>
+								<a href="#">去完成</a>
+							</li>
+							<li>
+								<h2>使用玖财通<br />满100天</h2>
+								<h3>（≥100天后登录的）</h3>
+								<p>成长值： ＋50点</p>
+								<a href="#">去完成</a>
+							</li>
+							<li>
+								<h2>累计出借满10次</h2>
+								<h3>（第10次出借<br />成功是奖励）</h3>
+								<p>成长值： ＋50点</p>
+								<a href="#">去完成</a>
+							</li> -->
+						</ul>
+						<p>备注：邀请好友每月最多+200点成长值</p>
+						<h1 class="title ta_c fw100">出借任务</h1>
+						<ul class="list2 list_purple ofh ta_c">
+							{foreach from="$newbie_task4" item="item4"}
+							<li>
+								<h2>{$item4.short_name}</h2>
+								<h3></h3>
+								<p>成长值： {$item4.grow_point}点</p>
+								{if $item4.is_finished eq 1}
+								<a class="disabled">已完成</a>
+								{elseif $item4.url}
+								<a href="{$item4.url}">去完成</a>
+								{else}
+								<a href="#">去完成</a>
+								{/if}
+							</li>
+						{/foreach}
+							<!-- <li>
+								<h2>出借任意金额</h2>
+								<h3></h3>
+								<p>成长值： ＋50点</p>
+								<a href="#">去完成</a>
+							</li>
+							<li>
+								<h2>当天注册并<br />进行出借</h2>
+								<h3></h3>
+								<p>成长值： ＋50点</p>
+								<a href="#">去完成</a>
+							</li>
+							<li>
+								<h2>当月出借金额≥<br />当月到期金额的</h2>
+								<h3>（复投）</h3>
+								<p>成长值： ＋50点</p>
+								<a href="#">去完成</a>
+							</li> -->
+						</ul>
+						<p>
+							备注：A=（出借金额×出借月数/12）/10<br />
+					        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B=A×10%<br />
+					        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C=A×15%，该部分会在下个月第一天进行核算
+						</p>
+					</div>
+				</div>
+				<div class="blank20"></div>
+				<div class="center bgff">
+					<div class="pd60">
+						<h1 class="title1 ofh"><span></span>成长值扣除</h1>
+						<table class="table1 ta_c" border="0" cellspacing="1" cellpadding="0" width="100%">
+							<tr>
+								<td class="tt" width="300">提现时</td>
+								<td>扣除成长值=提现金额/账户总资产 ×当前成长值×40%</td>
+							</tr>
+							<tr>
+								<td class="tt">债权转让时</td>
+								<td>扣除成长值=债权转让金额/账户总资产 ×当前成长值×20%</td>
+							</tr>
+							<tr>
+								<td class="tt">三个月内未增加成长值的</td>
+								<td>持续3个月（90天）未增加成长值，扣除当前成长值10%，当前成长值低于150时不再扣除</td>
+							</tr>
+						</table>
+						<h1 class="title1 ofh"><span></span>成长值计算</h1>
+						<ol>
+							<li>成长值 = 待收初始化成长值+新手任务成长值+充值任务成长值+出借任务成长值+邀请任务成长值-成长值扣除部分；（备注：待收初始化成长值等于新版会员体系上线时根据会员账户总资产/1000计算而来）</li>
+							<li>充值和出借任务，奖励分值按首次奖励和公式奖励较大者计算；</li>
+							<li>成长值的增加，在完成操作后实时增加；成长值的扣除，在会员体系上线或用户注册后，每3个月调整一次，其中提现和债权转让成长值实时扣除。</li>
+						</ol>
+					</div>
+				</div>
+				<div class="blank20"></div>
+			</div>
+		</div>
+{include file="/inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+			});
+			seajs.use(["/new/js/page/memberlevel"])
+		</script>
+	</body>
+</html>

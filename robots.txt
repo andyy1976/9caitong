@@ -1,0 +1,7 @@
+User-agent: *
+Disallow:/adminabc/
+Disallow:/manager/
+Disallow:/houtai123/
+Disallow:/app/
+Disallow:/public/
+Disallow:/mapi/

@@ -1,0 +1,102 @@
+
+.header {
+  line-height: 48px;
+  background: linear-gradient(to bottom, #575cde 0%, #4672de 100%);
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: bold;
+  position: relative;
+}
+.header .back-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 15px 4%;
+}
+.welfare-wrap {
+  width: 100%;
+  height: 100%;
+  background: #f6462f;
+  padding-bottom: 1.2rem;
+}
+.welfare img {
+  width: 100%;
+}
+.box {
+  width: 95.46%;
+  margin: 0 auto 0.6rem;
+  background: #ffe156;
+  border-radius: 0.4rem;
+  padding-bottom: 0.4rem;
+  position: relative;
+}
+.box i {
+  width: 0.98rem;
+  height: 0.66rem;
+  position: absolute;
+  top: 1.12rem;
+  right: -0.32rem;
+}
+.list {
+  width: 94%;
+  margin: 0 auto;
+  padding-top: 0.44rem;
+  padding-bottom: 0.28rem;
+  background: #fffffc;
+  border-radius: 0.2rem;
+}
+.list li {
+  width: 92%;
+  height: 2.6rem;
+  margin: 0 4%;
+  position: relative;
+}
+.list li span {
+  width: 4.16rem;
+  height: 1.16rem;
+  display: inline-block;
+  background: url("../images/wap2/index/welfare/title.png") no-repeat 0 0;
+  background-size: 4.16rem 4.64rem;
+}
+.list li p {
+  margin-top: 0.2rem;
+  padding-left: 0.68rem;
+  line-height: 0.76rem;
+  font-size: 0.44rem;
+  color: #7491e4;
+}
+.list li p b {
+  color: #4c6dcc;
+  font-weight: bold;
+}
+.list li a {
+  position: absolute;
+  right: 0;
+  top: 0.8rem;
+  width: 2.2rem;
+  height: 1.16rem;
+  line-height: 1.16rem;
+  font-size: 0.44rem;
+  color: #f6462f;
+  background: #ffe156;
+  border: 0.06rem dotted #ee7a3e;
+  border-radius: 0.16rem;
+  text-align: center;
+}
+.list :nth-of-type(2) {
+  height: 3.04rem;
+}
+.list :nth-of-type(2) span {
+  background-position: 0 -1.16rem;
+}
+.list :nth-of-type(2) p {
+  line-height: 0.48rem;
+}
+.list :nth-of-type(3) span {
+  background-position: 0 -2.32rem;
+}
+.box:nth-of-type(2) span {
+  background-position: 0 -3.48rem;
+}

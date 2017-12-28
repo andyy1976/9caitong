@@ -1,0 +1,213 @@
+<div class='user_menu_top'>
+	<div class="blank20"></div>
+	<div class="blank20"></div>
+    <div class="user_pic">
+    	{if $user_info.header_url eq ''}
+    	<img src="{function name="get_user_avatar" uid="$user_info.id" type="middle"}" alt="{$user_info.name}" title="{$user_info.name}">
+    	{else}
+    	<img src="{$user_info.header_url}" alt="{$user_info.name}" title="{$user_info.name}">
+    	{/if}
+    </div>
+    <h4 class="">您好：
+	{if $user_info.idcardpassed eq 0}
+	{function name="hideMobile" v=$user_info.mobile}
+	{else}
+	{$user_info.real_name}
+	{/if}
+	</h4>
+    <div class="clear"></div>
+    <p class="C_Bray">上次登录：
+    {if $user_info.locate_time eq 0}
+    首次登陆
+    {else}
+    {function name="to_date" v=$user_info.locate_time}</p>
+     {/if}
+	<div class='certified'>
+        <a href='{url x="index" r="uc_account#mobile"}' title="手机号码{if $user_info.mobilepassed eq 1}已认证{else}未认证{/if}">
+        	<i class="iconfont {if $user_info.mobilepassed eq 1}complete{/if}">&#57355;</i>
+        </a>
+        {if $user_info.cunguan_tag eq 1}
+	        <!-- 企业账户不同 -->
+	        {if $user_info.user_type neq 1}
+	        <a href='{url x="index" r="uc_account#security"}' title="存管账户已开通">
+	            <i class="iconfont complete">&#57354;</i>
+	        </a>
+	        {else}
+	        <a href='{url x="index" r="uc_center"}' title="存管账户已开通">
+	            <i class="iconfont complete">&#57354;</i>
+	        </a>
+	        {/if}
+        {else $user_info.cunguan_tag eq 0}
+
+        <!-- 企业账户不同 -->
+	        {if $user_info.user_type neq 1}
+	        <a href='{url x="index" r="uc_depository_account#index"}' title="未开通存管账户">
+	            <i class="iconfont ">&#57354;</i>
+	        </a>
+	        {else}
+	        <a href='{url x="index" r="user#company_steptwo"}' title="未开通存管账户">
+	            <i class="iconfont ">&#57354;</i>
+	        </a>
+	        {/if}
+        {/if}
+    	<!--<a href='{url x="index" r="uc_depository_account#index"}' title="实名信息{if $user_info.cunguan_tag eq 1}存管账户已开通{else}未开通存管账户{/if}">-->
+        	<!--<i class="iconfont {if $user_info.cunguan_tag eq 1}complete{/if}">&#57354;</i>-->
+        <!--</a>-->
+       
+        <!--<a href='{url x="index" r="uc_account#security"}' title="邮箱{if $user_info.emailpassed eq 1}已认证{else}未认证{/if}">
+        	<i class="iconfont {if $user_info.emailpassed eq 1}complete{/if}">&#57356;</i>
+        </a>-->
+        <!-- 企业账户屏蔽 -->
+	    {if $user_info.user_type neq 1}
+	        {if $user_info.cunguan_pwd eq 1}
+	        <a href='{url x="index" r="uc_account#security"}' title="存管交易密码已设置">
+	            <i class="iconfont complete">&#57357;</i>
+	        </a>
+	        {elseif $user_info.cunguan_tag eq 1 and $user_info.cunguan_pwd eq 0}
+	        <a href='{url x="index" r="uc_depository_paypassword#pc_setpaypassword"}' title="存管交易密码未设置">
+	            <i class="iconfont ">&#57357;</i>
+	        </a>
+	        {elseif $user_info.cunguan_tag eq 0}
+	        <a href='{url x="index" r="uc_depository_account#index"}' title="存管交易密码未设置">
+	            <i class="iconfont ">&#57357;</i>
+	        </a>
+	        {/if}
+        {/if}
+        <!--<a href='{url x="index" r="uc_depository_paypassword#setpaypassword"}' title="交易密码{if $user_info.cunguan_pwd neq ''}存管交易密码已设置{else}存管交易密码未设置{/if}">-->
+			<!--<i class="iconfont {if $user_info.paypassword neq ''}complete{/if}">&#57357;</i>-->
+        <!--</a>-->
+	</div>
+	<div class="blank20"></div>
+	<div class="blank20"></div>
+</div>
+
+
+<div class="left_menu_box">
+	<div class="level">
+		<h4>
+			<i class="iconfont ico">&#57359;</i>
+			<span>账户管理</span>
+			<i class="iconfont arrow fr">&#57352;</i>
+		</h4>
+		<ul class="menu" style="display:none">
+			<li class="{if $MODULE_NAME eq 'uc_center'}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_center"}" title="账户总览">账户总览</a></li>
+			<li class="{if $MODULE_NAME eq 'uc_account' || $ACTION_NAME eq 'credit'}act{/if}" > <a class="uc_cate" href="{url x="index" r="uc_account#security"}" title="{$LANG.UC_SECURITY}">{$LANG.UC_SECURITY}</a></li>
+            <li class="{if $MODULE_NAME eq 'uc_money' && $ACTION_NAME == "bank" || $MODULE_NAME eq 'uc_depository_addbank' && $ACTION_NAME == "addbank_index_one"}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_money#bank"}" title="银行卡管理">银行卡管理</a></li> 
+		</ul>
+	</div>
+	<div class="level">
+		<h4>
+			<i class="iconfont ico">&#57360;</i>
+			<span>资金管理</span>
+			<i class="iconfont arrow fr">&#57352;</i>
+		</h4>
+		<ul class="menu" style="display:none">
+			<li class="{if $MODULE_NAME eq 'uc_money' && ($ACTION_NAME == "incharge" || $ACTION_NAME == "incharge_log")}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_money#incharge"}" title="充值">充值</a></li>
+			<li class="{if $MODULE_NAME eq 'uc_money' && ($ACTION_NAME == "carry" || $ACTION_NAME == "carry_log")}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_money#carry"}" title="提现">提现</a></li>
+			<li class="last {if $MODULE_NAME eq 'uc_money' && $ACTION_NAME == "index"}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_money"}" title="资金明细">资金明细</a></li>
+		</ul>
+	</div>
+    {if (int)app_conf("PEIZI_OPEN") eq 1}
+    <div class="level">
+		<h4>
+			<i class="iconfont ico">&#57361;</i>
+			<span>我的配资</span>
+			<i class="iconfont arrow fr">&#57352;</i>
+		</h4>
+		<ul class="menu" style="display:none">
+        	<li class="{if $MODULE_NAME eq 'uc_trader' && ($ACTION_NAME == "verify" || $ACTION_NAME == "verify_detail")}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#verify"}" title="审核中的操盘">审核中的操盘</a></li>
+			<li class="{if $MODULE_NAME eq 'uc_trader' && ($ACTION_NAME == "index" || $ACTION_NAME == "detail")}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#index"}" title="正在操盘">正在操盘</a></li>
+			<li class="{if $MODULE_NAME eq 'uc_trader' && ($ACTION_NAME == "history_trader" || $ACTION_NAME == "history_detail")}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#history_trader"}" title="历史操盘">历史操盘</a></li>
+		</ul>
+	</div>
+    <div class="level">
+		<h4>
+			<i class="iconfont ico">&#57362;</i>
+			<span>配资出借</span>
+			<i class="iconfont arrow fr">&#57352;</i>
+		</h4>
+		<ul class="menu" style="display:none">
+        	<li class="{if $MODULE_NAME eq 'uc_trader' && ($ACTION_NAME == "wait_investment"||$ACTION_NAME == "peizi_wait_invest_detail")}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#wait_investment"}" title="待出借列表">待出借列表</a></li>
+        	<li class="{if $MODULE_NAME eq 'uc_trader' && ($ACTION_NAME == "investment"||$ACTION_NAME == "peizi_invest_detail")}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#investment"}" title="出借单列表">出借单列表</a></li>
+			<li class="{if $MODULE_NAME eq 'uc_trader' && $ACTION_NAME == "investment_change" }act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#investment_change"}" title="配资单变更审核">配资单变更审核</a></li>
+            <li class="{if $MODULE_NAME eq 'uc_trader' && $ACTION_NAME == "investment_change_log" }act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#investment_change_log"}" title="变更审核记录">变更审核记录</a></li>
+        </ul>
+	</div>
+	<div class="level">
+		<h4>
+			<i class="iconfont ico">&#57359;</i>
+			<span>配资推广</span>
+			<i class="iconfont arrow fr">&#57352;</i>
+		</h4>
+		<ul class="menu" style="display:none">
+        	<li class="{if $MODULE_NAME eq 'uc_trader' && $ACTION_NAME == "invest_money"}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#invest_money"}" title="出借金额返利">出借金额返利</a></li>
+			<li class="{if $MODULE_NAME eq 'uc_trader' && $ACTION_NAME == "invest_fee_money"}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#invest_fee_money"}" title="利息与佣金收益返利">利息与佣金收益返利</a></li>
+            <li class="{if $MODULE_NAME eq 'uc_trader' && $ACTION_NAME == "invite_borrow_money"}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#invite_borrow_money"}" title="借款金额返利">借款金额返利</a></li>
+			<li class="{if $MODULE_NAME eq 'uc_trader' && $ACTION_NAME == "borrow_interest_money"}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#borrow_interest_money"}" title="平台利息收益返利">平台利息收益返利</a></li>
+			<li class="{if $MODULE_NAME eq 'uc_trader' && $ACTION_NAME == "borrow_commission_money"}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_trader#borrow_commission_money"}" title="平台佣金收益返利">平台佣金收益返利</a></li>
+        </ul>
+	</div>
+    {/if}
+	<div class="level">
+		<h4>
+			<i class="iconfont ico">&#57361;</i>
+			<span>出借管理</span>
+			<i class="iconfont arrow fr">&#57352;</i>
+		</h4>
+		<ul class="menu" style="display:none">
+			<li class="last {if $MODULE_NAME eq 'uc_invest'}act{/if}" > <a class="uc_cate" href="{url x="index" r="uc_invest#invite"}" title="{$LANG.UC_INVEST}">{$LANG.UC_INVEST}</a></li>
+			<!--<li class="{if $MODULE_NAME eq 'uc_earnings'}act{/if}" > <a class="uc_cate"  href="{url x="index" r="uc_earnings"}" title="{$LANG.UC_EARNINGS}">{$LANG.UC_EARNINGS}</a></li>-->
+			<li class="{if $MODULE_NAME eq 'uc_autoinvest'}act{/if}" > <a class="uc_cate" href="{url x="index" r="uc_autoinvest#index"}" title="自动投标">自动投标</a></li>
+		</ul>
+	</div>
+	
+	<div class="level">
+		<h4>
+			<i class="iconfont ico">&#57364;</i>
+			<span>借款管理</span>
+			<i class="iconfont arrow fr">&#57352;</i>
+		</h4>
+		<ul class="menu" style="display:none">
+			<li class="{if $MODULE_NAME eq 'uc_deal'}act{/if}" > <a class="uc_cate" href="{url x="index" r="uc_deal#borrowed"}" title="我的借款">我的借款</a></li>
+		</ul>
+	</div>
+	
+	<div class="level">
+		<h4>
+			<i class="iconfont ico">&#57362;</i>
+			<span>我的福利</span>
+			<i class="iconfont arrow fr">&#57352;</i>
+		</h4>
+		<ul class="menu" style="display:none">
+			<li class="{if $MODULE_NAME eq 'uc_bonus' }act{/if}" > <a class="uc_cate" href="{url x="index" r="uc_bonus" p="red_type=1"}" title="{$LANG.UC_VOUCHER}">{$LANG.UC_VOUCHER}</a></li>
+			<!--<li class="{if $MODULE_NAME eq 'uc_voucher'}act{/if}" > <a class="uc_cate" href="{url x="index" r="uc_voucher"}" title="代金券">代金券</a></li>-->
+			<li class="{if $MODULE_NAME eq 'uc_coupon'}act{/if}" > <a class="uc_cate" href="{url x="index" r="uc_coupon"}" title="加息卡">加息卡</a></li>
+			<li class="{if $MODULE_NAME eq 'uc_learn' && ($ACTION_NAME == "index" || $ACTION_NAME == "index")}act{/if}" ><a class="uc_cate" href="{url x="index" r="uc_learn#index"}" title="体验金">体验金</a></li>
+		</ul>
+	</div>
+	
+	{if app_conf("INVITE_REFERRALS") eq 1}
+	<div class="level">
+		<h4>
+			<i class="iconfont ico">&#57363;</i>
+			<span>好友邀请</span>
+			<i class="iconfont arrow fr">&#57352;</i>
+		</h4>
+		<ul class="menu" style="display:none">
+			<li class="{if $MODULE_NAME eq 'uc_invite' && ($ACTION_NAME == "index" || $ACTION_NAME == "reward")}act{/if}" > <a class="uc_cate" href="{url x="index" r="uc_invite"}" title="我的邀请">我的邀请</a></li>
+			<li class="last {if $MODULE_NAME eq 'uc_invite' && $ACTION_NAME == "fillin"}act{/if}" > <a class="uc_cate" href="{url x="index" r="uc_invite#fillin"}" title="补填邀请码">补填邀请码</a></li>
+		</ul>
+	</div>
+	{/if}
+	<!-- <div class="level">
+		<h4>
+			<i class="iconfont ico">&#57396;</i>
+			<span>消息通知</span>
+			<i class="iconfont arrow fr">&#57352;</i>
+		</h4>
+		<ul class="menu" style="display:none">
+			<li class="last {if $MODULE_NAME eq 'uc_msg' &&$ACTION_NAME neq 'setting'}act{/if}" > <a class="uc_cate" href="{url x="index" r="uc_msg"}" title="我的消息">我的消息</a></li>
+			<li class="last {if $MODULE_NAME eq 'uc_msg' &&$ACTION_NAME eq 'setting'}act{/if}" > <a class="uc_cate" href="{url x="index" r="uc_msg#setting"}" title="{$LANG.UC_MSG_SETTING}">{$LANG.UC_MSG_SETTING}</a></li>	
+		</ul>
+	</div> -->
+</div>

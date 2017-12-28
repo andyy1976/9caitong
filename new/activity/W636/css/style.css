@@ -1,0 +1,153 @@
+.trip-wrap {
+  background: #0c2230;
+  overflow: hidden;
+}
+.trip-wrap img {
+  width: 100%;
+}
+.banner {
+  z-index: 1;
+  position: relative;
+}
+.content {
+  width: 14rem;
+  margin: -5.1rem auto 1.72rem;
+  padding-bottom: 0.88rem;
+  background: rgba(16, 95, 143, 0.8);
+  z-index: 2;
+  position: relative;
+  overflow: hidden;
+}
+.content h3 {
+  font-size: 0.4rem;
+  color: #44d1ff;
+  line-height: 0.96rem;
+  text-align: center;
+}
+.title {
+  margin-top: 0.44rem;
+}
+.redbag-list {
+  width: 13.16rem;
+  margin: 0 auto;
+}
+.redbag-list li {
+  width: 13.16rem;
+  height: 4rem;
+  float: left;
+  margin-top: 0.52rem;
+  background: url(/new/activity/W636/images/redbag_bg.png) no-repeat;
+  background-size: 100% 100%;
+}
+.redbag-list li p:first-child {
+  width: 4.04rem;
+  height: 3.1rem;
+  float: left;
+  margin: 0.4rem;
+  text-align: center;
+}
+.redbag-list li p:first-child span {
+  display: block;
+  line-height: 0.8rem;
+  color: #ffee8d;
+  font-size: 0.52rem;
+}
+.redbag-list li p:first-child span:first-child {
+  line-height: 1.2rem;
+  font-size: 1rem;
+  margin-top: 0.6rem;
+}
+.redbag-list li p:first-child span:first-child b {
+  font-size: 0.68rem;
+}
+.redbag-list li p:last-child {
+  width: 8.08rem;
+  height: 3.1rem;
+  float: left;
+  margin-top: 0.4rem;
+  text-align: center;
+}
+.redbag-list li p:last-child span {
+  display: block;
+  font-size: 0.48rem;
+  color: #fff;
+  line-height: 0.88rem;
+}
+.redbag-list li p:last-child span:first-child {
+  margin-top: 0.72rem;
+}
+.redbag-list-2 li p:last-child span {
+  display: block;
+  font-size: 0.48rem;
+  color: #fff;
+  line-height: 1.28rem;
+}
+.redbag-list-2 li p:last-child span b {
+  width: 2.32rem;
+  height: 1.28rem;
+  float: left;
+}
+.redbag-list-2 li p:last-child span b:first-child {
+  width: 2rem;
+  margin-left: 0.16rem;
+}
+.redbag-list-2 li p:last-child span b:nth-of-type(2) {
+  width: 3.24rem;
+  line-height: 0.64rem;
+}
+.redbag-list-2 li p:last-child span:first-child {
+  margin-top: 1rem;
+}
+.redbag-list-2 li:last-child p:last-child span b {
+  width: 2.4rem;
+  line-height: 1.28rem;
+}
+.redbag-list-2 li:last-child p:last-child span b:first-child {
+  width: 4rem;
+  line-height: 0.64rem;
+  margin-left: 0.8rem;
+}
+.rule-list {
+  width: 12rem;
+  margin: 0.4rem auto 0;
+}
+.rule-list dl {
+  font-size: 0.4rem;
+  color: #fff;
+  line-height: 0.68rem;
+  overflow: hidden;
+}
+.rule-list dl dt {
+  width: 0.56rem;
+  float: left;
+}
+.rule-list dl dd {
+  width: 11.44rem;
+  float: left;
+}
+.rule-list dl.example {
+  color: #90d5ff;
+}
+.rule-list dl.example dt {
+  width: 0.4rem;
+  height: 0.6rem;
+  background: url(/new/activity/W636/images/icon_dot.png) no-repeat left;
+  background-size: 0.14rem 0.14rem;
+  margin-left: 0.16rem;
+}
+.video {
+  width: 80%;
+  line-height: 1.68rem;
+  display: block;
+  margin: 1.24rem auto 1.68rem;
+  border: 0.02rem solid #fef5ac;
+  border-radius: 0.24rem;
+  font-size: 0.48rem;
+  color: #fef5ac;
+  text-align: center;
+}
+.video span {
+  background: url(/new/activity/W636/images/icon_arrow.png) no-repeat right;
+  background-size: 0.72rem 0.24rem;
+  padding-right: 1.12rem;
+}

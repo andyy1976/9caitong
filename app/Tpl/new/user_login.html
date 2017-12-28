@@ -1,0 +1,52 @@
+{include file="inc/nheader.html"}
+<div class="wrapper">
+	<div class="wrap_page_login">
+		<div class="blank50"></div>
+		<div class="center">
+			<form method="post" ajax_url="{url x="index" r="user#dologin"}" id="page_login_form" class="page_userForm_box fr">
+				<p>没有账号？<a href="{url x="index" r="user#register"}">立即注册</a></p>
+				<ul>
+					<li>
+						<input type="text" value="" id="user_name" class="ipttxt w100b input_onfocus_shadow" placeholder="请输入手机号"  maxlength="11" tabindex="1" />
+					</li>
+					<li>
+						<input type="password" value="" id="login_pwd" class="ipttxt w100b input_onfocus_shadow" placeholder="请输入密码" maxlength="16" tabindex="2" />
+					</li>
+					{if app_conf("VERIFY_IMAGE") eq 1}
+					<li>
+						<input type="text" value="" id="Verifycode" class="ipttxt w200 fl input_onfocus_shadow" placeholder="请输入图形验证码" maxlength="4" tabindex="3" />
+						<img class="fr" maxlength="4" style="margin-top:0" src="{$APP_ROOT}/verify.php?w=89&h=44" onclick="this.src='{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img" title="看不清楚？换一张" />	
+						<div class="clear"></div>
+					</li>
+					{/if}
+					<li>
+						<label>
+							<input type="checkbox" id="autologin" name="auto_login" value="0" tabindex="4" >
+							{$LANG.AUTO_LOGIN}							
+						</label>
+						<a href="{url x="index" r="user#getpassword"}" class="link fr">{$LANG.FORGET_PASSWORD}</a>
+					</li>
+					<li>
+						{if app_conf("VERIFY_IMAGE") eq 1}
+						<input type="hidden" id="isVerifycode" value="1">
+						{/if}
+						<input type="hidden" name="LOGIN_KEY" id="LOGIN_KEY" value="{insert name="get_login_key"}">
+						<input type="button" class="submit_form w100b" id="login_submit" value="{$LANG.LOGIN}" tabindex="5">
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
+</div>
+{include file="/inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160828' ]]
+			});
+			seajs.use(["/new/js/page/page_login"])
+		</script>
+	</body>
+</html>

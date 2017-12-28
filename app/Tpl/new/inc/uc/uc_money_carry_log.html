@@ -1,0 +1,53 @@
+<div class="user_top_title bgfb">
+	<a href="{url x="index" value="uc_money#carry"}">账户提现</a>
+	<a class="current">提现记录</a>
+</div>
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<div class="sl_wrap">
+			<div class="sl_key">资金账户：</div>
+			<div class="sl_value">
+				<ul>
+					<li><a href="{url x="index" r="uc_money#carry_log&invest_type=2"}" <?php if($_GET['invest_type'] ==2 ) echo "class='cur'";?>>存管账户</a></li>
+					<li><a href="{url x="index" r="uc_money#carry_log&invest_type=1"}" <?php if($_GET['invest_type'] ==1 ) echo "class='cur'";?>>普通账户</a></li>
+				</ul>
+			</div>
+		</div>
+		<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="uc_table_list">
+			<tr border="0">
+				<th style="width:20%">提现时间</th>
+				<th style="width:15%">提现金额(元)</th>
+				<th style="width:15%">手续费(元)</th>
+				<th style="width:20%">到账银行</th>
+				<th style="width:10%">状态</th>
+				<th style="width:20%">说明</th>
+			</tr>
+			{foreach from=$pc_list item=vo key=key}
+			<tr class="{if $key mod 2 eq 1}bgf7{/if}">
+				<td>
+					{$vo.create_time}
+				</td>
+				<td>
+                    {function name="format_price" value=$vo.money}
+				</td>
+				<td>
+					{function name="format_price" value=$vo.fee}
+				</td>
+
+				{if !$vo.bank_card}
+					<td class="tc">{$vo.corpacc}</td>
+				{else}
+					<td class="tc">{$vo.bank_name}{$vo.bank_card}</td>
+				{/if}
+				<td>
+					{$vo.status_format}
+				</td>
+				<td>{if $vo.status eq 2}{$vo.msg}{else}--{/if}</td>
+
+			</tr>
+			{/foreach}
+		</table>
+		<div class="pages">{$pages}</div>
+	</div>
+</div>

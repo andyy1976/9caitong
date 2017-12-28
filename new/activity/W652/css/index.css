@@ -1,0 +1,52 @@
+.top {
+  height: 9.24rem;
+  width: 100%;
+  background: url(../images/top_01.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.top_1 {
+  height: 4.28rem;
+  width: 100%;
+  background: url(../images/top2_02.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.table_1 {
+  height: 8.96rem;
+  width: 100%;
+  background: url(../images/table_bg_03.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.foot_1 {
+  height: 9.28rem;
+  width: 100%;
+  background: url(../images/newfoot_04.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.table_1l {
+  width: 13.76rem;
+  height: 8.96rem;
+  margin: 0 auto;
+}
+tr {
+  height: 1.5rem;
+  color: #c1955b;
+  font-size: 0.48rem;
+}
+td {
+  text-align: center;
+}
+.tab_a {
+  width: 1.6rem;
+}
+.tab_b {
+  width: 4rem;
+}
+.tab_c {
+  width: 3.8rem;
+}
+.tab_d {
+  width: 4.36rem;
+}
+.tab_tr1 {
+  height: 1.4rem;
+}

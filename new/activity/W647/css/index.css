@@ -1,0 +1,156 @@
+img {
+  height: 100%;
+  width: 100%;
+}
+.phimg {
+  height: 13rem;
+  width: 6.4rem;
+}
+.top {
+  width: 100%;
+  height: 7.1rem;
+  background: url(../images/top_01.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.imp {
+  height: :100px;
+  width: :100%;
+}
+.imp p {
+  padding: 0.68rem 1.2rem;
+}
+.imp p img {
+  width: 12.52rem;
+  height: 0.6rem;
+}
+.exca {
+  width: 100%;
+  height: 1.68rem;
+  background: url(../images/bg_03.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.count {
+  width: 100%;
+  background: #fddec6;
+}
+.red_wars {
+  width: 15rem;
+  height: 11.52rem;
+  margin: 0 auto;
+}
+.red_wars div {
+  width: 7.5rem;
+  float: left;
+}
+.qredp {
+  width: 4.8rem;
+  height: 0.5rem;
+  margin-left: 1.6rem;
+  margin-top: 0.72rem;
+}
+.noredp {
+  width: 5.8rem;
+  height: 1.2rem;
+  margin-left: 0.8rem;
+  margin-top: 0.5rem;
+}
+.qred {
+  width: 4.76rem;
+  height: 4.72rem;
+  margin-left: 1.28rem;
+}
+.nored {
+  width: 4.92rem;
+  height: 4.72rem;
+  margin-left: 0.4rem;
+}
+.btn {
+  width: 8.76rem;
+  height: 2.3rem;
+  margin: 1.2rem 21%;
+  border: none;
+}
+.monnow {
+  width: 100%;
+  height: 16.18rem;
+  margin: 0 auto;
+}
+.tittwo {
+  width: 10.48rem;
+  height: 0.6rem;
+  margin-left: 2.28rem;
+}
+.poemoney {
+  margin-left: 0.84rem;
+}
+.money {
+  width: 6.1rem;
+  height: 0.72rem;
+  margin-left: 0.94rem;
+  margin-top: 0.24rem;
+}
+.potwo {
+  width: 5.72rem;
+  height: 0.6rem;
+}
+.pothr {
+  width: 6.44rem;
+  height: 0.66rem;
+}
+.monnow div {
+  float: left;
+  margin-top: 0.8rem;
+}
+.phone2 {
+  margin-left: 0.68rem;
+}
+.phone3 {
+  margin-left: 0.76rem;
+}
+.monnow2 div {
+  float: left;
+  margin-top: 0.72rem;
+}
+.monnow2two div {
+  float: left;
+  margin-top: 1.04rem;
+}
+.monnow2 {
+  width: 100%;
+  height: 15.4rem;
+  margin: 0 auto;
+}
+.monnow2two {
+  height: 16.26rem;
+}
+.monnow3 {
+  width: 100%;
+  height: 6.4rem;
+}
+.monnow3 p {
+  text-align: center;
+}
+.er {
+  width: 8.76rem;
+  height: 2.06rem;
+  line-height: 1.96rem;
+  background: #ed3737;
+  border-radius: 0.4rem;
+  margin-top: 1.06rem;
+  font-size: 0.96rem;
+  color: #fff;
+  box-shadow: 0 0.1rem 0 #b74f47;
+  margin-left: 3.2rem;
+}
+.er a{color:#FFF}
+.app {
+  height: 0.54rem;
+  width: 7.2rem;
+  margin-left: 3.84rem;
+}
+.xia {
+  margin-top: 0.32rem;
+  height: 0.4rem;
+  width: 4.06rem;
+  margin-left: 5.48rem;
+}

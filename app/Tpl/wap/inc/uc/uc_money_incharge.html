@@ -1,0 +1,159 @@
+<body>
+    <section class="container cf">
+    <?php if(!es_session::get('MachineInfo')) {?>
+        <div class="header"><a onclick="{$jump.GoBack}()" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>充值<a href="{url x="index" r="uc_ips#recharge"}" class="my-re-record">充值记录</a></div>
+        <!-- 充值 -->
+    <?php } ?>
+    <?php if(es_session::get('MachineInfo')) {?>
+        <div class="header" style="padding-top: 18px; width: 100%; position: fixed; top: 0;"><a onclick="{$jump.GoBack}()" class="back-icon" ><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18" style="margin-top: 18px;padding-left: 10px"></a>充值<a onclick="{$jump.RechargeRecord}()" style="padding-top: 15px;" class="my-re-record">充值记录</a></div>
+        <div style="width: 100%; height: 56px;"></div>
+    <?php } ?>
+        <div class="my-re-ban">
+            <p>可用余额（元）</p>
+            <p>{function name="format_price" value=$curesult}</p>
+        </div>
+        <div class="my-re-box">
+            <form name="incharge_form" id="incharge_form" action="{url x="index" r="uc_money#incharge_wap_done"}" method="post" />  
+                <div class="my-res-bank"><a><img src="{$bank.icon}" width="30" height="30">
+                    <ul><li>{$bank.name}</li><li>尾号{$bank.sub_card}</li></ul></a></div>
+                <p class="my-re-bank" id="my_show"><span>单笔：{$bank.cg_single_quota}</span><span>单日：{$bank.cg_day_limit}</span></p>
+                <p class="my-re-bank" id="you_show" style="display: none"><span>单笔：{$bank.cg_single_quota}</span><span>单日：{$bank.cg_day_limit}</span></p>
+                <p class="my-re-input"><span>充值方式</span>
+                <select id="payment_type" name="payment_type">
+                  <!--  <option value="24">宝付支付</option>
+                    <option value="29">连连支付</option>  -->
+                    <option value="39">银行充值</option> 
+                   <!--  <option value="36">汇元认证</option>         -->                
+                </select>
+                </p>
+                <p class="my-re-input"><span>充值金额</span><input type="tel" id="money" name="money" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="8"  placeholder="请输入充值金额"  maxlength="9"><b>元</b></p>
+                <!--  <p class="my-re-input"><span>充值金额</span><input type="text" id="money" name="money" onkeyup= "if( ! /^-?\d+\.?\d{0,2}$/.test(this.value)){ var s = this.value;this.value=s.substring(0,s.length-1);}" maxlength="11"  placeholder="请输入充值金额"  maxlength="9"><b>元</b></p> -->
+                 <input type="hidden" class="switch" value="{$aaaaa}"/>
+                <p class="my-bank-protocol"><input type="checkbox"  name="agreement" value="0" tabindex="4" checked="checked" />同意玖财通<a href="{url x="index" r="agreement#payment"}"><span>《移动支付协议》</span></a></p>
+                <a href="javascript:;" class="my-btn my-btn-gray">充值</a>
+            </form>
+            <p class="my-re-bank" style="float: left"><a href="{url x="index" r="uc_money#inbank"}"><img src="{$TMPL}/images/wap2/my/icon_bank.png" width="18.5" height="13.5">支持银行及限额</a></p>
+            <p class="my-re-explain"><a onclick="publicPop();">充值说明</a></p>
+            <!-- <dl class="my-re-tip">
+                <dt>说明：</dt>
+               {$recharger_explain}
+            </dl> -->
+        </div>
+        <!-- 使用说明、规则等遮罩层共用结构  -->
+        <div class="public-pop">
+            <div class="public-pop-title">充值说明 </div>
+            <div class="public-pop-box">{$recharger_explain}</div>
+            <div class="public-pop-close"><img src="{$TMPL}/images/wap2/my/chahao.png" width="19" height="19"></div>
+        </div>
+        <div id="kfc"></div>
+        <script type="text/javascript">
+
+            //使用说明、规则等遮罩层（内容多时可滚动并隐藏滚动条）
+            function publicPop(){
+                $('.public-pop').show();
+                $(document).on("touchmove",function(ev){ //阻止页面滑动事件的默认行为，不阻止遮罩层中的滑动事件的默认行为
+                    var e = ev || event;
+                    var target = e.target || e.srcElement;
+                    if( target.className.indexOf("public-pop") >= 0) {
+                        e.preventDefault();
+                    }
+                });
+                if(window.addEventListener){
+                    simpScroller(document.querySelector(".public-pop-box"), {
+                        hideScrollBar: true
+                    });
+                }
+                $('.public-pop-close').click(function(){    
+                    $('.public-pop').hide();
+                });
+            }
+            function jumpToGoBack(){
+                window.location.href = "{$jumpUrl}";
+                
+            }
+            function jumpToRechargeRecord(){
+                 window.location.href = "{url x="index" r="uc_ips#recharge"}";
+            }
+            //iOS 访问
+            function iosJumpToGoBack(){
+                window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToGoBack"}); //跳转到上个页面
+            }
+            function iosJumpToRechargeRecord(){
+                window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToRechargeRecord"}); //跳转到充值记录
+            }
+            //Android访问
+            function androidJumpToGoBack(){
+                 window.jiucaitong.FromH5ToJump("jumpToGoBack","");  //跳转到上个页面
+            }
+            function androidJumpToRechargeRecord(){
+                 window.jiucaitong.FromH5ToJump("jumpToRechargeRecord","");  //跳转到充值记录
+            }
+            //充值说明
+            function reChargerExplain(){
+                layer.open({
+                    className: 'popup-tip',
+                    content: '<h3>充值说明</h3><div class="see-rule-box">{$recharger_explain}</div>',
+                    btn: '确认'
+                });
+            }
+            $("#money").keyup(function(){
+                if($('#money').val() != ""){
+                     $(".my-btn").css('background','#4b6bde');
+                }else{
+                     $(".my-btn").css('background','#aaa');
+                }                
+            });
+            $(document).ready(function(){
+                $("#payment_type").bind("change",function(){
+                    if($("#payment_type").val() == "29"){
+                        $("#you_show").show();
+                        $("#my_show").hide();
+                    }else{
+                        $("#you_show").hide();
+                        $("#my_show").show();
+                    }
+                });
+                if($("#money").val().length != 0){
+                    $(".my-btn").css('background','#4b6bde');
+                }
+                $(".my-btn").click(function(){
+                    var s = $(".switch").val();
+                    if(s){
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>系统正在升级，请稍后再试</p>',
+                            shadeClose: true,
+                            time:2,
+                        });
+                        return false;
+                    }
+                    if($("input[type='checkbox']").is(':checked') == false){
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>请同意移动支付协议！</p>',
+                            shadeClose: true,
+                            time:2,
+                        });
+                        return false;
+                    }
+                    if(!($("#money").val()!='' && !isNaN($("#money").val())&&$("#money").val()>0))           
+                    {
+                        /*layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>{$LANG.PLEASE_INPUT_CORRECT_INCHARGE}</p>',
+                            shadeClose: true,
+                            time:2,
+                            end:function() {
+                                $("#money").focus();
+                            }
+                        });*/
+                        return false;
+                    }else{
+                       window.location.href = APP_ROOT+"/index.php?ctl=payment&act=DoDpTrade&user_type=0&user_id={$user_info.id}"+"&pTrdAmt="+$("input[name='money']").val()+"&incharge_channel="+$("#payment_type").val();
+                    }
+                });
+            });
+        </script>
+    </section>
+</body>
+</html>

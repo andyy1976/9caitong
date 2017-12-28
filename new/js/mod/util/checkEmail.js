@@ -1,0 +1,1 @@
+define("new/js/mod/util/checkEmail",[],function(e,n){n.checkEmail=function(e){var n=/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;return n.test(e)}});

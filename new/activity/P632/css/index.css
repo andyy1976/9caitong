@@ -1,0 +1,143 @@
+/*共用部分*/
+*{
+    padding: 0;
+    margin: 0;
+    font-family: arial,"微软雅黑";
+    font-weight: normal;
+}
+.explain ul li{
+    list-style: none;
+    font-size: 20px;
+}
+/*banner样式*/
+.banner{
+    width: 100%;
+    height: 843px;
+    margin: 0 auto;
+    background: url(../images/banner.jpg) no-repeat 0 0;
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+.banner img{
+    display: block;
+    margin: 195px auto 0;
+}
+.time{
+    width: 532px;
+    height: 63px;
+    background: #fff601;
+    color: #da382d;
+    font-size: 40px;
+    text-align: center;
+    line-height: 63px;
+    margin: 10px auto;
+}
+/*介绍样式*/
+.present{
+    width: 100%;
+    height: 398px;
+    background: #da382d;
+    overflow: hidden;
+}
+.present img{
+    width: 1060px;
+    display: block;
+    margin: 36px auto;
+}
+hr{
+    width: 1221px;
+    height: 1px;
+    background: #ef9b8e;
+    margin: 16px auto;
+    border-top:none;
+}
+.presentmin{
+    width: 1060px;
+    margin: 0 auto;
+    color: #fff;
+    line-height: 46px;
+    font-size: 28px;
+}
+.content{
+    width: 100%;
+    height: 1976px;
+    background: #fee6a0;
+    overflow: hidden;
+}
+/*表格*/
+.table{
+    width: 1326px;
+    height: 480px;
+    margin: 30px auto;
+    font-size: 20px;
+    text-align: center;
+    border-collapse:collapse;
+}
+.table td, .table th{
+    border: 1px solid #f14f4a;
+}
+.table th{
+    width: 286px;
+    height: 86px;
+    padding-top:5px;
+    background:#f14f4a;
+    color:#ffffff;
+}
+.table .border-r{
+    border-right:1px solid #fee6a0; 
+}
+.table td{
+    background: #faeecd;
+    height: 86px;
+}
+.table .td-float{
+    display: block;
+    text-align: left;
+    margin: 0 30px;
+    line-height: 36px;
+}
+/*例子样式*/
+.example{
+    width: 1326px;
+    height: 751px;
+    background: #f45e5f;
+    margin: 108px auto 0;
+    border-radius: 10px;
+}
+.example-top{
+    margin-top: -82px;
+}
+.examplemin{
+    width: 1160px;
+    margin: 0 auto;
+    font-size: 22px;
+    color: #fff;
+    line-height: 46px;
+}
+.examplemin img{
+    width: 200px;
+    display: block;
+    margin: 10px auto;
+}
+.colors{
+    color: #fff60d;
+}
+.colors span{
+    font-size: 30px;
+}
+/*活动说明样式*/
+.explain{
+    width: 1326px;
+    height: 506px;
+    background: #f9d889;
+    margin: 78px auto 0;
+    border-radius: 10px;
+}
+.explain-top{
+    margin-top: -36px;
+}
+.explain ul{
+    width: 1160px;
+    margin: 40px auto;
+    line-height: 46px;
+}

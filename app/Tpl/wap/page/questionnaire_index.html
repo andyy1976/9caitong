@@ -1,0 +1,465 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link rel="stylesheet" href="{$TMPL}/css/riskassessment/reset.css?v=1" />
+<link rel="stylesheet" href="{$TMPL}/css/riskassessment/toup.css?v=4" />
+<link rel="stylesheet" href="{$TMPL}/js/riskassessment/swiper.min.css?v=1">
+<script src="{$TMPL}/js/riskassessment/jquery-1.11.3.js"></script>
+<script src="{$TMPL}/js/riskassessment/fontSize.js"></script>
+<title>风险评估</title>
+<style type="text/css">
+.header {
+    background: linear-gradient(to bottom, #575cde 0%, #4672de 100%);
+    color: #ffffff;
+    font-size: 0.4rem !important;
+    height: 0.8rem;
+    text-align: center;
+    line-height: 48px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9991;
+}
+.header .back-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0 4%;
+}
+.header span {
+    display: block;
+    font-size: 0.4rem;
+    text-align: center;
+    width: 100%;
+}
+.header a:link, .header a:visited, .header a:hover, .header a:active {
+    color: #fff;
+	text-decoration:none;
+}
+/* popup-btn */
+.layui-m-layer0 .popup-btn{ width: 68%; font-size: 1.5rem; border-radius: 8px;}
+.popup-btn .layui-m-layercont{ padding: 8px 26px 12px;}
+.popup-btn h3{ border: 0; padding: 0; height: 24px; line-height: 24px; font-weight: bold;}
+.popup-btn .layui-m-layerbtn{ height: 44px; line-height: 44px; background: none;}
+.popup-btn .layui-m-layerbtn span{ font-size: 15px;}
+.popup-btn h4{ color: #ff532b; font-size: 18px; line-height: 22px; font-weight: bold;}
+.popup-btn p{ font-size: 15px;}
+
+</style>
+<script type="text/javascript" src="{$TMPL}/js/layer/layer.js" ></script>
+<style>
+.layui-m-layer0 .layui-m-layerchild{ width:70%;}
+</style>
+</head>
+<body> <!--<a href="/Front/Usercenter/myAccount" -->
+<?php if(!es_session::get('MachineInfo')) {?>
+   <div class="header"><a href="{url x="member" r="uc_account"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>风险评估</div>
+<?php } ?>
+	<div style="width:100%; height:0.8rem"> </div>
+
+	<section class="toup"  id="t1">
+		<img src="{$TMPL}/images/wap2/riskassessment/banner.png" style="width: 100%;" />
+		<div class="swipers">
+			<div class="con">
+				<ul>
+					<li><p>1、以下问题可在您出借前，协助评估您的风险承受能力，请根据实际情况填写。风险承受能力将划分为三个等级：保守型、稳健型、积极型。用户可根据评估结果选择适合自己的理财方案。</p></li>
+					<li><p>2、当您的有关情况发生重大改变时，应主动重新进行风险评估。</p></li>
+				</ul>
+			</div>
+			<a href="javascript:;" class="jion">开始评估</a>
+			<a href="javascript:;" class="skip" style="margin:0">跳过评估，我为稳健型</a>
+		</div>
+	</section>
+	<section class="toup" id="t2">
+	<div class="swipers">
+	<!-- 上下 -->
+	<div class="swiper-container swiper-no-swiping">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<div class="scores">
+					<h3>1、您的年龄？</h3>
+					<div class="choose">
+						<div class="input"><input type="radio" name="score1" id="1" value="1" /><label for="1">30岁以下</label></div>
+						<div class="input"><input type="radio" name="score1" id="2" value="2" /><label for="2">31-40岁</label></div>
+						<div class="input"><input type="radio" name="score1" id="3" value="3" /><label for="3">41-50岁</label></div>
+						<div class="input"><input type="radio" name="score1" id="4" value="4" /><label for="4">51-60岁</label></div>
+						<div class="input"><input type="radio" name="score1" id="5" value="5" /><label for="5">60以上</label></div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+					<div class="scores">
+						<h3>2、您的职业是什么？</h3>
+						<div class="choose">
+							<div class="input"><input type="radio" name="score2" id="6" value="1" /><label for="6">无固定职业</label></div>
+							<div class="input"><input type="radio" name="score2" id="7" value="2" /><label for="7">普通职员</label></div>
+							<div class="input"><input type="radio" name="score2" id="8" value="3" /><label for="8">专业技术人员</label></div>
+							<div class="input"><input type="radio" name="score2" id="9" value="4" /><label for="9">一般企事业单位的中高级管理人员</label></div>
+							<div class="input"><input type="radio" name="score2" id="10" value="5" /><label for="10">金融行业从业人员</label></div>
+						</div>
+					</div>
+				</div>
+			<div class="swiper-slide">
+				<div class="scores">
+					<h3>3、您的家庭可支配年收入是多少（人民币）？</h3>
+					<div class="choose">
+						<div class="input"><input type="radio" name="score3" id="11" value="1" /><label for="11">10万元以下 </label></div>
+						<div class="input"><input type="radio" name="score3" id="12" value="2" /><label for="12">10-20万元</label></div>
+						<div class="input"><input type="radio" name="score3" id="13" value="3" /><label for="13">20-50万元 </label></div>
+						<div class="input"><input type="radio" name="score3" id="14" value="4" /><label for="14">50-100万元</label></div>
+						<div class="input"><input type="radio" name="score3" id="15" value="5" /><label for="15">100万元以上</label></div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="scores">
+					<h3>4、在您每年的家庭可支配收入中，可用于金融出借（储蓄存款外）的比例为？</h3>
+					<div class="choose">
+						<div class="input"><input type="radio" name="score4" id="16" value="1" /><label for="16">10%以内</label></div>
+						<div class="input"><input type="radio" name="score4" id="17" value="2" /><label for="17">10%至20%</label></div>
+						<div class="input"><input type="radio" name="score4" id="18" value="3" /><label for="18">20%至30%</label></div>
+						<div class="input"><input type="radio" name="score4" id="19" value="4" /><label for="19">30%至50%</label></div>
+						<div class="input"><input type="radio" name="score4" id="20" value="5" /><label for="20">50%以上</label></div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="scores">
+					<h3>5、您出借的主要目的？</h3>
+					<div class="choose">
+						<div class="input"><input type="radio" name="score5" id="21" value="1" /><label for="21">补贴家用</label></div>
+						<div class="input"><input type="radio" name="score5" id="22" value="2" /><label for="22">养老</label></div>
+						<div class="input"><input type="radio" name="score5" id="23" value="3" /><label for="23">子女教育</label></div>
+						<div class="input"><input type="radio" name="score5" id="24" value="4" /><label for="24">资产增值</label></div>
+						<div class="input"><input type="radio" name="score5" id="25" value="5" /><label for="25">家庭富裕</label></div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="scores">
+					<h3>6、以下哪项描述最符合您的出借态度？</h3>
+					<div class="choose">
+						<div class="input"><input type="radio" name="score6" id="26" value="1" /><label for="26">厌恶风险，不希望本金损失，希望获得稳定回报。</label></div>
+						<div class="input"><input type="radio" name="score6" id="27" value="2" /><label for="27">保守出借，不希望损失本金，愿意承担一定风险</label></div>
+						<div class="input"><input type="radio" name="score6" id="28" value="3" /><label for="28">对风险的最大接受程度是收回全部本金</label></div>
+						<div class="input"><input type="radio" name="score6" id="29" value="4" /><label for="29">希望赚取高回报，并愿意为此承担较大的本金损失</label></div>
+						<div class="input"><input type="radio" name="score6" id="30" value="5" /><label for="30">可以承担一定风险，能承受50%以上的本金损失</label></div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="scores">
+					<h3>7、您的金融产品出借知识可描述为？</h3>
+					<div class="choose">
+						<div class="input"><input type="radio" name="score7" id="31" value="1" /><label for="31">完全不了解金融产品出借</label></div>
+						<div class="input"><input type="radio" name="score7" id="32" value="2" /><label for="32">仅对一种金融产品有粗略了解</label></div>
+						<div class="input"><input type="radio" name="score7" id="33" value="3" /><label for="33">有限：对几种常见的金融产品及相关风险有初步了解</label></div>
+						<div class="input"><input type="radio" name="score7" id="34" value="4" /><label for="34">了解：对金融产品及相关风险有所了解，但并不深入</label></div>
+						<div class="input"><input type="radio" name="score7" id="35" value="5" /><label for="35">丰富：对金融产品及相关风险有丰富的知识和理解。</label></div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="scores">
+					<h3>8、您的出借出现何种程度的波动时，您会呈现明显的焦虑？</h3>
+					<div class="choose">
+						<div class="input"><input type="radio" name="score8" id="36" value="1" /><label for="36">本金无损失，但收益未达到预期</label></div>
+						<div class="input"><input type="radio" name="score8" id="37" value="2" /><label for="37">出现轻微本金损失</label></div>
+						<div class="input"><input type="radio" name="score8" id="38" value="3" /><label for="38">本金10%以内的损失</label></div>
+						<div class="input"><input type="radio" name="score8" id="39" value="4" /><label for="39">本金20%-50%的损失</label></div>
+						<div class="input"><input type="radio" name="score8" id="40" value="5" /><label for="40">本金50%以上的损失</label></div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="scores">
+					<h3>9、您的出借经验可以描述为？</h3>
+					<div class="choose">
+						<div class="input"><input type="radio" name="score9" id="41" value="1" /><label for="41">除银行储蓄外，基本没有其他出借经验</label></div>
+						<div class="input"><input type="radio" name="score9" id="42" value="2" /><label for="42">购买过债权、保险等理财产品</label></div>
+						<div class="input"><input type="radio" name="score9" id="43" value="3" /><label for="43">参与过股票、基金等产品的交易</label></div>
+						<div class="input"><input type="radio" name="score9" id="44" value="4" /><label for="44">参与过权证、期货、期权等产品的交易</label></div>
+						<div class="input"><input type="radio" name="score9" id="45" value="5" /><label for="45">参与过私募、资管、信托等产品的交易</label></div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="scores">
+					<h3>10、您觉得下面哪个选项可以最好的描述您的出借目标？</h3>
+					<div class="choose">
+						<div class="input"><input type="radio" name="score10" id="46" value="1" /><label for="46">避免亏损</label></div>
+						<div class="input"><input type="radio" name="score10" id="47" value="2" /><label for="47">谨慎成长</label></div>
+						<div class="input"><input type="radio" name="score10" id="48" value="3" /><label for="48">稳健成长</label></div>
+						<div class="input"><input type="radio" name="score10" id="49" value="4" /><label for="49">显著成长</label></div>
+						<div class="input"><input type="radio" name="score10" id="50" value="5" /><label for="50">激进成长</label></div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="scores">
+					<h3>11、您认为自己能承受的最大出借损失是多少？</h3>
+					<div class="choose">
+						<div class="input"><input type="radio" name="score11" id="51" value="1" /><label for="51">本金不亏损</label></div>
+						<div class="input"><input type="radio" name="score11" id="52" value="2" /><label for="52">10%以内</label></div>
+						<div class="input"><input type="radio" name="score11" id="53" value="3" /><label for="53">10%-30%</label></div>
+						<div class="input"><input type="radio" name="score11" id="54" value="4" /><label for="54">30%-50%</label></div>
+						<div class="input"><input type="radio" name="score11" id="55" value="5" /><label for="55">超过50%</label></div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<div class="scores">
+					<h3>12、您可接受的出借的最长年限？</h3>
+					<div class="choose">
+						<div class="input"><input type="radio" name="score12" id="56" value="1" /><label for="56">半年以内</label></div>
+						<div class="input"><input type="radio" name="score12" id="57" value="2" /><label for="57">半年至1年</label></div>
+						<div class="input"><input type="radio" name="score12" id="58" value="3" /><label for="58">1年至3年</label></div>
+						<div class="input"><input type="radio" name="score12" id="59" value="4" /><label for="59">3年至5年</label></div>
+						<div class="input"><input type="radio" name="score12" id="60" value="5" /><label for="60">5年以上</label></div>
+					</div>
+					<a href="javascript:;" class="tijiao">提交</a>
+				</div>
+			</div>
+			<!--<div class="swiper-slide"></div>-->
+		</div>
+		<div class="preNexts">
+			<div class="swiper-button-prev">上一题</div>
+			<div class="statistic"><span id="current_problem">1</span>/<span class="total_problem"></span></div>
+		</div>
+	</div>
+	<!-- 上下end -->
+	</div>
+</section>
+
+    
+  <section class="toup" id="t3">
+		<!-- <div class="logo">
+			<img src="images/logo.png"/>
+		</div> -->
+		<div class="swipers">
+			<div class="con con1">
+				<h2></h2>
+				<div class="smile"><p></p></div>
+			</div>
+			{if $user_status eq 2}
+			<div style="font-size:12px;text-align: center;padding-top: 15px"><span>我们已将您评估为稳健型用户，您可以重新评估</span></div>
+			{/if}
+			<a class="again">重新评估</a>
+		</div>
+   </section>
+	
+<script src="{$TMPL}/js/riskassessment/swiper.min.js"></script>
+	<script>
+		var mySwiper  = new Swiper('.swiper-container', {
+			pagination: '.swiper-pagination',
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			slidesPerView: 1,
+			paginationClickable: false,
+			spaceBetween: 30,
+			loop: false,
+			onReachEnd: function(swiper){
+			}
+    	});
+	 var cunzai = "{$cunzai}";
+	 var score = "{$score}";
+	 var status= "{$status}";
+	 if(cunzai && status==1 ){
+	  if(score >=12 && score <=24 ) {
+	        $(".swipers").find("h2").html('保守型');
+    		$(".swipers").find("p").html('此类出借者风险偏好较低，愿意用较小的风险来获得确定的收益。此类出借者愿意承受或能承受少许本金的损失和波动。');
+    	}else if(score >=25 && score <=36 ){
+			$(".swipers").find("h2").html('稳健型');
+    		$(".swipers").find("p").html('此类出借人愿意承担一定程度的风险，强调出借风险和资产升值之间的平衡，主要出借目标是资产的升值，为实现目标往往愿意承担相当程度的风险，比较适合组合出借');
+    	}else if(score >=37 && score <=60){
+			$(".swipers").find("h2").html('积极型');
+    		$(".swipers").find("p").html('此类出借人为了获得高回报的出借收益，能够承受出借产品价格的显著波动，主要出借目标是实现资产升值，为实现目标往往愿意承担相当程度的风险，此类出借者可以承受一定的资产波动风险和本金亏损风险。');
+    		}
+		$('#t1').hide();
+	    $('#t2').hide();
+	    $('#t3').show();
+	}else{
+		$('#t1').show();
+	    $('#t2').hide();
+	    $('#t3').hide();
+		
+	}
+	$(document).ready(function(){
+		var score = "{$user_info.score}";
+		{if $user_info}
+			if(score >=12 && score <=24 ) {
+		        $(".swipers").find("h2").html('保守型');
+	    		$(".swipers").find("p").html('此类出借者风险偏好较低，愿意用较小的风险来获得确定的收益。此类出借者愿意承受或能承受少许本金的损失和波动。');
+	    	}else if(score >=25 && score <=36 ){
+				$(".swipers").find("h2").html('稳健型');
+	    		$(".swipers").find("p").html('此类出借人愿意承担一定程度的风险，强调出借风险和资产升值之间的平衡，主要出借目标是资产的升值，为实现目标往往愿意承担相当程度的风险，比较适合组合出借');
+	    	}else if(score >=37 && score <=60){
+				$(".swipers").find("h2").html('积极型');
+	    		$(".swipers").find("p").html('此类出借人为了获得高回报的出借收益，能够承受出借产品价格的显著波动，主要出借目标是实现资产升值，为实现目标往往愿意承担相当程度的风险，此类出借者可以承受一定的资产波动风险和本金亏损风险。');
+	    	}
+			$('#t1').hide();
+		    $('#t2').hide();
+		    $('#t3').show();
+		{else}
+			$('#t1').show();
+		    $('#t2').hide();
+		    $('#t3').hide();
+		{/if}
+	});
+	$("a.jion").on("click",function(){
+		    $("#t1").hide();
+			$("#t2").show();
+		});
+	  
+     $('#wwww').click(function(){
+		//点击返回弹出框
+       layer.open({
+            className: 'popup-btn',
+            content: '<h3 style="height:40px; line-height:30px; font-weight:bold">提示</h3><p>如果未完成评估时退出，将清除已回答的问题，确定退出吗？</p>',
+            btn: ['确定','取消'],
+            yes: function(index){
+                //确定后跳到账户页
+                window.location.href="{url x="member" r="uc_center"}";
+                layer.close(index);
+            }, 
+            no: function(){
+                //点击取消后无需做其他动作
+            }
+        });
+    
+
+			})
+	   
+	    var spk=0;
+	    $(window).bind('unload',function(){
+		 return false;
+       
+     }); 
+	
+	
+		$(".total_problem").html($(".choose").size());		
+		$(".swiper-button-prev").click(function () {
+			var cp=parseInt($("#current_problem").html());
+			if (cp>1) {
+				$("#current_problem").html(cp-1);
+			}
+		});
+		
+        $(".tijiao").click(function () {
+    		var query=new Object();
+    		query.score1=$("input:radio[name='score1']:checked").val();
+    		query.score2=$("input:radio[name='score2']:checked").val();
+    		query.score3=$("input:radio[name='score3']:checked").val();
+    		query.score4=$("input:radio[name='score4']:checked").val();
+    		query.score5=$("input:radio[name='score5']:checked").val();
+    		query.score6=$("input:radio[name='score6']:checked").val();
+    		query.score7=$("input:radio[name='score7']:checked").val();
+    		query.score8=$("input:radio[name='score8']:checked").val();
+    		query.score9=$("input:radio[name='score9']:checked").val();
+    		query.score10=$("input:radio[name='score10']:checked").val();
+    		query.score11=$("input:radio[name='score11']:checked").val();
+    		query.score12=$("input:radio[name='score12']:checked").val();
+			if (query.score12) {
+    			$.ajax({
+    				url:"{url x="index" r="agreement#riskassessment"}",
+    				type:"POST",
+					dataType: "json",
+					data:query,
+    				success: function (result) {
+				     if (result.status==1) {
+    						$(".swipers").find("h2").html(result.info1);
+    						$(".swipers").find("p").html(result.info2);
+    					}else if(result.status==2) {
+    						$(".swipers").find("h2").html(result.info1);
+    						$(".swipers").find("p").html(result.info2);
+    					}else{
+    						$(".swipers").find("h2").html(result.info1);
+    						$(".swipers").find("p").html(result.info2);
+    					}
+					}
+    			});
+				$("#t2").hide();
+				$("#t3").show();
+				window.android1.clickOnAndroid("0");
+    		}else{
+				 layer.open({
+					content: '请填写所有问题后，再提交',
+					btn: '确定'
+  				}); 
+    		}
+    	});
+    	$(".again").click(function () {
+		
+		 layer.open({
+            className: 'popup-btn',
+            content: '<h3 style="height:40px; line-height:40px; font-weight:bold">提示</h3><p>重新评估将删除您的评估结果，确定要重新评估吗？</p>',
+            btn: ['确定','取消'],
+            yes: function(index){
+				$.ajax({
+					url:"{url x="index" r="agreement#updateriskassessment"}",
+					type:"POST",
+					dataType: "json",
+					success:function(result){
+						if(result.status1 == 1){	
+						 	window.location.href="{url x="index" r="agreement#questionnaire"}";
+						}
+					}
+				});
+            }, 
+            no: function(){
+                //点击取消后无需做其他动作
+				
+            }
+        });
+		
+			
+		});
+    	$(".skip").click(function () {
+			$("#t1").hide();
+			$("#t2").hide();
+			$("#t3").show();
+    		$.ajax({
+				url:"{url x="index" r="agreement#skipriskassessment"}",
+				type:"POST",
+				dataType: "json",
+				success:function(result){
+					if(result.status == 1){					
+						$(".swipers").find("h2").html(result.msg);
+    					$(".swipers").find("p").html(result.info);
+					}else{
+						alert(result.msg);
+					}				
+				}
+				
+			});
+    	});
+		
+    	$(".swiper-container label,.swiper-container input").click(function(){
+			var this_active = $(this).parents(".swiper-slide").index();
+			//alert(this_active);
+			setTimeout(function(){
+				mySwiper.slideTo(this_active+1,1000);
+				if (this_active+2<=$(".choose").size()) {
+					$("#current_problem").html(this_active+2);
+				}
+			},500);
+			
+	 	});
+	 	
+		$('.swiper-button-next').click(function(){
+			if(mySwiper .isEnd){
+				$("#t2").hide();
+				$("#t3").show();
+			}
+		})
+
+     </script>
+
+</body>
+
+</html>

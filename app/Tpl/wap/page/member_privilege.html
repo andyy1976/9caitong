@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">     
+<meta content="yes" name="apple-mobile-web-app-capable">     
+<meta content="black" name="apple-mobile-web-app-status-bar-style">     
+<meta content="telephone=no" name="format-detection">  
+<title>会员特权</title>
+<link rel="stylesheet" type="text/css" href="/new/css/member_level/swiper.min.css" />
+<link rel="stylesheet" type="text/css" href="/new/css/member_level/style.css" />
+<script type="text/javascript" src="/new/js/page/resize.js"></script>
+
+</head>
+<body>
+<?php if(!es_session::get('MachineInfo')) { ?>
+	<header>
+		<a  href="javascript:;" onclick="window.history.go(-1);"  class="head-perv">
+			<img src="/new/images/memberLevel/head-ico1.png" alt="" />
+		</a>
+		<a href="javascript:;" class="head-close">
+			<img src="/new/images/memberLevel/head-ico2.png" alt="" />
+		</a>
+		<h1>会员特权</h1>
+	</header>
+<?php } ?>
+	<div class="priviege-con">
+	<div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" id="swiper-slide0">
+			<!--	<p class="priviege-p1">13000</p>-->
+				<p class="priviege-p2">0≤成长值&lt150</p>
+            </div>
+            <div class="swiper-slide" id="swiper-slide1">
+			<!--	<p class="priviege-p1">13000</p>-->
+				<p class="priviege-p2">150≤成长值&lt1300</p>
+            </div>
+            <div class="swiper-slide" id="swiper-slide2">
+			<!--	<p class="priviege-p1">1500</p>-->
+				<p class="priviege-p2">1300≤成长值&lt6000</p>
+            </div>
+            <div class="swiper-slide" id="swiper-slide3">
+			<!--	<p class="priviege-p1">8000</p>-->
+				<p class="priviege-p2">6000≤成长值&lt12000</p>
+            </div>
+            <div class="swiper-slide" id="swiper-slide4">
+			<!--	<p class="priviege-p1">13000</p>-->
+				<p class="priviege-p2">12000≤成长值&lt60000</p>
+            </div>
+            <div class="swiper-slide" id="swiper-slide5">
+			<!--	<p class="priviege-p1">11000</p>-->
+				<p class="priviege-p2">60000≤成长值&lt12000</p>
+            </div>
+            <div class="swiper-slide" id="swiper-slide6">
+			<!--	<p class="priviege-p1">13000</p>-->
+				<p class="priviege-p2">成长值≥12000</p>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+    </div>
+    <div class="member-warp">
+    	<ul class="privilege-ul">
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=1"}"><i class="img-ico privilege-ico1-light"></i>
+				<span>生日问候</span></a>
+    		</li>
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=2"}"><i class="img-ico privilege-ico2-light"></i>
+				<span>生日好礼</span></a>
+    		</li>
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=3"}"><i class="img-ico privilege-ico3"></i>
+				<span>周年感恩礼</span></a>
+    		</li>
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=4"}"><i class="img-ico privilege-ico4"></i>
+				<span>节日加息礼包</span></a>
+    		</li>
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=5"}"><i class="img-ico privilege-ico5"></i>
+				<span>出借积分加倍</span></a>
+    		</li>
+    		
+    		
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=6"}"><i class="img-ico privilege-ico6"></i>
+				<span>vip专属商品</span></a>
+    		</li>
+    			
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=7"}"><i class="img-ico privilege-ico7"></i>
+				<span>商品专属价格</span></a>
+    		</li>
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=8"}"><i class="img-ico privilege-ico8"></i>
+				<span>免费提现</span></a>
+    		</li>
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=9"}"><i class="img-ico privilege-ico9"></i>
+				<span>投资人见面会</span></a>
+    		</li>
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=10"}"><i class="img-ico privilege-ico10"></i>
+				<span>参与重大活动</span></a>
+    		</li>
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=11"}"><i class="img-ico privilege-ico11"></i>
+				<span>健康关爱</span></a>
+    		</li>    	
+    		<li>
+				<a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=12"}"><i class="img-ico privilege-ico12"></i>
+				<span>旅游基金</span></a>
+    		</li>
+    	</ul>		
+	</div>
+	<script type="text/javascript" src="/new/js/page/jquery.js"></script>	
+	<script type="text/javascript" src="/new/js/page/swiper.min.js"></script>	
+	<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        spaceBetween: 130,
+        loop: true,
+        slidesPerView: 'auto',
+        coverflow: {
+            rotate: 0,
+            stretch: 60,
+            depth: 200,
+            modifier: 1,
+            slideShadows : false
+        },
+        onTransitionEnd: function(swiper){
+      		//过渡结束      		
+      		on_light(swiper.activeIndex-7);      		
+    	},
+    	onTouchEnd: function(swiper){ 
+    		//loop一圈结束     		
+      		on_light(swiper.activeIndex-7);      		
+    	},
+    	onInit: function(swiper){
+      		//Swiper初始化了
+      		on_light(swiper.activeIndex-7);
+    	}
+    });
+    function on_light(num){
+    	var nums=0;
+    	switch(num%7) {
+    		case 0:
+    			nums=2;
+    			break;
+    		case 1:
+    			nums=5;
+    			break;
+    		case 2:
+    			nums=7;
+    			break;
+    		case 3:
+    			nums=7;
+    			break;
+    		case 4:
+    			nums=9;
+    			break;
+    		case 5:
+    			nums=11;
+    			break;
+    		case 6:
+    			nums=12;
+    			break;    		 
+    		default:
+    			nums=12;
+    			break;  		
+    	}
+    	$('.img-ico').each(function(index, el) {
+    		var class_num=index+1;
+    		if(nums<2){
+    			nums=2;
+    		}
+    		if(index<nums){    			
+                //var a_url="../memberswap/privilege/privilege"+class_num+".html";
+    			$(this).removeClass('privilege-ico'+class_num);
+    			$(this).addClass('privilege-ico'+class_num+'-light');
+                //$(this).parent().attr('href', a_url);
+    		}else if(index>nums||index==nums){
+				$(this).addClass('privilege-ico'+class_num);
+    			$(this).removeClass('privilege-ico'+class_num+'-light');
+                //$(this).parent().removeAttr('href');
+    		}
+    	});
+    }
+    </script>
+</body>
+</html>

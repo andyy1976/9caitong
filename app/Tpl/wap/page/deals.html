@@ -1,0 +1,276 @@
+{include file="inc/header.html"} 
+<body>
+    <section class="container cf">
+        <!-- <div class="pt-title"> 
+            <ul>
+                {foreach from="$months_type_deal" item="months" key=key}
+                <li><a href="{$months.url}#deallist" {if $key eq $repay_time}class="active"{/if}>{$months.name}</a></li>
+                {/foreach}
+            </ul>
+        </div> -->
+        <div class="wrapper-type">
+    	<div class="wrapper wrapper01" id="wrapper01">
+			<div class="scroller">
+				<ul class="clearfix">
+				
+				{foreach from="$deal_cate" item="vo" key=key}
+            		<li {if $vo.id eq $deal_type}class="cur"{/if}><a href="{$vo.url}">{$vo.name}</a></li>
+        		{/foreach}
+				</ul>
+			</div>
+		</div>
+		<div class="wrapper-btn"><i></i></div>
+    </div>
+	<div class="wrapper-date">
+		<div class="wrapper wrapper02" id="wrapper02">
+			<div class="scroller">
+				<ul class="clearfix">
+				{foreach from="$deal_time" item="vo" key=key}
+					<li {if $vo.id eq $repay_time}class="cur"{/if}><a href="{$vo.url}">{$vo.month}</a></li>
+				{/foreach}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+        <!-- 出借列表 -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <ul class="pt-list swiper-slide">
+                	<!-- 体验标 -->
+                	{if $experience_deal}
+                	{foreach from=$experience_deal item="vo" key=key name="deal"}
+					<li class="pt-list-new-man">                               
+						<a href="{$vo.url}">
+						<div class="pt-list-title"><h3>{function name="msubstr" v="$vo.name" s="0" l="8" }</h3><span style="color: #fff;background: #fc5858 ;border: 1px solid #fc5858 ;">体验金</span><p>剩余：{$vo.need_money}元</p></div>
+						<div class="pt-data">
+							<div class="pt-data-l">
+								<p><span>{$vo.rate}</span>%</p><p>预期年化率</p>
+							</div>
+							<div class="pt-data-c">
+								<!-- <p id="timer{$vo.id}">00:00:00</p> -->
+								<p style="line-height: 40px">期限{$vo.repay_time}天</p>
+							</div>
+							<div class="pt-data-r">
+								<div class="pt-data-circle" data-percent="{$vo.progress_point}"><div class="pt-data-word">抢</div><i class="pt-list-finish-bg"></i><canvas height="120" width="120"></canvas></div>
+							</div>
+						</div>
+						</a>
+					</li>
+					{/foreach}
+					{/if}
+					<!-- 体验标 -->
+                    {foreach from=$deal_list item="deal" key=key name="deal"}
+                    {if $deal.deal_status eq 1}
+                    <li class="pt-list-new-man">
+                        {else}
+                        <li class="pt-list-second-kill pt-list-finish">
+                            {/if}       
+                            <a href="{$deal.url}">
+                                <div class="pt-list-title">
+	                                <h3>{function name="msubstr" v="$deal.name" s="0" l="8" }</h3>
+	                                {if $deal.is_new eq 1}<span>新手标</span>{elseif $deal.is_advance eq 1}<span class="advance">预售标</span>{/if}
+	                                {if $deal.is_advance eq 1 && $deal.timer gt 0}<p id="timer{$deal.id}" style="color:#f44336 ">倒计时：{$deal.initial_time}</p>{else}<p>剩余：{$deal.need_money}元</p>{/if}
+                                </div>
+                                <div class="pt-data">
+                                    <div class="pt-data-l">
+                                        <p><span>{$deal.rate}</span>%<span style="font-size: 14px">{if $deal.interest_rate gt 0}+{$deal.interest_rate}%{/if}</span></p><p>预期年化率</p>
+                                    </div>
+                                    <div class="pt-data-c">
+                                        <p {if $deal.is_new eq 1 and $deal.max_loan_money gt 0} style="margin-top: 10px" {/if}>期限{if $deal.debts eq 1}{$deal.debts_repay_time}{else}{$deal.repay_time}{/if}{if $deal.repay_time_type eq 0}天{else}个月{/if}</p>
+                                        <p>起投{$deal.min_loan_money}元</p>
+                                        {if $deal.is_new eq 1 and $deal.max_loan_money gt 0}
+                                        <p>上限{$deal.max_loan_money}元</p>
+                                        {/if}
+                                    </div>
+                                    <div class="pt-data-r">
+                                        {if $deal.deal_status eq 1 && $deal.remain_time gt 0 && $deal.timer eq 0 }
+                                        <div class="pt-data-circle" data-percent="{$deal.plan_progress}"><div class="pt-data-word">抢</div><i class="pt-list-finish-bg"></i></div>
+                                        {elseif $deal.deal_status eq 1 && $deal.remain_time gt 0 && $deal.timer gt 0}
+                                        <div class="pt-data-circle" data-percent="0"><div class="pt-data-word" style="color:#97a8b2 ">抢</div><i class="pt-list-finish-bg"></i></div>
+                                        {else}
+                                        <div class="pt-data-circle" data-percent="100"><div class="pt-data-word">已抢光</div><i class="pt-list-finish-bg"></i></div>
+                                        {/if}
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {/foreach}
+                      <!--  <p class="pt-no-more"><span>没有更多了testtesttesttesttesttest</span></p> -->
+                    </ul>
+                </div>
+            </div>
+            <!-- 导航-footer -->
+            {include file="inc/footer.html"} 
+        </section>
+        <script type="text/javascript">
+	        function countDown(maxtime,fn ){      
+			   var timer = setInterval(function(){  
+			       if(maxtime>=0){
+			       		hour = Math.floor(maxtime/3600);
+			       		if(hour<10){
+			       		 	hour = "0"+hour;
+			       		}    
+			            minutes = Math.floor(maxtime/60%60);
+			            if(minutes<10){
+			            	minutes = "0"+minutes;
+			            } 
+			            seconds = Math.floor(maxtime%60);
+			            if(seconds < 10){
+			            	seconds = "0"+seconds;
+			            }     
+			            msg = "倒计时："+hour+":"+minutes+":"+seconds;     
+			            fn( msg );      
+			            --maxtime;     
+			        }     
+			         else{     
+			            clearInterval(timer);  
+			        }     
+			    }, 1000);  
+			}
+			{if $deal_list}
+                {foreach from=$deal_list item="vo" key=key name="deal"}
+                {if $vo.deal_status eq 1 && $vo.remain_time gt 0}
+	                {if $vo.is_advance eq 1 && $vo.timer gt 0}
+					countDown({$vo.timer},function(msg){  
+				        document.getElementById('timer{$vo.id}').innerHTML = msg;  
+				    });
+				    {/if}
+			    {/if}
+			    {/foreach}
+		    {/if}
+        	//出借列表导航滑动效果
+			$('.wrapper').navbarscroll();
+			var num = $('#wrapper01').find('li').size();
+			if( num == 1){
+				$('.wrapper01 .scroller').css('left','44%')
+			}
+			if( num == 2){
+				$('.wrapper01 .scroller').css('left','30%')
+			}
+			if( num == 3){
+				$('.wrapper01 .scroller').css('left','20%')
+			}
+			if( num == 4){
+				$('.wrapper01 .scroller').css('left','8%')
+			}
+			var onOff = true;
+			$('.wrapper-btn').click(function(){
+				if(onOff){
+					$(this).addClass('wrapper-btn-up');
+		    		$('.container').css({
+		    			paddingTop: '101px',
+		    			transition: "padding-top .5s"
+		    		});
+		    		$('.wrapper-date').css({
+		    			top: '48px',
+		    			transition: "top .5s"
+		    		});
+		    		onOff = false;
+				}else{
+					$(this).removeClass('wrapper-btn-up');
+					$('.container').css({
+		    			paddingTop: '48px',
+		    			transition: "padding-top .5s"
+		    		});
+		    		$('.wrapper-date').css({
+		    			top: '-4px',
+		    			transition: "top .5s"
+		    		});
+		    		onOff = true;
+				}
+			});
+        </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	var repay_time = {$repay_time};
+    	var deal_type = {$deal_type};
+    	var loadingTip = '<div style="height: 40px; line-height: 40px; text-align: center; color: #676767" id="loadingTip">加载中......</div>';
+    	var endTip = '<div style="height: 40px; line-height: 40px; text-align: center; color: #676767" id="endTip">....V..没有更多数据了..V....</div>';
+		var scrollLock = false;
+    	$.ajax({
+			type:'POST',
+			url:"{url x="index" r="deals#ajaxProductLst"}",
+			data:{'repay_time':repay_time,'deal_type':deal_type},
+			dataType:'json',
+			success:function(msg){
+	            console.log(msg);
+				if(parseInt(msg-{$page})>0){
+				  scroll(msg);
+				}
+
+			}
+
+		})
+		
+		function scroll(msg){
+			var range = 50;             //距下边界长度/单位px
+	        var elemt = 500;            //插入元素高度/单位px           //设置加载最多次数
+	        var page = 1;
+	        var totalheight = 0; 
+	        $(window).scroll(function(){
+	        	if (scrollLock) {
+	                return false;
+	            }
+	        	var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+	        	var deal_type = {$deal_type};
+	        	var repay_time = {$repay_time};
+	            totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+	            if(($(document).height()-range) <= totalheight) {
+	            	page++;
+	            	var nums=parseInt((msg/{$page})+1);
+					if(page<=nums) {
+						scrollLock = true;
+			            $(".pt-list").append(loadingTip);
+						getJSON(page, repay_time,deal_type);
+					}else{
+						$(".pt-list").append(endTip);
+						scrollLock = true;
+						setTimeout(function(){
+							$('#endTip').remove();
+						}, 3000);
+					}	            	
+	            }
+	        });
+		}
+		// 请求数据加载到页面中。。。
+		function getJSON(page,repay_time,deal_type){
+			page=parseInt(page);
+			$.ajax({
+				type:"POST",
+				url:"{url x="index" r="deals#productList"}",
+				data:{'page':page,'repay_time':repay_time,'deal_type':deal_type},
+				success :function (str){
+					var main = $(".pt-list");
+					if(str!='false'){
+						$("#loadingTip").remove();
+						main.append(str);
+						setTimeout(function(){scrollLock = false;}, 1000);
+					}
+				}
+			});
+		}
+    });
+    </script>
+    <script>
+    $(document).ready(function(){
+        $('.pt-data-circle').easyPieChart({
+            animate: 1000,
+            size: 60,
+            lineWidth: 2,
+            scaleColor: false,
+            trackColor: '#cbcdda',
+            barColor: '#485be9'
+        });
+    	//选项卡切换
+	    $(function(){
+	        $('.pt-title').find('a').click(function(){
+	            $(this).addClass('active').siblings().removeClass('active');
+	            var index = $(this).index();
+	            $('.pt-list').hide().eq(index).show();
+	        });
+	    });
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+.html{ background: #fff;}
+.box{ width: 100%; height: 900px; background: url("/app/Tpl/new/images/invite/banner.jpg") no-repeat 50% 0!important; overflow: hidden;}
+.banner p{ line-height: 80px; margin-top: 656px; text-align: center; font-size: 36px; color: #fff;}
+.gift{ height: 920px; background: url("/app/Tpl/new/images/invite/bg_gift.jpg") no-repeat 50% 0!important;}
+.gift_content{ width: 1200px; height: 920px; margin: 0 auto; position: relative; overflow: hidden; font-size: 18px; color: #fff;}
+.gift_content p b{ color: #eef750; padding: 0 1px;}
+.gift_money{ width: 474px; height: 165px; position: absolute; left: 365px; top: 407px;}
+.gift_money p{ line-height: 40px; padding-left: 78px;}
+.gift_money p:first-child{ margin-top: 22px;}
+.gift_money p span{ display: inline-block; width: 190px;}
+.gift_redbag{ width: 304px; height: 128px; position: absolute; left: 735px; top: 716px;}
+.gift_redbag p{ line-height: 48px; padding-left: 56px;}
+.gift_redbag p:first-child{ margin-top: 18px;}
+.strategy{ height: 740px; background: url("/app/Tpl/new/images/invite/bg_strategy.jpg") no-repeat 50% 0!important;}
+.rule{ height: 1156px; background: url("/app/Tpl/new/images/invite/bg_rule.jpg") no-repeat 50% 0!important;}
+.rule_content{ width: 1090px; height: 1156px; margin: 0 auto; position: relative; overflow: hidden;}
+.rule_list{ width: 564px; height: 504px; position: absolute; left: 266px; top: 280px;}
+.rule_list p{ width: 444px; line-height: 30px; margin-left: 64px; font-size: 18px; color: #fff;}
+.rule_list p.rule_title{ color: #eef750; margin-top: 20px;}

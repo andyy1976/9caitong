@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="zh-CN">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- 优先使用 IE 最新版本 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 忽略将数字变为电话号码-->
+<meta name="format-detection" content="telephone=no">
+<!--让国产浏览器默认采用高速模式渲染页面-->
+<meta name="renderer" content="webkit">
+<!-- 强制图片显示 -->
+<meta name="imagemode" content="force">
+<!--启用 WebApp 全屏模式-->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- 设置状态栏颜色 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>{$cate_title}</title>
+<link rel="stylesheet" type="text/css" href="{$TMPL}/css/red_packet_increase/reset_ph_v=2016.css" />
+<script type="text/javascript" src="{$TMPL}/js/red_packet_increase/resize.js"></script>
+<script src="new/find/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="{$TMPL}/js/red_packet_increase/layer-v3.0.3/layer/layer.js"></script>
+<link rel="stylesheet" type="text/css" href="{$TMPL}/css/red_packet_increase/style.css?v=1" />
+</head>
+<body>
+
+	<p style="color:#90a2ad;text-align:center;margin-top:0.4rem;font-size:120%">完成任务记得刷新进行领取哦~</p>
+	
+	<p style="text-align:center;margin-top:0.2rem;margin-bottom:0.3rem"><a class="blue-white" onclick="window.location.reload()">刷新</a></p>
+	<div class="con-warp">            
+	</div>    
+    <div class="con-warp">
+        <div class="con-bg">
+            <ul class="con-ul">
+                <li>
+                    <img src="{$TMPL}/images/red_packet_increase/hongbao-ico1.png" alt="" />
+                    <span class="span-text">每日签到</span>
+                    <span class="add-span">增加1次</span>
+					{if !$user_sign}
+                    <a href="{$wap_nav}" class="blue">签到</a>
+					{else}
+						{if $user_sign.status eq 0}
+						<a class="blue" onclick="getaward({$user_sign.id})">领取</a>
+						{else}
+						<a class="gray" >已领取</a>
+						{/if}
+					{/if}          
+                </li>
+                <!-- <li>   
+                    <img src="{$TMPL}/images/red_packet_increase/hongbao-ico2.png" alt="" />
+                    <span class="span-text">分享“红包”活动专题</span>
+                    <span class="add-span">增加2次</span>
+                    {if !$user_share}
+                    <a href="javascript:;" class="blue share_red">分享</a>
+					{else}
+						{if $user_share.status eq 0}
+						<a class="blue" onclick="getaward({$user_share.id})">领取</a>
+						{else}
+						<a class="gray" >已领取</a>
+						{/if}
+					{/if} 
+                </li> -->
+                <li>   
+                    <img src="{$TMPL}/images/red_packet_increase/hongbao-ico3.png" alt="" />
+                    <span class="span-text">参与5次大转盘抽奖</span>
+                    <span class="add-span">增加1次</span>
+                    {if !$user_award}
+                    <a href="{$award_url}" class="blue">抽奖</a>
+					{else}
+						{if $user_award.status eq 0}
+						<a class="blue" onclick="getaward({$user_award.id})">领取</a>
+						{else}
+						<a class="gray" >已领取</a>
+						{/if}
+					{/if} 
+                   
+                </li>
+           <!--  </ul>
+        </div> 
+			<div class="con-bg">
+            <ul class="con-ul"> -->
+                <li>
+                    <img src="{$TMPL}/images/red_packet_increase/hongbao-ico4.png" alt="" />
+                    <span class="span-text">积分商城任意兑换</span>
+                    
+                    <span class="add-span">增加2次</span>
+					 {if !$user_score}
+                    <a href="{$score_url}" class="blue">兑换</a>
+					{else}
+						{if $user_score.status eq 0}
+						<a class="blue" onclick="getaward({$user_score.id})">领取</a>
+						{else}
+						<a class="gray" >已领取</a>
+						{/if}
+					{/if} 
+                                    
+                </li>
+                <li class="num-lil">
+                    <img src="{$TMPL}/images/red_packet_increase/hongbao-ico5.png" alt="" />
+                    <span class="t-line">每邀请1名新用户<br>注册<br><i>(每天最多奖励20次)</i></span>                   
+                    <span class="add-span">增加2次</span>
+					 {if !$user_invite}
+                    <a href="javascript:;" class="blue share">邀请</a>
+					{else}
+						{if $user_invite.status eq 0}
+						<a class="blue" onclick="getaward({$user_invite.id})">领取</a>
+						{else}
+						<a class="gray" >已领取</a>
+						{/if}
+					{/if} 
+                      
+                </li>
+                <li class="mum-li">
+                    <img src="{$TMPL}/images/red_packet_increase/hongbao-ico6.png" alt="" />
+                    <span class="mum-span">任选标的进行投资<br>
+                        <i>投资金额≤1000</i><br>   
+                        <i>1000&lt;投资金额≤4999</i><br>
+                        <i>4999&lt;投资金额≤9999</i><br>      
+                        <i>投资金额≥10000 </i>
+                    </span>         
+                    <span class="m-span"><i class="{if $user_invest_six.status eq 0}grays {else}reds{/if}">增加1次</i><br>
+					<i class="{if $user_invest_seven.status eq 0}grays {else} reds{/if}">增加3次</i><br>
+					<i class="{if $user_invest_eight.status eq 0} grays{else}reds{/if}">增加5次</i><br>
+					<i class="{if $user_invest_nighe.status eq 0}grays {else}reds{/if}">增加10次</i></span> 
+					{if !$user_invest}
+                    <a onclick="{$jump.ToProductList}()" class="blue">投资</a>
+					{else}
+						{if $user_invest.status eq 0}
+						<a class="blue" onclick="getaward({$user_invest.id})">领取</a>
+						{else}
+						<a class="gray" >已领取</a>
+						{/if}
+					{/if} 					
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+</body>
+<script>
+function iosToProductList(){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToProductList"}); //返回项目列表
+    }
+function androidToProductList(){
+        window.jiucaitong.FromH5ToJump("jumpToProductList","");  //返回项目列表
+    }
+function ToProductList(){  
+        parent.location.href = "{url x="index" r="deals"}"; 
+    }
+function getaward(id){
+		var ajaxurl = "{url x="index" r="score#red_increase"}";
+        $.ajax({ 
+            url: ajaxurl,
+            type: "POST",
+            dataType: "json",
+			data:{id:id},
+            success: function(ajaxobj){
+                if(ajaxobj.status == 1){
+                    layer.open({
+                        skin: 'tip',
+                        title: false,
+                        content: '<p>领取成功，增加'+ajaxobj.info+'次</p>',  
+                        btn: '确定',   
+                        yes: function(){
+                            location.reload();
+                        }
+                    });
+                }else{
+                    /*layer.open({
+                        skin: 'tip',
+                        title: false,
+                        content: '<h3>提示</h3><p>'+ajaxobj.info+'</p>',
+                        shadeClose: true,
+                        time: 2
+                    });*/
+                    layer.msg(ajaxobj.info);
+                }
+                
+            }
+        }); 
+	}
+	var invite_url = "http://jctwapcg.9caitong.com";
+	$('.share').click(function (){
+    /* Act on the event */   
+    if("{$jump.ToProductList}" == "iosToProductList"){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpShareBase","title":"邀请你一起瓜分现金红包！","icon":"http://wxgl.jiuchengjr.com/attachment/images/jfcj.jpg","content":"说:瓜分现金可以提现哦，名额有限，速来！","url":invite_url+"/index.php?ctl=find&act=W645&code={$phone}&id={$user_id}"}); //微信朋友圈
+    }else if("{$jump.ToProductList}" == "androidToProductList"){
+       window.jiucaitong.showShareF("邀请你一起瓜分现金红包！","http://wxgl.jiuchengjr.com/attachment/images/jfcj.jpg","说:瓜分现金可以提现哦，名额有限，速来！",invite_url+"/index.php?ctl=find&act=W645&code={$phone}&id={$user_id}");
+    }else{
+
+        if(!isWeiXin()&&"{$jump.ToProductList}" != "iosToProductList"&&"{$jump.ToProductList}" != "androidToProductList")
+                {
+                  layer.msg("请在微信中打开此页面进行分享");
+                  return false;
+                }  
+        popBox('popBox','popBg');
+    }
+   
+
+});
+	$('.share_red').click(function (){
+    /* Act on the event */   
+    if("{$jump.ToProductList}" == "iosToProductList"){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpShareBase","title":"邀请你一起瓜分现金红包！","icon":"http://wxgl.jiuchengjr.com/attachment/images/jfcj.jpg","content":"您的好友说:瓜分现金可以提现哦，名额有限，速来！","url":"{$red_packet_url}"}); //微信朋友圈
+    }else if("{$jump.ToProductList}" == "androidToProductList"){
+       window.jiucaitong.showShareF("邀请你一起瓜分现金红包！","http://wxgl.jiuchengjr.com/attachment/images/jfcj.jpg","您的好友说:瓜分现金可以提现哦，名额有限，速来！","{$red_packet_url}");
+    }else{
+
+        if(!isWeiXin()&&"{$jump.ToProductList}" != "iosToProductList"&&"{$jump.ToProductList}" != "androidToProductList")
+                {
+                  layer.msg("请在微信中打开此页面进行分享");
+                  return false;
+                }  
+        popBox('popBox','popBg');
+    }
+   
+
+});
+//判断是否为微信浏览器
+function isWeiXin(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        return true;
+    }else{
+        return false;
+    }
+}
+//分享提示弹出层
+function popBox(popBox, popBg){
+    var popBox = document.getElementById(popBox);
+    var popBg = document.getElementById(popBg);
+    //禁止滚动
+    popBox.ontouchmove = popBg.ontouchmove = function(){
+        return false;
+    }
+    //弹出层
+    popBg.style.display = popBox.style.display = 'block';
+    popBoxPos();
+    popBgStyle();
+    //当页面滚动的时候，弹出框跟随滚动
+    window.onscroll = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+    window.onresize = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //设置弹出框的位置
+    function popBoxPos(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+        popBox.style.top = scrollTop + 'px';
+    }
+    //设置灰色背景的宽高
+    function popBgStyle(){
+        popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+        popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+    }
+    //关闭弹出框
+    popBox.onclick = popBg.onclick = function(){
+        popBg.style.display = popBox.style.display = 'none';
+    }
+}
+</script>
+</html>

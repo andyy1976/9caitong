@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">     
+<meta content="yes" name="apple-mobile-web-app-capable">     
+<meta content="black" name="apple-mobile-web-app-status-bar-style">     
+<meta content="telephone=no" name="format-detection">  
+<title>会员中心</title>
+<link rel="stylesheet" type="text/css" href="/new/css/member_level/swiper.min.css" />
+<link rel="stylesheet" type="text/css" href="/new/css/member_level/style.css" />
+<script type="text/javascript" src="/new/js/page/resize.js"></script>
+
+</head>
+<body>
+<?php if(!es_session::get('MachineInfo')) {?>
+	<header>
+		<a href="javascript:;" onclick="back()" class="head-perv">
+			<img src="/new/images/memberLevel/head-ico1.png" alt="" />
+		</a>
+		
+        <a href="{url x="index" r="memberLevel#member_record"}" class="head-detail">
+            <img src="/new/images/memberLevel/head-ico3.png" alt="" />
+        </a>
+		<h1>会员中心</h1>
+	</header>
+<?php } ?> 
+        <div class="center-con">
+            <a href="javascript:;" class="center-photo">
+            {if $user_img}
+                <img src="{$user_img}" alt="" />
+            {else}
+                <img src="/new/images/memberLevel/center-photo.jpg" alt="" />
+            {/if}
+                成长值：<span>{$data.grow_point}</span>
+           
+            </a>
+            <ul class="center-ul">
+                <li class="center-ligth">V{$data.user_level}</li>
+                <li>V{$data.next_level}</li>
+            </ul>
+            <div class="center-line"></div>
+            <p class="center-con-p">距离V{$data.next_level}会员还差:{$data.else_point}点<a href="{url x="index" r="memberLevel#member_introduce"}">如何提升</a></p>
+        </div>
+        <div class="center-intro">
+            <h3 class="center-h3"><i class="center-ico center-ico1"></i>理财小白，成长计划<a href="{url x="index" r="memberLevel#member_details1"}" class="center-a">去完成</a></h3>
+            <div class="center-warp">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide swiper-slide1"><p class="center-p">新手任务</p><p class="center-p1">+150点</p></div>
+                        <div class="swiper-slide swiper-slide2"><p class="center-p">成长任务</p><p class="center-p1">+50点以上</p></div>
+                        <div class="swiper-slide swiper-slide3"><p class="center-p">出借任务</p><p class="center-p1">+150点</p></div>
+                        <div class="swiper-slide swiper-slide4"><p class="center-p">邀请任务</p><p class="center-p1">+150点</p></div>                 
+                    </div>
+                    <!-- Add Scrollbar -->
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="line-gray"></div>
+        <div class="center-priv">
+            <h3 class="center-h3"><i class="center-ico center-ico2"></i>会员特权<a href="{url x="index" r="memberLevel#member_privilege"}" class="center-a">更多</a></h3>
+            <ul class="privilege-ul">
+                <li>
+                    <a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=1"}"><i class="{if $grow_point gt 0}img-ico privilege-ico1-light{else}img-ico privilege-ico1{/if}"></i>
+                    <span>生日问候</span></a>
+                </li>
+                <li>
+                    <a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=2"}"><i class="{if $grow_point gt 150}img-ico privilege-ico2-light{else}img-ico privilege-ico2{/if}"></i>
+                    <span>生日好礼</span></a>
+                </li>
+                <li>
+                    <a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=3"}"><i class="{if $grow_point gt 150}img-ico privilege-ico3-light{else}img-ico privilege-ico3{/if}"></i>
+                    <span>周年感恩礼</span></a>
+                </li>
+                <li>
+                    <a class="priviege-a" href="{url x="index" r="memberLevel#member_privilege_info" p="type=4"}"><i class="{if $grow_point gt 150}img-ico privilege-ico4-light{else}img-ico privilege-ico4{/if}"></i>
+                    <span>节日加息礼包</span></a>
+                </li>            
+            </ul>    
+            <div class="clear"></div>   
+        </div>
+    	<div class="line-gray"></div>
+	    <div class="center-produce">
+            <h3 class="center-h3"><i class="center-ico center-ico3"></i>专属产品<a href="{url x="index" r="find#new_mall"}" class="center-a">更多</a></h3>
+            <ul class="center-produce-ul">
+            {foreach from="$goods" item="item" key=key}
+                <li>
+                    <a href="{url x="index" r="find#mall_details_goods" p="id=$item.id"}" class="center-img-a"><img src="{$item.img}" alt="{$item.name}" /></a>  
+                    <p>{$item.name}<br><i class="center-ico center-ico4"></i><span>{if $item.score}{$item.score}{else}{$item.discount_score}{/if}</span>&nbsp;&nbsp;&nbsp;&nbsp;会员：<font color="blue">{$item.Consumer_integration}</font></p> 
+                </li> 
+            {/foreach}
+                <!-- <li>
+                    <a href="" class="center-img-a"><img src="/new/images/memberLevel/center-produce.jpg" alt="" /></a>
+                    <p>伊莱克斯电烤箱5L<br><i class="center-ico center-ico4"></i><span>10500</span><strong>13500</strong></p>
+                </li>
+                <li>
+                    <a href="" class="center-img-a"><img src="/new/images/memberLevel/center-produce.jpg" alt="" /></a>
+                    <p>伊莱克斯电烤箱5L<br><i class="center-ico center-ico4"></i><span>10500</span><strong>13500</strong></p>
+                </li> -->
+            </ul>
+        </div>	
+</body>
+</html>
+<script type="text/javascript" src="/new/js/page/jquery.js"></script> 
+
+<script type="text/javascript" src="/new/js/page/swiper.min.js"></script> 
+<script>
+    function back(){
+        
+            {if $jump.MyPage eq "iosToMyPage"}
+            window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToMyPage"}); //返回项目列表
+            {elseif $jump.MyPage eq "androidToMyPage" }
+            window.jiucaitong.FromH5ToJump("jumpToMyPage","");  //返回项目列表
+            {else}
+
+            parent.location.href = "{url x="index" r="uc_center"}";
+            {/if}
+    }
+</script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        scrollbar: '.swiper-scrollbar',  
+        slidesPerView :2.3,  
+        slidesOffsetAfter : 50,           
+        spaceBetween: 10,       
+    });
+  
+</script>

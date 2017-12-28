@@ -1,0 +1,61 @@
+﻿@charset "utf-8";
+/*字体，字号*/
+
+/*font*/
+.ft10{font-size:10px; font-size:0.625rem;}
+.ft11{font-size:11px; font-size:0.6875rem;}
+.ft12{font-size:12px; font-size:0.75rem;}
+.ft13{font-size:13px; font-size:0.8125rem;}
+.ft14{font-size:14px; font-size:0.875rem;}
+.ft15{font-size:15px; font-size:0.9375rem;}
+.ft16{font-size:16px; font-size:1.0rem;}
+.ft18{font-size:18px; font-size:1.125rem;}
+.ft20{font-size:20px; font-size:1.25rem;}
+.ft24{font-size:24px; font-size:1.5rem;}
+.ft26{font-size:26px; font-size:1.625rem;}
+.ft28{font-size:28px; font-size:1.75rem;}
+.ft30{font-size:30px; font-size:1.875rem;}
+.ft34{font-size:34px; font-size:2.125rem;}
+.ft40{font-size:40px; font-size:2.5rem;}
+.ft48{font-size:48px; font-size:3rem;}
+.fa{font-family:Arial, Helvetica, sans-serif;}
+.fm{font-family:"Microsoft YaHei";}
+
+/*color*/
+.cl01{color:#fff;}
+.cl02{color:#888;}/*浅灰1*/
+.cl03{color:#45b79d;}/*深绿*/
+.cl04{color:#429e7c;}/*浅绿*/
+.cl05{color:#000;}
+.cl06{color:#fc8301;}/*橙色*/
+.cl07{color:#2a98d8;}/*蓝色*/
+.cl08{color:#e44000;}/*橘色*/
+.cl09{color:#fff600;}/*黄色*/
+.cl10{ color:#999}/*浅灰2*/
+.cl11{color:#333;}/*深灰*/
+.cl12{color:#bd4f23;}/*深橙色*/
+.cl13{color:#306450;}/*墨绿*/
+.cl14{color:#a7a7a7;}/*浅灰2*/
+.cl15{color:#666;}/*浅灰2*/
+.cl16{color:#0079c6;}/*蓝色*/
+.cl17{color:#af6701;}/*棕色*/
+.cl18{color:#f5f5f5;}/*灰白*/
+.cl19{color:#ff9600;}/*灰白*/
+.cl20{color:#fe5454}/*粉色*/
+.cl21{color:#4a977b;}/*浅墨绿色*/
+.cl18{color:#3c7460;}/*深绿2*/
+
+
+.pla{color:#999; font-size:12px;}
+
+/**/
+.f00{font-size:10px; font-size:0.75rem; color:#a7a7a7; font-family:Arial, Helvetica, sans-serif;}
+.f01{font-size:12px; font-size:0.75rem; color:#a7a7a7; font-family:Arial, Helvetica, sans-serif;}
+.f02{font-size:14px; font-size:0.875rem; color:#333; font-family:Arial, Helvetica, sans-serif;}
+.f03{font-size:18px; font-size:1.125rem; color:#333;}
+
+.f04{font-size:14px; font-size:0.875rem; color:#888;}
+.f05{font-size:14px; font-size:0.875rem; color:#a7a7a7;}
+/**/
+.fw{font-weight:bold;}
+

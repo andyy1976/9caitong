@@ -1,0 +1,124 @@
+<body>
+	<section class="container cf">
+		<div class="header"><a href="{$jumpUrl}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>开户行信息</div>
+        <p class="my-re-bank">提现金额大于5万元，请完善开户支行信息</p>
+		<div class="line-wrapper">
+			<div class="line-scroll-wrapper">
+				<div class="line-normal-wrapper">
+					<div class="line-normal-left-wrapper">
+						<div class="line-normal-avatar-wrapper"><img src="{$bank.icon}" width="35" height="35"></div>
+						<div class="line-normal-info-wrapper">
+							<div class="line-normal-user-name">{$bank.name}</div>
+							<div class="line-normal-msg">尾号{$bank.bankcard}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+         <div class="my-real-list my-tel-list">
+            <p><span>开户城市</span><input type="text" name="contact_city_code" id="contact_city_code" value="{$city}" data-city-code="{$bank.region_lv3}" data-province-code="{$bank.region_lv2}" readonly="readonly"  placeholder="请选择城市"></p>
+            <p><span>所属支行</span><input type="text" id="branch" value="{$city_info}" maxlength="15" placeholder="请输入支行"></p>
+            <a href="javascript:;" class="my-btn-reset" id="submit_btn">确定</a>
+        </div>
+        {if !$city_code}
+        <style type="text/css">
+            #contact_city_code{color: #c3c3c3}
+        </style>
+        {/if}
+	</section>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        if($("#contact_city_code").val().length != 0 && $("#branch").val().length != 0)
+            $(".my-btn-reset").css('background','#4b6bde');
+    })
+    var contactCityCodeDom = $('#contact_city_code');
+    contactCityCodeDom.bind('click', function(){
+        var sccode = contactCityCodeDom.attr('data-city-code');
+        var scname = contactCityCodeDom.attr('data-city-name');
+        var oneLevelId = contactCityCodeDom.attr('data-province-code');
+        var twoLevelId = contactCityCodeDom.attr('data-city-code');
+        var iosSelect = new IosSelect(3, 
+            [iosProvinces, iosCitys],
+            {
+                title: '地址选择',
+                itemHeight: 35,
+                relation: [1, 1, 0, 0],
+                oneLevelId: oneLevelId,
+                twoLevelId: twoLevelId,
+                callback: function (selectOneObj, selectTwoObj) {
+                    contactCityCodeDom.val(selectOneObj.id); 
+                    contactCityCodeDom.val(selectOneObj.value + ' ' + selectTwoObj.value);
+                    contactCityCodeDom.attr('data-province-code', selectOneObj.id);
+                    contactCityCodeDom.attr('data-city-code', selectTwoObj.id);
+                    $("#contact_city_code").css('color','#666');
+            }
+        });
+    });
+
+var iosProvinces = [
+{foreach from = $provinces_info item="vo"}
+    {'id': '{$vo.id}', 'value': '{$vo.name}', 'parentId': '{$vo.pid}'},
+{/foreach}    
+];
+
+// 城列表
+var iosCitys = [
+{foreach from = $city_info2 item="vo"}
+    {'id': '{$vo.id}', 'value': '{$vo.name}', 'parentId': '{$vo.pid}'},
+{/foreach}  
+
+];
+
+
+    $("#branch").keyup(function(){
+        if($("#contact_city_code").val().length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if($("#branch").val().length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else{
+            $(".my-btn-reset").css('background','#4b6bde');
+        }
+    })
+    $(".my-btn-reset").bind("click",function(){
+        if($("#contact_city_code").val().length == 0 || $("#branch").val().length == 0){
+            return false;
+        }
+        var ajaxurl = "{url x="index" r="uc_account#set_bank_info"}";
+        var query = new Object();
+        query.id = {$bank.bid};
+        query.city = $.trim($("#contact_city_code").val());
+        query.branch = $("#branch").val();
+        query.city_code = $('#contact_city_code').attr("data-city-code");
+        query.province_code = $('#contact_city_code').attr("data-province-code");
+        $.ajax({
+            url: ajaxurl,
+            data:query,
+            type: "POST",
+            dataType: "json",
+            success: function(result){
+                if(result.status == 1){
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',     
+                        shadeClose: true,
+                        time: 2,
+                        end:function(){
+                            window.location.href = "{url x="index" r="uc_account#bank"}";
+                        }
+                    });
+                }else{
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',     
+                        shadeClose: true,
+                        time: 2
+                    });
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

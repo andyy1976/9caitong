@@ -1,0 +1,31 @@
+/* cg-account */
+.header{ line-height: 48px; background: linear-gradient(to bottom, #575cde 0%, #4672de 100%); overflow: hidden; color: white; text-align: center; font-size: 1.8rem; font-weight: bold; position: relative;}
+.header .back-icon{ position: absolute; left: 0; top: 0; padding: 15px 4%;}
+.header .back-icon img{ width: 10px;}
+.header .cg-help{ position: absolute; right: 0; top: 0; padding: 14px 4%;}
+.header .cg-help img{ width: 20px;}
+/*.container img{ width: 100%;}*/
+.cg-tip{ margin-left: 5.6%; margin-top: 30px; font-size: 14px; color: #90a2ad;}
+.cg-tip span{ padding-left: 20px; background: url(../images/wap2/cg/icon-tip.png) no-repeat left; background-size: 16px 16px;}
+.cg-list{ overflow: hidden;}
+/*.cg-list li{ width: 100%; padding: 12px 0 12px 5.6%; float: left; background: #fff; margin-top: 10px; font-size: 16px;}
+.cg-list span{ width: 20%; height: 30px; line-height: 30px; float: left; padding-right: 6px; color: #13334d; border-right: 1px solid #e7ebee;}*/
+.cg-list li{ width: 96%; padding: 12px 0 12px 4%; float: left; background: #fff; margin-top: 10px; font-size: 16px;}
+.cg-list span{ width: 21%; height: 30px; line-height: 30px; float: left; padding-right: 14px; color: #13334d; border-right: 1px solid #e7ebee; text-align: right;}
+.cg-list input{ width: 60%; height: 26px; line-height: 26px; float: left; border: none; padding: 2px 0 2px 14px; color: #13334d;}
+.cg-list p{ float: left; line-height: 30px; margin-left: 14px; color: #13334d;}
+.choose-bank{ height: 26px; line-height: 26px; float: left; border: none; padding: 2px 0 2px 14px; margin-left: 14px; margin-top: 2px; color: #13334d;}
+.bank-quota{ padding-left: 32%; height: 18px; line-height: 18px; margin-top: 6px; font-size: 12px;}
+.bank-quota-single{ padding-right: 14px;}
+.cg-list-code{ position: relative;}
+.cg-list-code input{ width: 30%;}
+.cg-list-code .code-btn{ position: absolute; right: 14px; top: 8px; width: 110px; height: 38px; line-height: 38px; text-align: center; background: #f99c1c; border-radius: 4px; font-size: 14px; color: #fff;}
+.cg-list-code .code-btn-gray{ background: #aaa;}
+.cg-btn{ width: 86%; height: 52px; line-height: 52px; margin: 30px auto 0; background: #4b6bde; display: block; border-radius: 5px; text-align: center; font-size: 20px; color: #fff; border: 1px solid #4b6bde;}
+.cg-btn-white{ margin-top: 20px; background: #edf2f6; color: #4b6bde;}
+.cg-btn-bank{ margin-top: 50px;}
+.cg-success{ background: #fff; overflow: hidden; margin-top: 30px;}
+.cg-success img{ width: 111px; margin: 0 auto; padding-top: 30px;}
+.cg-success p{ margin-top: 16px; margin-bottom: 8px; text-align: center; font-size: 24px; color: #13334d;}
+.cg-success span{ padding: 0 0 16px; display: block; text-align: center; font-size: 14px; color: #4b6bde;}
+

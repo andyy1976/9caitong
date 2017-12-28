@@ -1,0 +1,55 @@
+<div class="FictitiousMoney_list">
+	{if $count gt 0}
+
+	<ul id="select_bonus" class="bonus">
+        {foreach from=$red_list item="red" key=k name="red"}
+		<li id="{$red.id}" money="{$red.money}" quota="{$red.max_use_money}">
+			<div class="money">
+				<span>¥<i>{$red.money}</i></span>
+				<p>满{$red.max_use_money}元可用</p>
+			</div>
+			<div class="condition">
+				<p>可用标的：{$red.use_condition}个月标的</p>
+				<p>有效期：{$red.begin_date}-{$red.end_date}</p>
+			</div>
+			<div class="mark hide"></div>
+		</li>
+        {/foreach}
+		<!--<li id="experienceMoneyid2" money="120" quota="2000">-->
+			<!--<div class="money">-->
+				<!--<span>¥<i>120</i></span>-->
+				<!--<p>满2000元可用</p>-->
+			<!--</div>-->
+			<!--<div class="condition">-->
+				<!--<p>可用标的：3个月标的</p>-->
+				<!--<p>有效期：2016.05.01-2016.05.31</p>-->
+			<!--</div>-->
+			<!--<div class="mark hide"></div>-->
+		<!--</li>-->
+		<!--<li id="experienceMoneyid3" money="130" quota="3000">-->
+			<!--<div class="money">-->
+				<!--<span>¥<i>130</i></span>-->
+				<!--<p>满3000元可用</p>-->
+			<!--</div>-->
+			<!--<div class="condition">-->
+				<!--<p>可用标的：3个月标的</p>-->
+				<!--<p>有效期：2016.05.01-2016.05.31</p>-->
+			<!--</div>-->
+			<!--<div class="mark hide"></div>-->
+		<!--</li>-->
+	</ul>
+	{else}
+	<div class="noFictitiousMoney ta_c">
+		<img src="/new/images/noFictitiousMoney.png" />
+		<p>暂无可用红包</p>
+	</div>
+	{/if}
+</div>
+<div class="blank80"></div>
+<div class="interestrate_operation">
+	<div class="interestrate_info"><span>出借金额：￥<i id="max_RedEnvelope">0</i></span><span>已选限额：￥<i id="on_RedEnvelope">0</i></span></div>
+	<div class="interestrate_btn">
+		<input type="button" value="确定" class="confirm" id="confirm_bonusMoney" />
+		<input type="button" value="取消" class="cancel" id="closeLayer" />
+	</div>
+</div>

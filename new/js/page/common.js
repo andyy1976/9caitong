@@ -1,0 +1,1 @@
+define("new/js/page/common",["$","layer","new/js/mod/login","new/js/mod/viceNav","new/js/mod/goTop"],function(o){o("$"),o("layer");o("new/js/mod/login"),o("new/js/mod/viceNav"),o("new/js/mod/goTop")});

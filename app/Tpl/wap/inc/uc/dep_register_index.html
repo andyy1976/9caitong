@@ -1,0 +1,111 @@
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:;" onclick="cg_help();" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18" /></a>开户<a href="{url x="index" r="uc_set#help" p="id=38"}"  class="cg-help"><img src="{$TMPL}/images/wap2/cg/icon-help.png" /></a></div>
+<?php } ?>
+    <!-- 存管开户-开户 -->
+    <img src="{$TMPL}/images/wap2/cg/step1.png" style="margin-top: 18px;width: 100%" />
+    <p class="cg-tip"><span>开通宜宾市商业银行存管账户</span></p>
+    <form>
+        <ul class="cg-list">
+            <li><span>真实姓名</span><input id="real_name" type="text" placeholder="本人真实姓名" {if $vo.real_name}value="{$vo.real_name}"  readonly="true"{/if}/></li>
+            <li><span>身份证号</span><input id="idno" type="text" maxlength="18" placeholder="仅支持中国大陆身份证号" {if $vo.idno}value="{$vo.idno}" readonly="true"{/if} /></li>
+        </ul>
+    </form>
+    {if $vo.idno}
+        <a href="javascript:;" class="cg-btn"  >开通</a>
+    {else}
+        <a href="javascript:;"  class="cg-btn" style="background: #aaa; border: 1px solid #aaa;" >开通</a>
+    {/if}
+
+    <img src="{$TMPL}/images/wap2/cg/logo.png" style="margin-top: 70px;width: 100%" />
+</section>
+<script type="text/javascript">
+    //处理移动端click事件300ms延迟
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+
+    function cg_help(){
+        layer.open({
+            className: 'cg-pop',
+            title:'开通存管账户遇到问题？',
+            content: "<br/>请拨打客服电话 ><br/>客服电话：400-650-8706",
+            btn:  ['稍后再开通'],
+            yes: function(index){
+                //点击立即开通后跳到存管开户页面
+                window.location.href = "{url x="index" r="uc_center#index"}";
+                layer.close(index);
+            },
+            no: function(){
+                //点击取消按钮后无需做其他动作
+            }
+        });
+    }
+
+    $("#real_name").keyup(function(){
+        if($("#real_name").val().length == 0){
+            $(".cg-btn").css('background','#aaa');
+            $(".cg-btn").css('border','1px solid #aaa');
+            return false;
+        }else if($("#idno").val().length == 0 || $("#idno").val().length<18){
+            $(".cg-btn").css('background','#aaa');
+            $(".cg-btn").css('border','1px solid #aaa');
+            return false;
+        }else{
+            $(".cg-btn").css('background','#4b6bde');
+        }
+    })
+    $("#idno").keyup(function(){
+        if($("#real_name").val().length == 0){
+            $(".cg-btn").css('background','#aaa');
+            $(".cg-btn").css('border','1px solid #aaa');
+            return false;
+        }else if($("#idno").val().length == 0 || $("#idno").val().length<18){
+            $(".cg-btn").css('background','#aaa');
+            $(".cg-btn").css('border','1px solid #aaa');
+            return false;
+        }else{
+            $(".cg-btn").css('background','#4b6bde');
+        }
+    })
+    var cg_click = false;
+    $(".cg-btn").bind("click",function(){
+        if(cg_click)return;
+        cg_click = true;
+        if($("#real_name").val().length == 0 || $("#idno").val().length == 0 || $("#idno").val().length<18){
+            return false;
+        }
+
+        var ajaxurl = "{url x="index" r="uc_depository_account#register_index"}";
+        var load=layer.open({type: 2,shadeClose: false});
+        var query = new Object();
+            query.real_name = $.trim($("#real_name").val());
+            query.IDcard = $.trim($("#idno").val());
+        $.ajax({
+            url: ajaxurl,
+            data:query,
+            type: "POST",
+            dataType: "json",
+            success: function(result){
+
+                if(result.status){
+                    window.location.href = "{url x="index" r="uc_depository_account#account_success"}";
+                }else{
+                    layer.close(load);
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',
+                        shadeClose: true,
+                        time: 2
+                    });
+                    cg_click=false;
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+

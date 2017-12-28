@@ -1,0 +1,61 @@
+.container img {
+  width: 100%;
+}
+.content {
+  width: 100%;
+  height: 25.76rem;
+  background: url(../../images/wap2/wap_download/banner.png);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.content .download {
+  width: 10.94rem;
+  height: 1.88rem;
+  margin: 3.94rem auto 0;
+  display: block;
+  background: url(../../images/wap2/wap_download/btn.png);
+  background-size: 100% 100%;
+}
+.ewm {
+  height: 4.28rem;
+  padding: 0.84rem 0 0.84rem 0.44rem;
+  background: #303030;
+}
+.ewm img {
+  width: 4.28rem;
+  height: 4.28rem;
+  float: left;
+  margin-right: 0.4rem;
+}
+.ewm p {
+  width: 9.4rem;
+  line-height: 1.08rem;
+  float: left;
+  font-size: 0.56rem;
+  color: #fff;
+  text-align: center;
+  padding-top: 1rem;
+}
+#popBg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: black;
+  opacity: 0.8;
+  z-index: 1000000;
+  display: none;
+}
+#popBox {
+  width: 13.8rem;
+  height: 23.4rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000001;
+  display: none;
+}
+#popBox img {
+  width: 100%;
+}

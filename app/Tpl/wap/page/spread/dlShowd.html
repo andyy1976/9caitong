@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">     
+<meta content="yes" name="apple-mobile-web-app-capable">     
+<meta content="black" name="apple-mobile-web-app-status-bar-style">     
+<meta content="telephone=no" name="format-detection">
+<title></title>
+<script type="text/javascript" src="new/spread/dlShowd/js/jquery.js"></script>
+<script type="text/javascript" src="new/spread/dlShowd/js/resize.js"></script>
+<script type="text/javascript" src="new/spread/dlShowd/js/checkCode.js"></script>
+</head>
+<style>
+html{
+	color:#000;
+	background:#FFF;
+	font-family: "Microsoft Yahei";
+}
+img{width:100%;}
+a{text-decoration: none;color: #666666;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{
+	margin:0;
+	padding:0;
+}table{
+	border-collapse:collapse;
+	border-spacing:0;
+}fieldset,img{
+	border:0;
+}address,caption,cite,code,dfn,em,strong,th,var{
+	font-style:normal;
+	font-weight:normal;
+}ul{
+	list-style:none;
+}caption,th{
+	text-align:left;
+}h1,h2,h3,h4,h5,h6{
+	font-size:100%;
+	font-weight:normal;
+}q:before,q:after{
+	content:'';
+}abbr,acronym{
+	border:0;
+	font-variant:normal;
+}sup{
+	vertical-align:text-top;
+}sub{
+	vertical-align:text-bottom;
+}input,textarea,select{
+	font-family:inherit;
+	font-size:inherit;
+	font-weight:inherit;
+	*font-size:100%;
+}legend{
+	color:#000;
+}
+html{ width:100%; background:#ffd700;}
+.clear{ clear:both; width:0; height:0; overflow:hidden; }
+.denglu1{ width:100%; background:url(new/spread/dlShowd/image/dlh4.jpg) no-repeat; height:6.32rem; background-size:100% 6.32rem;}
+.denglu1 p{ font-size:0.34rem; line-height:180%; color:#fff; padding:3.5rem 0.6rem 0 0.6rem;}
+.denglu1 p span{ color:#fffd59;}
+.denglu2{ width:100%; height:3.8rem; background:url(new/spread/dlShowd/image/dlh5.jpg) no-repeat; background-size:100% 7rem; padding-top:3.2rem;}
+.denglu-a{ display:block; font-size:0.34rem; color:#feffa7; text-align:center; line-height:0.9rem; width:6.2rem; height:0.9rem; background:#f11c55; border-radius:0.35rem; margin:0 auto 0.5rem;}
+.denglu-a img{ width:0.41rem; vertical-align:text-bottom; margin-right:0.2rem;}
+</style>
+<body>
+	<div class="denglu1">
+    	<p>已成功领取了<span>58888</span>投资体验金+<span>16666</span>分享体验金+<span>8888</span>注册体验金+<span>50</span>元代金券,请直接下载APP或关注微信公众号进行领取。</p>
+    </div>
+    <div class="denglu2">
+    	<a id="down" class="denglu-a"><img src="new/spread/dlShowd/image/dlh_btn.jpg" />立即下载APP</a>
+    </div>
+</body>
+</html>
+<script>
+$(document).ready(function(){
+	var mobile;
+    var ua = navigator.userAgent;
+    var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+    isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+    isAndroid = ua.match(/(Android)\s+([\d.]+)/);
+    if(isIphone != null){
+    	$("#down").attr("href","itms-apps://itunes.apple.com/us/app/jiu-cai-tong-yu-qi-nian-hua/id1101080761?mt=8");
+    }else if(isAndroid != null){
+    	$("#down").attr("href","https://d.jiuchengjr.com/jiucaitong.apk");
+    }
+	
+});
+</script>

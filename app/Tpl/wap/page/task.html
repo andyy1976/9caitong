@@ -1,0 +1,98 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>每日任务</div>
+	<!-- 每日任务 -->
+    <ul class="fi-task-list">
+        <li>
+            <div class="fi-task-l"><i></i></div>
+            <div class="fi-task-r">
+                <p><span>每日签到</span><span>每日签到，可领取1积分</span><span>已连续签到<b>5</b>天，共获得<b>32</b>积分</span></p><a href="javascript:;" class="fi-task-btn" onclick="sign()">签到</a>
+            </div>
+        </li>
+        <li class="fi-task-share">
+            <div class="fi-task-l"><i></i></div>
+            <div class="fi-task-r">
+                <p><span>每日分享</span><span>分享1次可领<b>5</b>积分，每天可领1次</span></p><a href="javascript:;" class="fi-task-btn" onclick="popBox()">分享</a>
+            </div>
+        </li>
+        <li class="fi-task-recharge">
+            <div class="fi-task-l"><i></i></div>
+            <div class="fi-task-r">
+                <p><span>充值任务</span><span>充值成功可领1积分，每天可领1次</span><span>已领取<b>34</b>积分</span></p><a href="javascript:;" class="fi-task-btn">去充值</a>
+            </div>
+        </li>
+    </ul>
+    <ul class="fi-task-list">        
+        <li class="fi-task-invest-1">
+            <div class="fi-task-l"><i></i></div>
+            <div class="fi-task-r">
+                <p><span>当天累计出借-5000元</span><span>出借满额后可领10积分(折标后)</span><span>今日已投<b>5000</b>元</span></p><a href="javascript:;" class="fi-task-btn fi-task-btn-finished">已完成</a>
+            </div>
+        </li>
+        <li class="fi-task-invest-2">
+            <div class="fi-task-l"><i></i></div>
+            <div class="fi-task-r">
+                <p><span>当天累计出借-5万元</span><span>出借满额后可领100积分(折标后)</span><span>今日已投<b>5000</b>元</span></p><a href="javascript:;" class="fi-task-btn">去出借</a>
+            </div>
+        </li>
+        <li class="fi-task-invest-3">
+            <div class="fi-task-l"><i></i></div>
+            <div class="fi-task-r">
+                <p><span>当天累计出借-50万元</span><span>出借满额后可领200积分(折标后)</span><span>今日已投<b>5000</b>元</span></p><a href="javascript:;" class="fi-task-btn">去出借</a>
+            </div>
+        </li>
+    </ul>
+    <p class="fi-task-note">注：折标后金额=出借金额/12*出借月份</p>
+</section>
+<div id="popBg"></div>
+<div id="popBox">
+    <a href="javascript:;"><img src="{$TMPL}/images/wap2/fi/bg_share.png"></a>
+</div>
+<script>
+//签到弹出框
+function sign(){
+    layer.open({
+        className: 'popup-btn',
+        content: '<h3>提示</h3><h4>+1积分</h4><p>已连续签到5天，共获得5积分</p>',
+        btn: '确定'
+    });
+}
+//分享提示弹出层，分享成功后返回当前页面后记得关闭弹出层
+function popBox(){
+    var popBox = document.getElementById('popBox');
+    var popBg = document.getElementById('popBg');
+    //弹出层
+    popBg.style.display = popBox.style.display = 'block';
+    popBoxPos();
+    popBgStyle();
+    //当页面滚动的时候，弹出框跟随滚动
+    window.onscroll = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+    window.onresize = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //设置弹出框的位置
+    function popBoxPos(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+        popBox.style.top = scrollTop + 'px';
+    }
+    //设置灰色背景的宽高
+    function popBgStyle(){
+        popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+        popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+    }
+    //关闭弹出框
+    popBox.onclick = popBg.onclick = function(){
+        popBg.style.display = popBox.style.display = 'none';
+    }
+}
+</script>
+</body>
+</html>

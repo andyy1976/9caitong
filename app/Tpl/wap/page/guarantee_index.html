@@ -1,0 +1,64 @@
+{include file="inc/header.html"} 
+<section class="safe-wrap cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>安全保障</div>
+<?php } ?>
+     <!--<div id="iSlider-wrapper"></div>-->
+     <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="{$TMPL}/images/wap2/index/safe/img2.png"></div>
+        <div class="swiper-slide"><img src="{$TMPL}/images/wap2/index/safe/img1.png"></div>
+        <div class="swiper-slide"><img src="{$TMPL}/images/wap2/index/safe/img3.png"></div>
+        <div class="swiper-slide"><img src="{$TMPL}/images/wap2/index/safe/img4.png"></div>
+        <div class="swiper-slide"><img src="{$TMPL}/images/wap2/index/safe/img5.png"></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+</section>
+<script>
+    //设置根字体大小
+    (function(){
+        var html = document.documentElement;
+        var htmlWidth = html.getBoundingClientRect().width;
+        html.style.fontSize = htmlWidth/15 + 'px';
+    })()
+</script>
+<script> 
+var mySwiper = new Swiper('.swiper-container', {
+    autoplay: 5000,//可选选项，自动滑动
+    width : window.innerWidth,
+    height : window.innerHeight,
+    loop : true,
+    pagination : '.swiper-pagination',
+})
+</script>
+<!--<script id="show-code">
+    var list = [
+        {
+            content: '{$TMPL}/images/wap2/index/safe/img1.png'
+        },
+        {
+            content: '{$TMPL}/images/wap2/index/safe/img2.png'
+        },
+        {
+            content: '{$TMPL}/images/wap2/index/safe/img3.png'
+        },
+        {
+            content: '{$TMPL}/images/wap2/index/safe/img4.png'
+        },
+        {
+            content: '{$TMPL}/images/wap2/index/safe/img5.png'
+        }
+    ];
+
+    var S = new iSlider({
+        dom: document.getElementById('iSlider-wrapper'),
+        data: list,
+        isLooping: 1,
+        isOverspread: 1,
+        animateTime: 800, // ms
+        plugins: ['dot']
+    });
+</script>-->
+</body>
+</html>

@@ -1,0 +1,56 @@
+{include file="inc/nheader.html"} 
+<div class="wraper bgf8 ofh">
+	<div class="center">
+		<div class="blank80"></div>
+		<div class="left_menu fl w263 ofh">
+			<ul>
+				{foreach from=$acate_tree item="cate_item" key=key}
+				{if $cate_item.type_id eq 0 || $cate_item.type_id eq 2 ||$cate_item.type_id eq 4}
+				<li><a href="{$cate_item.url}" {if $cate_item.id eq $cate.id}class="current"{/if}>{$cate_item.title}</a></li>
+				{/if}
+				{/foreach}
+			</ul>
+		</div>
+		<div class="isl_wrap fr w879 ofh bgff">
+			<h2 class="column_title">{$cate.title}</h2>
+			<div class="pd30 ofh">
+				{if $list}
+				<ul class="news_list_pic">
+					{foreach from=$list item=item}
+					<li>
+						{if $item.icon}
+						<div class="img fl">
+							<a href="{$item.video_url}" target="_blank"><img src="/new/images/btn_play.png" class="video_play" /></a>
+							<img src="{$item.icon}" />
+						</div>
+						{/if}
+						<div class="tex ofh">
+							<a href="{$item.video_url}" title="{$item.title}" class="fl tit" target="_blank">{function name="msubstr" v=$item.title s=0 e=46}</a>
+							<span class="fr">{function name="to_date" v=$item.update_time f="Y-m-d"}</span>
+							<p class="clear">{function name="msubstr" v=$item.brief s=0 e=100}</p>
+						</div>
+					</li>
+					{/foreach}
+				</ul>
+				{else}
+					<div class="ta_c">{$page_title}{$LANG.NO_ARTICLE}</div>
+				{/if}
+				<div class="blank20"></div>
+				<div class="pages">{$pages}</div>
+			</div>
+		</div>
+	</div>
+	<div class="blank50"></div>
+</div>
+{include file="inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+			});
+			seajs.use(["/new/js/page/common"])
+		</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+{include file="inc/header.html"}
+<section class="container cf">
+	<div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>我的体验金<a href="{url x="index" r="taste#taste_money_use"}" class="t-use-detail">使用明细</a></div>
+	<!-- 我的体验金 -->
+	<div class="t-total">
+		<p>{$taste_info.money_total}</p>
+		<span>体验金总额(元)</span>
+		<ul class="t-money-list cf">
+			<li><span>可用体验金(元)</span><p>{$taste_info.can_use_money}</p></li>
+			<li><span>已收收益(元)</span><p>{$taste_info.incomed}</p></li>
+			<li><span>待收收益(元)</span><p>{$taste_info.incomeing}</p></li>
+		</ul>
+	</div>
+	
+	<p class="t-explain cf"><a href="javascript:;" onclick="publicPop();">体验金获取及使用说明</a></p>
+	<ul class="t-m-list">
+			{foreach from=$taste_info.item item="item"}				
+				 {if $item.button_status eq 1}
+	            	<li><span>体验金</span><p><b>{$item.money}</b>元</p><a class="blue" href="javascript:;"  onclick="rushInvestBtn()">立即使用</a></li>
+	            {elseif $item.button_status eq 2}
+	            	<li><span>体验金</span><p><b>{$item.money}</b>元</p><a class="orange" href="javascript:;">计息中</a></li>
+	            {elseif $item.button_status eq 3}
+	            	<li><span>体验金</span><p><b>{$item.money}</b>元</p><a class="gray" href="javascript:;">已使用</a></li>
+	            {elseif $item.button_status eq 4}
+	            	<li><span>体验金</span><p><b>{$item.money}</b>元</p><a class="gray" href="javascript:;">已过期 </a></li>
+	            {/if}
+			{/foreach} 
+	</ul>
+
+	<!-- {if $taste_info.item eq ""}
+	<div class="t-no" >
+		<img src="{$TMPL}/images/wap2/fi/icon_t_no.png">
+		<p>您暂无可用体验金</p>
+	</div>
+	{else}
+	<div class="t-box">
+		{foreach from=$taste_info.item item="item"}
+		<div class="t-list">
+			<div class="t-list-top"><h3>{$item.title}</h3><span>{$item.time}天</span></div>
+			<ul class="t-list-data">
+				<li><p><b>{$item.money}</b>元</p><span>金额</span></li>
+				<li><p>{$item.rate}%</p><span>年化收益</span></li>
+				<li><p><b>{$item.income}</b>元</p><span>收益</span></li>
+			</ul>
+			<a class="t-btn">请下载APP使用</a>
+
+		</div>
+		{/foreach} -->
+		<!--
+        {foreach from=$taste_info.item item="item"}
+            {if $item.taste_id eq 2 || $item.taste_id eq 3}
+            <div class="t-list">
+                <div class="t-list-top"><h3>{$item.title}</h3><span>{$item.time}天</span></div>
+                <ul class="t-list-data">
+                    <li><p><b>{$item.money}</b>元</p><span>金额</span></li>
+                    <li><p>{$item.rate}%</p><span>年化收益</span></li>
+                    <li><p><b>{$item.income}</b>元</p><span>收益</span></li>
+                </ul>
+                <a class="t-btn">请下载APP使用</a>
+            {else}
+            {if $item.button_status eq 2 || $item.button_status eq 7 || $item.button_status eq 4}
+            <div class="t-list">
+            {elseif $item.button_status eq 3}
+            <div class="t-list t-list-red">
+            {elseif $item.button_status eq 1}
+            <div class="t-list t-list-blue">
+            {/if}
+                <div class="t-list-top"><h3>{$item.title}</h3><span>{$item.time}天</span></div>
+                <ul class="t-list-data">
+                    <li><p><b>{$item.money}</b>元</p><span>金额</span></li>
+                    <li><p>{$item.rate}%</p><span>年化收益</span></li>
+                    <li><p><b>{$item.income}</b>元</p><span>收益</span></li>
+                </ul>
+                <a href="javascript:;" class="t-btn" {if $item.button_status eq 1}onclick="tasteBtn({$taste_info.user_id},{$item.id},'wap',{$item.button_status})"{elseif $item.button_status eq 3}onclick="tasteBtn({$taste_info.user_id},{$item.id},'wap',{$item.button_status})"{else}{/if} >{$item.button}</a>
+            {/if}
+            </div>
+        {/foreach}
+
+	</div>
+	{/if}-->
+	<div class="public-pop">
+		<div class="public-pop-title">体验金获取及使用说明</div>
+		<div class="public-pop-box"><div class="see-rule-box taste-money-explain">{$taste_explain}</span></div></div>
+		<div class="public-pop-close"><img src="{$TMPL}/images/wap2/my/chahao.png" width="19" height="19"></div>
+	</div>
+</section>
+<script>
+	//使用说明、规则等遮罩层（内容多时可滚动并隐藏滚动条）
+	function publicPop(){
+		$('.public-pop').show();
+		$(document).on("touchmove",function(ev){ //阻止页面滑动事件的默认行为，不阻止遮罩层中的滑动事件的默认行为
+			var e = ev || event;
+			var target = e.target || e.srcElement;
+			if( target.className.indexOf("public-pop") >= 0) {
+				e.preventDefault();
+			}
+		});
+		if(window.addEventListener){
+			simpScroller(document.querySelector(".public-pop-box"), {
+				hideScrollBar: true
+			});
+		}
+		$('.public-pop-close').click(function(){
+			$('.public-pop').hide();
+		});
+	}
+
+
+
+	function rushInvestBtn(){
+     	   window.location.href = "{url x="index" r="deals#index"}";        
+    }
+
+
+	function tasteBtn(user_id,taste_id,device,status){
+		var ajaxurl = "{url x="index" r="taste#taste_use"}";
+		var query = new Object();
+		query.user_id = user_id;
+		query.id = taste_id;
+		query.device = device;
+		query.status = status;
+		$.ajax({
+			url: ajaxurl,
+			data:query,
+			type: "POST",
+			dataType: "json",
+			success: function(result){
+				if(result.status == 1){
+					layer.open({
+						className: 'popup-btn',
+						content: '<h3>提示</h3><p>'+result.show_err+'</p>',
+						shadeClose: true,
+						btn: ['确定'],
+						yes: function(){
+							location.reload();
+						}
+					});
+				}else if(result.status == 2){
+					layer.open({
+						className: 'popup-btn',
+						content: '<h3>提示</h3><p>'+result.show_err+'</p>',
+						btn: ['去出借', '取消'],
+						yes: function(){
+							//点击确认按钮后要做的动作
+							window.location.href = "{url x="index" r="deals"}";
+						},
+						no: function(){
+							//点击取消按钮后要做的动作
+							location.reload();
+						}
+					});
+				}else if(result.status == 3){
+					window.location.href = "{url x="index" r="taste#taste_money_share"}";
+				}else{
+					layer.open({
+						className: 'popup-btn',
+						content: '<h3>提示</h3><p>'+result.show_err+'</p>',
+						shadeClose: true,
+						time: 2
+					});
+				}
+			}
+		})
+	}
+	//体验金使用说明弹出框
+	 function showExplain(){
+	 layer.open({
+	 className: 'popup-tip',
+	 content: '<h3>体验金获取及使用说明</h3><div class="see-rule-box taste-money-explain"><h4>获取方式</h4><p>1、新用户通过APP、玖财通微信官网、PC官网注册成功后，即可获得体验金。还可通过其他活动获得体验金。</p><h4>如何使用</h4><p>1、获得体验金后，可直接点击使用。</p><p>2、体验金请务必在30天有效期内使用，过期后将无法使用。</p><h4>关于收益</h4><p>1、体验金使用后当日开始记息，到期后系统自动派发收益，体验金本金自动收回，用户可领取收益部分。</p><p>2、请务必在10天有效期内领取收益，过期将无法领取。</p><p>3、领取收益前，需真实出借一款产品，期限和金额不限。</p><p>4、领取收益后，可在“ 账户/可用现金” 中查看，收益可用于出借和提现。</p><span>*本活动最终解释权归玖财通所有。</span></div>',
+	 btn: ['确定']
+	 });
+	 }
+	//点击“立即使用”按钮弹出框
+	function rushUse(){
+	 layer.open({
+	 className: 'popup-btn',
+	 content: '<h3>提示</h3><p>出借任意产品后，才可领取体验金收益，是否去出借？</p>',
+	 btn: ['去出借', '取消'],
+	 yes: function(){
+	 //删除下边这行代码，并跳到出借页面，并关闭此弹出框
+	 layer.open({content: '跳到出借页面', time: 1});
+	 }
+	 });
+	 }
+
+	//点击“领取收益”按钮弹出框
+	function getProfit(){
+		layer.open({
+			className: 'popup-btn',
+			content: '<h3>提示</h3><p>恭喜，收益领取成功，<br>请到“账户/可用现金”中查看</p>',
+			btn: '确定'
+		});
+	}
+</script>
+</body>
+</html>

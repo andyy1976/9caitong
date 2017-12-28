@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{$TMPL}/css/wap_download/reset_ph_v=2016.css">
+    <script src="{$TMPL}/js/download/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{$TMPL}/css/wap_download/style.css">
+    <script src="{$TMPL}/js/download/fastclick.js"></script>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?da0f22482647b9ecba0a227ab3f07197";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+</script>
+    <script>
+        //处理移动端click事件300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+</head>
+<body>
+<div class="container">
+	<div class="content"><a href="javascript:;" class="download" onclick="yu()"></a></div>
+	<!-- <div class="ewm">
+		<img src="{$TMPL}/images/wap2/wap_download/ewm.png" />
+		<p>长按识别二维码<br />关注玖财通公众号，参加更多活动</p>
+	</div> -->
+	<img src="{$TMPL}/images/wap2/wap_download/img1.jpg" />
+</div>
+<!-- <div id="popBg"></div>
+<div id="popBox">
+    <a href="javascript:;"><img src="{$TMPL}/images/wap2/wap_download/tip_bg.png"></a>
+</div> -->
+<script>
+	//在微信中点击下载按钮弹出提示遮罩层
+	function popBox(){
+    var popBox = document.getElementById('popBox');
+    var popBg = document.getElementById('popBg');
+    //弹出层
+    popBg.style.display = popBox.style.display = 'block';
+    popBoxPos();
+    popBgStyle();
+    //当页面滚动的时候，弹出框跟随滚动
+    window.onscroll = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+    window.onresize = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //设置弹出框的位置
+    function popBoxPos(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+        popBox.style.top = scrollTop + 'px';
+    }
+    //设置灰色背景的宽高
+    function popBgStyle(){
+        popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+        popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+    }
+    //关闭弹出框
+    popBox.onclick = popBg.onclick = function(){
+        popBg.style.display = popBox.style.display = 'none';
+    }
+
+
+}
+    function yu(){
+		_hmt.push(['_trackEvent', 'download', 'download', 'hongbao']);
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+        var explorer = window.navigator.userAgent ;
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            //在微信中打开
+            popBox();
+        }else if(isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1){
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                $('#gg').show();//在微信中打开
+                $('#erwema').hide();//在微信中打开
+            }
+            else(
+                   // window.location.href='https://d.jiuchengjr.com/{$source_id}jiucaitong.apk'//安卓下载地址
+            		window.location.href='https://d.9caitong.com/jiucaitong.apk'
+            )
+        }
+        if(isiOs= !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)){
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                $('#jj').show();//在微信中打开
+                $('#erwema').hide();//在微信中打开
+            }
+            if (explorer.indexOf("Safari") >= 0) {
+                window.location.href='https://itunes.apple.com/cn/app/jiu-cai-tong/id1101080761?mt=8'//ios下载地址
+            }
+            else{
+//			$('#jj').show();
+                window.location.href='https://itunes.apple.com/cn/app/jiu-cai-tong/id1101080761?mt=8';//ios下载地址
+            }
+        }
+
+    }
+</script>
+</body>
+</html>

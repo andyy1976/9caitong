@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="new/spread/dlShowa/css/reset_ph_v=2016.css">
+    <link rel="stylesheet" type="text/css" href="new/spread/dlShowa/css/style.css">
+	<script type="text/javascript" src="new/spread/dlShowa/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="new/spread/dlShowa/js/fastclick.js"></script>
+    <script type="text/javascript">
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+</head>
+<body>
+<div class="d1-wrap d2-wrap">
+    <h3>恭喜您</h3>
+    <p>已成功领取了<span>58888</span>投资体验金+16666分享体验金+8888注册体验金+50元代金券,请直接下载APP或关注微信公众号进行领取。</p>
+    <a id="down" href="javascript:;" class="d1-btn d1-btn1"></a>
+    <p>请关注玖财通微信公众号 [jiucaitong],登录wap官网，随时随地查看您的账户收益！</p>
+    <img class="erweima_wap" src="new/spread/dlShowa/images/erweima_wap.png">
+    <div class="erweima_wap_note">
+        <p>请长按上方二维码</p>
+        <p>关注玖财通微信公众平台</p>
+    </div>
+
+</div>
+</body>
+</html>
+<script>
+$(document).ready(function(){
+	var mobile;
+    var ua = navigator.userAgent;
+    var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+    isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+    isAndroid = ua.match(/(Android)\s+([\d.]+)/);
+    if(isIphone != null){
+    	$("#down").attr("href","itms-apps://itunes.apple.com/us/app/jiu-cai-tong-yu-qi-nian-hua/id1101080761?mt=8");
+    }else if(isAndroid != null){
+    	$("#down").attr("href","https://d.jiuchengjr.com/jiucaitong.apk");
+    }
+	
+});
+</script>

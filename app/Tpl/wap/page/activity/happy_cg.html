@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>庆存管，礼上加礼拿大奖</title>
+    <link rel="stylesheet" href="new/activity/W_happy_cg/css/reset_ph_v=2016.css">
+    <link rel="stylesheet" href="new/activity/W_happy_cg/css/style.css">
+    <script src="new/activity/W_happy_cg/js/jquery-1.11.3.min.js"></script>
+    <script src="new/activity/W_happy_cg/js/fastclick.js"></script>
+    <script>
+        //处理移动端click事件300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+</head>
+<body>
+<div class="container">
+    <img src="new/activity/W_happy_cg/images/banner.jpg">
+    <div class="content">
+        <p class="num">每天发放奖品数量有限，每天100份，先到先得</p> 
+        <ul class="list">
+            <li class="li-1">
+                <p><b>15元</b>现金红包</p>
+                <span>5000≤单笔出借金额（折标后）<10000</span>
+                <a onclick="{$jump.ToProductList}()">立即出借</a>
+            </li>
+            <li class="li-2">
+                <p><b>30元</b>现金红包</p>
+                <span>10000≤单笔出借金额（折标后）<30000</span>
+                <a onclick="{$jump.ToProductList}()">立即出借</a>
+            </li>
+            <li class="li-3">
+                <p><b>5元</b>现金红包<em>+100元</em>京东E卡</p>
+                <span>30000≤单笔出借金额（折标后）<50000</span>
+                <a onclick="{$jump.ToProductList}()">立即出借</a>
+            </li>
+            <li class="li-4">
+                <p><b>15元</b>现金红包<em>+150元</em>京东E卡</p>
+                <span>50000≤单笔出借金额（折标后）<100000</span>
+                <a onclick="{$jump.ToProductList}()">立即出借</a>
+            </li>
+            <li class="li-5">
+                <p><b>10元</b>现金红包<em>+350元</em>京东E卡</p>
+                <span>100000≤单笔出借金额（折标后）</span>
+                <a onclick="{$jump.ToProductList}()">立即出借</a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="rule">
+        <span>规则说明：</span>
+        <p>1.用户在存管版和普通版出借均可参与本活动；</p>
+        <p>2.活动奖品数量有限，先到先得。活动奖励红包为玖财通存管版现金红包，不管出借普通版还是存管版，所得红包将于活动结束后10个工作日内统一发放到【玖财通】存管版账户。京东E卡将于活动结束后20个工作日内发放；</p>
+        <p>3.出借金额计算时，将按照年化利率进行折标计算，如用户张女士向3个月年化7.3%的项目出借资金100000元，则折标后金额=100000*3/12=25000元；</p>
+        <p>4.活动期间，如果用户出借多次，奖品可以重复领取；</p>
+        <p>5.活动期间，参与活动用户统计出借金额为真实出借金额，不含红包等虚拟资金；</p>
+        <p>6.所出借标的应为3个月及以上普通标，不包含体验金使用、新手标等；</p>
+        <p>7.客服将在活动结束后10个工作日联系您，如未在10个工作日内联系您，需要您在活动结束15日内主动联系玖财通客服，活动结束15日内未联系客服视为放弃奖品；客服联系电话400-650-8706；</p>
+        <p>8.本活动一切解释权归玖财通所有。</p>
+    </div>
+</div>
+<script>       
+    //wap跳转
+    function ToProductList(){
+        window.location.href = "{url x="index" r="deals"}";
+    }
+    //iOS跳转
+    function iosToProductList(){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToProductList"});
+    }
+    //Android跳转
+    function androidToProductList(){
+        window.jiucaitong.FromH5ToJump("jumpToProductList",""); //返回项目列表
+    }
+    </script>
+</body>
+</html>

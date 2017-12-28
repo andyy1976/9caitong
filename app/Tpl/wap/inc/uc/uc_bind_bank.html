@@ -1,0 +1,458 @@
+<body>
+    <section class="container cf">
+    <?php if(!es_session::get('MachineInfo')) {?>
+        <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>绑定银行卡</div>
+    <?php } ?>
+        <!-- 修改登录密码 -->
+        <div class="my-real-list my-tel-list">
+            <form>
+                <input type="hidden" id="user_mobile" value="{$credit_data.mobile}" >
+                <!-- <input type="hidden" id="user_name" value="{$credit_data.user_name}" > -->
+                <input type="hidden" id="real_name" value="{$credit_data.real_name}" >
+                <input type="hidden" id="idno" value="{$credit_data.idno}" >
+                <p><span>银行名称</span><input type="text" id="bank" name="bank_id" readonly="readonly"  placeholder="开户行" value=""></p>
+                <p><span>银行卡号</span><input type="tel" id="cardId" placeholder="本人的储蓄卡卡号"></p>
+                <p><span>手机号码</span><input type="tel" id="mobile" placeholder="请输入银行预留的手机号"></p>
+                <p class="my_yzm" style="display:none"><span>验证码</span><input type="text" id="verify" onKeyUp="value=value.replace(/[\W]/g,'')" onafterpaste="this.value=this.value.replace(/[\W]/g,'')" maxlength="16" placeholder="图文验证码"><img src="{$APP_ROOT}/verify.php?w=89&h=44&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img" title="看不清楚？换一张" width="76" height="30" class="rl-verify-img"></p>
+                <p><span>短信验证码</span><input type="tel" id="sms_code" placeholder="短信验证码"><a href="javascript:;" id="get_regsms_code" class="my-tel-code my-tel-code-gray"></a></p>
+                <a href="javascript:;" class="my-btn-reset" id="submit_btn">下一步</a>
+                 <div class="my-btn-skip"><a onclick="{if $MachineInfo eq 'iOS'}ios_url(){elseif $MachineInfo eq 'Android'}android_url(){else}btn_url(){/if}">先去逛逛</a></div>
+            </form>
+        </div>
+    </section>
+    <script>
+    var regsiter_vy_time = null;    //定义时间
+    var is_lock_send_vy = false;    //解除锁定
+    var left_rg_time = 0;           //开始时间
+
+    function left_time_to_send_regvy(){
+        clearTimeout(regsiter_vy_time);
+        if(left_rg_time > 0){
+            regsiter_vy_time = setTimeout(left_time_to_send_regvy,1000);
+            $("#get_regsms_code").css('background','#aaa');
+            $("#get_regsms_code").html(left_rg_time+"秒后重新获取");
+            $("#get_regsms_code").addClass("btn_disable");
+            left_rg_time -- ;
+        }
+        else{
+            is_lock_send_vy = false;
+            $("#get_regsms_code").removeClass("btn_disable");
+            $("#get_regsms_code").css('background','#f99c1c');
+            $("#get_regsms_code").html("重新获取验证码");
+            left_rg_time = 0;
+        }
+    }
+    function btn_url() {
+        window.location.href = "{url x="index" r="deals"}";
+    }
+    //跳转到IOS内应用
+    function ios_url(){
+       window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpxianqugg"});
+    }
+    //跳转到android内应用
+    function android_url(){
+        window.Android.jump('1');
+    }
+    /*控制获取验证码状态*/
+    $("#bank").keyup(function(){
+        var bank = $("#bank").val();
+        var cardId = $("#cardId").val();
+        var mobile = $("#mobile").val();
+        if(bank.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if(cardId.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if(mobile.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;   
+        }else if($(".my_yzm").css("display")=='block'){
+            if($("#verify").val().length == 0){
+                $("#get_regsms_code").css('background','#aaa');
+                return false;
+            }else{
+                $("#get_regsms_code").css('background','#f99c1c');
+            }
+        }else{
+            $("#get_regsms_code").css('background','#f99c1c');
+        }
+    })
+    $("#cardId").keyup(function(){
+        var bank = $("#bank").val();
+        var cardId = $("#cardId").val();
+        var mobile = $("#mobile").val();
+        if(bank.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if(cardId.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if(mobile.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;   
+        }else if($(".my_yzm").css("display")=='block'){
+            if($("#verify").val().length == 0){
+                $("#get_regsms_code").css('background','#aaa');
+                return false;
+            }else{
+                $("#get_regsms_code").css('background','#f99c1c');
+            }
+        }else{
+            $("#get_regsms_code").css('background','#f99c1c');
+        }
+    })
+    $("#mobile").keyup(function(){
+        var bank = $("#bank").val();
+        var cardId = $("#cardId").val();
+        var mobile = $("#mobile").val();
+        if(bank.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if(cardId.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if(mobile.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;   
+        }else if($(".my_yzm").css("display")=='block'){
+            if($("#verify").val().length == 0){
+                $("#get_regsms_code").css('background','#aaa');
+                return false;
+            }else{
+                $("#get_regsms_code").css('background','#f99c1c');
+            }
+        }else{
+            $("#get_regsms_code").css('background','#f99c1c');
+        }
+    })
+    $("#verify").keyup(function(){
+        var bank = $("#bank").val();
+        var cardId = $("#cardId").val();
+        var mobile = $("#mobile").val();
+        if(bank.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if(cardId.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else if(mobile.length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;   
+        }else if($("#verify").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else{
+            $("#get_regsms_code").css('background','#f99c1c');
+        }
+    })
+    /*控制完成按钮状态*/
+    $("#bank").keyup(function(){
+        var bank = $("#bank").val();
+        var cardId = $("#cardId").val();
+        var mobile = $("#mobile").val();
+        var code = $("#sms_code").val();
+        if(bank.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if(cardId.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if(mobile.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;   
+        }else if(code.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if($(".my_yzm").css("display")=='block'){
+            if($("#verify").val().length == 0){
+                $(".my-btn-reset").css('background','#aaa');
+                return false;
+            }else{
+                $(".my-btn-reset").css('background','#4b6bde');
+            }
+        }else{
+            $(".my-btn-reset").css('background','#4b6bde');
+        }
+    })
+    $("#cardId").keyup(function(){
+        var bank = $("#bank").val();
+        var cardId = $("#cardId").val();
+        var mobile = $("#mobile").val();
+        var code = $("#sms_code").val();
+        if(bank.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if(cardId.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if(mobile.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;   
+        }else if(code.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if($(".my_yzm").css("display")=='block'){
+            if($("#verify").val().length == 0){
+                $(".my-btn-reset").css('background','#aaa');
+                return false;
+            }else{
+                $(".my-btn-reset").css('background','#4b6bde');
+            }
+        }else{
+            $(".my-btn-reset").css('background','#4b6bde');
+        }
+    })
+    $("#mobile").keyup(function(){
+        var bank = $("#bank").val();
+        var cardId = $("#cardId").val();
+        var mobile = $("#mobile").val();
+        var code = $("#sms_code").val();
+        if(bank.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if(cardId.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if(mobile.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;   
+        }else if(code.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if($(".my_yzm").css("display")=='block'){
+            if($("#verify").val().length == 0){
+                $(".my-btn-reset").css('background','#aaa');
+                return false;
+            }else{
+                $(".my-btn-reset").css('background','#4b6bde');
+            }
+        }else{
+            $(".my-btn-reset").css('background','#4b6bde');
+        }
+    })
+    $("#verify").keyup(function(){
+        var bank = $("#bank").val();
+        var cardId = $("#cardId").val();
+        var mobile = $("#mobile").val();
+        var code = $("#sms_code").val();
+        if(bank.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if(cardId.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if(mobile.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;   
+        }else if(code.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if($(".my_yzm").css("display")=='block'){
+            if($("#verify").val().length == 0){
+                $(".my-btn-reset").css('background','#aaa');
+                return false;
+            }else{
+                $(".my-btn-reset").css('background','#4b6bde');
+            }
+        }else{
+            $(".my-btn-reset").css('background','#4b6bde');
+        }
+    })
+    $("#sms_code").keyup(function(){
+        var bank = $("#bank").val();
+        var cardId = $("#cardId").val();
+        var mobile = $("#mobile").val();
+        var code = $("#sms_code").val();
+        if(bank.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if(cardId.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if(mobile.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;   
+        }else if(code.length == 0){
+            $(".my-btn-reset").css('background','#aaa');
+            return false;
+        }else if($(".my_yzm").css("display")=='block'){
+            if($("#verify").val().length == 0){
+                $(".my-btn-reset").css('background','#aaa');
+                return false;
+            }else{
+                $(".my-btn-reset").css('background','#4b6bde');
+            }
+        }else{
+            $(".my-btn-reset").css('background','#4b6bde');
+        }
+    })
+    $(document).ready(function(){
+        $('#get_regsms_code').html('获取验证码'); 
+        $("#get_regsms_code").click(function(){
+            var bank = $.trim($("#bank").val());
+            var cardId = $.trim($("#cardId").val());
+            var mobile = $.trim($("#mobile").val());
+            if(bank.length == 0 || cardId.length == 0 || mobile.length == 0){
+                return false;
+            }
+            //验证银行卡号正则表达式
+            if(!( /^(\d{16}|\d{19})$/.test(cardId))){
+            	layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>银行卡号格式不正确</p>', 
+                    shadeClose: true,
+                    time: 2
+                });
+                return false;
+            }
+            if($(".my_yzm").css("display")=='block'){
+                if($("#verify").val().length == 0){
+                    return false;
+                }
+            }
+            if(is_lock_send_vy || $(this).hasClass(".btn_disable")){
+                return false;
+            }
+            is_lock_send_vy = true;
+            regsmsCode();
+        });
+        $("#submit_btn").click(function(){
+            var bank = $.trim($("#bank").val());
+            var cardId = $.trim($("#cardId").val());
+            var mobile = $.trim($("#mobile").val());
+            if(bank.length == 0 || cardId.length == 0 || mobile.length == 0){
+                return false;
+            }
+            if($.trim($("#sms_code").val()).length == 0){
+                return false;
+            }
+            //验证银行卡号正则表达式
+            if(!( /^(\d{16}|\d{19})$/.test($.trim($("#cardId").val())))){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>银行卡号格式不正确</p>', 
+                    shadeClose: true,
+                    time: 2
+                });
+                return false;
+            }
+            var ajaxurl = "{url x="index" r="uc_account#bind_bank_card"}";
+            var load=layer.open({type: 2,shadeClose: false});
+            var query = new Object();
+            /*query.user_name = $.trim($("#user_name").val());*/
+            query.bank = $.trim($("#bank").val());
+            query.cardId = $.trim($("#cardId").val());
+            query.mobile = $.trim($("#mobile").val());
+            query.sms_code = $.trim($("#sms_code").val());
+            query.real_name = $.trim($("#real_name").val());
+            query.idno = $.trim($("#idno").val());
+            $.ajax({
+                url:ajaxurl,
+                data:query,
+                type: "POST",
+                dataType: "json",
+                success:function(result){
+                    if(result.status == 0){
+                        layer.close(load);
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>'+result.info+'</p>',
+                            shadeClose: true,
+                            time: 2,
+                        });                        
+                    }else{
+                        layer.close(load);
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>'+result.info+'</p>',
+                            shadeClose: true,
+                            time: 2,
+                            end: function(){
+                            //点击确认按钮后要做的动作
+                                window.location.href = "{url x="index" r="uc_account#paypassword"}";
+                            },
+                        });
+                    }
+                }
+            })
+        });
+
+    });
+function regsmsCode() {
+	var mobile = $("#mobile").val();
+	var verify = $.trim($("#verify").val());
+	var ajaxurl = "{url x="index" r="ajax#get_identity_bank_code"}";
+	$.ajax({
+		url:ajaxurl,
+		data:{'user_mobile':mobile,'verify':verify},
+		type: "POST",
+        dataType: "json",
+        success: function(result){
+        	if(result.status==1){
+                left_rg_time = 60;
+                left_time_to_send_regvy();
+                to_send_msg = true;
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>'+result.info+'</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+            }else if(result.status==2){
+                is_lock_send_vy = false;
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>'+result.info+'</p>',
+                    shadeClose: true,
+                    time: 2,
+                    end:function() {
+                        $(".my_yzm").css('display','block');
+                        $("#get_regsms_code").css('background','#aaa');
+                    }
+                });
+                return false;
+            }else{   
+                is_lock_send_vy = false;
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>'+result.info+'</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                return false;
+            }
+        },error:function(){
+            is_lock_send_vy = false;
+        }
+	})
+}
+</script>
+<script type="text/javascript">
+    var bankIdDom = document.querySelector('#bank');
+    bankIdDom.addEventListener('click', function () {
+        var bankId = bankIdDom.dataset['id'];
+        var bankName = bankIdDom.dataset['value'];
+        var bankSelect = new IosSelect(1, 
+            [data],
+            {
+                container: '.container',
+                title: '银行卡选择',
+                itemHeight: 50,
+                itemShowCount: 3,
+                oneLevelId: bankId,
+                callback: function (selectOneObj) {
+                    bankIdDom.innerHTML = selectOneObj.value;
+                    bankIdDom.dataset['id'] = selectOneObj.id;
+                    bankIdDom.value = selectOneObj.value;
+                }
+        });
+    });
+    var data = [
+    {foreach from="$bankList" item="list"}
+    {'id': {$list.id}, 'value': '{$list.name}'},
+    {/foreach}
+];
+</script>
+</body>
+</html>

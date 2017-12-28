@@ -1,0 +1,199 @@
+<link rel="stylesheet" href="/new/css/login.css?v=1" />
+<script src="/new/js/lib/jquery-1.8.3.js"></script>
+<script src="/new/js/lib/layer.js"></script>
+<script type="text/javascript">
+var APP_ROOT = '{$APP_ROOT}';
+var __LOGIN_KEY = "{insert name="get_login_key"}";
+var __HASH_KEY__ = "{insert name="get_hash_key"}";
+</script>
+<div class="wrap_login">
+	<div method="post" action="{url x="index" r="user#dologin"}" name="ajax_login_form" id="ajax_login_form">
+		<ul class="loginbox">
+			<li class="inputbox">
+				<input type="text" maxlength="11" class="text_input user_name" id="login-email-address" name="email" value="" placeholder="请输入{$LANG.MOBILE}号" />
+			</li>
+			<li class="inputbox">
+				<input type="password" max="16" class="text_input password"  id="login-password" name="user_pwd" value=""  placeholder="请输入{$LANG.USER_TITLE_USER_PWD}"/>
+				
+			</li>
+			{if app_conf("VERIFY_IMAGE") eq 1}
+			<li class="inputbox">
+				<input type="text" class="text_input code" value="" name="verify" id="Jverify" placeholder="请输入验证码"/>
+				<img class="ml15 f_l" maxlength="4" value=""style="margin-top:0" src="{$APP_ROOT}/verify.php?w=89&h=44&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img" title="看不清楚？换一张" />
+			</li>
+			{/if}
+			<li>
+				<label class="auto_login" rel="auto_login">
+				<input type="checkbox" id="autologin" name="auto_login" class="auto_login" value="1" tabindex="3" >下次自动登录
+				</label>
+				<a href="{url x="index" r="user#getpassword"}" class="forgetPassword">{$LANG.FORGET_PASSWORD}</a>
+			</li>
+			<li class="inputbox">
+				<input type="hidden" name="ajax" value="1">
+				<input type="submit" class="login_submit"  id="ajax-login-submit" name="commit" value="{$LANG.LOGIN}">		
+			</li>
+			<li>
+				没有账号？<a href="{url x="index" r="user#register"}" class="reg" target="_parent">立即注册</a>		
+			</li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#ajax-login-submit").click(function(){
+			ajaxCheckLogin()
+		});	
+		
+		$("#ajax_login_form input,#ajax_login_form select").keydown(function(e){ 
+			var curKey = e.which; 
+			if(curKey == 13){
+				//ajaxCheckLogin();
+				return false;
+			} 
+		});
+	});
+	$.minLength = function(value, length , isByte) {
+		var strLength = $.trim(value).length;
+		if(isByte)
+			strLength = $.getStringLength(value);
+			
+		return strLength >= length;
+	};
+	function des(str){
+	    var c1, c2, c3;
+	    var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";                
+	    var i = 0, len= str.length, string = '';
+	
+	    while (i < len){
+	        c1 = str.charCodeAt(i++) & 0xff;
+	        if (i == len){
+	                string += base64EncodeChars.charAt(c1 >> 2);
+	                string += base64EncodeChars.charAt((c1 & 0x3) << 4);
+	                string += "==";
+	                break;
+	        }
+	        c2 = str.charCodeAt(i++);
+	        if (i == len){
+	                string += base64EncodeChars.charAt(c1 >> 2);
+	                string += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+	                string += base64EncodeChars.charAt((c2 & 0xF) << 2);
+	                string += "=";
+	                break;
+	        }
+	        c3 = str.charCodeAt(i++);
+	        string += base64EncodeChars.charAt(c1 >> 2);
+	        string += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+	        string += base64EncodeChars.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >> 6));
+	        string += base64EncodeChars.charAt(c3 & 0x3F)
+	    }
+		return string;
+	}
+	function FW_Password (pwd){
+		return des(escape(__LOGIN_KEY+"%u65B9%u7EF4"+pwd+"%u8F6F%u4EF6"));
+	}
+	function close_pop()
+	{
+		$(".dialog-close").click();
+	}
+	$.showCfm = function(str,funok,funcls)
+	{
+		layer.closeAll();
+		parent.layer.confirm(str, {btn: ['确定','取消'],title:'确认'},function(){
+			
+			if(funok!=null){
+				funok.call(this);
+			}
+		},function () {
+			parent.location.reload();
+		});
+	};
+	function ajaxCheckLogin(){
+		
+			if($.trim($("#login-email-address").val()).length == 0)
+			{
+				parent.layer.msg("{function name="sprintf" format=$LANG.FORMAT_ERROR_TIP value=$LANG.USER_TITLE_EMAIL}{$LANG.OR}{function name="sprintf" format=$LANG.FORMAT_ERROR_TIP value=$LANG.USER_TITLE_USER_NAME}");
+				$("#login-email-address").focus();
+				return false;
+			}
+	
+			if(!$.minLength($("#login-password").val(),4,false))
+			{
+				parent.layer.msg("{function name="sprintf" format=$LANG.FORMAT_ERROR_TIP value=$LANG.USER_TITLE_USER_PWD}");
+				$("#login-password").focus();
+				return false;
+			}
+			
+			var ajaxurl = $("div[name='ajax_login_form']").attr("action");
+			var query = new Object();
+			query.email = $("div[name='ajax_login_form'] #login-email-address").val();
+			query.user_pwd = FW_Password($("div[name='ajax_login_form'] #login-password").val());
+			
+			if($("#Jverify").length > 0)
+			query.verify = $("#Jverify").val();
+			query.auto_login = $("div[name='ajax_login_form'] #autologin:checked").val();
+			query.ajax = 1;
+
+			$.ajax({ 
+				url: ajaxurl,
+				dataType: "json",
+				data:query,
+				type: "POST",
+				success: function(ajaxobj){
+					if(ajaxobj.status==0)
+					{
+						if($("#Jverify_img").length > 0)
+							$("#Jverify_img").attr("src",'{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random());
+							parent.layer.msg(ajaxobj.info);
+							$("#Jverify").focus();
+					}
+					else
+					{
+						var integrate = $("<span id='integrate'>"+ajaxobj.data+"</span>");
+						$("body").append(integrate);														
+						close_pop();
+						
+						update_user_tip();
+						
+						$("#integrate").remove();
+						if(ajaxobj.status==1){
+							parent.layer.alert(ajaxobj.info,function(){
+								parent.window.location.reload();
+							});
+						}
+						else{
+							parent.layer.confirm(ajaxobj.info,function(){
+								parent.location.href = ajaxobj.jump1;
+							},function(){
+								//parent.parent.layer.closeAll();
+								parent.window.location.reload();
+							});
+						}					
+					}
+				},
+				error:function(ajaxobj)
+				{
+						if(ajaxobj.responseText!='')
+						layer.alert(ajaxobj.responseText);
+				}
+			});	
+			
+			return false;
+	}
+
+	function update_user_tip()
+	{
+		var ajaxurl = APP_ROOT+"/index.php?ctl=ajax&act=update_user_tip";
+		$.ajax({ 
+		url: ajaxurl,
+		type: "POST",
+		success: function(ajaxobj){
+			$("#user_head_tip").html(ajaxobj);
+		},
+		error:function(ajaxobj)
+		{
+//				if(ajaxobj.responseText!='')
+//				alert(ajaxobj.responseText);
+		}
+	});	
+	}
+</script>

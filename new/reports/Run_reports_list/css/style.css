@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* 运营报告列表 */
+html{ background: #edf2f6;}
+.container{ max-width: 750px; margin: 0 auto;}
+.header{ line-height: 48px; background: linear-gradient(to bottom, #575cde 0%, #4672de 100%); overflow: hidden; color: white; text-align: center; font-size: 1.8rem; font-weight: bold; position: relative; z-index: 8;}
+.header .back-icon{ position: absolute; left: 0; top: 0; padding: 15px 4%;}
+.yybg_list{ overflow: hidden;}
+.yybg_list li{ width: 40%; float: left; margin-left: 6.67%; margin-top: 20px;}
+.yybg_list img{ width: 100%;}
+.yybg_list p{ line-height: 16px; font-size: 12px; color: #486079; margin-top: 6px;}

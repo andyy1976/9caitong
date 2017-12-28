@@ -1,0 +1,64 @@
+html,body{
+    color:#000;
+    background:#FFF;
+    font-family: "Microsoft Yahei";  
+    font-style: 14px;
+    width: 100%;
+    height: 100%;
+}
+img{ margin: 0; padding: 0;}
+a{text-decoration: none;color: #666666; cursor: pointer;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{
+    margin:0;
+    padding:0;
+}
+ul{
+     list-style:none;
+    }
+q:before,q:after{
+    content:'';
+
+}
+input,textarea,select{
+   font-family:inherit;
+   font-size:inherit;
+   font-weight:inherit;
+   *font-size:100%;
+}
+ul,ul li{ list-style:none;}
+.clear{ clear:both; width:0; height:0; overflow:hidden;}
+.banner{ position: relative; background: url(../image/banner.png) top center no-repeat; height: 623px;}
+.banner-reg{ position: absolute; top: 153px; left: 50%; margin-left: 245px;}
+.r-form li{ position: relative; width: 290px; height: 45px; margin-bottom: 22px;}
+.r-form li span{ width:30px; height: 45px; display: block; text-align: center; float: left; background: #fff;
+  border-bottom-left-radius:4px;border-top-left-radius:4px;}
+.r-form li span img{ margin-top: 10px;  width: 19px; height: 23px;}
+.r-form li input{width:260px; height:45px; line-height:45px;font-size:14px; text-indent:0.4rem;  
+  float: left; border: none; outline: none; border-radius: 0; border-bottom-right-radius:4px;border-top-right-radius:4px;  
+  box-sizing: border-box; -webkit-appearance: none; background: #fff; }
+//.r-form li i{ width:280px; height:64px; position: absolute; top:0rem; right:0rem;}
+.r-form li #Jverify_img{ color: #095e20; font-weight: bold; width:110px;border-radius: 4px; border: 0; letter-spacing: 2px;  position: absolute; padding: 0; right: 0;}
+.r-form li input.r-input{ width:125px;}
+.r-form li:last-of-type a{width:110px; line-height: 45px;height: 45px; float: right; background: #fff82c; border-radius: 4px; text-align: center; font-size:14px; color: #333333;}
+.r-form li:last-of-type a.gray{ color: #666; background: #aaa; border-color: #aaa;}
+.r-form li .tip{ position: absolute; left: 11px; top:48px; font-size:12px;  font-weight: normal; color: #fff82c;}
+.r-btn a{ display: block;margin-top: 25px; width: 280px;height: 45px; color: #fff; border-radius: 4px; text-align: center; font-size: 18px;  line-height: 40px; background: #ff534d;}
+
+.wrap-con{background: #306ade;}
+.con1{ background: url(../image/con1.png) top center no-repeat; padding-top: 240px; height: 819px;}
+.con1-ul{ width: 1120px; margin: 0 auto;}
+.con1-ul li{ float: left; margin-left: 100px;}
+.con1-btn{  display: block; width: 400px; margin: 50px auto;}
+.con2{ background: url(../image/con2.png) top center no-repeat; padding-top: 160px; height: 469px;}
+.con2-text{ position: relative; background: url(../image/con2-img1.png) top center no-repeat; margin: 0 auto; width: 790px; height: 404px;}
+.con2-text a{ position: absolute; left: 260px; bottom: 23px; width: 260px; height: 70px;cursor: pointer; font-size: 0;}
+.con3{ background: url(../image/con3.png) top center no-repeat; height: 684px; padding-top: 160px;}
+.con3-ul{width: 1120px; margin: 0 auto;}
+.con3-ul li{ position: relative; float: left; margin-left: 160px;}
+.con3-ul li a{ position: absolute; bottom: 18px; display: block; cursor: pointer; width: 340px; height: 75px;  font-size: 0;}
+.con4{ width: 840px; margin: 0 auto;  padding: 20px 0;}
+.con4 p{ font-size: 16px; color: #ffffff; line-height: 40px;}
+
+.con-p{ font-size: 12px; color: #fff; text-align: center; padding-bottom: 30px;}
+.erweima{ position: fixed; top: 20%; right:180px;}
+.erweima img{ width: 175px; height: 218px;}

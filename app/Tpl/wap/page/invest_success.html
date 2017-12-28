@@ -1,0 +1,80 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>出借结果</div>
+<?php } ?> 
+	<!-- 出借结果 -->
+    <div class="pt-in-success-box cf">
+		{if !$plan_load_id}
+        <img src="{$TMPL}/images/wap2/pt/img_invest_success.png" class="pt-in-success-img">
+		{/if}
+        <div class="pt-in-success-tip">
+		{if $plan_load_id}
+			<p><span>恭喜您</span><span>本次出借成功！</span></p>
+            <p id="money">
+			正在处理......
+			</p>
+			 <p>当日计息</p>
+            <p><span>到期付本息</span><span></span></p>
+			{else}
+		<p><span>恭喜您</span><span>本次出借成功！</span></p>
+            <p><span>开始计息</span><span></span></p>
+            <p>每月派息</p>
+            <p><span>到期还本</span><span></span></p>
+		{/if}
+        </div>
+		
+    </div>
+	{if !$plan_load_id}
+    <a  onclick="{$jump.ToProductList}()" class="pt-in-success-btn">确定</a>
+    {if $popup}
+    <div class="success_act"><a href="{$popup.url}"><img src="{$popup.img}" ></a></div>
+	{/if}
+	{/if}
+</section>
+<script type="text/javascript">
+{if $plan_load_id}
+$(function(){
+function doajax(){
+	var ajaxurl = "{url x="index" r="deal#plan_success"}";
+    var query = new Object();
+    query.plan_load_id = {$plan_load_id};
+    $.ajax({ 
+        url: ajaxurl,
+        data:query,
+        type: "POST",
+        dataType: "json",  
+        success: function(result){
+            if(result.status==1){
+				$("#money").text("您实际出借 "+result.info+'元'); 
+				$(".pt-in-success-box").after('<a  onclick="{$jump.ToProductList}()" class="pt-in-success-btn">确定</a>');
+				clearInterval(sh);
+            }else{   
+               //$("#money").html("出借失败);
+			   //$("#notice").html('<a href="{url x="index" r="uc_invest#invite"}">确定</a>');
+            }
+        },error:function(){
+            
+        }
+    });
+
+}
+sh= setInterval(doajax,5000);
+})
+{/if}
+//wap跳转
+function ToProductList(){
+    window.location.href = "{url x="index" r="deals"}";
+}
+//iOS跳转
+function iosToProductList(){
+    window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToProductList"});
+}
+//Android跳转
+function androidToProductList(){
+     window.jiucaitong.FromH5ToJump("jumpToProductList","");  //返回项目列表
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>注册推广页</title>
+    <link rel="stylesheet" href="new/spread/tasteRegister1/css/reset_ph_v=2016.css">
+    <link rel="stylesheet" href="new/spread/tasteRegister1/css/style.css">
+    <script src="new/spread/tasteRegister1/js/jquery-1.11.3.min.js"></script>
+    <script src="new/spread/tasteRegister1/js/fastclick.js"></script>
+	<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+</head>
+<body>
+<div class="container">
+    <img src="new/spread/tasteRegister1/images/banner.jpg" class="banner">
+    <div class="box">
+    	<form>
+    		<div class="item">
+    			<div class="box-l">手机号</div>
+    			<div class="box-r"><input name="username" type="tel" placeholder="请输入手机号"></div>
+    		</div>
+    		<div class="item">
+    			<div class="box-l">密  码</div>
+    			<div class="box-r"><input name="password" type="password" placeholder="设置登录密码"></div>
+    		</div>
+    		<div class="item item-code">
+    			<div class="box-l">验证码</div>
+    			<div class="box-r"><input id="codeNum" type="text" placeholder="请输入验证码"><img src="{$APP_ROOT}/verify.php?w=88&h=44&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=88&h=44&rand='+ Math.random();" style="height: 28px;padding-right: 5px;"></div>
+    		</div>
+    		<div class="item item-yzm">
+    			<div class="box-r"><input name="phoneCode" type="text" placeholder="请输入验证码"></div><a id="getCode" href="javascript:;" class="gray">获取验证码</a>
+    		</div>
+    		<a href="javascript:;" class="btn" onclick="doRegister();"><img src="new/spread/tasteRegister1/images/btn.png"></a>
+    		<p id="error_html" class="tips" style="display:block"></p>
+    	</form>
+    </div>
+    <div class="list cf">
+    	<h3>1、平台优势</h3>
+    	<img src="new/spread/tasteRegister1/images/img_1.png">
+    	<ul>
+    		<li>·签约银行资金存管</li>
+    		<li>·100元起投</li>
+    		<li>·提现最快当日到账</li>
+    		<li>·注册资本壹亿元</li>
+    	</ul>
+    </div>
+    <div class="list cf">
+    	<h3>2、	安全保障</h3>
+    	<img src="new/spread/tasteRegister1/images/img_2.png">
+    	<ul>
+    		<li>·平台系统自主研发</li>
+    		<li>·银行级数据安全保障体系</li>
+    		<li>·Symantec SSL加密技术</li>
+    		<li>·24小时不间断安全监控</li>
+    	</ul>
+    </div>
+    <div class="list cf">
+    	<h3>3、荣誉及资质</h3>
+    	<img src="new/spread/tasteRegister1/images/img_3.png">
+    	<ul>
+    		<li>·获国家版权局版权保护</li>
+    		<li>·互联网金融行业诚信品牌奖</li>
+    		<li>·与福建海峡银行签订资金存管协议</li>
+    		<li>·互联网金融行业优秀示范企业</li>
+    		<li>·安全联盟行业认证</li>
+    	</ul>
+    </div>
+    <p class="wx-word-1">关注玖财通微信公众号 [jiucaitong]，登录wap官网，随时随地查看您的账户收益！</p>
+    <img src="new/spread/tasteRegister1/images/ewm.png" width="131" height="131" class="wx-img">
+    <p class="wx-word-2">咨询热线：010-53608035</p>
+</div>
+</body>
+</html>
+<script>
+var last_times = 0; //倒计时时间 单位S
+var static_countdowns_times = 60;//倒计时开始时间
+function countdown() {
+	$("#getCode").css("background-color", "#aaa");
+	if (0 >= last_times) {
+		$("#getCode").css("background-color", "#fedd20");
+		$("#getCode").html('获取验证码');
+		return;
+	}
+	str_text = last_times--;
+	str_text += '秒后重试';
+	$('#getCode').html(str_text);
+	setTimeout("countdown()", 1000);
+}
+
+function check_form(username, password,re_username,imgCode) {
+	
+	var pattern = /^1[34578]\d{9}$/;
+	var match = /^(?![^0-9]+$)(?![^a-zA-Z]+$).+$/;
+	if (username.length == 0){
+		$("#error_html").html('请输入手机号');
+		return false;
+	}
+	if (!pattern.test(username)) {
+		$("#error_html").html('手机号格式不正确');
+		return false;
+	}
+	if (password.length == 0) {
+		$("#error_html").html('请输入密码');
+		return false;
+	}
+	if (password.length < 6) {
+		$("#error_html").html('密码应为6-16位数字字母组合');
+		return false;
+	}
+	if (!match.test(password)) {
+		$("#error_html").html("密码应为6-16位数字字母组合");
+		return false;
+	}
+	if(username == re_username) {
+		$("#error_html").html('邀请码不能填写自己');
+		return false;
+	}
+	if(re_username && !pattern.test(re_username)){
+		$("#error_html").html('邀请码不存在');
+		return false;
+	}
+	if (imgCode == ""){
+		$("#error_html").html("请输入图形验证码");
+		return false;
+	}
+	
+	$("#error_html").html("");
+	return true;
+}
+
+$("#getCode").click(function () {
+	$("#error_html").html('');
+	if (0 >= last_times) {
+		var username = $('input[name=username]').val();
+		var password = $('input[name=password]').val();
+		var re_username = $('input[name=re_username]').val();
+		var imgCode = $('#codeNum').val();
+		var check_re = check_form(username, password,re_username,imgCode);
+		if (check_re){
+			$.ajax({
+				url:  "index.php?ctl=ajax&act=send_phone_verifycode_one",
+				data: {'user_mobile':username,'Verifycode':imgCode},
+				type: 'post',
+				dataType: 'json',
+				success: function(re){
+					if(re.status == 0){
+						$("#error_html").html(re.info);
+						return false;
+					}else{
+						$("#error_html").html(re.info);
+						last_times = static_countdowns_times;
+						countdown()
+					}
+				}
+			})
+		}
+	} else {
+		$("#error_html").html('请勿多次点击');
+	}
+})
+
+function doRegister(){
+	var username = $('input[name=username]').val();
+	var password = $('input[name=password]').val();
+	var re_username = $('input[name=re_username]').val();
+	var phoneCode = $('input[name=phoneCode]').val();
+	var imgCode = $('#codeNum').val();
+	var check_re = check_form(username, password,re_username,imgCode);
+	if(check_re == true && phoneCode == '') $("#error_html").html('请输入手机验证码');
+	if(check_re && phoneCode){
+		$.ajax({
+			url:  "index.php?ctl=user&act=doregister",
+			data: {'referer':re_username,'mobile':username,'user_pwd':password,'sms_code':phoneCode,'user_name':'w'+username},
+			type: 'post',
+			dataType: 'json',
+			success: function(re){
+				if(re.status == 1){
+					//跳转
+					{if $pid eq ''}
+						window.location.href="{url x="index" r="spread#dlShowa"}";
+						{else}
+						window.location.href="/index.php?ctl=spread&act={$pid}";
+						{/if}
+				}else{
+					$("#error_html").html(re.info);
+					return false;
+				}
+			}
+		})
+	}
+}
+
+</script>

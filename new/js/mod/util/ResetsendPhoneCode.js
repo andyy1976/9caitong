@@ -1,0 +1,1 @@
+define("new/js/mod/util/ResetsendPhoneCode",[],function(e,n){n.ResetsendPhoneCode=function(e,n,s){function o(){var t=new Array;null==s&&(s="0"),clearTimeout(t[s]),n>0?(n--,$(e).addClass("btn_disable"),$(e).val(n+"s 后重新获取"),t[s]=setTimeout(function(){o(e,n,s)},1e3)):($(e).removeClass("btn_disable"),$(e).val("获取短信验证码"))}var e=e,n=n,s=s;o(e,n,s)}});

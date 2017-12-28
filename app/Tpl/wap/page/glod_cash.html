@@ -1,0 +1,79 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>体验金<a href="javascript:;" class="pt-coupon-explain" onclick="publicPop();">使用说明</a></div>
+	<!-- 代金券-无 -->
+    {if !$interestrate_list}
+    <div class="pt-coupon-no">
+        <img src="{$TMPL}/images/wap2/pt/img_coupon_no.png" width="284" height="167" class="pt-in-false-img pt-coupon-no-img">
+        <p class="pt-in-false-t1 pt-coupon-no-t1">很遗憾</p>
+        <p class="pt-in-false-t2 pt-coupon-no-t2">您暂无体验金</p>
+    </div>
+    {else}
+    <ul class="pt-coupon-list">
+    {foreach  from=$interestrate_list item=item}
+
+     
+        {if $item.use_status eq 1}        
+            <li class="active pt-coupon-choose">
+        {else}
+            <li class="active">
+        {/if}
+
+            <input type="hidden" id="r_id" value="{$item.id}">
+            <div class="pt-coupon-l"><span>{$item.money}</span>&yen;</div>
+            <div class="pt-coupon-r"><p>可用</p><p>{function name="to_date" v="$item.create_time" f="Y-m-d"}至{function name="to_date" v="$item.end_time" f="Y-m-d"}</p></div>
+            <i class="pt-coupon-choose-icon"></i>
+        </li>
+    {/foreach}
+    </ul>
+    {/if}
+    <a href="javascript:;" class="pt-coupon-btn" id="cashBtn">确定</a>
+    <!-- 使用说明、规则等遮罩层共用结构  -->
+    <div class="public-pop">
+        <div class="public-pop-title">体验金使用说明 </div>
+        <div class="public-pop-box">{$taste_explain}</div>
+        <div class="public-pop-close"><img src="{$TMPL}/images/wap2/my/chahao.png" width="19" height="19"></div>
+    </div>    
+</section>
+<script type="text/javascript">
+//使用说明、规则等遮罩层（内容多时可滚动并隐藏滚动条）
+function publicPop(){
+    $('.public-pop').show();
+    $(document).on("touchmove",function(ev){ //阻止页面滑动事件的默认行为，不阻止遮罩层中的滑动事件的默认行为
+        var e = ev || event;
+        var target = e.target || e.srcElement;
+        if( target.className.indexOf("public-pop") >= 0) {
+            e.preventDefault();
+        }
+    });
+    if(window.addEventListener){
+        simpScroller(document.querySelector(".public-pop-box"), {
+            hideScrollBar: true
+        });
+    }
+    $('.public-pop-close').click(function(){    
+        $('.public-pop').hide();
+    });
+}
+
+$('.pt-coupon-list').find('.active').click(function(){
+    $(this).toggleClass('pt-coupon-choose');
+    var cash_money=0;
+    $(".pt-coupon-choose span").each(function(){
+        cash_money+=parseInt($(this).html());  
+    });
+})
+
+
+$("#cashBtn").click(function(){
+    var cash_id="";
+    $(".pt-coupon-choose input").each(function(){
+        cash_id+=$(this).val()+",";   
+    });
+    window.location.href = "index.php?ctl=experience_deal&act=index&id="+{$deal_id}+"&FictitiousMoney_ids="+cash_id;   
+});
+
+</script>
+</body>
+</html>

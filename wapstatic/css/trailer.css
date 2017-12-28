@@ -1,0 +1,72 @@
+﻿@charset "utf-8";
+/* CSS Document */
+ 
+
+.dn{ display:none}
+.fl{ float:left}
+.fr{ float:right}
+.PR{ position:relative}
+.cola{ color:#aaa}
+.col6{ color:#666}
+.coly{ color:#fc8301}/*橙色*/
+.colg{ color:#86d0b5}/*绿色*/
+
+.ma_lr01{margin:0 4%;}
+.tra_day{ height:auto; overflow:hidden}
+
+/*--------------------日期--------------------------*/
+.tra_tit{ height:24px; line-height:24px;margin-top: 15px;margin-top: 15px;}
+.tra_titzs{ position:absolute; left:0; top:0; font-size:12px;}
+.tra_titzs i{ display:inline-block; width:10px; height:10px; border-radius:100%; background:#86d0b5; margin-right:2px;}
+
+.tra_date{ width:56%; margin:0 auto; height:24px;}
+.trafl,.trafr{ display:block; width:20%}
+.trafl a img,.trafr a img{ display:block; width:24px; margin:0 auto}
+.tracot{ width:60%; text-align:center; font-size:16px}
+
+.tra_week{ border-bottom:1px solid #eee; height:22px; line-height:22px; font-size:12px; margin-top:2%}
+.weekli,.dayli{ float:left; width:14%; text-align:center;}
+
+.tra_day{ margin-top:5px}
+.dayli{ height:26px; color:#666; font-size:13px; font-family:Arial; line-height:26px}
+.overdate span{ color:#ccc}
+.havebiao span{ color:#fff; background:#86d0b5; display:inline-block; width:20px; height:20px; border-radius:100%; line-height:20px; text-align:center;}
+
+/*---------------------兼容-----------------------*/
+@media only screen and (max-height:480px){
+	.dayli{ height:24px; line-height:24px; font-size:12px}
+	.havebiao span{ width:18px; height:18px; line-height:18px}
+	}
+
+/*安卓 ios6*/	
+@media only screen and (min-width:360px)and (max-width:375px){
+	.tra_titzs{ font-size:13px}
+	.tra_titzs i{ width:10px; height:10px}
+	.tra_tit{ height:26px; line-height:26px}
+	.trafl a img,.trafr a img{ width:26px}
+	.tracot{ font-size:16px}
+	.dayli{ height:28px; line-height:28px; font-size:14px}
+	.havebiao span{ width:20px; height:20px; line-height:20px}
+	}	
+
+/*6plus 480小米*/		
+@media only screen and (min-width:376px)and (max-width:540px){
+	.tra_titzs{ font-size:14px}
+	.tra_titzs i{ width:12px; height:12px}
+	.tra_tit{ height:28px; line-height:28px}
+	.trafl a img,.trafr a img{ width:28px}
+	.tracot{ font-size:18px}
+	.dayli{ height:28px; line-height:28px; font-size:14px}
+	.havebiao span{ width:20px; height:20px; line-height:20px}
+	}
+	
+@media only screen and (min-width:541px){
+	.tra_titzs{ font-size:16px}
+	.tra_titzs i{ width:14px; height:14px}
+	.tra_tit{ height:30px; line-height:30px}
+	.trafl a img,.trafr a img{ width:30px}
+	.tracot{ font-size:20px}
+	.dayli{ height:30px; line-height:30px; font-size:14px}
+	.havebiao span{ width:20px; height:20px; line-height:20px}
+	}
+		

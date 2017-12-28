@@ -1,0 +1,127 @@
+<form>
+{if $id gt 0}
+	<ul class="add_autoinvest">
+		<li>
+			<label class="tit">投标期限：</label>
+			<div>
+				<select id="term_min">
+					<option value="0" {if $data.deadline_start eq 0}selected="selected"{/if}>不限</option>
+					<option value="1" {if $data.deadline_start eq 1}selected="selected"{/if}>1个月</option>
+					<option value="3" {if $data.deadline_start eq 3}selected="selected"{/if}>3个月</option>
+					<option value="6" {if $data.deadline_start eq 6}selected="selected"{/if}>6个月</option>
+					<option value="12" {if $data.deadline_start eq 12}selected="selected"{/if}>12个月</option>
+				</select>
+				-
+				<select id="term_max">
+					<option value="0" {if $data.deadline_end eq 0}selected="selected"{/if}>不限</option>
+					<option value="1" {if $data.deadline_end eq 1}selected="selected"{/if}>1个月</option>
+					<option value="3" {if $data.deadline_end eq 3}selected="selected"{/if}>3个月</option>
+					<option value="6" {if $data.deadline_end eq 6}selected="selected"{/if}>6个月</option>
+					<option value="12" {if $data.deadline_end eq 12}selected="selected"{/if}>12个月</option>
+				</select>
+			</div>
+		</li>
+		<li><!-- dddd111111 -->
+			<label class="tit">投标金额：</label>
+			<div><input type='text' name='A_invest_money' id='A_invest_money' class='uc_input input_onfocus_shadow ui-textbox' placeholder="预期投标金额" style='width: 270px;' value='{$data.money}' />&nbsp;&nbsp;元</div>
+		</li>
+		<li>
+			<label class="tit">部分中标：</label>
+			<div class="pdtb17">
+				<label><input type="checkbox" name="partbid" id="partbid" {if $data.is_part_load eq 1}checked{/if} />部分中标</label>
+				<p class="C_Bray">标的剩余金额不足时，默认开启部分投资。</p>
+			</div>
+		</li>
+		<li>
+			<label class="tit">投标类型：</label>
+			<div class="pdtb17">
+				<label class="mr15"><input type="checkbox" min_money="100" name="invest_type" {if $data.is_ordinary eq 1}checked{/if} id="is_ordinary" />普通标</label>
+				<label class="mr15"><input type="checkbox" min_money="100" name="invest_type" {if $data.is_advance eq 1}checked{/if} id="is_advance" />预售标</label>
+				<label><input type="checkbox" min_money="100" name="invest_type" {if $data.is_debts eq 1}checked{/if} id="is_debts" />转让标</label>
+			</div>
+		</li>		
+		<li>
+			<label class="tit">有效期：</label>
+			<div id="Valid">
+				<label class="mr15"><input type="radio" name="valid" value="1" {if $data.is_long eq 1}checked{/if} />长期有效</label>
+				<label><input type="radio" name="valid" {if $data.is_long lt 1}checked{/if} value="0" />自定义</label>
+				<input type="text" class="uc_input input_onfocus_shadow ui-textbox" disabled="disabled" readonly="readonly" placeholder="请选择日期范围" id="valid_date" {if $data.is_long lt 1}value="{$data.start_time_str} - {$data.end_time_str}"{/if}>
+			</div>
+		</li>
+		<li>
+			<label class="tit"></label>
+			<div id="auto_tip" class="hide C_red"></div>
+		</li>
+		<li>
+			<label class="tit"></label>
+			<div class="addinvest_btn">
+				<input type="hidden" id="invest_id" value="{$data.id}" />
+				<input type='button' value='取消' class='cancel closeAllLayer' />
+				<input type='button' value='保存设置并开启' class='confirm' id="addinvest_sunbmit" />
+			</div>
+		</li>
+	</ul>
+{else}
+	<ul class="add_autoinvest">
+		<li>
+			<label class="tit">投标期限：</label>
+			<div>
+				<select id="term_min">
+					<option value="0">不限</option>
+					<option value="1">1个月</option>
+					<option value="3">3个月</option>
+					<option value="6">6个月</option>
+					<option value="12">12个月</option>
+				</select>
+				-
+				<select id="term_max">
+					<option value="0">不限</option>
+					<option value="1">1个月</option>
+					<option value="3">3个月</option>
+					<option value="6">6个月</option>
+					<option value="12">12个月</option>
+				</select>
+			</div>
+		</li>
+		<li><!-- dddd111111 -->
+			<label class="tit">投标金额：</label>
+			<div><input type='text' name='A_invest_money' id='A_invest_money' class='uc_input input_onfocus_shadow ui-textbox' placeholder="预期投标金额" style='width: 270px;' value='' />元</div>
+		</li>
+		<li>
+			<label class="tit">部分中标：</label>
+			<div class="pdtb17">
+				<label><input type="checkbox" name="partbid" id="partbid" checked />部分中标</label>
+				<p class="C_Bray">标的剩余金额不足时，默认开启部分投资。</p>
+			</div>
+		</li>
+		<li>
+			<label class="tit">投标类型：</label>
+			<div class="pdtb17">
+				<label class="mr15"><input type="checkbox" min_money="100" name="invest_type" checked id="is_ordinary" />普通标</label>
+				<label class="mr15"><input type="checkbox" min_money="100" name="invest_type" checked id="is_advance" />预售标</label>
+				<label><input type="checkbox" min_money="100" name="invest_type" checked id="is_debts" />转让标</label>
+			</div>
+		</li>		
+		<li>
+			<label class="tit">有效期：</label>
+			<div id="Valid">
+				<label class="mr15"><input type="radio" name="valid" value="1" checked />长期有效</label>
+				<label><input type="radio" name="valid" value="0" />自定义</label>
+				<input type="text" class="uc_input input_onfocus_shadow ui-textbox" disabled="disabled" readonly="readonly" placeholder="请选择日期范围" id="valid_date" value="">
+			</div>
+		</li>
+		<li>
+			<label class="tit"></label>
+			<div id="auto_tip" class="hide C_red"></div>
+		</li>
+		<li>
+			<label class="tit"></label>
+			<div class="addinvest_btn">
+				<input type="hidden" id="invest_id" value="{$data.id}" />
+				<input type='button' value='取消' class='cancel closeAllLayer' />
+				<input type='button' value='保存设置并开启' class='confirm' id="addinvest_sunbmit" />
+			</div>
+		</li>
+	</ul>
+{/if}
+</form>

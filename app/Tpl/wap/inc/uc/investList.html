@@ -1,0 +1,20 @@
+{foreach from=$temp_user_load item=load}
+        <li>
+            <a href="index.php?ctl=uc_invest&act=details&id={$load.id}&load_id={$load.bid}&deal_type={$load.deal_type}">
+                <h3>{$load.name}</h3>
+                <div class="my-invest-data">
+                    <div class="my-invest-l">
+                    {if $load.deal_status lt 3}
+                        <p style="font-size: 14px;color:#FF0000">审核中</p>
+                    {else}
+                        <p>{$load.interest_money}</p>
+                    {/if}  
+                        <p>预期收益</p>
+                    </div>
+                    <div class="my-invest-r">
+                        <p>出借总额<span>{$load.money}</span></p><p>到期时间<span>{if $load.deal_status lt 3}审核中{else}{$load.repay_date}{/if}</span></p>
+                    </div>
+                </div>
+            </a>
+        </li>
+    {/foreach}

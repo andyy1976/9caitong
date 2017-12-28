@@ -1,0 +1,49 @@
+<div class="user_top_title bgfb">
+	<a class="current">代金券</a>
+	<!-- <a href="{url x="index" value="uc_voucher#log"}">代金券记录</a> -->
+</div>
+<div class="user_center_con">
+	<div class="blank20"></div>
+	<div class="uc01">
+
+        <ul class="uc_S_condition ofh">
+            {foreach from="$voucher_deal" item="paging" key=key}
+                <li><a href="{$paging.url}#deallist" {if $key eq $voucher_paging} class="cur"{/if}>{$paging.name}</a></li>
+            {/foreach}
+        </ul>
+		{if !$result and $voucher_paging eq 1}
+            <p>您的账户暂无可用代金券！</p>
+        {elseif !$result and $voucher_paging eq 2}
+            <p>您的账户暂无已使用代金券！</p>
+        {elseif !$result and $voucher_paging eq 3}
+            <p>您的账户暂无已过期代金券！</p>
+        {elseif !$result and $voucher_paging eq 0}
+            <p>您的账户暂无代金券！</p>
+        {else}
+        
+
+        <ul class="equal3 interval25 ofh voucher_list">
+            {foreach from=$result item=vouchers key=key}
+            <li>
+                <div class="voucher_info ofh {if $vouchers.status eq 1 && $vouchers.end_time gt $time || $vouchers.end_time lt $time} bgf4 {else} bgC_red1 C_white{/if}">
+                    <span class="v_title dp-b fl ta_c {if $vouchers.status eq 1 && $vouchers.end_time gt $time || $vouchers.end_time lt $time} bd_r_1 {else} bd_r_2{/if}">代<br />金<br />券</span>
+                    <span class="v_money dp-b fl ta_c">￥<i>{$vouchers.money}</i></span>
+                </div>
+
+                <div class="voucher_condition bgfb ofh">
+                    <p>出借金额：<span>{function name="evc_money" value=$vouchers.money}可用</span></p>
+                    <p>有效期：<span>{function name="evc_date_time" value=$vouchers.end_time}</span></p>
+                    <p>说明：<span style="overflow: hidden;">{if $vouchers.ecv_type_id eq 4}注册送代金券{elseif $vouchers.ecv_type_id eq 5}邀请好友送代金券{elseif $vouchers.ecv_type_id eq 7}积分兑换代金券{elseif $vouchers.activity_id}{$vouchers.content}{/if}</span></p>
+                </div>
+                {if $vouchers.status eq 1 }
+                    <span class="icon_seal"><img src="/new/images/icon_used.png"/></span>
+                {elseif $vouchers.end_time lt $time }
+                    <span class="icon_seal"><img src="/new/images/icon_overdue.png"/></span>
+                {/if}
+            </li>
+            {/foreach}
+        </ul>
+        <div class="pages">{$pages}</div>
+        {/if}
+	</div>
+</div>

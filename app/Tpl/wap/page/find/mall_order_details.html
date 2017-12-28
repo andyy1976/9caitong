@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>{$cate_title}</title>
+    <link rel="stylesheet" type="text/css" href="new/find/css/reset_ph_v=2016.css">
+    <script src="new/find/js/jquery-1.11.3.min.js"></script>
+    <script src="new/find/js/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="new/find/css/wap_mall_v_2017.css">
+    <script src="new/find/js/fastclick.js"></script>
+	<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+</head>
+<body>
+<section class="container container-details cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+   <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="new/find/images/wap2/my/icon_back.png" width="10" height="18"></a>订单详情</div> 
+   <?php } ?>
+    <!-- 订单详情 -->
+	{if $goods.order_status eq 1}
+    <p class="order-state" style="background-color: #055ac3;">已发货</p>
+	{else}
+	 <p class="order-state">待发货</p>
+	{/if}
+    <div class="order-person">
+    	<p>{$goods.delivery_name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {$goods.delivery_tel}</p>
+    	<span>地址：{$goods.delivery_addr}</span><br/>
+    	<span>备注：{$goods.memo}</span>
+    </div>
+    <div class="order-info">
+    	<div class="goods-details public-wrap">
+		<a href="{url x="index" r="find#mall_details_goods" p="id=$goods.goods_id"}">
+	    	<img src="{$goods.img}" />
+	    	<div class="goods-details-info">
+	    		<p>{$goods.sub_name}</p>
+	    		<p><span><b>{$goods.score}</b>积分</span>{if $goods.discount_score}<del>{$goods.discount_score}积分</del>{/if}</p>
+	    	</div>
+	    	<span class="goods-num">x1</span>
+	    </div>
+	    <p class="order-cost">花费积分<span>{$goods.score}积分</span></p>
+		</a>
+    </div>
+    <ul class="order-express">
+    	<li><p>订单编号</p><input type="text" class="order-code" value="{$goods.order_sn}" readonly /><a href="javascript:;" class="copy-btn copy-btn-order" data-clipboard-action="copy" data-clipboard-target=".order-code">复制</a></li>
+    	<li><p>兑换时间</p><span>{$goods.ex_date}</span></li>
+    </ul>
+	{if $goods.is_delivery eq 1 && $goods.order_status eq 1}
+    <ul class="order-express">
+    	<li><p>发货时间</p><span>{$goods.delivery_date}</span></li>
+    	<li><p>配送方式</p><span>{if $goods.delivery_express}{$goods.delivery_express}{else}--{/if}</span></li>
+    	<li><p>快递单号</p><input type="text" class="express-code" value="{if $goods.delivery_sn }{$goods.delivery_sn}{else}--{/if}" readonly /><a href="javascript:;" class="copy-btn copy-btn-express" data-clipboard-action="copy" data-clipboard-target=".express-code">复制</a></li>
+    </ul>
+	{/if}
+    <div class="order-tips">
+    	<!-- <p>玖财通只负责处理订单，具体快递信息，请根据快递单号进行查询。</p> -->
+    	{$conf} 
+
+    </div>
+</section>
+    <script src="new/find/js/clipboard.min.js"></script>
+<script>
+	//复制订单编号、快递单号
+	var clipboard_order = new Clipboard('.copy-btn-order');
+	var clipboard_express = new Clipboard('.copy-btn-express');
+	$('.copy-btn').click(function(){
+		layer.open({
+			className: 'toast',
+	        content: '<p>复制成功</p>',
+	        shade: 1,
+	        time:2
+	    });
+	});
+</script>
+</body>
+</html>

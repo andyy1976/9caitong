@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta http-equiv="Cache-Control" content="no-cache">
+    <title>七夕鹊桥会，好礼成双又成对</title>
+    <link rel="stylesheet" href="new/activity/W646/css/reset_ph_v=2016.css">
+    <script src="new/activity/W646/js/jquery-1.11.3.min.js"></script>
+    <script src="new/activity/W646/js/jquery.kxbdMarquee.js"></script>
+    <script src="new/activity/W646/js/layer/layer.js"></script>
+    <link rel="stylesheet" href="new/activity/W646/css/style.css">
+    <script src="new/activity/W646/js/fastclick.js"></script>
+    <script>
+        //处理移动端click事件300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+	
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+    <p class="explain">七夕节，即将到来了，情侣们都在计划这个甜蜜的日子怎么度过，而单身的朋友们却只能宅在家里，以免受到999+的伤害，爱情本来就不是一蹴而就的，无论此刻是享受着爱情的甜蜜，还是品尝着自由的单身，好好去体会古代那些曾经的爱情，别再错过他/她路过你的人生.....玖财通都为众多小伙伴准备了七夕鹊桥来相会的知识小问答环节，回答问题完成任务还可获得丰厚奖励哦~~~没准心仪的他/她明天就会出现在您的面前。</p>
+    <p class="rule">活动规则：本问答环节总共7个问题或任务，完成每个环节都有相应环节的奖励。完成终极环节且出借金额最高的客户可获SWAROVSKI 施华洛世奇 渐变色天鹅项链一条。</p>
+    <ul class="list cf">
+    	<li>
+    		<img src="new/activity/W646/images/list_t_1.png" />
+    		<div class="list-bg {if !$user_id}login{else}list-question{/if}" id="btn">
+    			<img src="new/activity/W646/images/img_prize/1.png" />
+    			<p {if $sign >= 0}style="display: block;"{/if}></p>
+    		</div>
+    	</li>
+    	<li>
+    		<img src="new/activity/W646/images/list_t_2.png" />
+    		<div class="list-bg {if !$user_id}login{else}list-question{/if}">
+    			<img src="new/activity/W646/images/img_prize/2.png" />
+    			<p {if $sign >= 1}style="display: block;"{/if}></p>
+    		</div>
+    	</li>
+    	<li>
+    		<img src="new/activity/W646/images/list_t_3.png" />
+    		<div class="list-bg {if !$user_id}login{else}list-question{/if}">
+    			<img src="new/activity/W646/images/img_prize/3.png" />
+    			<p {if $sign >= 2}style="display: block;"{/if}></p>
+    		</div>
+    	</li>
+    	<li>
+    		<img src="new/activity/W646/images/list_t_4.png" />
+    		<div class="list-bg {if !$user_id}login{else}list-question{/if}">
+    			<img src="new/activity/W646/images/img_prize/4.png" />
+    			<p {if $sign >= 3}style="display: block;"{/if}></p>
+    		</div>
+    	</li>
+    	<li>
+    		<img src="new/activity/W646/images/list_t_5.png" />
+    		<div class="list-bg {if !$user_id}login{else}list-task{/if}">
+    			<img src="new/activity/W646/images/img_prize/5.png" />
+    			<p {if $sign >= 4}style="display: block;"{/if}></p>
+    		</div>
+    	</li>
+    	<li>
+    		<img src="new/activity/W646/images/list_t_6.png" />
+    		<div class="list-bg {if !$user_id}login{else}list-task{/if}">
+    			<img src="new/activity/W646/images/img_prize/6.png" />
+    			<p {if $sign >= 5}style="display: block;"{/if}></p>
+    		</div>
+    	</li>
+    	<li>
+    		<img src="new/activity/W646/images/list_t_7.png" />
+    		<div class="list-bg {if !$user_id}login{else}list-task{/if}">
+    			<img src="new/activity/W646/images/img_prize/7.png" />
+    			<p {if $sign >= 6}style="display: block;"{/if}></p>
+    		</div>
+    	</li>
+    </ul>
+    <div class="record">
+        <p class="record_btn"><a href="javascript:;" class="current">全部奖励</a><a href="javascript:;">我的奖励</a></p>
+        <p class="record_title"><span>用户名</span><span>时间</span><span>完成任务</span><span>领取奖励</span></p>
+        <div class="record_list" id="r1" style="display: block">
+            <ul>
+            {foreach from=$qblist item="vo"}
+                <li><span>{$vo.user_name}</span><span>{$vo.addtime}</span><span>{$vo.question}</span><span>{$vo.award}</span></li>
+            {/foreach}
+            </ul>
+        </div>
+        <div class="record_list" id="r2">
+            <ul>
+            {foreach from=$userlist item="vo"}
+                <li><span>{$vo.user_name}</span><span>{$vo.addtime}</span><span>{$vo.question}</span><span>{$vo.award}</span></li>
+            {/foreach}
+            </ul>
+        </div>
+    </div>
+    <p class="swarovski-word">完成终极环节且出借金额最高的客户可获得<br />施华洛世奇 渐变色天鹅项链</p>
+    <img class="swarovski-img" src="new/activity/W646/images/img_prize/swarovski.png" />
+    <p class="rank-title">搭建鹊桥排行榜</p>
+    <table class="rank-list">
+    	<tr><th>名次</th><th>账号</th><th>出借金额（折标）</th></tr>
+		{foreach from=$ranking item="vo" }
+    	<tr><td>第{$vo.mci}名</td><td>{$vo.user_name}</td><td>{$vo.zhebiao}</td></tr>
+    	{/foreach}
+    </table>
+	
+	<div class="tips">
+    	<span>注：</span>
+    	<div class="tips-list">
+    		<dl><dt>1、</dt><dd>七夕任务需依次完成，每完成一个任务可获得相应的奖励；</dd></dl>
+    		<dl><dt>2、</dt><dd>活动红包和加息卡会在答题后一个工作日内发放，自获得之日起15个自然日内有效。5元红包出借满1000元可用，20元红包出借满1000元可用。加息卡使用有效期为投标期限，每次只能使用一张加息卡；
+</dd></dl>
+    		<dl><dt>3、</dt><dd>实物礼品数量有限，礼品将于活动结束后20个工作日内寄出，实物礼品不退不换，如遇“无货”、“该地区无法配送”等不可控因素，则该实物将折为等值玖财通红包发放；</dd></dl>
+    		<dl><dt>4、</dt><dd>如出现答题错误，转发活动页面可从新获得答题机会；</dd></dl>
+    		<dl><dt>5、</dt><dd>本活动最终解释权归玖财通所有。</dd></dl>
+    	</div>
+    </div>
+</div>
+<!-- 7道题目 -->
+<div id="question1" class="question">
+	<img src="new/activity/W646/images/list_t2_1.png" />
+	<h3>七夕的传说故事中，男女主人公分别是谁？</h3>
+	<ul class="choose">
+		<li>
+			<input type="radio" name="question1" id="person1" value="1" />
+			<label for="person1">大禹与女娇</label>
+		</li>
+		<li>
+			<input type="radio" name="question1" id="person2" value="2" />
+			<label for="person2">盘古与女娲</label>
+		</li>
+		<li>
+			<input type="radio" name="question1" id="person3" value="3" />
+			<label for="person3">牛郎与织女</label>
+		</li>
+		<li>
+			<input type="radio" name="question1" id="person4" value="4" />
+			<label for="person4">梁山伯与祝英台</label>
+		</li>
+	</ul>
+</div>
+<div id="question2" class="question">
+	<img src="new/activity/W646/images/list_t2_2.png" />
+	<h3>七夕的传说故事中，鹊桥是由什么鸟搭建而成？</h3>
+	<ul class="choose">
+		<li>
+			<input type="radio" name="question2" id="bird1" value="1" />
+			<label for="bird1">乌鸦</label>
+		</li>
+		<li>
+			<input type="radio" name="question2" id="bird2" value="2" />
+			<label for="bird2">喜鹊</label>
+		</li>
+		<li>
+			<input type="radio" name="question2" id="bird3" value="3" />
+			<label for="bird3">画眉</label>
+		</li>
+		<li>
+			<input type="radio" name="question2" id="bird4" value="4" />
+			<label for="bird4">鸳鸯</label>
+		</li>
+	</ul>
+</div>
+<div id="question3" class="question">
+	<img src="new/activity/W646/images/list_t2_3.png" />
+	<h4>玖财通APP上线公测时间？</h4>
+	<ul class="choose">
+		<li>
+			<input type="radio" name="question3" id="time1" value="1" />
+			<label for="time1">2015.5</label>
+		</li>
+		<li>
+			<input type="radio" name="question3" id="time2" value="2" />
+			<label for="time2">2016.3</label>
+		</li>
+		<li>
+			<input type="radio" name="question3" id="time3" value="3" />
+			<label for="time3">2016.5</label>
+		</li>
+		<li>
+			<input type="radio" name="question3" id="time4" value="4" />
+			<label for="time4">2017.1</label>
+		</li>
+	</ul>
+</div>
+<div id="question4" class="question">
+	<img src="new/activity/W646/images/list_t2_4.png" />
+	<h3>2017年2月玖财通和以下哪家银行签署资金存管协议？</h3>
+	<ul class="choose">
+		<li>
+			<input type="radio" name="question4" id="bank1" value="1" />
+			<label for="bank1">北京市农村商业银行</label>
+		</li>
+		<li>
+			<input type="radio" name="question4" id="bank2" value="2" />
+			<label for="bank2">锦州市锦州银行</label>
+		</li>
+		<li>
+			<input type="radio" name="question4" id="bank3" value="3" />
+			<label for="bank3">渤海银行</label>
+		</li>
+		<li>
+			<input type="radio" name="question4" id="bank4" value="4" />
+			<label for="bank4">宜宾市商业银行</label>
+		</li>
+	</ul>
+</div>
+<div id="question5" class="question">
+	<img src="new/activity/W646/images/list_t2_5.png" />
+	<h5>邀请2名（含）以上好友注册玖财通存管版账户完成实名认证且存管版投资任意金额。</h5>
+</div>
+<div id="question6" class="question">
+	<img src="new/activity/W646/images/list_t2_6.png" />
+	<h5>活动期间玖财通存管版出借普通标的10000（含）元以上的用户（出借金额为折标后金额）</h5>
+</div>
+<div id="question7" class="question">
+	<img src="new/activity/W646/images/list_t2_7.png" />
+	<h5>活动期间玖财通存管版出借普通标的50000（含）元以上的用户（出借金额为折标后金额）</h5>
+</div>
+<!-- 7道题结束 -->
+<div id="popBg"></div>
+<div id="popBox">
+    <a href="javascript:;"><img src="new/activity/W646/images/bg_share.png"></a>
+</div>
+<script>
+    $(document).ready(function(){
+	   $(".layui-layer-setwin").hide();
+	})
+   
+    var mobile = "{$mobile}";
+    var url_path = "{$url}";
+	var task="{$task}";
+    var invite_url = "http://jctwapcg.9caitong.com";
+    //获奖名单滚动效果
+    $(function(){
+        $("#r1").kxbdMarquee({
+            isMarquee:true,
+            direction:"up",
+            isEqual:false,
+            scrollDelay:40
+        });
+    });
+    //获奖名单切换
+    var $recordTitle = $('.record_btn');
+    $recordTitle.find('a').click(function(){
+        $(this).addClass('current').siblings().removeClass('current');
+        $('.record_list').hide().eq($(this).index()).show();
+        var i=$(this).index();
+        var $r2 = $("#r2");
+        if (i) {
+            if (!$r2.hasClass("sign")) {
+                $r2.kxbdMarquee({
+                    isMarquee:true,
+                    isEqual:false,
+                    scrollDelay:40,
+                    direction:'up'
+                });
+                $r2.addClass("sign")
+            }
+        }
+    });
+    //未登录时弹出框
+    $(".login").bind('click',function(){
+        layer.open({
+            skin: 'pop pop-login', //控制样式的class名，勿删
+            type: 1, //基本层类型，勿删
+            title: false, //不显示标题
+            shadeClose: true, //点击遮罩背景是否可关闭，可删
+            content: '<p>请先登录</p>', //弹框内容
+            btn: '确定',//按钮
+            yes:function(){
+                window.location.href = "{url x="index" r="user#login"}";
+            }
+        });
+    })
+    
+	
+    //点击前4个任务开始答题
+    $('.list-question').each(function(index, domEl){
+    	$(this).click(function(){
+		 // if(task == 1 && !{$share_rs}){
+		 
+          if(task == 1){
+		        layer.open({
+                    skin: 'pop-state', //控制样式的class名，勿删
+                    type: 1, //基本层类型，勿删
+                    title: false, //不显示标题
+                    //shadeClose: true, //点击遮罩背景是否可关闭，可删
+                    content: '<div class="fail"><i></i><p>您答错啦</p><p>分享可再来一次机会</p></div>', //弹框内容
+                    btn: '点击分享',//按钮
+                    yes: function(i){
+                        //答题错误时要做的
+                        layer.close(i);
+                        if("{$jump.ToProductList}" == "iosToProductList"){
+                            window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpShareFrom","title":"七夕鹊桥会，好礼成双又成对","icon":url_path+"/app/Tpl/wap/images/wap2/fi/qixi2017.png","content":"情人节又到了，虐狗可以，虐钱包不行！！！玖财通替天行道，代表甜蜜来送礼，我来提问你回答，红包、实物带回家，么么哒！","url":invite_url+"/index.php?ctl=find&act=W646&&code="+mobile}); //微信朋友圈
+                        }else if("{$jump.ToProductList}" == "androidToProductList"){
+                           window.jiucaitong.showShareFrom("七夕鹊桥会，好礼成双又成对",url_path+"/app/Tpl/wap/images/wap2/fi/qixi2017.png","情人节又到了，虐狗可以，虐钱包不行！！！玖财通替天行道，代表甜蜜来送礼，我来提问你回答，红包、实物带回家，么么哒！",invite_url+"/index.php?ctl=find&act=W646&&code="+mobile);
+                        }else{
+                            popBox();
+                        }
+                        
+                    }
+                });
+                return false; 
+            }
+			
+			
+			
+    		var now = index + 1;
+            //前边有未答时弹窗
+            $.ajax({
+                type:'POST',
+                url:"{url x="index" r="ajax_activity#checkinfo"}",
+                data:{'key':index},
+                dataType:'json',
+                success:function(msg){
+                    if(msg.info){
+                        if(index > {$sign}){
+                            layer.open({
+                                skin: 'pop pop-question', //控制样式的class名，勿删
+                                type: 1, //基本层类型，勿删
+                                title: false, //不显示标题
+                                shadeClose: true, //点击遮罩背景是否可关闭，可删
+                                content: $('#question' + now), //4道题目，放在html标签中
+                                btn: '提交',//按钮
+                                yes: function(i){
+								layer.close(i);
+                                    var val = $('input:radio[name="question' + now +'"]:checked').val();//获取选择的单选按钮的value值(也就是第几个)
+                                    if(val){
+                                        // alert('您选择了第'+ val + '项');
+                                        var is_answer= is_right(index,val); //验证答案是否正确 是:true 否：false
+                                        if(is_answer){
+                                            $.ajax({
+                                                type:'POST',
+                                                url:"{url x="index" r="ajax_activity#ajax_sendAward"}",
+                                                data:{'sign':index,'answer':val,"task":0},
+                                                dataType:'json',
+                                                success:function(msg){
+                                                    if(msg.status){
+                                                        //答题正确时弹窗
+                                                        layer.open({
+                                                            skin: 'pop pop-state', //控制样式的class名，勿删
+                                                            type: 1, //基本层类型，勿删
+                                                            title: false, //不显示标题
+                                                            shadeClose: false, //点击遮罩背景是否可关闭，可删
+                                                            content: '<div class="success"><i></i><p>'+msg.title+'</p><p>'+msg.info+'</p></div>', //弹框内容
+                                                            btn: '确定',//按钮
+                                                            yes: function(i){
+                                                                //答题正确时要做的
+                                                                $('.list-question').eq(index).find('p').show();
+                                                                window.location.reload();
+																layer.close(i);
+                                                            }
+                                                        });
+                                                    }else{
+                                                       layer.msg(msg.info,{
+                                                            time: 1000
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                            
+                                        }else{
+                                            //答题错误时弹窗
+                                            $.post("{url x="index" r="ajax_activity#ajax_sendAward"}",{"task":1});
+                                            layer.open({
+                                                skin: 'pop pop-state', //控制样式的class名，勿删
+                                                type: 1, //基本层类型，勿删
+                                                title: false, //不显示标题
+                                                shadeClose: true, //点击遮罩背景是否可关闭，可删
+                                                content: '<div class="fail"><i></i><p>您答错啦</p><p>分享可再来一次机会</p></div>', //弹框内容
+                                                btn: '点击分享',//按钮
+                                                yes: function(i){
+                                                    //答题错误时要做的
+                                                    layer.close(i);
+                                                    if("{$jump.ToProductList}" == "iosToProductList"){
+                                                        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpShareFrom","title":"七夕鹊桥会，好礼成双又成对","icon":url_path+"/app/Tpl/wap/images/wap2/fi/qixi2017.png","content":"情人节又到了，虐狗可以，虐钱包不行！！！玖财通替天行道，代表甜蜜来送礼，我来提问你回答，红包、实物带回家，么么哒！","url":invite_url+"/index.php?ctl=find&act=W646&&code="+mobile}); //微信朋友圈
+                                                    }else if("{$jump.ToProductList}" == "androidToProductList"){
+                                                       window.jiucaitong.showShareFrom("七夕鹊桥会，好礼成双又成对",url_path+"/app/Tpl/wap/images/wap2/fi/qixi2017.png","情人节又到了，虐狗可以，虐钱包不行！！！玖财通替天行道，代表甜蜜来送礼，我来提问你回答，红包、实物带回家，么么哒！",invite_url+"/index.php?ctl=find&act=W646&&code="+mobile);
+                                                    }else{
+                                                        popBox();
+                                                    }
+                                                    
+                                                }
+												
+                                            });
+                                        }
+                                    }
+                                }
+                            });
+                        }else{
+                            return false;
+                        }
+                        
+                    }else{
+                        layer.open({
+                            skin: 'pop pop-state', //控制样式的class名，勿删
+                            type: 1, //基本层类型，勿删
+                            title: false, //不显示标题
+                            shadeClose: true, //点击遮罩背景是否可关闭，可删
+                            content: '<div class="fail"><i></i><p style="margin-top: .6rem; font-size: 16px">请按顺序完成任务！</p></div>', //弹框内容
+                            btn: '确定',//按钮
+                            yes: function(i){
+                                //前边有未答时弹窗要做的
+                                layer.close(i);
+                            }
+                        });
+                        return false;
+                    }
+                }
+            })            
+    	});
+    });
+    //点击后3个任务
+    $('.list-task').each(function(index, domEl){
+    	$(this).click(function(){
+            var now = index + 4;
+            $.ajax({
+                type:'POST',
+                url:"{url x="index" r="ajax_activity#checkinfo"}",
+                data:{'key':now},
+                dataType:'json',
+                success:function(msg){
+                    if(msg.info){
+                        if(now>{$sign}){
+                            if(now == 4 && {$invited_count} >=2){
+                                //任务5
+                                layer.open({
+                                    skin: 'pop pop-question', //控制样式的class名，勿删
+                                    type: 1, //基本层类型，勿删
+                                    title: false, //不显示标题
+                                    shadeClose: true, //点击遮罩背景是否可关闭，可删
+                                    content: $('#question' + (index + 5)), //3个任务，放在html标签中
+                                    btn: '领取奖励',//按钮
+                                    yes: function(i){
+                                        //领取奖励
+										layer.close(i);
+                                        
+                                        Receive(now);
+                                    }
+                                });
+								
+                            }else if(now == 5 && {$zhebiao_money} >= 10000 ){
+                                //任务6
+                                layer.open({
+                                    skin: 'pop pop-question', //控制样式的class名，勿删
+                                    type: 1, //基本层类型，勿删
+                                    title: false, //不显示标题
+                                    shadeClose: true, //点击遮罩背景是否可关闭，可删
+                                    content: $('#question' + (index + 5)), //3个任务，放在html标签中
+                                    btn: '领取奖励',//按钮
+                                    yes: function(i){
+                                        //领取奖励
+                                      layer.close(i);									
+                                        Receive(now);
+                                    }
+                                });
+                            }else if(now == 6 && {$zhebiao_money} >= 50000){
+                                //任务7
+                                layer.open({
+                                    skin: 'pop pop-question', //控制样式的class名，勿删
+                                    type: 1, //基本层类型，勿删
+                                    title: false, //不显示标题
+                                    shadeClose: true, //点击遮罩背景是否可关闭，可删
+                                    content: $('#question' + (index + 5)), //3个任务，放在html标签中
+                                    btn: '领取奖励',//按钮
+                                    yes: function(i){
+                                        //领取奖励
+                                         layer.close(i);           
+                                        Receive(now);
+                                    }
+                                });
+                            }else{
+                                layer.open({
+                                    skin: 'pop pop-question', //控制样式的class名，勿删
+                                    type: 1, //基本层类型，勿删
+                                    title: false, //不显示标题
+                                    shadeClose: true, //点击遮罩背景是否可关闭，可删
+                                    content: $('#question' + (index + 5)), //3个任务，放在html标签中
+                                    btn: ((index > 0)? '立即出借' : '立即邀请') ,//按钮
+                                    yes: function(i){										
+										layer.close(i);									
+                                        
+                                        if(index > 0){
+                                            if("{$jump.ToProductList}" == "iosToProductList"){
+                                                //ios 出借
+                                                window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToProductList"}); //返回项目列表
+                                            }else if("{$jump.ToProductList}" == "androidToProductList"){
+                                                //android 出借
+                                                window.jiucaitong.FromH5ToJump("jumpToProductList","");  //返回项目列表
+                                            }else{
+                                                //跳到出借页面
+                                                parent.location.href = "{url x="index" r="deals"}";
+                                            }
+                                            
+                                        }else{
+                                            if("{$jump.ToProductList}" == "ToProductList"){
+                                                window.location.href = "{$jumpUrl}";
+                                            }else{
+                                                //跳到邀请页面
+                                                parent.location.href = "{url x="index" r="invite"}";
+                                            }
+                                            
+                                        }
+                                    }
+                                });
+                            }
+                            
+                        }else{
+                            return false;
+                        }
+                    }else{
+                        layer.open({
+                            skin: 'pop pop-state', //控制样式的class名，勿删
+                            type: 1, //基本层类型，勿删
+                            title: false, //不显示标题
+                            shadeClose: true, //点击遮罩背景是否可关闭，可删
+                            content: '<div class="fail"><i></i><p style="margin-top: .6rem; font-size: 16px">请按顺序完成任务！</p></div>', //弹框内容
+                            btn: '确定',//按钮
+                            yes: function(i){
+                                //前边有未答时弹窗要做的
+                                
+										layer.close(i);
+								
+                            }
+                        });
+                        return false;
+                    }
+                }
+            });
+			
+    	});
+    });
+    function Receive(now){
+        $.ajax({
+            type:'POST',
+            url:"{url x="index" r="ajax_activity#ajax_sendAward"}",
+            data:{'sign':now},
+            dataType:'json',
+            success:function(msg){
+                if(msg.status){
+                    //答题正确时弹窗
+                    layer.open({
+                        skin: 'pop pop-state', //控制样式的class名，勿删
+                        type: 1, //基本层类型，勿删
+                        title: false, //不显示标题
+                        shadeClose: false, //点击遮罩背景是否可关闭，可删
+                        content: '<div class="success"><i></i><p>'+msg.title+'</p><p>'+msg.info+'</p></div>', //弹框内容
+                        btn: '确定',//按钮
+                        yes: function(i){
+                            //答题正确时要做的
+							layer.close(i);
+                            window.location.reload();
+                        }
+                    });
+                }else{
+                   //layer.msg(msg.info,{
+                       // time: 1000
+                    //});
+					layer.open({
+                        skin: 'pop pop-state', //控制样式的class名，勿删
+                        type: 1, //基本层类型，勿删
+                        title: false, //不显示标题
+                        shadeClose: false, //点击遮罩背景是否可关闭，可删
+                        content: '<div class="success"><i></i><p>'+msg.info+'</p></div>', //弹框内容
+                        btn: '确定',//按钮
+                        yes: function(i){
+                            //答题正确时要做的
+                            window.location.reload();
+							layer.close(i);
+                        }
+                    });
+                }
+            }
+        });
+    }
+    //判断该任务回答是否正确
+    function is_right(rw,value){
+        switch(rw) {
+            case 0:
+                if (value==3) {//选项3为任务一的正确答案
+                    return true;
+                }else{
+                    return false;
+                }
+                break;
+            case 1:
+                if (value==2) {//选项2为任务二的正确答案
+                    return true;
+                }else{
+                    return false;
+                }
+                break;
+            case 2:
+                if (value==3) {//选项3为任务三的正确答案
+                    return true;
+                }else{
+                    return false;
+                }
+                break;
+            case 3:
+                if (value==4) {//选项4为任务四的正确答案
+                    return true;
+                }else{
+                    return false;
+                }
+                break;
+        }
+    }
+    //答题错误点击分享提示弹出层
+	function popBox(){
+	    var popBox = document.getElementById('popBox');
+	    var popBg = document.getElementById('popBg');
+	    //弹出层
+	    popBg.style.display = popBox.style.display = 'block';
+	    popBoxPos();
+	    popBgStyle();
+	    //当页面滚动的时候，弹出框跟随滚动
+	    window.onscroll = function() {
+	        popBoxPos();
+	        popBgStyle();
+	    }
+	    //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+	    window.onresize = function() {
+	        popBoxPos();
+	        popBgStyle();
+	    }
+	    //设置弹出框的位置
+	    function popBoxPos(){
+	        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+	        popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+	        popBox.style.top = scrollTop + 'px';
+	    }
+	    //设置灰色背景的宽高
+	    function popBgStyle(){
+	        popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+	        popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+	    }
+	    //关闭弹出框
+	    popBox.onclick = popBg.onclick = function(){
+	        popBg.style.display = popBox.style.display = 'none';
+	    }
+	}
+</script>
+</body>
+</html>

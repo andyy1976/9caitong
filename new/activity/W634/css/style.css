@@ -1,0 +1,71 @@
+html,body,ul,li{margin: 0;padding: 0;}
+body{font-size: 62.5%;}
+ul,ul li{list-style: none;}
+a{text-decoration: none;}
+ol{list-style: decimal;}
+
+.f_l{float: left;}
+.f_r{float: right;}
+.of_h{overflow: hidden;}
+.clear{clear: both;}
+.ta_c{text-align: center;}
+.ta_l{text-align: left;}
+.ta_r{text-align: right;}
+.mg_at{margin: 0 auto;}
+.mg_0{margin: 0!important;}
+.mt_r_1{margin-right: 1em;}
+.mtb_1{margin-bottom: 1em;}
+.mg_2{margin: 2%;}
+.mg_lr_41{margin: 0 4.1%;}
+.pd_1{padding: 1em;}
+.pd_t_0{padding-top: 0;}
+.dp_ib{display: inline-block;}
+.dp_b{display: block;}
+.fs_10{font-size: 1em;}
+.fs_11{font-size: 1.1em;}
+.fs_12{font-size: 1.2em;}
+.fs_14{font-size: 1.4em;}
+.fs_16{font-size: 1.6em;}
+.fs_18{font-size: 1.8em;}
+.fs_20{font-size: 2em;}
+.lh_150{line-height: 150%;}
+.lh_200{line-height: 200%;}
+.fw_b{font-weight: bold;}
+.fw_100{font-weight: 100;}
+.cl_f{color: #FFFFFF;}
+.cl_1{color: #333333;}
+.cl_2{color: #f77348;}
+.cl_3{color: #5184f9;}
+.cl_4{color: #e55e56;}
+.cl_5{color: #18ce65;}
+.bg1{background: #F5F5F5;padding: 1em 0;}
+.ti_20{text-indent: 2em;}
+.w25{width: 25%;}
+.w33{width: 33%;}
+.w34{width: 34%;}
+.w40{width: 40%;}
+.w45{width: 45%;}
+.w50{width: 50%;}
+.w92{width: 92%;}
+.w92 a{color: #333333;}
+.w92 h3{margin: 1em 0;}
+.w92 p{margin: 1em 0;}
+.w100{width: 100%;}
+.blank1{height: 1em;width: 100%;clear: both;}
+.blank2{height: 2em;width: 100%;clear: both;}
+
+.video{padding-top: 2em;overflow: hidden;}
+
+.list1 li{overflow: hidden;height: 6em;}
+.list1 li img{float: left;width: 11.6%;}
+.list1 li div{overflow: hidden;float: right;width: 83%;}
+.list1 li div h4{margin-top: 0;margin-bottom: 0em;font-weight: 100;font-size: 1.1em;}
+.list1 li div p{margin: 0;line-height: 200%;}
+
+.media img{width: 23.7%;float: left;}
+.media div{width: 73%;float: right;}
+.media div a.bt{font-size: 1em;font-weight: bold;}
+.media div p{line-height: 150%;margin: 0;font-size: .8em;color: #999999;margin-top: 1em;}
+.media div p a{color: #ff3f4f;}
+
+.line1{height: 0px;border-bottom: 1px dashed #666666;margin: 1em 0;}

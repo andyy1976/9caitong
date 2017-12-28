@@ -1,0 +1,80 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>更新邀请码</div>
+<?php } ?>
+	<!-- 更新邀请码 -->
+    <p class="fi-invite-wad-tip">*温馨提示：此功能仅针对内部员工使用，普通用户操作无效</p>
+    <div class="fi-invite-input fi-invite-input-change">
+        <form>
+            <p><span>真实姓名</span><input type="text" id="real_name" placeholder="请输入您的真实姓名"></p>
+            <p><span>身份证号</span><input type="text" id="user_idno" placeholder="请输入您的身份证号"></p>
+            <a href="javascript:;" class="fi-invite-btn fi-invite-btn-gray" id="btn_submit" onclick="inviteChangeTips();">完成</a>
+        </form>
+    </div>
+</section>
+<script>
+    $("#real_name").keyup(function(){
+        if($("#real_name").val().length == 0){
+            $(".fi-invite-btn").css("background","#aaa");
+            return false;
+        }else if($("#user_idno").val().length == 0){
+            $(".fi-invite-btn").css("background","#aaa");
+            return false;
+        }else{
+            $(".fi-invite-btn").css("background","#3d77ea"); 
+        }
+    })
+    $("#user_idno").keyup(function(){
+        if($("#real_name").val().length == 0){
+            $(".fi-invite-btn").css("background","#aaa");
+            return false;
+        }else if($("#user_idno").val().length == 0){
+            $(".fi-invite-btn").css("background","#aaa");
+            return false;
+        }else{
+            $(".fi-invite-btn").css("background","#3d77ea"); 
+        }
+    })
+    //更新邀请码提示框
+    //更新成功：恭喜您，更新成功，您的邀请码变更为10000
+    //更新失败：对不起，暂未查询到您的员工信息
+    function inviteChangeTips(){
+        layer.open({
+            className: 'popup-btn',
+            content: '<br><p>恭喜您，更新成功，您的邀请码变更为10000</p>',
+            btn: '确定'
+        });
+    }
+</script>
+<script>
+    var aCity={11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",21:"辽宁",22:"吉林",23:"黑龙江",31:"上海",32:"江苏",33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",42:"湖北",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",51:"四川",52:"贵州",53:"云南",54:"西藏",61:"陕西",62:"甘肃",63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外"}
+    function cidInfo(sId){
+        var iSum=0
+        var info=""
+        if(!/^\d{17}(\d|x)$/i.test(sId))
+            return false;
+
+        sId=sId.replace(/x$/i,"a");
+
+        if(aCity[parseInt(sId.substr(0,2))]==null)
+            return "Error";
+
+        sBirthday=sId.substr(6,4)+"-"+Number(sId.substr(10,2))+"-"+Number(sId.substr(12,2));
+        var d=new Date(sBirthday.replace(/-/g,"/"))
+        if(sBirthday!=(d.getFullYear()+"-"+(d.getMonth()+1)+"-"+ d.getDate()))
+            return "Error";
+
+        for(var i = 17;i>=0;i--) 
+            iSum += (Math.pow(2,i)%11)* parseInt(sId.charAt(17- i),11);
+
+
+        if(iSum%11!=1)
+            return "Error";
+        return aCity[parseInt(sId.substr(0,2))]+","+sBirthday+","+(sId.substr(16,1)%2?"男":"女");
+    }
+
+</script>
+</body>
+</html>

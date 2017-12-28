@@ -1,0 +1,12 @@
+{include file="inc/header.html"} <body>
+<section class="container cf">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>往期活动</div>
+	<!-- 往期活动 -->
+    <ul class="fi-active-list">
+        {foreach from=$list item = item}
+        <li><h3><span>{$item.title}</span><span>已结束</span></h3><a href="{$item.appwap_url}"><img src="{$item.wapimg}"></a></li>
+    {/foreach}
+    </ul>
+</section>
+</body>
+</html>

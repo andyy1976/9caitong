@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">     
+<meta content="yes" name="apple-mobile-web-app-capable">     
+<meta content="black" name="apple-mobile-web-app-status-bar-style">     
+<meta content="telephone=no" name="format-detection">  
+<title>如何提升</title>
+<link rel="stylesheet" type="text/css" href="/new/css/member_level/style.css" />
+<script type="text/javascript" src="/new/js/page/resize.js"></script>
+</head>
+<body>
+<?php if(!es_session::get('MachineInfo')) {?>
+	<header>
+		<a href="javascript:;" onclick="window.history.go(-1);" class="head-perv">
+			<img src="/new/images/memberLevel/head-ico1.png" alt="" />
+		</a>
+		<a href="#" class="head-close">
+			<img src="/new/images/memberLevel/head-ico2.png" alt="" />
+		</a>
+		<h1>如何提升</h1>
+	</header>
+<?php } ?>
+    <div class="member-warp">
+		<h3 class="member-intro-h3">会员等级介绍</h3>
+		<p class="member-intro-p">会员成长体系包含7个会员等级，会员等级由成长值决定，完成任务即可获得成长值。</p>
+	</div>
+	<div class="line-gray"></div>
+	<div class="member-warp">
+	 	<h5 class="member-intro-h5">会员等级</h5>
+		<img src="/new/images/memberLevel/level-img.jpg" alt="会员等级" />
+	</div>
+	<div class="line-gray"></div>
+	<div class="member-warp">
+		<h5 class="member-intro-h5">会员任务</h5>
+		<ul class="member-intro-ul">
+			<li class="member-intro-li1">
+				<h4>新手任务</h4><p>成长值<br>+150点</p><a href="#" class="finish">已完成</a>
+			</li>
+			<li class="member-intro-li2">
+				<h4>成长任务</h4><p>成长值<br>+50点以上</p><a href="#">未完成</a>
+			</li>
+			<li class="member-intro-li3">
+				<h4>出借任务</h4><p>成长值<br>+100点以上</p><a href="#">未完成</a>
+			</li>
+			<li class="member-intro-li4">
+				<h4>邀请任务</h4><p>成长值<br>+20点以上</p><a href="#">未完成</a>
+			</li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div class="line-gray"></div>
+	<div class="member-warp">
+		<h5 class="member-intro-h5">成长值计算</h5>
+		<p class="member-intro-p1">1、成长值<br>
+		成长值=初始化成长值+完成任务成长值-成长值扣除部分；<br>
+		2、首次充值和首次出借任务，奖励分值按首次固定奖励和公式奖励较大者计算。<br>3、成长值的变化，成长值在完成操作后实时增加；成长值的扣除，在会员体系上线或用户注册后，每3个月调整一次。</p>
+	</div>
+	<div class="line-gray"></div>
+	<div class="member-warp pad-bot">
+		<h5 class="member-intro-h5">成长值扣除</h5>
+		<p class="member-intro-p1">固定扣除：<br>
+		持续3个月（90天）未增加成长值，扣除当前成长值10%，当前成长值低于150时不再扣除；<br>
+		提现时：<br>
+		扣除成长值=提现金额/账户总资产×当前成长值×20%；<br>
+		债权转让时：<br>
+		扣除成长值=债权转让金额/账户总资产 ×当前成长值×10%</p>
+    </div>	
+</body>
+</html>

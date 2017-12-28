@@ -1,0 +1,546 @@
+/* 微信会员 */
+/* public-header */
+html {
+  background: #edf2f6;
+}
+.container {
+  max-width: 750px;
+  margin: 0 auto;
+  padding-bottom: 0;
+}
+.header {
+  line-height: 48px;
+  background: linear-gradient(to bottom, #575cde 0%, #4672de 100%);
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  font-size: 0.76rem;
+  font-weight: bold;
+  position: relative;
+}
+.header-vip {
+  background: #333;
+  font-weight: normal;
+}
+.header .back-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 15px 2% 15px 4%;
+}
+.header .close-icon {
+  position: absolute;
+  left: 38px;
+  top: 0;
+  padding: 15px 4% 15px 2%;
+}
+.header .help-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 14px 4% 15px 2%;
+}
+/* vip-index */
+.content {
+  width: 100%;
+  height: 34.64rem;
+  background: url(../images/wap2/vip/bg.jpg);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.content .btn-join {
+  width: 6.36rem;
+  height: 1.56rem;
+  line-height: 1.4rem;
+  margin: 18.6rem auto 0;
+  display: block;
+  text-align: center;
+  font-style: 0.72rem;
+  color: #4f332a;
+  font-weight: bold;
+}
+.vip-list {
+  padding-top: 2.2rem;
+  overflow: hidden;
+}
+.vip-list li {
+  width: 3.84rem;
+  height: 2.32rem;
+  float: left;
+  margin: 0.92rem 0.56rem 0 0;
+  text-align: center;
+  border: 0.02rem solid #f6c08a;
+  border-radius: 0.24rem;
+  overflow: hidden;
+}
+.vip-list li:nth-of-type(1) {
+  margin-left: 1.12rem;
+}
+.vip-list li:nth-of-type(4) {
+  margin-left: 3.34rem;
+}
+.vip-list span {
+  display: block;
+  height: 0.76rem;
+  line-height: 0.76rem;
+  margin-bottom: 0.2rem;
+  background: #f6c08a;
+  font-size: 0.44rem;
+  color: #4c3129;
+}
+.vip-list p {
+  line-height: 0.6rem;
+  font-size: 0.4rem;
+  color: #e0b983;
+}
+.img-ewm {
+  width: 3.12rem;
+  height: 3.08rem;
+  margin: 1.44rem auto 0;
+}
+/*share*/
+#popBg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: black;
+  opacity: 0.8;
+  z-index: 1000000;
+  display: none;
+}
+#popBox {
+  width: 15rem;
+  height: 13.2rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000001;
+  display: none;
+}
+#popBox img {
+  width: 100%;
+}
+/* vip-card */
+.vip-account {
+  width: 92%;
+  padding: 0.32rem 4% 0.52rem;
+  background: #fff;
+  overflow: hidden;
+}
+.vip-account p {
+  overflow: hidden;
+  margin-bottom: 0.32rem;
+}
+.vip-account img {
+  width: 1.56rem;
+  height: 1.56rem;
+  float: left;
+}
+.vip-account span {
+  line-height: 1.56rem;
+  float: left;
+  padding-left: 0.44rem;
+  font-size: 0.6rem;
+  color: #13334d;
+}
+.vip-account p a {
+  width: 2.76rem;
+  height: 1.12rem;
+  line-height: 1.12rem;
+  margin-top: 0.2rem;
+  float: right;
+  font-size: 0.48rem;
+  color: #4870de;
+  text-align: center;
+  border: 0.02rem solid #4870de;
+  border-radius: 0.12rem;
+}
+.vip-acc-bind {
+  display: block;
+  line-height: 0.64rem;
+  font-size: 0.48rem;
+  color: #ff742f;
+}
+.vip-card {
+  width: 15rem;
+  height: 8.4rem;
+  margin-top: 1.8rem;
+  background: url(../images/wap2/vip/bg_card.png);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.vip-jb {
+  margin-left: 5.48rem;
+  margin-top: 1.52rem;
+  line-height: 1.7rem;
+  font-size: 1.12rem;
+  color: #58341a;
+  letter-spacing: -1px;
+}
+.vip-grade {
+  margin-left: 5.48rem;
+  line-height: 1.28rem;
+  font-size: 0.76rem;
+  color: #58341a;
+  padding-left: 1.12rem;
+  background: url(../images/wap2/vip/icon_crown.png) no-repeat left;
+  background-size: 0.88rem 0.8rem;
+}
+.vip-id {
+  padding-right: 1.68rem;
+  line-height: 3.32rem;
+  margin-top: 0.56rem;
+  text-align: right;
+  font-size: 0.72rem;
+  color: #865837;
+}
+.vip-acc-btn {
+  overflow: hidden;
+  margin-top: 1.84rem;
+}
+.vip-acc-btn a {
+  width: 6.12rem;
+  height: 1.96rem;
+  line-height: 1.96rem;
+  float: left;
+  margin-left: 0.92rem;
+  background: #4b6bde;
+  border-radius: 0.16rem;
+  font-size: 0.72rem;
+  color: #fff;
+  text-align: center;
+}
+.vip-acc-btn a:last-child {
+  background: #ff742f;
+}
+/*弹出框样式*/
+.pop,
+.tip {
+  width: 12.2rem;
+  background: #fff;
+  border-radius: 0.24rem;
+  overflow: hidden;
+}
+.pop .layui-layer-setwin {
+  right: 1.8rem;
+  top: 1.6rem;
+}
+.pop .layui-layer-close2 {
+  width: 0.72rem;
+  height: 0.72rem;
+  background: url(../images/wap2/vip/icon_close.png);
+  background-size: 100% 100%;
+}
+.pop .layui-layer-close2:hover {
+  background-position: 0 0;
+}
+/*帮助弹框样式*/
+.pop-help-box {
+  display: none;
+  padding-bottom: 0.36rem;
+}
+.pop-help-box .title {
+  width: 90%;
+  height: 1.6rem;
+  margin: 0 auto 0.36rem;
+  border-bottom: 1px solid #bac9d3;
+}
+.pop-help-box h3 {
+  width: 88%;
+  line-height: 1.04rem;
+  margin: 0.32rem auto 0;
+  font-size: 0.6rem;
+  color: #2e485e;
+  font-weight: bold;
+}
+.pop-help-box dl {
+  width: 90%;
+  margin: 0 auto;
+  line-height: 0.96rem;
+  overflow: hidden;
+  font-size: 0.48rem;
+  color: #738497;
+}
+.pop-help-box dt {
+  width: 10%;
+  float: left;
+}
+.pop-help-box dd {
+  width: 90%;
+  float: left;
+}
+.pop-help-box-2 dt {
+  width: 6%;
+}
+.pop-help-box-2 dd {
+  width: 94%;
+}
+/*提示框样式*/
+.tip .layui-layer-setwin {
+  display: none;
+}
+.tip {
+  width: 11.8rem;
+  padding-top: 1rem;
+}
+.tip p {
+  text-align: center;
+  line-height: 1.2rem;
+  font-size: 0.68rem;
+  color: #2e485e;
+}
+.tip .layui-layer-btn {
+  padding: 0;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+.tip-two-btns .layui-layer-btn {
+  margin-bottom: 0.8rem;
+}
+.tip .layui-layer-btn a {
+  width: 100%;
+  height: 1.84rem;
+  line-height: 1.84rem;
+  margin: 0;
+  padding: 0;
+  font-size: 0.68rem;
+  color: #4b6bde;
+  text-align: center;
+  background: none;
+  border: 0;
+  border-top: 1px solid #d6dfe5;
+}
+.tip-two-btns .layui-layer-btn a {
+  width: 30%;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  float: left;
+  margin-left: 13.33%;
+  padding: 0;
+  font-size: 0.68rem;
+  color: #4b6bde;
+  text-align: center;
+  border: 1px solid #4b6bde;
+  border-radius: 0.16rem;
+  background: #fff;
+  box-sizing: border-box;
+}
+.tip-two-btns .layui-layer-btn a:last-child {
+  background: #4b6bde;
+  color: #fff;
+}
+/*jb-exchange*/
+.jb-exchange {
+  width: 91.6%;
+  margin-top: 0.4rem;
+  padding: 0.16rem 4.2% 0;
+  background: #fff;
+  overflow: hidden;
+}
+.jb-exchange p {
+  height: 2.1rem;
+  line-height: 2.1rem;
+  font-size: 0.48rem;
+  color: #90a2ad;
+}
+.jb-exchange span {
+  color: #ff4d2f;
+}
+.jb-exchange input {
+  width: 90%;
+  line-height: 0.6rem;
+  padding: 0.5rem 5%;
+  border: 1px solid #4b6bde;
+  -webkit-appearance: none;
+}
+.jb-exchange .jb-num {
+  font-size: 0.6rem;
+  color: #13334d;
+}
+.jb-exchange .jb-num span {
+  font-size: 0.48rem;
+  color: #486079;
+}
+.jb-exchange b {
+  color: #ff4d2f;
+  padding: 0 2px;
+}
+.btn-exchange {
+  width: 100%;
+  height: 1.96rem;
+  line-height: 1.96rem;
+  background: #4d6edb;
+  text-align: center;
+  font-size: 0.72rem;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+/*my-prize*/
+.prize-list {
+  margin-top: 0.4rem;
+  overflow: hidden;
+}
+.prize-list li {
+  width: 92%;
+  float: left;
+  padding: 0.36rem 4% 0.64rem;
+  margin-bottom: 0.2rem;
+  background: #fff;
+}
+.prize-list li p {
+  line-height: 0.92rem;
+  font-size: 0.48rem;
+  color: #91a2ac;
+}
+.prize-list li p:first-child {
+  line-height: 1.52rem;
+  font-size: 0.6rem;
+  color: #15344c;
+  overflow: hidden;
+}
+.prize-list li p:first-child span {
+  float: left;
+}
+.prize-list li p:first-child span:last-child {
+  float: right;
+  font-size: 0.48rem;
+  color: #90a2ad;
+}
+.prize-null {
+  overflow: hidden;
+}
+.prize-null img {
+  width: 6.8rem;
+  height: 6.52rem;
+  margin: 6rem auto 0;
+}
+.prize-null p {
+  line-height: 3.2rem;
+  text-align: center;
+  font-size: 0.6rem;
+  color: #91a2ac;
+  font-weight: bold;
+}
+/*lottery*/
+.lottery-box {
+  width: 13.82rem;
+  height: 13.82rem;
+  margin: 0.96rem auto 0;
+  background: url("../images/wap2/vip/bg_lottery.png") no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+#lottery {
+  width: 12rem;
+  height: 12rem;
+  margin: 0.9rem;
+  box-sizing: border-box;
+}
+#lottery table tr {
+  float: left;
+  overflow: hidden;
+}
+#lottery table td {
+  position: relative;
+  width: 3.48rem;
+  height: 3.48rem;
+  margin: 0.258rem;
+  float: left;
+}
+#lottery table td img {
+  display: block;
+  width: 3.48rem;
+  height: 3.48rem;
+}
+#lottery table td.active .mask-opacity {
+  display: block;
+}
+#lotteryBtn {
+  width: 3.48rem;
+  height: 3.48rem;
+  display: block;
+  text-decoration: none;
+  background: url("../images/wap2/vip/btn_lottery.png") no-repeat top center;
+  background-size: 100% 100%;
+}
+.mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url("../images/wap2/vip/bg_mark.png") no-repeat;
+  background-size: 100% 100%;
+  z-index: 2;
+}
+.mask-opacity {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url("../images/wap2/vip/bg_mark_opacity.png") no-repeat;
+  background-size: 100% 100%;
+  z-index: 3;
+  display: none;
+}
+#lottery table td.hide .mask,
+#lottery table td.hide .mask-opacity {
+  display: none;
+}
+.times {
+  line-height: 2.2rem;
+  font-size: 0.48rem;
+  color: #91a2ac;
+  text-align: center;
+}
+.times span {
+  color: #fc4f39;
+  padding: 0 2px;
+}
+.record {
+  width: 92%;
+  padding: 0.6rem 4% 0.6rem;
+  background: #fff;
+  overflow: hidden;
+}
+.record-title {
+  width: 100%;
+  height: 1.64rem;
+  background: url("../images/wap2/vip/bg_title1.png");
+  background-size: 100% 100%;
+}
+.record-title a {
+  width: 50%;
+  height: 26px;
+  float: left;
+}
+.record-title-change {
+  background: url("../images/wap2/vip/bg_title2.png");
+  background-size: 100% 100%;
+}
+.record-list {
+  height: 13.12rem;
+  overflow: hidden;
+  display: none;
+  margin-top: 0.4rem;
+}
+.record-list b {
+  color: #eb3043;
+  font-size: 14px;
+  padding: 0 1px;
+}
+.record-list li {
+  width: 100%;
+  height: 1.62rem;
+  line-height: 1.62rem;
+  float: left;
+  font-size: 0.48rem;
+  color: #496078;
+  text-align: center;
+  border-bottom: 0.02rem dashed #b3b2b2;
+}

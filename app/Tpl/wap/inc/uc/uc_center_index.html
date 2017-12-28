@@ -1,0 +1,80 @@
+
+<body>
+<section class="container container2 cf">
+	<!-- 我的账户 -->
+    <div class="my-data">
+    	<div class="my-person cf">
+    		<a href="my_user_info.html">
+    			<img src="{$TMPL}/images/wap2/my/head_img.png" width="36" height="36" class="my-head">
+    			<p class="my-user-info">...</p>
+    			<i class="my-user-icon"><img src="{$TMPL}/images/wap2/my/icon_person.png" width="10" height="18"></i>
+    		</a>
+    	</div>
+		<div class="my-total">
+			<p>0.00</p><p>总资产（元）</p>
+		</div>
+		<ul class="my-money">
+			<li><p>0</p><p>昨日收益 ( 元 )</p></li>
+			<li><p>0.00</p><p>可用余额 ( 元 )</p></li>
+            <li><p>0.00</p><p>累计收益 ( 元 )</p></li>			
+		</ul>
+    </div>
+    <ul class="my-operation">
+    	<li><a href="my_recharge.html"><span>充值</span></a></li>
+    	<li><a href="my_tx.html"><span>提现</span></a></li>
+    </ul>
+    <ul class="my-list">
+    	<li><a href="my_cash.html"><span>资金详览</span><i></i></a></li>
+    	<li><a href="my_invest_record.html"><span>出借记录</span><i></i></a></li>
+    	<li><a href="my_coupon.html"><span>优惠券</span><i></i></a></li>
+    	<li><a href="my_safe.html"><span>安全中心</span><i></i></a></li>
+    	<li><a href="my_set.html"><span>设置</span><i></i></a></li>
+    	<!-- <li><a href="javascript:;"><span>1.0版查询入口</span><i></i></a></li> -->
+    </ul>
+    <!-- 导航-footer -->
+    {include file="inc/footer.html"}
+</section>
+<div id="popBg"></div>
+<div id="popBox">
+    <p class="pop-safety"><span>{$ips.name}</span></p>
+    <p class="pop-btn"><a href="{url x="index" r="user#register"}">注册</a><a href="{url x="index" r="user#login"}">登录</a></p>
+</div>
+<script type="text/javascript">
+//弹出层
+function popBox(){
+    var popBox = document.getElementById('popBox');
+    var popBg = document.getElementById('popBg');
+    //弹出层
+    popBg.style.display = popBox.style.display = 'block';
+    popBoxPos();
+    popBgStyle();
+    //当页面滚动的时候，弹出框跟随滚动
+    window.onscroll = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+    window.onresize = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //设置弹出框的位置
+    function popBoxPos(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+        popBox.style.top = ( document.documentElement.clientHeight - popBox.offsetHeight ) / 2 + scrollTop + 'px';
+    }
+    //设置灰色背景的宽高
+    function popBgStyle(){
+        popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+        popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+    }
+    //关闭弹出框
+    /*popClose.onclick = function(){
+        popBg.style.display = popBox.style.display = 'none';
+    }*/
+}
+</script>
+</body>
+</html>

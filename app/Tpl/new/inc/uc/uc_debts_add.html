@@ -1,0 +1,54 @@
+<div class="user_top_title bgfb">
+	<a class="current">债权转让</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<form method="post"  id="bondTransfer" ajax_url="{url x="index" r="uc_debts#add_debt" p="id=$load_id"}" >
+		<table cellpadding="5" cellspacing="0" border="0"  class="uc_table_form">
+			<tbody>
+				<!-- <tr>
+					<td class="ta_r">借款编号：</td>
+					<td><input type="text" name="" class="uc_input input_onfocus_shadow" readonly="readonly" value="{$deal_info.deal_sn}" /></td>
+				</tr> -->
+				<tr>
+					<td class="ta_r">贷款名称：</td>
+					<td><input type="text"  name="trans_name" class="uc_input input_onfocus_shadow" readonly="readonly" value="{$deal_info.sub_name}" /></td>
+				</tr>
+				<tr>
+					<td class="ta_r">年化收益率：</td>
+					<td><input type="text"  name="trans_rate" class="uc_input input_onfocus_shadow" readonly="readonly"value="{$deal_info.rate}" /></td><td>%</td>
+				</tr>
+				<tr>
+					<td class="ta_r">转让金额：</td>
+					<td><input type="text"  name="trans_money" class="uc_input input_onfocus_shadow" readonly="readonly" value="{$load_info.total_money}" /></td><td>元</td>
+				</tr>
+				<tr>
+					<td class="ta_r">持有天数：</td>
+					<td><input type="text"  name="hold_days" class="uc_input input_onfocus_shadow" readonly="readonly" value="{$hold_days}" /></td><td>天</td>
+				</tr>
+				<tr>
+					<td class="ta_r">手续费：</td>
+					<td><input type="text"  name="trans_fee" class="uc_input input_onfocus_shadow" readonly="readonly" value="{$fee}" /></td><td>元</td>
+				</tr>
+				<tr>
+					<td class="ta_r">是否新手标</td>
+					<td>
+						<!--<input type="radio"  checked="checked" name="is_new" value="1"  />是<input type="radio" value="0" name="is_new"  />否-->
+						<label class="w100"><input type="radio" id="isNovice1" name="isNovice" value="1" style="position: absolute;left: -9999px;" checked>是</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<label><input type="radio" id="isNovice2" name="isNovice" value="0" style="position: absolute;left: -9999px;">否</label>
+					</td>
+				</tr>
+				<input type="hidden" name="load_id" value="{$load_id}" id="load_id" />
+				<tr>
+					<td></td>
+					<!-- <td><a href="{url x="index" r="uc_debts#add_debts" p="id=$load_id"}" class="uc_submit_blue dp-ib ta_c">转让</a></td> -->
+					<td><input type="button" id="sub_btn_bondTransfer" name="submit" value="转让" class="uc_submit_blue" /></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,226 @@
+<body>
+    <section class="container cf">
+        <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>修改绑定手机号</div>
+        <!-- 修改绑定手机号 -->
+        <div class="my-real-list my-tel-list">
+            <!-- 修改绑定手机第一步 -->
+            <form class="step-one">
+               <p><span>新手机号码</span><input type="tel" id="mobile"  maxlength="11"  placeholder="新绑定手机号码"></p>
+               {if $send_count gt 2}
+                <p class="my_yzm"><span>验证码</span><input type="text" id="verify"  maxlength="4" placeholder="验证码"><img src="{$APP_ROOT}/verify.php?w=89&h=44&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img" title="看不清楚？换一张" width="76" height="30" class="rl-verify-img"></p>
+                {/if}
+                <p><span>短信验证码</span><input type="tel" id="code" maxlength="6" placeholder="请输入验证码"><a href="javascript:;" id="get_regsms_code" class="my-tel-code my-tel-code-gray"></a></p>
+                <a href="javascript:;" class="my-btn" id="submit">完成</a>
+            </form>
+        </div>
+    </section>
+</body>
+<script type="text/javascript">
+    var regsiter_vy_time = null;    //定义时间
+    var is_lock_send_vy = false;    //解除锁定
+    var left_rg_time = 0;           //开始时间
+
+    function left_time_to_send_regvy(){
+        clearTimeout(regsiter_vy_time);
+        if(left_rg_time > 0){
+            regsiter_vy_time = setTimeout(left_time_to_send_regvy,1000);
+            $("#get_regsms_code").css('background','#aaa');
+            $("#get_regsms_code").html(left_rg_time+"秒后重新获取");
+            $("#get_regsms_code").addClass("btn_disable");
+            left_rg_time -- ;
+        }
+        else{
+            is_lock_send_vy = false;
+            $("#get_regsms_code").removeClass("btn_disable");
+            $("#get_regsms_code").css('background','#f99c1c');
+            $("#get_regsms_code").html("重新获取验证码");
+            left_rg_time = 0;
+        }
+    }
+    $("#mobile").keyup(function(){
+        if($("#mobile").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+        }else{
+            $("#get_regsms_code").css('background','#f99c1c');
+        }
+    })
+    $("#verify").keyup(function(){
+        if($("#verify").val().length == 0){
+            $("#get_regsms_code").css('background','#aaa');
+            return false;
+        }else{
+            $("#get_regsms_code").css('background','#f99c1c');
+        }
+    })
+     /*控制完成按钮状态*/
+     $("#mobile").keyup(function(){
+        var mobile = $("#mobile").val();
+        var code = $("#code").val();
+        if(mobile.length == 0){
+            $(".my-btn").css('background','#aaa');
+            return false;
+        }else if(code.length == 0){
+            $(".my-btn").css('background','#aaa');
+            return false;
+        }else if($(".my_yzm").css("display")=='block'){
+            if($("#verify").val().length == 0){
+                $(".my-btn").css('background','#aaa');
+                return false;
+            }else{
+                $(".my-btn").css('background','#4b6bde');
+            }
+        }else{
+            $(".my-btn").css('background','#4b6bde');
+        }
+    })
+    $("#verify").keyup(function(){
+        var mobile = $("#mobile").val();
+        var code = $("#code").val();
+        if(mobile.length == 0){
+            $(".my-btn").css('background','#aaa');
+            return false;
+        }else if(code.length == 0){
+            $(".my-btn").css('background','#aaa');
+            return false;
+        }else if($(".my_yzm").css("display")=='block'){
+            if($("#verify").val().length == 0){
+                $(".my-btn").css('background','#aaa');
+                return false;
+            }else{
+                $(".my-btn").css('background','#4b6bde');
+            }
+        }else{
+            $(".my-btn").css('background','#4b6bde');
+        }
+    })
+    $("#code").keyup(function(){
+        var mobile = $("#mobile").val();
+        var code = $("#code").val();
+        if(mobile.length == 0){
+            $(".my-btn").css('background','#aaa');
+            return false;
+        }else if(code.length == 0){
+            $(".my-btn").css('background','#aaa');
+            return false;
+        }else if($(".my_yzm").css("display")=='block'){
+            if($("#verify").val().length == 0){
+                $(".my-btn").css('background','#aaa');
+                return false;
+            }else{
+                $(".my-btn").css('background','#4b6bde');
+            }
+        }else{
+            $(".my-btn").css('background','#4b6bde');
+        }
+    })
+    $(document).ready(function(){
+        $('#get_regsms_code').html('获取验证码');
+        $('#get_regsms_code').click(function(){
+            if($(".my_yzm").css("display")=='block'){
+                if($("#verify").val().length == 0){
+                    $('#verify').focus();
+                    return false;
+                }
+            }
+            if(is_lock_send_vy || $(this).hasClass(".btn_disable")){
+                return false;
+            }
+            if(!(/^1[3|4|5|7|8]\d{9}$/.test($("#mobile").val()))){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>请输入正确的手机号码</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                $("#mobile").focus();
+                return false; 
+            }
+            is_lock_send_vy = true;
+            var ajaxurl = "{url x="index" r="ajax#get_bind_mobile_code_step_two"}";
+            var query = new Object();
+            query.user_mobile = $("#mobile").val();
+            query.verify = $("#verify").val();
+            query.ajax = 1;
+            $.ajax({
+                url: ajaxurl,
+                data:query,
+                type: "POST",
+                dataType: "json",
+                success:function(result){
+                    if(result.status==1){
+                        left_rg_time = 60;
+                        left_time_to_send_regvy();
+                        to_send_msg = true;
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<br><p>已将验证码发送到</p><p>'+$.trim($("#mobile").val())+'</p><p>请注意查收</p>',
+                            btn: ['确认'],
+                            shadeClose: true,
+                            no: function(){
+                            //点击确认按钮后要做的动作
+                            }
+                        });
+                    }else{   
+                        is_lock_send_vy = false;
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>'+result.info+'</p>',
+                            shadeClose: true,
+                            time: 2,
+                            end:function() {
+                                location.reload(); 
+                            }
+                        });
+                        return false;
+                    }
+                },error:function(){
+                    is_lock_send_vy = false;
+                }
+            })
+
+        })
+        $("#submit").click(function(){
+            if($.trim($('#code').val()) == ""){
+                $('#code').focus();
+                return false;
+            }else{
+                Confirm();
+            }
+        });
+    })
+
+    function Confirm(){
+        var mobile = $.trim($('#mobile').val());
+        var code = $.trim($('#code').val());
+        var ajaxurl = "{url x="index" r="uc_account#regsms_code"}";
+        $.ajax({
+            url: ajaxurl,
+            data:{'mobile':mobile,"code":code},
+            type: "POST",
+            dataType: "json",
+            success: function(result){
+                if(result.status == 1){
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',
+                        shadeClose: true,
+                        time: 2,
+                        end: function(){
+                            //点击确认按钮后要做的动作
+                            window.location.href = "{url x="index" r="uc_account#security"}";
+                        },
+                    });
+                }else{
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',
+                        shadeClose: true,
+                        time: 2
+                    });
+                }
+            }
+
+        });
+    }
+</script>
+</html>

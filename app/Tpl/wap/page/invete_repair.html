@@ -1,0 +1,97 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>补填邀请码</div>
+<?php } ?>
+	<!-- 补填邀请码 -->
+    <p class="fi-invite-wad-tip">您注册时未填写邀请码，可以在下方补填，提交后不可修改</p>
+    <div class="fi-invite-input">
+        <form>
+            <p><span>请输入邀请码</span><input type="text" id="repair" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="11" placeholder="请输入推荐人的邀请码"></p>
+            <a href="javascript:;" class="fi-invite-btn fi-invite-btn-gray" id="register_submit" >完成</a>
+        </form>
+    </div>
+</section>
+<script>
+    $("#repair").keyup(function(){
+        if($("#repair").val().length == 0){
+            
+            $("#register_submit").css("background","#aaa");
+            return false;
+        }else{
+            $("#register_submit").css("background","#3d77ea"); 
+        }
+    })
+    //补填邀请码提示框
+    //邀请码不存在：邀请码不存在
+    //邀请码补填成功：邀请码补填成功
+    $("#register_submit").click(function(){
+        var repair = $("#repair").val();
+        var ajaxurl ="{url x="index" r="ajax#repair_user"}";
+        var load=layer.open({type: 2,shadeClose: false});
+        if(repair == ""){
+            return false;
+        }else{
+            $.ajax({
+                url: ajaxurl,
+                data:{'val':repair},
+                type: "POST",
+                dataType: "json",
+                success:function(data){
+                    if(data.status==1){
+                        layer.close(load);
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>'+data.info+'</h3>',
+                            btn: ['确认'],
+                            shadeClose: true,
+                            yes: function(){
+                                //点击确认按钮后要做的动作
+                                location.reload();
+                                /*window.location.href = "{url x="index" r="invite"}";*/
+                            },
+                        });
+                    }else if(data.status==2){
+                        layer.close(load);
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>'+data.info+'</h3>',
+                            btn: ['确认'],
+                            shadeClose: true,
+                            no: function(){
+                                //点击确认按钮后要做的动作
+                            },
+                        });
+                        return false;
+                    }else{
+                        layer.close(load);
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>'+data.info+'</h3>',
+                            btn: ['确认'],
+                            shadeClose: true,
+                            no: function(){
+                                //点击确认按钮后要做的动作
+                            },
+                        });
+                        return false;
+                    }
+                }
+            });
+        }
+    });   
+   
+        /*layer.open({
+            className: 'popup-btn',
+            content: '<h3>提示</h3><p>邀请码补填成功</p>',
+            btn: '确定',
+            time: 2,
+            end: function(){
+                //邀请码补填成功弹出提示层后2s钟（或者直接点确定按钮）后返回上级页面
+                window.location.href='fi_invite.html';
+            }
+        });*/
+</script>
+</body>
+</html>

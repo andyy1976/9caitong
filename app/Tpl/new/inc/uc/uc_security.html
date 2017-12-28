@@ -1,0 +1,140 @@
+<div class="user_top_title bgfb">
+	<a class="current">{$LANG.UC_SECURITY}</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<ul class="authentication">
+			<li>
+				<i class="C_coffe">&#57385;</i>
+				<h4>手机认证</h4>
+				<span>{function name="hideMobile" v=$self_info.mobile}</span>
+				<a href="{url x="index" r="uc_account#mobile"}" class="ucbt3" >修改</a>
+				<p>手机号是您在玖财通重要的身份凭证</p>
+			</li>
+			<!--企业用户不显示-->
+			{if $user_info.user_type neq 1}
+			<li>
+				<i class="{if $user_info.idcardpassed eq 1 & $user_info.real_name_encrypt neq '' & $user_info.idno_encrypt neq ''}C_coffe{else}C_Bray{/if}">&#57384;</i>
+				<h4>实名认证</h4>
+				{if $user_info.idcardpassed eq 1 & $user_info.real_name_encrypt neq '' & $user_info.idno_encrypt neq ''}
+					<span>{function name="utf_substr" v="$self_info.real_name"}&nbsp;&nbsp;{$self_info.idcard}</span>
+				{elseif $idcard_credit}
+					{if $idcard_credit.status eq 0}
+					<span class="C_blue1">认证中</span>
+					{else}
+					<span class="C_red">认证失败</span>
+					{/if}
+				{else}
+					<span class="C_red">未认证</span>
+				{/if}
+				{if $user_info.idcardpassed eq 1}
+				<span class="C_green1" style="width: auto;">已认证</span>
+				{else}
+				{if $idcard_credit.status eq 1 || !$idcard_credit}
+					<a href="javascript:void(0);" class="ucbt3" id="authenticationRealname">认证</a>
+				{else}
+				等待审核
+				{/if}
+				{/if}
+				<p>充值前必须完成实名认证，账户更安全</p>
+			</li>
+			{/if}
+			<li>
+				<i class="{if $user_info.user_pwd}C_coffe{else}C_Bray{/if}">&#57382;</i>
+				<h4>登录密码</h4>
+				{if $user_info.user_pwd}
+					<span>********</span>
+				{else}
+					<span class="C_red">未设置</span>
+				{/if}
+				<a href="{url x="index" r="uc_account#reset_login_psw"}" class="ucbt3" id="resetPassword">修改</a>
+				<p>登录玖财通账户时需要输入的密码</p>
+			</li>
+			<li>
+				<i class="{if $score}C_coffe{else}C_Bray{/if}">&#57383;</i>
+				<h4>存管账户</h4>
+				{if $self_info.accno}
+				<span>{$self_info.accno}</span>
+				{else}
+				<span>未开通</span>
+				{/if}
+				{if $self_info.accno}
+					<span class="C_green1" style="width: auto;">已开通</span>
+				{else}
+				     <!--企业用户开通存管-->
+				     {if $user_info.user_type eq 1}
+					 <a href="{url x="index" r="user#company_steptwo"}" class="ucbt3" >开通存管</a>
+					 {else}
+                     <a href="{url x="index" r="uc_depository_account#index"}" class="ucbt3" >开通存管</a>
+					 {/if}
+				{/if}
+				<p>为保障资金安全，为用户在银行开通存管专用账户</p>
+			</li>
+			<!--企业用户不显示-->
+			{if $user_info.user_type neq 1}
+			<!--未开通存管交易密码不显示-->
+			{if $self_info.accno}
+			<li>
+				<i class="{if $user_info.paypassword}C_coffe{else}C_Bray{/if}">&#57395;</i>
+				<h4>存管交易密码</h4>
+				{if $self_info.cunguan_pwd}
+					<span>********</span>
+				{else}
+					<span class="C_red">未设置</span>
+				{/if}
+				{if $self_info.cunguan_pwd}
+					<a href="{url x="index" r="uc_depository_paypassword#pc_changepaypassword"}" class="ucbt3" id="setting_paypwd">修改</a>
+				<a href="{url x="index" r="uc_depository_paypassword#pc_resetpaypassword"}" class="ucbt3" id="resetting_paypwd">重置</a>
+				{else}
+					<a href="{url x="index" r="uc_depository_paypassword#pc_setpaypassword"}" class="ucbt3" id="setting_paypwd">设置</a>
+				{/if}
+				<p>资金交易时需要输入的密码</p>
+			</li>
+			{/if}
+			{/if}
+			<li>
+				<i class="{if $score}C_coffe{else}C_Bray{/if}">&#57411;</i>
+				<h4>风险评估</h4>
+				<span>{if 12 <=$score && $score<=24}
+                        保守型
+                    {elseif 25 <= $score && $score <=36}
+                        稳健型
+                    {elseif 37 <= $score && $score <=60}
+                    积极型
+                    {elseif !$score}
+                       <span class="C_red">未评估</span>
+                    {/if}
+                </span>
+
+                {if $score}
+				    <a href="{url x="index" r="uc_account#assessment"}" class="ucbt3" >重新评估</a>
+                {else}
+                <a href="{url x="index" r="uc_account#assessment"}" class="ucbt3" >开始评估</a>
+                {/if}
+				<p>评测用于衡量您的风险承受能力</p>
+			</li>
+
+			<!--<li>
+				<i class="{if $score}C_coffe{else}C_Bray{/if}">&#57411;</i>
+				<h4>绑卡</h4>
+				<span>未绑定</span>
+				<a href="{url x="index" r="depository_addbank#check_pwd"}" class="ucbt3" >绑卡</a>
+				<p>绑定银行卡</p>
+			</li>-->
+			<!--{if intval(app_conf("OPEN_IPS")) gt 0}
+			<li>
+				<i class="{if $user_data.ips_acct_no neq ''}C_coffe{else}C_Bray{/if}">&#57389;</i>
+				<h4>资金托管账户</h4>
+				{if $user_data.ips_acct_no neq ''}
+				<span>已开通</span>
+				{else}
+				<span class="C_red">未开通</span>
+				{/if}
+				<a href="javascript:void(0);" onclick="new_window = window.open();" id="J_bind_ips" class="ucbt3">开通</a>
+				<p>玖财通在海峡银行为用户开通的资金存管账户</p>
+			</li>
+			{/if}-->
+		</ul>
+	</div>
+</div>

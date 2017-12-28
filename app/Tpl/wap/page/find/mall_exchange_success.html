@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>{$cate_title}</title>
+    <link rel="stylesheet" type="text/css" href="new/find/css/reset_ph_v=2016.css">
+    <script src="new/find/js/jquery-1.11.3.min.js"></script>
+    <script src="new/find/js/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="new/find/css/wap_mall_v_2017.css">
+    <script src="new/find/js/fastclick.js"></script>
+	<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+</head>
+<body>
+<section class="container container-details cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="new/find/images/wap2/my/icon_back.png" width="10" height="18"></a>兑换成功</div>
+	<?php } ?>
+    <!-- 兑换成功 -->
+    <img class="success-icon" src="new/find/images/wap2/mall/icon_success.png" />
+    <p class="success-word">兑换成功</p>
+	{if $order}
+    <ul class="success-info">
+    	<li>订单编号: {$order.order_sn}</li>
+    	<li>兑换时间: {$order.ex_time}</li>
+    </ul>
+    <p class="success-btn"> 
+    	<a href="{url x="index" r="find#mall_order"}">查看订单</a>
+		<a href="{url x="index" r="find#mall_details_goods" p="id=$order.goods_id"}">确定</a>
+		<!-- <a href="javascript:history.go(-2)">确定</a> -->
+    </p>
+	{else}
+	<p class="success-btn-center">
+    	<a href="{url x="index" r="find#mall_details_coupon" p="id=$goods.id"}">确定</a>
+        <!-- <a href="javascript:history.go(-2)">确定</a> -->
+    </p>
+    {/if}
+</section>
+</body>
+</html>

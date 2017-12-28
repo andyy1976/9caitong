@@ -1,0 +1,56 @@
+<div class="FictitiousMoney_list">
+	{if $count gt 0}
+	<ul id="select_Coupon" class="coupon">
+        {foreach from=$interest_list item="card" key=k name="card"}
+		<li id="{$card.id}" day="{$card.interest_time}" interest="{$card.rate}">
+			<div class="money">
+				<span><i>{$card.rate}%</i></span>
+				<p>{$card.interest_time}</p>
+			</div>
+			<div class="condition">
+				<p>可用标的：{$card.use_condition}个月标的</p>
+				<p>有效期：{$card.begin_date}-{$card.end_date}</p>
+			</div>
+			<div class="mark hide"></div>
+		</li>
+        {/foreach}
+		<!--<li id="experienceMoneyid2" day="8" interest="2">-->
+			<!--<div class="money">-->
+				<!--<span><i>2%</i></span>-->
+				<!--<p>加息8天</p>-->
+			<!--</div>-->
+			<!--<div class="condition">-->
+				<!--<p>可用标的：3个月标的</p>-->
+				<!--<p>有效期：2016.05.01-2016.05.31</p>-->
+			<!--</div>-->
+			<!--<div class="mark hide"></div>-->
+		<!--</li>-->
+		<!--<li id="experienceMoneyid3" day="10" interest="3">-->
+			<!--<div class="money">-->
+				<!--<span><i>3%</i></span>-->
+				<!--<p>加息10天</p>-->
+			<!--</div>-->
+			<!--<div class="condition">-->
+				<!--<p>可用标的：3个月标的</p>-->
+				<!--<p>有效期：2016.05.01-2016.05.31</p>-->
+			<!--</div>-->
+			<!--<div class="mark hide"></div>-->
+		<!--</li>-->
+	</ul>
+	{else}
+	<div class="noFictitiousMoney ta_c">
+		<img src="/new/images/noFictitiousMoney.png" />
+		<p>暂无可用加息卡</p>
+	</div>
+	{/if}
+</div>
+
+
+<div class="blank80"></div>
+<div class="interestrate_operation">
+	<span class="hide" id="selected_interest">0</span>
+	<div class="interestrate_btn">
+		<input type="button" value="确定" class="confirm" id="confirm_plusInterest" />
+		<input type="button" value="取消" class="cancel" id="closeLayer" />
+	</div>
+</div>

@@ -1,0 +1,99 @@
+<div class="user_top_title bgfb">
+    <a class="current">加息卡</a>
+</div>
+<div class="user_center_con">
+    <div class="blank20"></div>
+    <div class="uc01">
+        <div class="sl_wrap">
+            <div class="sl_key">使用状态：</div>
+            <div class="sl_value">
+                <ul>
+                    {foreach from=$voucher_deal item="type" key=key name="interest_card_type"}
+                    <li><a href="{$type.url}" class="{if $card_type eq $key}cur{/if}">{$type.name}</a></li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+        <div class="blank50"></div>
+        <div class="fictitious_money of_h">
+            {if $result}
+            <ul class="coupon">
+                {foreach from=$result item="card" key=k name="interest_card"}
+                <li class="{if $card.status eq 0 && $card.end_time gt $time}available{elseif $card.status eq 1}Unavailable{else}Unavailable{/if}"><!--class:available正常显示的体验金-->
+                    <div class="money">
+                        <span><i>{$card.rate}</i>%</span>
+                        <p>加息时长：{$card.interest_time_info}</p>
+                    </div>
+                    <div class="condition">
+                        <p>可用标的：{$card.use_condition}个月标的</p>
+                        <p>有效期：{$card.begin_date}-{$card.end_date}</p>
+                    </div>
+                    {if $card.status eq 0 && $card.end_time lt $time}
+                    <span class="overdue"></span>
+                    {elseif $card.status eq 1}
+                    <span class="used"></span>
+                    {/if}
+                </li>
+                {/foreach}
+                
+            </ul>
+            {elseif $card_type eq 1}
+                <div class="noFictitiousMoney ta_c">
+                    <img src="/new/images/noFictitiousMoney.png" />
+                    <p>暂无可用加息卡</p>
+                </div>
+            {elseif $card_type eq 2}
+                <div class="noFictitiousMoney ta_c">
+                    <img src="/new/images/noFictitiousMoney.png" />
+                    <p>暂无已使用加息卡</p>
+                </div>
+            {elseif $card_type eq 3}
+                <div class="noFictitiousMoney ta_c">
+                    <img src="/new/images/noFictitiousMoney.png" />
+                    <p>暂无已过期加息卡</p>
+                </div>
+            {else}
+                <div class="noFictitiousMoney ta_c">
+                    <img src="/new/images/noFictitiousMoney.png" />
+                    <p>暂无加息卡</p>
+                </div>
+            {/if}
+
+        </div>
+        <div class="pages">{$pages}</div>
+        <div class="uc_line"></div>
+        <!--<h3 class="uc_title">加息卡记录</h3>-->
+        <!--{if $red_money_list}-->
+        <!--<table border="0" cellspacing="0" cellpadding="0" width="100%" class="uc_table_list">-->
+        <!--<tbody>-->
+        <!--<tr>-->
+        <!--<th>时间</th>-->
+        <!--<th>交易类型</th>-->
+        <!--<th>说明</th>-->
+        <!--<th>金额（元）</th>-->
+        <!--&lt;!&ndash; <th>可用余额（元）</th> &ndash;&gt;-->
+        <!--</tr>-->
+        <!--{foreach from=$red_money_list item=voucher key=key}-->
+        <!--<tr class="{if $key mod 2 eq 1}bgf7{/if}">-->
+        <!--<td>{function name="to_date" v=$voucher.create_time } </td>-->
+        <!--<td>{if substr($voucher.money,0,1)=='-'}使用{else}获取{/if}</td>-->
+        <!--<td>{$voucher.memo}</td>-->
+        <!--<td>{if $voucher.money gt 0}<span class="C_red">+{function name="format_price" v=$voucher.money}</span>{elseif $voucher.money eq 0}{function name="format_price" v=$voucher.money}{else}<span class="C_green1">{function name="format_price" v=$voucher.money}</span>{/if}</td>-->
+        <!--&lt;!&ndash; <td>{function name="format_price" value=$voucher.account_money}</td> &ndash;&gt;-->
+        <!--</tr>-->
+        <!--{/foreach}-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--<div class="pages">{$pages}</div>-->
+        <!--{else}-->
+        <!--<p>暂无记录！</p>-->
+        <!--{/if}-->
+		<div class="uc_line"></div>
+		<h3 class="uc_title">加息卡使用规则</h3>
+		<ol class="rule">
+			<li>每张加息卡均有一定的使用条件，当满足对应投资条件时方可使用；</li>
+			<li>每笔投资只可使用一张加息卡，加息卡不可叠加使用；</li>
+			<li>加息卡设有有效期，需在有效期内使用。</li>
+		</ol>
+    </div>
+</div>

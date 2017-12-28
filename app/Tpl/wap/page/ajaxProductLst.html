@@ -1,0 +1,87 @@
+{foreach from=$list item="deal" key=key name="deal"}
+{if $deal.deal_status eq 1}
+<li class="pt-list-new-man">
+    {else}
+    <li class="pt-list-second-kill pt-list-finish">
+        {/if}       
+        <a href="{$deal.url}">
+            <div class="pt-list-title">
+                <h3>{function name="msubstr" v="$deal.name" s="0" l="8" }</h3>
+                {if $deal.is_new eq 1}<span>新手标</span>{elseif $deal.is_advance eq 1}<span class="advance">预售标</span>{/if}
+                {if $deal.is_advance eq 1 && $deal.timer gt 0}<p id="timer{$deal.id}">倒计时：{$deal.initial_time}</p>{else}<p>剩余：{$deal.need_money}元</p>{/if}
+            </div>
+            <div class="pt-data">
+                <div class="pt-data-l">
+                    <p><span>{$deal.rate}</span>%<span style="font-size: 14px">{if $deal.interest_rate gt 0}+{$deal.interest_rate}%{/if}</span></p><p>预期年化率</p>
+                </div>
+                <div class="pt-data-c">
+                    <p>期限{if $deal.debts eq 1}{$deal.debts_repay_time}{else}{$deal.repay_time}{/if}{if $deal.repay_time_type eq 0}天{else}个月{/if}</p><p>起投{$deal.min_loan_money}元</p>
+                </div>
+                <div class="pt-data-r">
+                    {if $deal.deal_status eq 1 && $deal.remain_time gt 0 && $deal.timer eq 0 }
+                    <div class="pt-data-circle" data-percent="{$deal.progress_point}"><div class="pt-data-word">抢</div><i class="pt-list-finish-bg"></i></div>
+                    {elseif $deal.deal_status eq 1 && $deal.remain_time gt 0 && $deal.timer gt 0}
+                    <div class="pt-data-circle" data-percent="0"><div class="pt-data-word" style="color:#97a8b2 ">抢</div><i class="pt-list-finish-bg"></i></div>
+                    {else}
+                    <div class="pt-data-circle" data-percent="100"><div class="pt-data-word">已抢光</div><i class="pt-list-finish-bg"></i></div>
+                    {/if}
+                </div>
+            </div>
+        </a>
+    </li>
+{/foreach}
+<script>
+function countDown(maxtime,fn ){      
+   var timer = setInterval(function(){  
+       if(maxtime>=0){
+            hour = Math.floor(maxtime/3600);
+            if(hour<10){
+                hour = "0"+hour;
+            }    
+            minutes = Math.floor(maxtime/60%60);
+            if(minutes<10){
+                minutes = "0"+minutes;
+            } 
+            seconds = Math.floor(maxtime%60);
+            if(seconds < 10){
+                seconds = "0"+seconds;
+            }     
+            msg = "倒计时："+hour+":"+minutes+":"+seconds;     
+            fn( msg );      
+            --maxtime;     
+        }     
+         else{     
+            clearInterval(timer);  
+        }     
+    }, 1000);  
+}
+{if $list}
+    {foreach from=$list item="vo" key=key name="deal"}
+    {if $vo.deal_status eq 1 && $vo.remain_time gt 0}
+        {if $vo.is_advance eq 1 && $vo.timer gt 0}
+        countDown({$vo.timer},function(msg){  
+            document.getElementById('timer{$vo.id}').innerHTML = msg;  
+        });
+        {/if}
+    {/if}
+    {/foreach}
+{/if}
+    $(document).ready(function(){
+        $('.pt-data-circle').easyPieChart({
+            animate: 1000,
+            size: 60,
+            lineWidth: 2,
+            scaleColor: false,
+            trackColor: '#cbcdda',
+            barColor: '#485be9'
+        });
+        //选项卡切换
+        $(function(){
+            $('.pt-title').find('a').click(function(){
+                $(this).addClass('active').siblings().removeClass('active');
+                var index = $(this).index();
+                $('.pt-list').hide().eq(index).show();
+            });
+        });
+    });
+</script>

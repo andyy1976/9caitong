@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>玖财通官网 - 玖财通</title>
+    <meta name="keywords" content="玖财通,玖财通官网,玖财通APP,玖财通安全吗,玖财通怎么样,玖财通体验金,手机理财,投资,理财,理财产品,理财产品排行,投资理财,个人理财,理财APP,定期理财产品,互联网金融" />
+    <meta name="description" content="玖财通是创新的互联网理财平台，致力于打造安全、稳定、规范的互联网理财产品，为用户提供便捷的投资理财服务。" />
+    <link rel="stylesheet" href="/new/activity/W644/css/reset_ph_v=2016.css">
+    <script src="new/activity/W644/js/jquery-1.11.3.min.js"></script>
+    <script src="new/activity/W644/js/layer/layer.js"></script>
+    <link rel="stylesheet" href="new/activity/W644/css/style.css">
+    <script src="new/activity/W644/js/fastclick.js"></script>
+    <script>
+        //处理移动端click事件300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+    <style>
+    .gray{background: gray!important;}
+    </style>
+</head>
+<body>
+<div class="container">
+	<div class="friend">
+		<p>您的好友</p>
+        <div>{if $numstr}{$numstr}<!-- {function name="utf_substr" v="$numstr"} -->{else}{function name="hideMobile" v="$numstr"}{/if}</div>
+		<p>送您</p>
+        <div id="user_name" style="visibility:hidden">{$user_code}</div>
+	</div>
+	<p class="peoples">已有<span>{$wapregistered_user}</span>人加入玖财通</p>
+	<div class="inp">
+		<img src="/new/activity/W644/images/inp_bg_top.png" />
+		<div class="inp-mid">
+            <form ajax_url="/index.php?ctl=ajax_activity&act=doregister_W644" method="post" id="page_reg_form" autocomplete="off" >
+				<div class="inp-mid-list">
+					<p class="inp-input inp-input-tel"><span>手机号</span><input type="tel" id="user_reg_phone" placeholder="输入手机号" maxlength="11" /></p>
+					<p class="inp-tips" id="phone-error" style="visibility:hidden"></p>
+					<p class="inp-input"><span>验证码</span><input type="text" maxlength="6" id="phoneCode" placeholder="输入短信验证码" /><a id="btnCode" href="javascript:;" class="inp-code-btn <!--inp-code-btn-gray-->">获取验证码</a></p>
+					<p class="inp-tips" id="phone-code-error" style="visibility:hidden"></p>
+				</div>
+			</form>
+		</div>
+		<div class="inp-bot">
+			<a href="javascript:;" id="reg_btn"></a>
+		</div>
+	</div>
+	<img src="/new/activity/W644/images/img1.png" />
+	<img src="/new/activity/W644/images/img2.png" />
+	<div class="copyright">
+		<p>借贷有风险，出借需谨慎</p>
+		<p>版权所有 | 玖财通</p>
+		<p>京ICP备 13051110号</p>
+	</div>
+</div>
+<div class="pop-content">
+    <p class="pop-inp-title">设置登录密码</p>
+    <div class="pop-inp">
+    	<form>
+    		<input type="password" id="reg-pwd" placeholder="6-16位数字和字母组合" maxlength="16" />
+    		<p class="pop-inp-tips" id="pwd-error" style="visibility:hidden">&nbsp;</p>
+            <a href="javascript:void(0);" class="img_verify_btn" id="pwd_btn">确定</a>
+    	</form>
+    </div>
+</div>
+<div class="pop-content-code">
+    <p class="pop-inp-title">输入图文验证码</p>
+    <div class="pop-inp pop-inp-code">
+    	<form>
+    		<input type="text" id="imgCode" maxlength="4" placeholder="输入图文验证码" /><img maxlength="4" style="margin-top:0" src="/verify.php?w=89&h=44&rand=947024808" onclick="this.src='/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img" title="看不清楚？换一张" class="inp-code-img" />
+            <div style="clear:both"></div>
+    		<p class="pop-inp-tips" id="imgCode-error" style="visibility:hidden">&nbsp;</p>
+            <a href="javascript:void(0);" class="img_verify_btn" id="img_verify_btn">确定</a>
+    	</form>
+    </div>
+</div>
+<script>
+$(document).keydown(function(event){
+  switch(event.keyCode){
+     case 13:return false; 
+     }
+});
+// 验证手机号
+function isPhoneNo(phone) { 
+ var pattern = /^1[34578]\d{9}$/; 
+ return pattern.test(phone); 
+}
+// 验证手机号
+function isPwd(pwd) { 
+ var pattern1 = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/; 
+ return pattern1.test(pwd); 
+}
+var is_lock_send_vy = false;    //解除锁定
+var left_rg_time; 
+var regsiter_vy_time;
+function left_time_to_send_regvy(){
+    clearTimeout(regsiter_vy_time);
+    if(left_rg_time > 0){
+
+        regsiter_vy_time = setTimeout(left_time_to_send_regvy,1000);
+        $("#btnCode").html(left_rg_time+"秒后获取");
+        $("#btnCode").addClass("gray");
+        left_rg_time -- ;
+    }
+    else{
+        is_lock_send_vy = false;
+        $("#btnCode").removeClass('gray');
+        $("#btnCode").html("获取验证码");          
+        left_rg_time = 0;
+    }
+}
+//设置登录密码弹出框
+$('#btn').click(function(){
+	parent.layer.open({
+        skin: 'pop', //控制样式的class名，勿删
+        type: 1, //基本层类型，勿删
+        title: false, //不显示标题
+        shadeClose: true, //点击遮罩背景是否可关闭，可删
+        content: $('.pop-content'), //弹框内容，放在html标签中
+        btn: '确定'//按钮
+    });
+});
+
+//输入图文验证码弹出框
+$('#btnCode').click(function(){
+    $("#imgCode").val('');
+    if(is_lock_send_vy || $(this).hasClass(".gray")){
+        return false;
+    }
+
+    var phone=$.trim($("#user_reg_phone").val());
+    if (phone.length == 0) { 
+        $("#phone-error").html("手机号码不能为空").css("visibility","visible");
+        //$('#phone').focus();
+        return false;
+    } else if(isPhoneNo(phone) == false){
+        $("#phone-error").html("手机格式不正确").css("visibility","visible");
+        //$('#phone').focus();
+        return false;
+    }
+    var index = layer.load();
+    var query = new Object();
+    query.mobile=phone;
+    query.key=1;
+    $.ajax({
+        type:"post",
+        url:"/index.php?ctl=ajax&act=send_phone_verifycode_seven",
+        dataType:"json",
+        data:query,
+        async:true,
+        success:function (obj) {
+            //status等于1不需要输入图形验证码
+            layer.close(index);
+            if (obj.status == 1) {
+                is_lock_send_vy = true;
+                left_rg_time = 60;
+                left_time_to_send_regvy();
+                //$("#phone-error").html(obj.info).css("visibility","visible");
+                layer.tips(obj.info, '#phoneCode', {tips: 1});
+                //$('#phoneCode').focus();
+            } else if(obj.status == 2){
+                //status等于2输入图形验证码
+                //$("#Jverify_img").attr("src",'/verify.php?w=89&h=44&rand='+ Math.random());
+                $("#phone-error").html("").css("visibility","hidden");
+                parent.layer.open({
+                    skin: 'pop', //控制样式的class名，勿删
+                    type: 1, //基本层类型，勿删
+                    title: false, //不显示标题
+                    shadeClose: true, //点击遮罩背景是否可关闭，可删
+                    content: $('.pop-content-code'), //弹框内容，放在html标签中
+                    btn: false//按钮
+                });
+                return false;
+            }
+            else{
+                $("#phone-error").html(obj.info).css("visibility","visible");
+                //$('#phone').focus();
+                return false;
+            }
+        },
+        error:function (obj) {
+            layer.close(index);
+            layer.alert("请求数据失败",{title:"失败",closeBtn:0});
+            return false;
+        }
+    });
+	
+});
+
+//提交图形验证码
+$("#img_verify_btn").bind("click",function(){
+    var imgCode=$.trim($("#imgCode").val());
+    if (imgCode.length == 0) { 
+        $("#imgCode-error").html("请输入图形验证码").css("visibility","visible");
+        //$('#imgCode').focus();
+        return false;
+    }else if(imgCode.length < 4){
+        $("#imgCode-error").html("验证码错误").css("visibility","visible");
+        //$('#imgCode').focus();
+        return false;
+    }
+    $("#imgCode").val('');
+    var index = layer.load();
+    var query1 = new Object();
+    query1.mobile=$.trim($("#user_reg_phone").val());
+    query1.imgCode=imgCode;
+    query1.key=2;
+    $.ajax({
+        type:"post",
+        url:"/index.php?ctl=ajax&act=send_phone_verifycode_seven",
+        dataType:"json",
+        data:query1,
+        async:true,
+        success:function (obj) {
+            layer.close(index);
+            if (obj.status) {
+                is_lock_send_vy = true;
+                left_rg_time = 60;
+                left_time_to_send_regvy();
+                $("#imgCode-error").html("&nbsp;").css("visibility","hidden");
+                layer.closeAll();
+                layer.tips(obj.info, '#phoneCode', {tips: 1});
+                //$('#phoneCode').focus();
+                return false;
+            } else {
+                $("#imgCode-error").html(obj.info).css("visibility","visible");
+                $("#Jverify_img").attr("src",'/verify.php?w=89&h=44&rand='+ Math.random());
+                //$('#imgCode').focus();
+                return false;
+            }
+        },
+        error:function (obj) {
+            layer.close(index);
+            layer.alert("请求数据失败",{title:"失败",closeBtn:0});
+            return false;
+        }
+    });
+});
+$("#reg_btn").click(function(){
+    var phone=$.trim($("#user_reg_phone").val());
+    if (phone.length == 0) { 
+        $("#phone-error").html("手机号码不能为空").css("visibility","visible");
+        //$('#phone').focus();
+        return false;
+    } else if(isPhoneNo(phone) == false){
+        $("#phone-error").html("手机格式不正确").css("visibility","visible");
+        //$('#phone').focus();
+        return false;
+    }
+    $("#phone-error").html("").css("visibility","hidden");
+    var phoneCode=$.trim($("#phoneCode").val());
+    if (phoneCode.length == 0) { 
+        $("#phone-code-error").html("请输入手机验证码").css("visibility","visible");
+        //$('#phoneCode').focus();
+        return false;
+    }else if(phoneCode.length < 6){
+        $("#phone-code-error").html("手机验证码错误").css("visibility","visible");
+        //$('#phoneCode').focus();
+        return false;
+    }
+    $("#phone-code-error").html("").css("visibility","hidden");
+    var index = layer.load();
+    var query2 = new Object();
+    query2.mobile=phone;
+    query2.sms_code=phoneCode;
+    query2.key=3;
+    $.ajax({
+        type:"post",
+        url:"/index.php?ctl=ajax&act=send_phone_verifycode_seven",
+        dataType:"json",
+        data:query2,
+        async:true,
+        success:function (obj) {
+            layer.close(index);
+            if (obj.status == 1) {
+                $("#phone-error").html("").css("visibility","hidden");
+                $("#phone-code-error").html("").css("visibility","hidden");
+                parent.layer.open({
+                    skin: 'pop', //控制样式的class名，勿删
+                    type: 1, //基本层类型，勿删
+                    title: false, //不显示标题
+                    shadeClose: true, //点击遮罩背景是否可关闭，可删
+                    content: $('.pop-content'), //弹框内容，放在html标签中
+                    btn: false//按钮
+                });
+            } else if(obj.status == 2){//手机号问题
+                $("#phone-error").html(obj.info).css("visibility","visible");
+                //$('#phone').focus();
+                return false;
+            }else if(obj.status == 3){//手机验证码问题
+                $("#phone-code-error").html(obj.info).css("visibility","visible");
+                //$('#phoneCode').focus();
+                return false;
+            }
+        },
+        error:function (obj) {
+            layer.close(index);
+            layer.alert("请求数据失败",{title:"失败",closeBtn:0});
+            return false;
+        }
+    });
+});
+$("#pwd_btn").click(function(){
+    var pwd=$.trim($("#reg-pwd").val());
+    if (pwd.length == 0) { 
+        $("#pwd-error").html("请输入密码").css("visibility","visible");
+        //$('#reg-pwd').focus();
+        return false;
+    } else if(isPwd(pwd) == false){
+        $("#pwd-error").html("请输入6-16位数字和字母组合").css("visibility","visible");
+        //$('#reg-pwd').focus();
+        return false;
+    }
+    var index = layer.load();
+    var query3 = new Object();
+    query3.mobile=$.trim($("#user_reg_phone").val());
+    query3.sms_code=$.trim($("#phoneCode").val());
+    if ({$user_code} != 0) {
+        query3.referer={$user_code};
+    }
+    query3.user_name="w"+query3.mobile;
+    query3.user_pwd=pwd;
+    $.ajax({
+        type:"post",
+        //url:"/index.php?ctl=ajax&act=send_phone_verifycode_seven",
+        url:"/index.php?ctl=ajax_activity&act=doregister_W644",
+        dataType:"json",
+        data:query3,
+        async:true,
+        success:function (obj) {
+            layer.close(index);
+            if (obj.status) {
+                window.location.href=obj.jump;
+            } else{//手机号问题
+                $("#pwd-error").html(obj.info).css("visibility","visible");
+                //$('#reg-pwd').focus();
+                return false;
+            }
+        },
+        error:function (obj) {
+            layer.close(index);
+            layer.alert("请求数据失败",{title:"失败",closeBtn:0});
+            return false;
+        }
+    });
+});
+</script>
+</body>
+</html>

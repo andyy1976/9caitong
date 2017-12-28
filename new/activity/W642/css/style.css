@@ -1,0 +1,53 @@
+html,body{
+    color:#000;
+    background:#FFF;
+    font-family: "Microsoft Yahei";  
+    font-style: 14px;
+    width: 100%;
+    height: 100%;
+}
+img{ margin: 0; padding: 0; width: 100%; height: auto;}
+a{text-decoration: none;color: #666666; cursor: pointer;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{
+    margin:0;
+    padding:0;
+}
+ul{
+     list-style:none;
+    }
+q:before,q:after{
+    content:'';
+
+}
+input,textarea,select{
+   font-family:inherit;
+   font-size:inherit;
+   font-weight:inherit;
+   *font-size:100%;
+}
+ul,ul li{ list-style:none;}
+.clear{ clear:both; width:0; height:0; overflow:hidden;}
+
+.top{ position: fixed; z-index: 2; top: 0; left: 0; width: 100%; height: 1rem; background: rgba(58,74,90,0.8);}
+.top-download{ display: block; position: absolute; left: 0.25rem; line-height: 1rem; z-index: 5; font-size: 0.28rem; color: #fff;}
+.top-download img{ width: 0.57rem;vertical-align: middle; margin-right: 0.25rem;}
+.top-close{ width: 0.37rem; position: absolute; right: 0.37rem; top: 0.25rem; z-index: 10;}
+
+.wrap-con{background: #306ade;}
+.con1-ul{ width: 100%;}
+.con1-ul li{ float: left; width: 3.75rem;}
+.con1-ul li img{width: 100%;}
+.con1-btn{  display: block; width: 3.2rem; margin: 0.4rem auto 0;}
+
+.con2-text{ position: relative; background: url(../image/con2-img1.png) top center no-repeat; background-size: 6.7rem 3.4rem; 
+  margin: 0.5rem auto; width: 6.7rem; height: 3.4rem;}
+.con2-text a{ position: absolute; left: 2.2rem; bottom: 0.18rem; width: 2.2rem; height: 0.6rem;cursor: pointer; font-size: 0;}
+.con3 h2,.con4 h2{ width: 4.2rem; margin: 0 auto;}
+.con3-ul{  margin-top: 0.5rem;}
+.con3-ul li{ position: relative; float: left; width: 3.4rem; margin-left: 0.2rem;}
+.con3-ul li a{ position: absolute; bottom: 0.44rem; display: block; cursor: pointer; width: 3.4rem; height: 0.75rem;  font-size: 0;}
+.con3-btn{display: block; width: 4.36rem; margin: 0.6rem auto 0.8rem;}
+.con4{ padding-bottom: 0.2rem;}
+.con4 p{ width: 7rem; font-size: 0.26rem; color: #fff; line-height: 200%; margin:0.4rem 0 0 0.3rem;  display: block;}
+
+.con-p{ font-size: 0.2rem; color: #fff; text-align: center; padding-bottom: 0.3rem;}

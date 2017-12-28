@@ -1,0 +1,400 @@
+<style type="text/css">
+/*标的类型选择弹框*/
+.pop-types{ width: 80%; border-radius: 8px;}
+.pop-types .layui-layer-content{ padding: 0;}
+.types-choose{ overflow: hidden; padding-bottom: 18px;}
+.types-choose span{ width: 35%; height: 30px; line-height: 30px; float: left; margin-left: 10%; margin-top: 18px; border: 1px solid #999; color: #999; text-align: center; box-sizing: border-box;}
+.types-choose span.choose{ border-color: #3d77ea; color: #2958b3; background: url({$TMPL}/images/autoinvest/wap2/auto/icon_choose_type.png) no-repeat right top; background-size: 13px 12px;}
+.pop-types .layui-layer-btn{ padding: 0; position: relative;}
+.pop-types .layui-layer-btn0{ width: 100%; height: 44px; line-height: 44px; margin: 0; padding: 0; background: #fff; font-size: 16px; color: #666; border: 0; border-radius: 8px; text-align: center; position: absolute; left: 0; top: 8px;}
+.pop-types .layui-layer-btn a:hover,.pop-types .layui-layer-btn a:active{ opacity:1;}
+</style>
+<body>
+<section class="container">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/autoinvest/wap2/my/icon_back.png" width="10" height="18"></a>{if $id lt 0 or $id eq 0}新增自动投标{else}修改自动投标{/if}<a href="{url x="index" r="uc_autoinvest#rule"}" class="help-icon"><img src="{$TMPL}/images/autoinvest/wap2/auto/icon_help.png" width="20" height="20" /></a></div>
+    <!-- 新增自动投标 -->
+    <div class="add-list add-list-first">
+    	<span class="add-l">投标期限</span>
+    	<div class="add-r"><div id="timeLimit">{if $data.deadline_start eq 0 || $data.deadline_end eq 0}不限{elseif $data.deadline_start eq $data.deadline_end}{$data.deadline_start}个月{else}{$data.deadline_start}-{$data.deadline_end}个月{/if}</div></div>
+    </div>
+    <div class="add-list">
+    	<span class="add-l">投标金额</span>
+    	<div class="add-r">
+    		<div class="money-box">
+    			<input type="text" placeholder="金额需>=100" value="{$data.money}" id="money" class="money" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" /><span class="money-unit">元</span>
+    		</div>
+    	</div>
+    </div>
+    <div class="add-list no-border">
+    	<span class="add-l">部分中标</span>
+    	<div class="add-r" id="addSwitchBtn">
+    		{if $id gt 0}
+    			{if $data.is_part_load eq 1}
+	    			<span class="open1">
+				        <span class="open2"></span>
+				    </span>
+			    {else}
+				    <span class="close1">
+				        <span class="close2"></span>
+				    </span>
+			    {/if}
+		    {else}
+			    <span class="open1">
+			        <span class="open2"></span>
+			    </span>
+		    {/if}
+    	</div>
+    </div>
+    <p class="add-tip">开启后，当项目剩余金额不足时也能投标成功。</p>
+    <div class="add-list">
+    	<span class="add-l">标的类型</span>
+    	<div class="add-r"><p class="types">{if $id gt 0}{$data.wap_deal_type_str}{else}普通标、预售标、转让标{/if}</p></div>
+    </div>
+    {if $id gt 0}
+    	{if $data.is_long eq 1}
+	    	<div class="add-list">
+		    	<span class="add-l">有效期</span>
+		    	<div class="add-r times"><span class="choose">长期有效</span><span>自定义</span></div>
+		    </div>
+		    <div class="time-range">
+		    	<input id="timeStart" placeholder="起始时间" />
+		    	<span class="time-range-word">到</span>
+		    	<input id="timeEnd" placeholder="终止时间" />
+		    </div>
+	    {else}
+		    <div class="add-list">
+		    	<span class="add-l">有效期</span>
+		    	<div class="add-r times"><span>长期有效</span><span class="choose">自定义</span></div>
+		    </div>
+		    <div class="time-range" style="display: block;" data-start-time="{$data.wap_star_time}" data-end-time="{$data.wap_end_time}">
+		    	<input id="timeStart" value="{$data.wap_star_time}" placeholder="起始时间" />
+		    	<span class="time-range-word">到</span>
+		    	<input id="timeEnd" value="{$data.wap_end_time}" placeholder="终止时间" />
+		    </div>
+	    {/if}
+    {else}
+	    <div class="add-list">
+	    	<span class="add-l">有效期</span>
+	    	<div class="add-r times"><span class="choose">长期有效</span><span>自定义</span></div>
+	    </div>
+	    <div class="time-range">
+	    	<input id="timeStart" placeholder="起始时间" />
+	    	<span class="time-range-word">到</span>
+	    	<input id="timeEnd" placeholder="终止时间" />
+	    </div>
+    {/if}
+    {if $id gt 0}
+    	<p class="btns"><a href="javascript:;" id="delete" data-id="{$id}">删除</a><a href="javascript:;" class="btn-save" id="add" data-id="{$id}">保存并开启</a></p>
+   	{else}
+   		<p class="btns"><a href="{url x="index" r="uc_autoinvest#index"}">取消</a><a href="javascript:;" class="btn-save" id="add" data-id="{$id}">保存并开启</a></p>
+ 	{/if}
+</section>
+<div class="types-choose" style="display: none;"><span class="choose" id="typeCommon" data-state="1">普通标</span><span class="choose" id="typePreSale" data-state="1">预售标</span><span class="choose" id="typeTransfer" data-state="1">转让标</span></div>
+<script>
+//处理移动端click事件300ms延迟
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
+
+$(function(){
+	//页面初始化
+	var id = $("#delete").attr("data-id");
+	if(id > 0){
+		$('#timeLimit').attr('data-deadline-start','{$data.deadline_start}');//投标期限开始
+		$('#timeLimit').attr('data-deadline-end','{$data.deadline_end}');//投标期限结束
+		$('.types').attr('data-is-debts','{$data.is_debts}');//是否转让标
+		$('.types').attr('data-is-advance','{$data.is_advance}');//是否预售标
+		$('.types').attr('data-is-ordinary','{$data.is_ordinary}');//是否普通标
+		$('.times').attr('data-is-long','{$data.is_long}');//是否长期有效
+		$('#addSwitchBtn').attr('data-is-part-load','{$data.is_part_load}');//是否开启部分中标
+		$('.time-range').attr('data-start-time',"{$data.wap_star_time}");//有效期开始时间
+		$('.time-range').attr('data-end-time',"{$data.wap_end_time}");//有效期结束时间
+	}else{
+		$('#timeLimit').attr('data-deadline-start','0');//投标期限开始
+		$('#timeLimit').attr('data-deadline-end','0');//投标期限结束
+		$('.types').attr('data-is-debts','1');//是否转让标
+		$('.types').attr('data-is-advance','1');//是否预售标
+		$('.types').attr('data-is-ordinary','1');//是否普通标
+		$('.times').attr('data-is-long','1');//是否长期有效
+		$('#addSwitchBtn').attr('data-is-part-load','1');//是否开启部分中标
+	}
+	
+	/*投标期限选择*/
+	var mobileSelect = new MobileSelect({
+	    trigger: '#timeLimit',
+	    title: '投标期限选择',
+	    wheels: [
+            {data:[
+                {id:'1',value:'不限'},
+                {id:'2',value:'1个月'},
+                {id:'3',value:'3个月'},
+                {id:'4',value:'6个月'},
+                {id:'5',value:'12个月'}
+            ]},
+            {data:[
+                {id:'1',value:'到'}
+            ]},
+            {data:[
+                {id:'1',value:'不限'},
+                {id:'2',value:'1个月'},
+                {id:'3',value:'3个月'},
+                {id:'4',value:'6个月'},
+                {id:'5',value:'12个月'}
+            ]}
+        ],
+	    callback:function(indexArr, data){ //点击确认按钮后的回调函数，相应数据值存在data中
+	    	var $deadline = $('#timeLimit');
+	    	//将左右两边的期限取出来
+	        var left = parseInt(data[0].value);
+	        var right = parseInt(data[2].value);
+	        //将左右两边的期限存起来
+        	$deadline.attr('data-deadline-start',left);
+        	$deadline.attr('data-deadline-end',right);
+	        if(isNaN(left)){ 
+	        	$deadline.attr('data-deadline-start',0);
+	        }
+	        if(isNaN(right)){ 
+	        	$deadline.attr('data-deadline-end',0);
+	        }
+	        //设置html文字内容
+	        if(isNaN(left) || isNaN(right)){
+		        //只要有一边是不限，那就设置成不限
+	        	$deadline.html('不限');
+	        	return false;
+	        }else if(left == right){
+	        	//相等时显示一个
+	        	$deadline.html(right+'个月');
+	        	return false;
+	        }
+	        //哪个小哪个在左边
+	        var str = left < right ? left +'-'+ right : right +'-'+ left;
+	        $deadline.html(str+'个月');
+	    } 
+	});
+	/*部分中标按钮开关切换*/
+	var addSwitchBtn = document.getElementById('addSwitchBtn');
+	var span = addSwitchBtn.getElementsByTagName('span');
+	span[0].onclick=function(){
+		if(span[0].className=="close1"){
+			addSwitchBtn.setAttribute('data-is-part-load',1);
+		}else if(span[0].className=="open1"){
+			addSwitchBtn.setAttribute('data-is-part-load',0);
+		}
+	    span[0].className=(span[0].className=="close1")?"open1":"close1";
+	    span[1].className=(span[1].className=="close2")?"open2":"close2";
+	}
+	/*标的类型选择*/
+	$('.types').click(function(){
+		//函数功能：点击时选中/取消标的类型，并根据class加上data-state
+		function chooseTypes(){
+			$('.types-choose').find('span').click(function(){
+				if($(this).hasClass('choose')){
+					$(this).removeClass('choose');
+					$(this).attr('data-state',0);
+				}else{
+					$(this).addClass('choose');
+					$(this).attr('data-state',1);
+				}
+			});
+		}
+		chooseTypes();
+		//根据前一次设置的标的类型，来选择设置打开弹出层时要展示的标的类型
+		if(parseInt($('.types').attr('data-is-debts')) == 1){
+			$('#typeTransfer').addClass('choose');
+			$('#typeTransfer').attr('data-state',1);
+		}else{
+			$('#typeTransfer').removeClass('choose');
+			$('#typeTransfer').attr('data-state',0);
+		}
+		if(parseInt($('.types').attr('data-is-advance')) == 1){
+			$('#typePreSale').addClass('choose');
+			$('#typePreSale').attr('data-state',1);
+		}else{
+			$('#typePreSale').removeClass('choose');
+			$('#typePreSale').attr('data-state',0);
+		}
+		if(parseInt($('.types').attr('data-is-ordinary')) == 1){
+			$('#typeCommon').addClass('choose');
+			$('#typeCommon').attr('data-state',1);
+		}else{
+			$('#typeCommon').removeClass('choose');
+			$('#typeCommon').attr('data-state',0);
+		}
+		layer.open({
+			type: 1,
+			title: ['标的类型选择','width:94%;height:44px;margin:0 3%;font-size:16px;color:#999;background:#fff;text-align:center;padding:0;'],
+			skin: 'pop-types',
+			content: $('.types-choose'),
+			btn: '确定',
+			yes: function(i){
+				//获取3个类型的布尔值
+				var type1 = Boolean(parseInt($('#typeCommon').attr('data-state')));
+				var type2 = Boolean(parseInt($('#typePreSale').attr('data-state')));
+				var type3 = Boolean(parseInt($('#typeTransfer').attr('data-state')));
+				//不能全不选
+				if(!type1 && !type2 && !type3){
+					layer.msg('至少选择一项',{
+						time: 1500
+					});
+					return false;
+				}
+				//根据3个类型的布尔值拼接字符串
+				var str1,str2,str3;
+				if(type1){
+					str1 = '普通标、';
+					$('.types').attr('data-is-ordinary',1);
+				}else{
+					str1 = '';
+					$('.types').attr('data-is-ordinary',0);
+				}
+				if(type2){
+					str2 = '预售标、';
+					$('.types').attr('data-is-advance',1);
+				}else{
+					str2 = '';
+					$('.types').attr('data-is-advance',0);
+				}
+				if(type3){
+					str3 = '转让标、';
+					$('.types').attr('data-is-debts',1);
+				}else{
+					str3 = '';
+					$('.types').attr('data-is-debts',0);
+				}
+				var str = str1 + str2 + str3;
+				str = str.substring(0,str.length-1);
+				$('.types').html(str);
+				chooseTypes();
+				layer.close(i);
+			},
+			cancel: function(i){
+				chooseTypes();
+				layer.close(i);
+			}
+		});
+	});
+	/*有效期选择*/
+	$('.times').find('span').click(function(){
+		$('.times').find('span').removeClass('choose');
+		$(this).addClass('choose');
+		if($(this).index() == 0){
+			$('.time-range').hide();
+			$(this).parent().attr('data-is-long',1);
+		}else if($(this).index() == 1){
+			$('.time-range').show();
+			$(this).parent().attr('data-is-long',0);
+		}
+	});
+	/*有效期自定义时间*/
+	//设置最小日期值和最大日期值
+	var now = new Date(),
+		max = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+        min = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    //此处可设置默认的起始时间和结束时间的展示，此时间由后台传入
+    $('#timeStart').attr('placeholder','开始时间');
+    $('#timeEnd').attr('placeholder','结束时间');
+    //获取起始日期和结束日期并分别转为时间戳
+    var timeStart = new Date($('#timeStart').attr('placeholder')).getTime();
+    var timeEnd = new Date($('#timeEnd').attr('placeholder')).getTime();
+    //起始日期
+    $('#timeStart').mobiscroll().date({
+        theme: 'ios',
+        display: 'bubble',
+        lang: 'zh',
+        max: max,
+        min: min,
+        onClose: function (event) {
+        	//输出的起始日期为：event.valueText
+        	timeStart = new Date(event.valueText).getTime();
+        	$('.time-range').attr('data-start-time',event.valueText);
+    	}
+    });
+    //结束日期
+    $('#timeEnd').mobiscroll().date({
+        theme: 'ios',
+        display: 'bubble',
+        lang: 'zh',
+        max: max,
+        min: min,
+        onClose: function (event) {
+        	//输出的结束日期为：event.valueText
+        	timeEnd = new Date(event.valueText).getTime();
+        	$('.time-range').attr('data-end-time',event.valueText);
+        	//选择完结束日期后判断下起始日期和结束日期的大小
+        	/*if(timeEnd < timeStart){
+        		layer.msg('结束日期必须大于起始日期');
+        	}*/
+    	}
+    });
+    
+    //删除
+    $('#delete').click(function(){
+    	var id = $(this).attr("data-id");
+    	var ajaxurl = "{url x="index" r="uc_autoinvest#autoinvest_delete"}";
+        $.ajax({
+            url:ajaxurl,
+            data:{"id":id},
+            type:"POST",
+            dataType:"json",
+            success:function(data){
+                if(data.status == 1){
+                	layer.msg(data.info);
+                	window.location.href = "{url x="index" r="uc_autoinvest#index"}";
+                }else{
+                	layer.msg(data.info);
+                	return false;
+                }
+            }
+        });
+    })
+    //添加
+    $('#add').click(function(){
+    	var ajaxurl = "{url x="index" r="uc_autoinvest#addconfig"}";
+    	var data = new Object();
+    	data.id = $(this).attr("data-id");
+		data.deadline_start = parseInt($('#timeLimit').attr('data-deadline-start'));//投标期限开始
+		data.deadline_end = parseInt($('#timeLimit').attr('data-deadline-end'));//投标期限结束
+		data.money = $("#money").val();//投标金额
+		data.is_debts = parseInt($('.types').attr('data-is-debts'));//是否转让标
+		data.is_advance = parseInt($('.types').attr('data-is-advance'));//是否预售标
+		data.is_ordinary = parseInt($('.types').attr('data-is-ordinary'));//是否普通标
+		data.is_long =parseInt($('.times').attr('data-is-long'));//是否长期有效
+		data.start_time = $('.time-range').attr('data-start-time');//有效期开始时间
+		data.end_time =$('.time-range').attr('data-end-time');//有效期结束时间
+		data.is_part_load = parseInt($('#addSwitchBtn').attr('data-is-part-load'));//是否开启部分中标
+		if(data.money <= 0){
+			layer.msg("请填写金额");
+			return false;
+		}
+		if(data.money < 100){
+			layer.msg("最低100元起投");
+			return false;
+		}
+		if(data.is_long == 1){
+			delete data.start_time;
+			delete data.end_time;
+		}
+		if(data.is_long < 1 && (!data.start_time || !data.end_time)){
+			layer.msg("请选择自定义时间");
+			return false;
+		}
+        $.ajax({
+            url:ajaxurl,
+            data:data,
+            type:"POST",
+            dataType:"json",
+            success:function(data){
+                if(data.status == 1){
+                	window.location.href = data.jump; 
+                }else{
+                	layer.msg(data.info);
+                	return false;
+                }
+            }
+        });
+    })
+});
+</script>
+</body>

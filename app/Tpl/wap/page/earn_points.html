@@ -1,0 +1,326 @@
+{include file="inc/header.html"} 
+<body>
+    <section class="container cf">
+    <?php if(!es_session::get('MachineInfo')) {?>
+        <div class="header"><a href="javascript:history.go(-1)"  class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>每日任务<a onclick="ppp()"  class="i-help"><img src="{$TMPL}/images/wap2/my/i-help.png" width="20" height="20"></a></div>
+    <?php } ?>
+        <!-- 每日任务 -->
+        {if $beginner}
+        <div><a href="{$beginner.url}"><img src="{$beginner.img}" width="100%"></a></div>
+        {/if}
+        <ul class="fi-task-list">
+            <li>  
+                <div class="fi-task-l"><i></i></div>  
+                <div class="fi-task-r">
+                    <p><span class="sign-icon-tips">每日签到<a href="javascript:void(0);" onclick="info_open()"><img src="{$TMPL}/images/wap2/my/info.png" width="15" height="15"/></a></span><span>每日签到，可领取{$score}积分</span><span>连续签到3天送10积分；连续签到7天送30积分</span><!-- <span>已连续签到<b>{$sign_sum.sign_count}</b>天，共获得<b>{$sign_sum.sign_score_count}</b>积分</span> --><span style="color:#ccc">当日签到<b>{$sign_count_day}</b>人，签到累计<b>{$sign_sum_count}</b>人</span></p>
+                    {if $t_sign_data}
+                     <a href="javascript:void(0);" class="fi-task-btn fi-task-btn-finished">已完成</a>
+                    {else}
+                    <a  class="fi-task-btn" onclick="sign()">签到</a> 
+                    {/if}           
+                </div>
+            </li>
+            <li class="fi-task-share">
+                <div class="fi-task-l"><i></i></div>
+                <div class="fi-task-r">
+                    <p><span>每日分享</span><span>分享1次可领<b>5</b>积分，每天可领1次</span><span style="color:#ccc">当日分享<b>{$share_count_day}</b>人，累计分享<b>{$share_sum_count}</b>人</span></p>
+                    {if $receive_rs}
+                    <a href="javascript:void(0);" class="fi-task-btn fi-task-btn-finished">已完成</a>
+                    {elseif $share_rs}
+                    <a href="javascript:void(0);" class="fi-task-btn" onclick="checkSign(5,70,'share')">可领取</a>
+                    {else}
+                    <a href="javascript:void(0);" class="fi-task-btn" onclick="{$jump.PopBox}()">分享</a>
+                    {/if}
+                </div>
+            </li>
+			<!--
+            <li class="fi-task-recharge">
+                <div class="fi-task-l"><i></i></div>
+                <div class="fi-task-r">
+                    <p><span>充值任务</span><span>充值成功可领6积分，每天可领1次</span><span>已领取<b>{$recharge_score}</b>积分</span></p>
+                    {if $recharge}
+                        {if $inv_sign.recharge}
+                        <a href="javascript:void(0);" class="fi-task-btn fi-task-btn-finished">已完成</a>
+                        {else}
+                        <a href="javascript:void(0);" class="fi-task-btn" onclick="checkSign(6,1,'recharge')">可领取</a>
+                        {/if}
+                    {else}
+                        <a href="javascript:void(0);" onclick="ReCharge()" class="fi-task-btn">去充值</a>
+                    {/if}
+                </div>
+            </li>
+			-->
+
+            {if $user_info.user_type neq 1}
+            <li class="fi-task-recharge">
+                <div class="fi-task-l"><i></i></div>
+                <div class="fi-task-r">
+                    <p><span>充值出借任务</span><span>充值并出借可领20积分，每天可领1次</span><span>已领取<b>{$recharge_lend_score}</b>积分</span></p>
+                    {if $recharge}
+                        {if $lend}
+                            {if $inv_sign.recharge_lend}
+                            <a href="javascript:void(0);" class="fi-task-btn fi-task-btn-finished">已完成</a>
+                            {else}
+                            <a href="javascript:void(0);" class="fi-task-btn" onclick="checkSign(20,26,'recharge_lend')">可领取</a>
+                            {/if}
+                        {else}
+                            <a href="javascript:void(0);" onclick="{$jump.ProductList}()" class="fi-task-btn">去出借</a>
+                        {/if}
+                    {else}
+                        <a href="javascript:void(0);" onclick="ReCharge()" class="fi-task-btn">去充值</a>
+                    {/if}
+                </div>
+            </li>
+            {/if}
+        </ul>
+        
+        <ul class="fi-task-list">        
+            <li class="fi-task-invest-1">
+                <div class="fi-task-l"><i></i></div>
+                <div class="fi-task-r">
+                    <p><span>当天累计出借-1000元</span><span>出借满额后可领40积分(折标后)</span><span>今日已投<b>{$z_money}</b>元</span></p>  
+                {if $z_money >= 1000}
+                    {if $inv_sign.sign1}
+                    <a href="javascript:void(0);" class="fi-task-btn fi-task-btn-finished">已完成</a>
+                    {else}
+                    <a href="javascript:void(0);" class="fi-task-btn" onclick="checkSign(40,100,'invest','1000')">可领取</a>
+                    {/if}
+                {else}
+                    <a onclick="{$jump.ProductList}()" class="fi-task-btn">去出借</a>
+                {/if}
+                </div>
+            </li>
+            <li class="fi-task-invest-2">
+                <div class="fi-task-l"><i></i></div>
+                <div class="fi-task-r">
+                    <p><span>当天累计出借-5000元</span><span>出借满额后可领180积分(折标后)</span><span>今日已投<b>{$z_money}</b>元</span></p>
+                {if $z_money >= 5000}
+                    {if $inv_sign.sign2}
+                    <a href="javascript:void(0);" class="fi-task-btn fi-task-btn-finished">已完成</a>
+                    {else}
+                    <a href="javascript:void(0);" class="fi-task-btn" onclick="checkSign(180,101,'invest','5000')">可领取</a>
+                    {/if}
+                {else}
+                    <a onclick="{$jump.ProductList}()" class="fi-task-btn">去出借</a>
+                {/if}
+                </div>
+            </li>
+            <li class="fi-task-invest-3">
+                <div class="fi-task-l"><i></i></div>
+                <div class="fi-task-r">
+                    <p><span>当天累计出借-1万元</span><span>出借满额后可领330积分(折标后)</span><span>今日已投<b>{$z_money}</b>元</span></p>
+                {if $z_money >= 10000}
+                    {if $inv_sign.sign3}
+                    <a href="javascript:void(0);" class="fi-task-btn fi-task-btn-finished">已完成</a>
+                    {else}
+                    <a href="javascript:void(0);" class="fi-task-btn" onclick="checkSign(330,102,'invest','1万')">可领取</a>
+                    {/if}
+                {else}
+                    <a onclick="{$jump.ProductList}()" class="fi-task-btn">去出借</a>
+                {/if}
+                </div>
+            </li>
+             <li class="fi-task-invest-3">
+                <div class="fi-task-l"><i></i></div>
+                <div class="fi-task-r">
+                    <p><span>当天累计出借-5万元</span><span>出借满额后可领1500积分(折标后)</span><span>今日已投<b>{$z_money}</b>元</span></p>
+                {if $z_money >= 50000}
+                    {if $inv_sign.sign4}
+                    <a href="javascript:void(0);" class="fi-task-btn fi-task-btn-finished">已完成</a>
+                    {else}
+                    <a href="javascript:void(0);" class="fi-task-btn" onclick="checkSign(1500,103,'invest','5万')">可领取</a>
+                    {/if}
+                {else}
+                    <a onclick="{$jump.ProductList}()" class="fi-task-btn">去出借</a>
+                {/if}
+                </div>
+            </li>
+        </ul>
+        <p class="fi-task-note">注：折标后金额=出借金额/12*出借月份</p>
+        <p class="fi-task-note">注：每日任务每天0：00自动刷新，不可累积</p>
+    </section>
+    <div id="popBg"></div>
+    <div id="popBox">
+        <a href="javascript:void(0);"><img src="{$TMPL}/images/wap2/fi/bg_share.png"></a>
+    </div>
+    <script type="text/javascript"> 
+    function uuu(){
+        parent.location.href ="{$jumpUrl}";
+    }
+    function ppp(){
+        parent.location.href="{url x="index" r="uc_set#help" p="id=$help_id"}";
+    }
+    var mobile = {$mobile};
+    var url_path = "{$url}";
+    var invite_url = "http://jctwapcg.9caitong.com";
+    //签到弹出框
+    function sign(){
+        var ajaxurl = "{url x="index" r="score#user_sign"}";
+        $.ajax({ 
+            url: ajaxurl,
+            type: "POST",
+            dataType: "json",
+            success: function(ajaxobj){
+                if(ajaxobj.status == 1){
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><h4>+'+ajaxobj.score+'积分</h4><p>已连续签到'+({$sign_sum.sign_count}+1)+'天，共获得'+({$sign_sum.sign_score_count}+ajaxobj.score)+'积分</p>',  
+                        btn: '确定',   
+                        yes: function(){
+                            location.reload();
+                        }, 
+                    });
+                }else{
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+ajaxobj.info+'</p>',
+                        shadeClose: true,
+                        time: 2
+                    });
+                }
+                
+            }
+        }); 
+        
+    }
+    //分享提示弹出层，分享成功后返回当前页面后记得关闭弹出层
+    function isWeiXin(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        return true;
+    }else{
+        return false;
+    }
+}
+function popBox(popBox){
+    if(!isWeiXin()){
+        layer.open({
+            className: 'popup-btn',
+            btn: ['好的'], //按钮
+            content: '<p style="font-size:15px;padding-top:10px">将页面分享给好友，即可邀请哦</p>', 
+            shadeClose: true,
+            no: function(){
+            },
+        });
+    }else{
+        var popBox = document.getElementById('popBox');
+        var popBg = document.getElementById('popBg');
+        //弹出层
+        popBg.style.display = popBox.style.display = 'block';
+        popBoxPos();
+        popBgStyle();
+        //当页面滚动的时候，弹出框跟随滚动
+        window.onscroll = function() {
+            popBoxPos();
+            popBgStyle();
+        }
+        //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+        window.onresize = function() {
+            popBoxPos();
+            popBgStyle();
+        }
+        //设置弹出框的位置
+        function popBoxPos(){
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+            popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+            popBox.style.top = scrollTop + 'px';
+        }
+        //设置灰色背景的宽高
+        function popBgStyle(){
+            popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+            popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+        }
+        //关闭弹出框
+        popBox.onclick = popBg.onclick = function(){
+            popBg.style.display = popBox.style.display = 'none';
+        }
+    }
+}
+    function checkSign(sign,type,category,money) {
+        var ajaxurl = "{url x="index" r="score#check_sign"}";
+        var query = new Object();
+        query.sign = sign;
+        query.type = type;
+        query.category = category;
+        query.user_money = money;
+        $.ajax({ 
+            url: ajaxurl,
+            type: "POST",
+            data:query,
+            dataType:"json",
+            success: function(ajaxobj){
+                if(ajaxobj.status == 0){
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><h4>'+ajaxobj.info+'</p>',
+                        time:2, 
+                    });
+                }else{
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><h4>'+ajaxobj.info+'</p>',
+                        time:2,
+                        end: function(){
+                            location.reload();
+                        }, 
+                    });
+                }
+            }
+        });
+    }
+    function wapToProductList(){
+        parent.location.href = "{url x="index" r="deals"}";
+    }
+    function ReCharge(){
+        {if $ajax.code eq 0}
+            layer.open({
+                className: 'cg-pop',
+                content: '<img src="{$TMPL}/images/wap2/my/cg-pop-bg.png" style="width:100%; border-radius: 12px 12px 0 0;" />',
+                btn: ['立即开通','取消'],
+                yes: function(index){
+                    //点击立即开通后跳到存管开户页面
+                    window.location.href = "{$ajax.url}";
+                    layer.close(index);
+                }, 
+                no: function(){
+                    //点击取消按钮后无需做其他动作
+                }
+            });
+        {elseif $ajax.code eq 1}
+            window.location.href = "{$ajax.url}";
+        {else}
+            {if $jump.ReCharge eq "iosToReCharge"}
+            window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToRecharge","url":"http://jctwapcg.9caitong.com/member.php?ctl=uc_money&act=incharge"});
+            {else}
+                parent.location.href = "{url x="member" r="uc_money#incharge"}";
+            {/if}
+        {/if}    
+    }    
+    function iosToProductList(){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToProductList"}); //返回项目列表
+    }
+    function iosToPopBox(){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpShareFrom","title":"快来抢8888元体验金+518元红包","icon":url_path+"/app/Tpl/wap/images/wap2/fi/icon.png","content":"您的好友送福利了，除了惊喜豪礼，更有超高收益新手标","url":invite_url+"/index.php?ctl=find&act=W644&&code="+mobile}); //微信朋友圈
+    }
+    function androidToProductList(){
+        window.jiucaitong.FromH5ToJump("jumpToProductList","");  //返回项目列表
+    }
+    function androidToPopBox(){
+        window.jiucaitong.showShareFrom("快来抢8888元体验金+518元红包",url_path+"/app/Tpl/wap/images/wap2/fi/icon.png","您的好友送福利了，除了惊喜豪礼，更有超高收益新手标",invite_url+"/index.php?ctl=find&act=W644&&code="+mobile);
+    }
+	function info_open(){
+		layer.open({
+                className: 'popup-btn',
+				title:'规则说明',
+                content: '以7天为周期，计算累计签到次数；<br>单个计分周期内签到次数不叠加。',  
+                btn: '我知道了',
+                yes: function(index){
+                    //点击立即开通后跳到存管开户页面
+                    layer.close(index);
+                }, 
+            });
+	}
+    </script>
+</body>
+</html>

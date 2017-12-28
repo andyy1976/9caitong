@@ -1,0 +1,148 @@
+﻿@charset "utf-8";
+/*公用样式兼容*/
+
+@media only screen and (max-height:480px){
+	.xtab_b{ font-size:10px;}
+   .xycnav{height:36px; padding-top:4px; background:#fff; filter: alpha(opacity=100); opacity: 1; border-top:1px #ddd solid;}
+   .navli{font-size:10px; line-height:16px;}
+   .navli img{height:18px;}
+   .bxwy{display:none;}
+   .lcj_txt{font-size:16px;}
+   .lay_cjhb .ft26{font-size:22px;}
+   .cztxt br{display:block;}
+   .sharelg .sla{width:76%;}
+   .sharelg .slb{width:43%;}
+   .shlgpla{margin-left:13%;}
+   .norech{background:#ff7474; font-size:16px;}
+   .gbdin .txt,.bdin .txt,.gbdin .yzm,.bdin .yzm{font-size:14px;}
+   .intab_tj{display:none;}
+}
+
+@media only screen and (min-height: 481px)and (max-height: 599px){
+	.xtab_b{ font-size:10px;}
+	.ht24{height:28px;}
+	.ht30{height:30px;}
+    .ht35{height:40px;}
+    .ht40{height:45px;}
+    .lh24{line-height:28px;}
+    .lh30{line-height:35px;}
+    .lh35{line-height:40px;}
+    .gbdin .txt,.bdin .txt,.gbdin .yzm,.bdin .yzm{font-size:14px;}
+    
+    /*兼容padding*/
+    .jp01{padding:25px 5%;}
+    .jp02{padding:40px 0px;}
+     .bxwy{display:none;}
+     .lcj_txt{font-size:16px;}
+    .lay_cjhb .ft26{font-size:22px;}
+   
+    
+    .bxwy{display:none;} 
+    .sharelg .sla{width:76%;}
+    .sharelg .slb{width:43%;}
+    .shlgpla{margin-left:13%;}
+}
+
+@media only screen and (max-width:340px){
+	.waplay{height:80px; width:40px;}
+   .wapnav_btn,.wlaya_a,.wlaya_b,.wlaya_c,.wlaya_d{height:30px; margin-bottom:1px; width:40px; padding:5px 0px; border-radius:3px; font-size:14px;}
+   .wlaya_a span,.wlaya_b span,.wlaya_c span,.wlaya_d span{line-height:14px;}
+   .wlaya_a img,.wlaya_b img,.wlaya_c img,.wlaya_d img{height:16px;}
+   .wapnav_btn{line-height:15px; font-size:12px;}
+   .wapnav_btn img{display:none; height:24px; margin:4px auto;}
+   .wapp{width:40px; height:40px; position:relative;}
+   .actwa .wlaya_a,.actwa .wlaya_b,.actwa .wlaya_c,.actwa .wlaya_d{height:30px;}
+   .actwa .wlaya_a{top:-164px;}
+   .actwa .wlaya_b{top:-123px;}
+   .actwa .wlaya_c{top:-82px; }
+   .actwa .wlaya_d{top:-41px; }
+   .actwb img{display:block;}
+   .actwb span{display:none;}
+	
+}
+
+@media only screen and (min-height: 600px){
+	.ht30{height:35px;}
+    .ht35{height:45px;}
+    .ht40{height:50px;}
+    .lh24{line-height:36px;}
+    .lh30{line-height:40px;}
+    .lh35{line-height:45px;}
+    
+    .xycnav{padding-top:6px;}
+    .navli{font-size:14px; color:#a3a3a3;}
+    .nlhov {color:#45b79d;}
+    a.navli{color:#a3a3a3;}
+    .navli img{height:22px;}
+    .icont .inum{left:18px; top:-1px; padding:2px 3px 1px 3px; font-size:12px;}
+    .icont .inum_n{left:18px; top:-1px; padding:2px 3px 1px 3px; font-size:12px;}
+    .gbdin .in55,.bdin .in55{width:62%;}
+    .ewmar{margin-top:-200px;}
+    
+    
+    /*兼容padding*/
+    .jp01{padding:30px 5%;}
+    .jp02{padding:50px 0px;}
+    .ma_01{margin:20px 5%;}
+    .pla{font-size:14px;}
+    .cbtn_o,.cbtn_f,.cbtn_y,.cbtn_g,.cbtn_h{height:44px; line-height:44px;}  
+    .lay_fx_ib{bottom:24%;}
+    .lay_cjhb{top:12%;}
+    
+    .sharelg{top:8%;}
+    .sharreg{top:15%;}
+    .lyhlg{padding-top:10px;}
+    .sharelg .bdbom2{height:50px; line-height:50px; margin-bottom:16px; border-radius:8px;}
+    .shlgpla{height:46px; line-height:46px;}
+    .sbtn_o{height:44px; line-height:44px;}
+}
+
+
+
+@media only screen and (min-height: 600px)and (max-height: 671px){
+	.ht24{height:32px;}
+	.xycnav{height:44px;}
+    .navli img{height:22px;}
+    
+    /*充值*/
+    .rec_quan,.reccdiv{width:300px;}
+    .gbmbom{margin-bottom:15px;}
+  
+}
+
+@media only screen and (min-height:672px)and (max-height:1920px){
+	.ht24{height:36px;}
+	.xycnav{height:46px;}
+    .navli img{height:24px;}
+    
+    /*充值*/
+    .rec_quan,.reccdiv{width:300px;}
+    .reci01{left:-30px;}
+     .reci02{right:-30px;}
+     .lcj_txt{top:130px;}
+     .shlgpla{margin-left:12%;}
+     .log_bg .slb{width:50%}
+     .gbmbom{margin-bottom:18px;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

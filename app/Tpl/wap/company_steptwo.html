@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>企业开户</title>
+    <link rel="stylesheet" type="text/css" href="{$TMPL}/css/company_register/reset_ph_v=2016.css">
+    <script src="{$TMPL}/js/company_register/jquery-1.11.3.min.js"></script>
+    <script src="{$TMPL}/js/company_register/layer-v3.0.3/layer/layer.js"></script>
+    <script src="{$TMPL}/js/company_register/mobiscroll.jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{$TMPL}/css/company_register/wap_rl_company_2017.css?12111">
+    <link rel="stylesheet" type="text/css" href="{$TMPL}/css/company_register/mobiscroll/mobiscroll.jquery.min.css">
+    <script src="{$TMPL}/js/company_register/fastclick.js"></script>
+    <script>
+        //处理移动端click事件300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+</head>
+<body>
+<section class="container cf">
+    <!-- <div class="rl-header"><a href="javascript:history.go(-1)" class="close-icon"><img src="{$TMPL}/images/company_register/icon_close.png" width="14" height="14"></a></div> -->
+    <!-- 企业注册 -->
+    <form>
+        <p class="qy-title"><span></span>企业信息</p>
+        <ul class="qy-list cf">
+            <li><input type="text" placeholder="企业名称" id="company_name"></li>
+            <li><input type="text" placeholder="法人" id="corporation"><span onclick="popBox('{$TMPL}/images/company_register/qy/1.jpg')"></span></li>
+            <li><input type="text" placeholder="主体类型" id="company_type"><span onclick="popBox('{$TMPL}/images/company_register/qy/2.jpg')"></span></li>
+            <li id="timeStart"><input type="text" id="time" class="time" placeholder="成立日期" readonly="readonly"><i></i></li>
+            <li><input type="text" placeholder="营业执照住所" id="company_address"><span onclick="popBox('{$TMPL}/images/company_register/qy/3.jpg')"></span></li>
+        </ul>
+        <p class="qy-title qy-title-acc"><span></span>对公账户</p>
+        <ul class="qy-list cf">
+            <li><input type="tel" placeholder="对公账户" id="acc"><span onclick="popBox('{$TMPL}/images/company_register/qy/5.jpg')"></span></li>
+            <li><input type="text" placeholder="对公户开户行名称" id="acc_bank_name"><span onclick="popBox('{$TMPL}/images/company_register/qy/6.jpg')"></span></li>
+            <li><input type="tel" placeholder="对公户开户行行号" id="acc_bank_code"><span class="acc-bank-code"></span></li>
+        </ul>
+        <p class="qy-title qy-title-info"><span></span>信用信息</p>
+        <ul class="qy-list cf">
+            <li><input type="text" placeholder="统一信用代码" id="credit_code"><span onclick="popBox('{$TMPL}/images/company_register/qy/4.jpg')"></span></li>
+            <!-- <li><input type="text" placeholder="统一信用地址" id="credit_add"><span onclick="popBox('{$TMPL}/images/company_register/qy/4.jpg')"></span></li> -->
+        </ul>
+    </form>
+    <a href="javascript:;" class="rl-btn rl-btn-qy">确定</a>
+</section>
+<div id="popBg"></div>
+<div id="popBox"></div>
+<script>
+//开户按钮
+$('.rl-btn-qy').click(function(){
+    if(!$('#company_name').val()){
+        layer.tips('请输入企业名称','#company_name',{
+            tips: [3,'#ff644b'],
+            time: 2000
+        });
+        $('#company_name').focus();
+    }else if(!$('#corporation').val()){
+        layer.tips('请输入法人','#corporation',{
+            tips: [3,'#ff644b'],
+            time: 2000
+        });
+        $('#corporation').focus();
+    }else if(!$('#company_type').val()){
+        layer.tips('请输入主体类型','#company_type',{
+            tips: [3,'#ff644b'],
+            time: 2000
+        });
+        $('#company_type').focus();
+    }else if(!$('#time').val()){
+        layer.tips('请输入成立日期','#time',{
+            tips: [3,'#ff644b'],
+            time: 2000
+        });
+        $('#time').focus();
+        $('#time').blur();
+    }else if(!$('#company_address').val()){
+        layer.tips('请输入营业执照住所','#company_address',{
+            tips: [3,'#ff644b'],
+            time: 2000
+        });
+        $('#company_address').focus();
+    }else if(!$('#acc').val()){
+        layer.tips('请输入对公账户','#acc',{
+            tips: [3,'#ff644b'],
+            time: 2000
+        });
+        $('#acc').focus();
+    }else if(!$('#acc_bank_name').val()){
+        layer.tips('请输入对公户开户行名称','#acc_bank_name',{
+            tips: [3,'#ff644b'],
+            time: 2000
+        });
+        $('#acc_bank_name').focus();
+    }else if(!$('#acc_bank_code').val()){
+        layer.tips('请输入对公户开户行行号','#acc_bank_code',{
+            tips: [3,'#ff644b'],
+            time: 2000
+        });
+        $('#acc_bank_code').focus();
+    }else if(!$('#credit_code').val()){
+        layer.tips('请输入统一信用代码','#credit_code',{
+            tips: [3,'#ff644b'],
+            time: 2000
+        });
+        $('#credit_code').focus();
+    }
+    // else if(!$('#credit_add').val()){
+    //     layer.tips('请输入统一信用地址','#credit_add',{
+    //         tips: [3,'#ff644b'],
+    //         time: 2000
+    //     });
+    //     $('#credit_add').focus();
+    // }
+    else{
+        SubmitRg(); 
+    }
+
+    
+});
+//成立日期
+var now = new Date(),
+    max = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    min = new Date(now.getFullYear() - 20, now.getMonth(), now.getDate());
+$('#timeStart').mobiscroll().date({
+    theme: 'ios',
+    display: 'bottom',
+    lang: 'zh',
+    max: max,
+    min: min,
+    dateFormat: 'yy-mm-dd',
+    onClose: function (event) {
+        //输出的日期为：event.valueText
+        $('.time').val(event.valueText);
+        $('.time').attr('data-time',event.valueText);
+        if(!event.valueText){
+            $('.time').placeholder('成立日期');
+        }
+    }
+});
+//对公户开户行行号
+$('.acc-bank-code').click(function(){
+    layer.open({
+        skin: 'popup-btn-new',
+        title: false,
+        content: '<h3>提示</h3><p>请拨打银行热线或到<br>营业厅进行咨询</p>',
+        btn: '确认',
+        shadeClose: false
+    });
+});
+//信息提示弹出层
+function popBox(imgSrc){
+    var popBox = document.getElementById('popBox');
+    var popBg = document.getElementById('popBg');
+    popBox.innerHTML = '<img src='+ imgSrc +' />';
+    //禁止滚动
+    popBox.ontouchmove = popBg.ontouchmove = function(){
+        return false;
+    }
+    //弹出层
+    popBg.style.display = popBox.style.display = 'block';
+    popBoxPos();
+    popBgStyle();
+    //当页面滚动的时候，弹出框跟随滚动
+    window.onscroll = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+    window.onresize = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //设置弹出框的位置
+    function popBoxPos(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+        popBox.style.top = ( document.documentElement.clientHeight - 200 ) / 2 + scrollTop + 'px';
+    }
+    //设置灰色背景的宽高
+    function popBgStyle(){
+        popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+        popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+    }
+    //关闭弹出框
+    popBg.onclick = function(){
+        popBg.style.display = popBox.style.display = 'none';
+    }
+}
+
+
+function SubmitRg(){
+    
+    var ajaxurl = "{url x="index" r="uc_depository_account#company_register"}"; 
+    var query = new Object();
+    query.company_name = $.trim($("#company_name").val());
+    query.corporate = $.trim($("#corporation").val()); //法人
+    query.subject_type = $.trim($("#company_type").val());//主题类型
+    query.start_data = $.trim($("#time").val());
+    query.license_add = $.trim($("#company_address").val());
+    query.P_account = $.trim($("#acc").val());
+    query.P_account_bank = $.trim($("#acc_bank_name").val());
+    query.P_account_bank_num = $.trim($("#acc_bank_code").val());
+    query.credit_code = $.trim($("#credit_code").val());
+    // query.credit_add = $.trim($("#credit_add").val());
+
+    
+
+
+    $.ajax({
+        url: ajaxurl,
+        data:query,
+        type: "POST",
+        dataType: "json",
+        success:function(result){
+            
+            if(result.status){
+                layer.open({
+                    skin: 'popup-btn-new',
+                    title: false,
+                    content: '<h3>提示</h3><p>'+result.info+'</p>',
+                    btn: '确认',
+                    shadeClose: true,
+                    yes: function(i){
+                    //点击确认按钮后要做的动作
+                    //window.location.href = "{url x="index" r="uc_center"}";
+                        //跳到出借页面
+                        layer.close(i);
+                        // window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToGoBack","webPage":"cgThreeGo"});
+                        if("{$jump.ToProductList}" == "iosToProductList")//ios跳转
+                        {
+                            window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToGoBack","webPage":"cgThreeGo"});
+                        }else if("{$jump.ToProductList}" == "androidToProductList")//Android跳转
+                        {
+                            window.jiucaitong.FromH5ToJump("jumpToGoBack","");
+                        }
+                    }
+                });
+
+               
+
+                // layer.open({
+                //     skin: 'popup-box-ios',
+                //     title: false,
+                //     content: '<h3>提示</h3><p>'+result.info+'</p>',
+                //     btn: ['确认'],
+                //     shadeClose: false,
+                //     yes: function(i){
+                //     //点击确认按钮后要做的动作
+                //     //window.location.href = "{url x="index" r="uc_center"}";
+                //         //跳到出借页面
+                //         layer.close(i);
+                //         // window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToGoBack","webPage":"cgThreeGo"});
+                //         if("{$jump.ToProductList}" == "iosToProductList")//ios跳转
+                //         {
+                //             window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToGoBack","webPage":"cgThreeGo"});
+                //         }else if("{$jump.ToProductList}" == "androidToProductList")//Android跳转
+                //         {
+                //             window.jiucaitong.FromH5ToJump("jumpToGoBack","");
+                //         }
+                //     },
+                // });
+            }else{
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<p>'+result.info+'</p>', 
+                    shadeClose: true,
+                    time: 3000
+                });
+            }
+            
+        }
+    });
+}
+</script>
+</body>
+</html>

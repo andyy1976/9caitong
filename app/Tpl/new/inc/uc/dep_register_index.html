@@ -1,0 +1,31 @@
+<div class="user_top_title bgfb">
+	<a class="current">资金存管</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<p class="ta_c"><img src="/new/images/img_cg.png" /></p>
+		<form name="form666" ajax_url="{url x="index" r="uc_depository_account#register_index"}" id="form_depository" >
+			<table cellpadding="5" cellspacing="0" border="0"  class="uc_table_form mlra">
+				<tbody>
+					<tr>
+						<td class="ta_r">姓名：</td>
+						<td><input type="text" id="real_name" class="uc_input input_onfocus_shadow" placeholder="请输入真实姓名" {if $vo.real_name}value="{$vo.real_name}"  disabled="true"{/if} /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="ta_r">身份证：</td>
+						<td><input name="idno" id="idno" class="uc_input input_onfocus_shadow" placeholder="请输入身份证号" {if $vo.idno}value="{$vo.idno}" disabled="true"{/if} /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="button" id="sub_btn_depository" name="submit" value="确认开通" class="uc_submit_blue" /></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>

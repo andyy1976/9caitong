@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">     
+<meta content="yes" name="apple-mobile-web-app-capable">     
+<meta content="black" name="apple-mobile-web-app-status-bar-style">     
+<meta content="telephone=no" name="format-detection">  
+<title>注册就送8888元体验金+518元红包</title>
+<link rel="stylesheet" type="text/css" href="/new/activity/W642/css/style.css" />
+<script type="text/javascript" src="/new/activity/W642/js/jquery.js"></script>
+<script type="text/javascript" src="/new/activity/W642/js/resize.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?da0f22482647b9ecba0a227ab3f07197 
+
+";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body>
+	<div class="banner">
+        <img src="/new/activity/W642/image/banner.png" alt="新手专享注册就送518元红包+8888体验金" />
+    </div>
+    <div class="wrap-con">
+		<div class="con1">
+			<h2><img src="/new/activity/W642/image/con1-h2.png" alt="注册福利" /></h2>
+			<ul class="con1-ul">
+				<li><img src="/new/activity/W642/image/con1-img1.png"/></li>
+				<li><img src="/new/activity/W642/image/con1-img2.png"/></li>
+			</ul>
+			<div class="clear"></div>
+			<a  onclick="register()" class="con1-btn"><img src="/new/activity/W642/image/con1-btn.png"/></a>
+		</div>
+		<div class="con2">
+			<h2><img src="/new/activity/W642/image/con2-h2.png" alt="新手特权" /></h2>
+			<div class="con2-text">
+				<a onclick="{$jump.ToProductList}()" class="con2-a">新手特权</a>
+			</div>
+		</div>
+		<div class="con3">
+			<h2><img src="/new/activity/W642/image/con3-h2.png" alt="新手特权" /></h2>
+			<ul class="con3-ul">
+				<li><img src="/new/activity/W642/image/con3-img1.png"/><a onclick="{$jump.ToProductList}()" class="con3-a1">立即体验</a></li>
+				<li><img src="/new/activity/W642/image/con3-img2.png"/><a onclick="{$jump.ToProductList}()" class="con3-a1">立即出借</a></li>
+			</ul>
+			<div class="clear"></div>
+			<!--<a href="#" target="blank" class="con3-btn"><img src="image/con3-btn.png"/></a>-->
+		</div>
+		<div class="con4">
+			<h2><img src="/new/activity/W642/image/con4-h2.png" alt="新手特权" /></h2>
+			<p>活动说明：<br>
+			1.活动时间：2017年7月17日-2017年10月31日；<br>
+			2.用户在玖财通存管版完成注册，即可获得8888元体验金和518元红包；<br>
+			3.红包奖励将在注册成功后1个工作日内发放，可在我的账户中查看有效期等详情；<br>4.体验金只可出借体验标，有效期七天，请尽快操作使用；<br>5.出借达到一定条件时可使用有效期内的红包；<br>
+			6.本活动一切解释权归【玖财通】所有，详情请咨询客服热线：400-650-8706。</p>
+		</div>
+		<p class="con-p">市场有风险，出借需谨慎</p>
+    </div>	
+    <script>
+    	$('.top-close').click(function(event) {
+    		/* Act on the event */
+    		$('.top').fadeOut('slow');
+    	});
+    	function register(){
+    		{if $jump.status eq 1}
+	    		{if $jump.ToRegister eq "iosToRegister"}
+	            window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToHomePage"}); //返回项目列表
+	            {elseif $jump.ToRegister eq "androidToRegister" }
+	            window.jiucaitong.FromH5ToJump("jumpToHomePage","");  //返回项目列表
+	            {else}
+	            parent.location.href = "{url x="index" r="index"}";
+	            {/if}
+	        {else}
+	        	{if $jump.ToRegister eq "iosToRegister"}
+	            window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToRegister"}); //返回项目列表
+	            {elseif $jump.ToRegister eq "androidToRegister" }
+	            window.jiucaitong.FromH5ToJump("jumpToRegister","");  //返回项目列表
+	            {else}
+	            parent.location.href = "{url x="index" r="user#register"}";
+	            {/if}
+	        {/if}
+    	}
+    	//wap跳转
+		function ToProductList(){
+		    window.location.href = "{url x="index" r="deals"}";
+		}
+		//iOS跳转
+		function iosToProductList(){
+		    window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToProductList"});
+		}
+		//Android跳转
+		function androidToProductList(){
+		    window.jiucaitong.FromH5ToJump("jumpToProductList",""); //返回项目列表
+		}
+    </script>
+</body>
+</html>

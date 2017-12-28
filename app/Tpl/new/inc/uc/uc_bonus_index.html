@@ -1,0 +1,141 @@
+<div class="user_top_title bgfb">
+	<a class="current">{$LANG.UC_VOUCHER}</a>
+	<!--<a href="{url x="index" r="uc_voucher#exchange"}">{$LANG.UC_VOUCHER_EXCHARGE}</a>-->
+</div>
+<div class="user_center_con">
+	<div class="blank20"></div>
+	<div class="uc01">
+		<div class="sl_wrap">
+			<div class="sl_key">使用状态：</div>
+			<div class="sl_value">
+
+				<ul>
+	                <li><a href="{url x="index" r="uc_bonus" p="red_type=$red_type"}" {if !$use_status}class="cur"{/if}>全部</a></li>
+	                <li><a href="{url x="index" r="uc_bonus" p="use_status=1&red_type=$red_type"}" {if $use_status eq 1 }class="cur"{/if}>未使用</a></li>
+	                <li><a href="{url x="index" r="uc_bonus" p="use_status=2&red_type=$red_type"}" {if $use_status eq 2 }class="cur"{/if}>已使用</a></li>
+	                <li><a href="{url x="index" r="uc_bonus" p="use_status=3&red_type=$red_type"}" {if $use_status eq 3 }class="cur"{/if}>已过期</a></li>
+				</ul>
+			</div>
+		</div>
+        <div class="sl_wrap">
+            <div class="sl_key">红包类型：</div>
+            <div class="sl_value">
+                <ul>
+                    <li><a href="{url x="index" r="uc_bonus" p="use_status=$use_status&red_type=1"}" {if $red_type eq 1 }class="cur"{/if}>出借红包</a></li>
+                    <li><a href="{url x="index" r="uc_bonus" p="use_status=$use_status&red_type=3"}" {if $red_type eq 3 }class="cur"{/if}>现金红包</a></li>
+                </ul>
+            </div>
+        </div>
+		<div class="blank50"></div>
+		<div class="fictitious_money of_h">
+        {if $red_money_list}
+            {if $red_type eq 1}
+				<ul class="bonus">
+                    {foreach from=$red_money_list item="red_money" key=key name="red_money"}
+                    <li class="{if $red_money.status eq 0 && $red_money.end_time gt $time}available{elseif $red_money.status eq 0 && $red_money.end_time lt $time}Unavailable{elseif $red_money.status eq 1}Unavailable{/if}">
+                        <div class="money">
+                            <span>¥<i>{$red_money.money}</i></span>
+                            <p>满{$red_money.max_use_money}元可用</p>
+                        </div>
+                        <div class="condition">
+                            <p>可用标的：{$red_money.use_condition}个月标的</p>
+                            <p>有效期：{$red_money.begin_date}-{$red_money.end_date}</p>
+                        </div>
+                        {if $red_money.status eq 0 && $red_money.end_time lt $time}
+                        <span class="overdue"></span>
+                        {elseif $red_money.status eq 1}
+                        <span class="used"></span>
+                        {/if}
+                    </li>
+                    {/foreach}
+				</ul>
+            {elseif $red_type eq 3}
+				<ul class="bonus" id="CashBonus">
+                    {foreach from=$red_money_list item="red_money" key=key name="red_money"}
+                    <li class="{if $red_money.status eq 0 && $red_money.end_time gt $time}cash_available{elseif $red_money.status eq 0 && $red_money.end_time lt $time}cash_Unavailable{elseif $red_money.status eq 1}cash_Unavailable{/if}">
+                        <div class="money">
+                            <span>¥<i>{$red_money.money}</i></span>
+                            <p>{$red_money.begin_date}-{$red_money.end_date}</p>
+                        </div>
+                        <div class="line"></div>
+                        <div class="btn ta_c">
+                        	{if $red_money.status eq 0 && $red_money.end_time gt $time}
+	                        <a href="javascript:void(0);" id="{$red_money.id}">点击提取</a>
+	                        {elseif $red_money.status eq 0 && $red_money.end_time lt $time}
+	                    	已过期
+	                        {elseif $red_money.status eq 1}
+	                    	已提取
+	                        {/if}
+                        </div>
+	                        
+                    </li>
+                    {/foreach}
+				</ul>
+            {/if}
+        {elseif $use_status eq 1}
+                 <div class="noFictitiousMoney ta_c">
+                    <img src="/new/images/noFictitiousMoney.png" />
+                    <p>暂无可用红包</p>
+                 </div>
+        {elseif $use_status eq 2}
+                <div class="noFictitiousMoney ta_c">
+                    <img src="/new/images/noFictitiousMoney.png" />
+                    <p>暂无已使用红包</p>
+                </div>
+        {elseif $use_status eq 3}
+                <div class="noFictitiousMoney ta_c">
+                    <img src="/new/images/noFictitiousMoney.png" />
+                    <p>暂无已过期红包</p>
+                </div>
+        {else}
+                <div class="noFictitiousMoney ta_c">
+                    <img src="/new/images/noFictitiousMoney.png" />
+                    <p>暂无红包</p>
+                </div>
+        {/if}
+           
+		</div>
+		<!--<div class="uc_line"></div>-->
+		<!--<h3 class="uc_title">红包记录</h3>-->
+		<!--{if $red_money_list}-->
+		<!--<table border="0" cellspacing="0" cellpadding="0" width="100%" class="uc_table_list">-->
+			<!--<tbody>-->
+				<!--<tr>-->
+					<!--<th>时间</th>-->
+					<!--<th>交易类型</th>-->
+					<!--<th>说明</th>-->
+					<!--<th>金额（元）</th>-->
+					<!--&lt;!&ndash; <th>可用余额（元）</th> &ndash;&gt;-->
+				<!--</tr>-->
+				<!--{foreach from=$red_money_list item=voucher key=key}-->
+				<!--<tr class="{if $key mod 2 eq 1}bgf7{/if}">-->
+                    <!--<td>{function name="to_date" v=$voucher.create_time } </td>-->
+                    <!--<td>{if substr($voucher.money,0,1)=='-'}使用{else}获取{/if}</td>-->
+                    <!--<td>{$voucher.memo}</td>-->
+                    <!--<td>{if $voucher.money gt 0}<span class="C_red">+{function name="format_price" v=$voucher.money}</span>{elseif $voucher.money eq 0}{function name="format_price" v=$voucher.money}{else}<span class="C_green1">{function name="format_price" v=$voucher.money}</span>{/if}</td>-->
+                    <!--&lt;!&ndash; <td>{function name="format_price" value=$voucher.account_money}</td> &ndash;&gt;-->
+				<!--</tr>-->
+				<!--{/foreach}-->
+			<!--</tbody>-->
+		<!--</table>-->
+        <div class="pages">{$pages}</div>
+        <!--{else}-->
+        <!--<p>暂无记录！</p>-->
+        <!--{/if}-->        
+		<div class="uc_line"></div>
+		<h3 class="uc_title">红包使用规则</h3>
+		<ol class="rule">
+			<li>每张出借红包均有一定的使用条件，当满足对应的投资条件时方可使用；</li>
+			<li>出借红包可并做为投资本金计算收益；</li>
+			<li>现金红包可用于直接提现或投资；</li>
+			<li>每张红包均设有有效期，需在有效期内使用。</li>
+		</ol>
+		<!--<h3 class="uc_title">出借红包使用规则</h3>-->
+		<!--<ol class="rule">-->
+			<!--<li>出借红包，根据红包可用限额选择使用，出借时等同于现金，</li>-->
+			<!--<li>出借红包可多张叠加使用</li>-->
+			<!--<li>出借红包须在有效期内使用，逾期将失效。</li>-->
+		<!--</ol>-->
+	</div>
+
+</div>

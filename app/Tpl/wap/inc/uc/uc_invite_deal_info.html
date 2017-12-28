@@ -1,0 +1,15 @@
+<body>
+<section class="container cf">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>{$page_title}</div>
+    <!-- 出借产品详情 -->
+    <ul class="my-cash-list my-invest-details-list cf">
+        <li><p>项目名称</p><span>{$deal_info.name}</span></li>
+        <li><p>项目总金额</p><span>{$deal_info.borrow_amount}元</span></li>
+        <li><p>预期年化收益率</p><span>{$deal_info.rate}%</span></li>
+        <li><p>项目期限</p><span>{$deal_info.repay_time}{if $deal_info.repay_time_type eq 0}天{else}个月{/if}</span></li>
+        <li><p>还款方式</p><span>{if $deal_info.loantype eq 0}等额本息{elseif $deal_info.loantype eq 1}按月付息,到期还本{elseif $deal_info.loantype eq 2}到期还本息{else}本金均摊，利息固定{/if}</span></li>
+        <li><p>查看合同</p><a href="{url x="index" r="uc_invest#down_contract" p="id=$deal_info.pid&load_id=$load_id"}"><span style="color: #4672de">点击查看</span></a></li>
+    </ul>
+</section>
+</body>
+</html>

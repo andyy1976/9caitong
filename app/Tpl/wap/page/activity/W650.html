@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>全民一起来健身</title>
+    <link rel="stylesheet" href="new/activity/W650/css/reset_ph_v=2016.css">
+    <script src="new/activity/W650/js/jquery-1.11.3.min.js"></script>
+    <script src="new/activity/W650/js/layer-v3.0.3/layer/layer.js"></script>
+    <link rel="stylesheet" href="new/activity/W650/css/style.css?11">
+    <script src="new/activity/W650/js/fastclick.js"></script>
+    <script>
+        //处理移动端click事件300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+</head>
+<body>
+<div class="container">
+    <img src="new/activity/W650/images/banner.png?11" />
+    <img src="new/activity/W650/images/img1.png?11" />
+    <img src="new/activity/W650/images/img2.png?11" />
+    <div class="content">
+        <div class="speed">
+            <div class="pointer"></div>
+            <div class="statistics">
+                <p>今日步数：<span class="steps">***</span></p>
+                <p>消耗<span class="calory">***</span>卡路里</p>
+            </div>
+        </div>
+        <div class="btns cf">
+        {if $award.step1 ==1}
+        <a href="javascript:;" style="background: #D8D8D8">今日红包已领取</a>
+        {else}
+        <a href="javascript:;" id="btn1">满3000步可领取红包</a>
+        {/if}
+
+        {if $award.step2 ==1}
+        <a href="javascript:;" style="background: #D8D8D8">今日红包已领取</a></div>
+        {else}
+        <a href="javascript:;" id="btn2">满12888步可领取红包</a></div>
+        {/if}
+    </div>
+    <div class="rule">
+
+        <p>活动规则：</p>
+        <p>1、在活动期间，通过玖财通APP发现版块进入运动领财富界面，每日行走满3000步，即可领取由玖财通平台发放的投资红包；</p>
+        <p>2、当日累计满12888步，可再次领取玖财通平台发放的投资红包。（每人每天限领两次红包）</p>
+        <p>3、领取的红包主动发放至个人账户中；</p>
+        <p>4、当日红包24:00前未领取、使用，红包作废；</p>
+        <p>注：由于IOS、Android系统权限数据传输等问题，会存在计步数据和其他计步功能、APP数据不一致等情况，请客户调整玖财通APP整体手机权限，以便您更好的体验APP及本次活动。由于权限等问题造成计步数据有误等情况玖财通概不负责，由此给您造成的不便敬请谅解。</p>
+    </div>
+</div>
+<!--开启计步功能弹窗-->
+<div id="popOpen" style="display: none;">
+	<img src="new/activity/W650/images/img3.png" />
+	<p class="open-steps">允许开启<span>自动计步功能</span>，一起来创造财富吧!</p>
+</div>
+<!--步数达到要求后的弹框-->
+<div id="popSuccess" style="display: none;">
+	<div class="pop-top cf">
+		<img src="new/activity/W650/images/icon_success.png" />
+		<p>恭喜您获得 20 元红包</p>
+		<p>（出借满 500 元可用）</p>
+	</div>
+</div>
+<!--步数未达到要求后的弹框-->
+<div id="popFail" style="display: none;">
+	<div class="pop-top">
+		<img src="new/activity/W650/images/icon_fail.png" />
+		<p>您还需 3000 步</p>
+		<p>就可以领取红包，加油~</p>
+	</div>
+</div>
+<script>
+var today_step="{$today_step}";
+var calorie="{$calorie}";
+var on_off = "{$on_off}";
+var device = "{$device}";
+
+
+//点击领取红包按钮时，步数达到要求后的弹框
+$('#btn1').click(function(){
+
+     //判断步数是否满足条件
+    if(today_step<3000){//3000
+         var limit=3000-parseInt(today_step);
+         layer.open({
+         skin: 'pop pop-state',
+         type: 1,
+         title: false,
+         closeBtn: 0,
+         shade: 0.6,
+         shadeClose: true,
+         btn: '确定',
+         content: '<div class="pop-top"><img src="new/activity/W650/images/icon_fail.png" /><p>您还需'+limit+'步</p><p>就可以领取红包，加油~</p></div>'
+         });
+         return false;
+    }
+    $.ajax( {  
+         url:"{url x="index" r="ajax_activity#W650_receive"}",
+         data:{'step':1},  
+         type:'post',  
+         dataType:'json',  
+         success:function(data) { 
+            //alert(JSON.stringify(data));
+            layer.open({
+            skin: 'pop pop-state',
+            type: 1,
+            title: false,
+            //closeBtn: 0,
+            shade: 0.6,
+            //shadeClose: true,
+            btn: '立即出借',
+            content: '<div class="pop-top cf"><img src="new/activity/W650/images/icon_success.png" /><p>'+data.info+'</p> <p>'+data.ratio+'</p></div>',
+            yes: function(i){
+
+                 layer.close(i);
+                 //跳到出借页面
+                    if("{$jump.ToProductList}" == "iosToProductList")//ios跳转
+                    {
+                        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToProductList"});
+                    }else if("{$jump.ToProductList}" == "androidToProductList")//Android跳转
+                    {
+                        window.jiucaitong.FromH5ToJump("jumpToProductList","");
+                    }else{//wap
+                        window.location.href = "{url x="index" r="deals"}";
+                    }
+                },
+            cancel:function(i){
+                
+                layer.close(i);
+                location.reload();
+            }
+            });   
+          },  
+         error : function() {    
+            
+         }  
+    });
+});
+
+
+$('#btn2').click(function(){
+     //判断步数是否满足条件
+    if(today_step<12888){//12888
+         var limit=12888-parseInt(today_step);
+         layer.open({
+         skin: 'pop pop-state',
+         type: 1,
+         title: false,
+         closeBtn: 0,
+         shade: 0.6,
+         shadeClose: true,
+         btn: '确定',
+         content: '<div class="pop-top"><img src="new/activity/W650/images/icon_fail.png" /><p>您还需'+limit+'步</p><p>就可以领取红包，加油~</p></div>'
+         });
+         return false;
+    }
+    $.ajax( {  
+         url:"{url x="index" r="ajax_activity#W650_receive"}",
+         data:{'step':2},  
+         type:'post',  
+         dataType:'json',  
+         success:function(data) { 
+            layer.open({
+            skin: 'pop pop-state',
+            type: 1,
+            title: false,
+            //closeBtn: 0,
+            shade: 0.6,
+            //shadeClose: true,
+            btn: '立即出借',
+            content: '<div class="pop-top cf"><img src="new/activity/W650/images/icon_success.png" /><p>'+data.info+'</p> <p>'+data.ratio+'</p></div>',
+            yes: function(i){
+
+                 layer.close(i);
+                 //跳到出借页面
+                    if("{$jump.ToProductList}" == "iosToProductList")//ios跳转
+                    {
+                        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToProductList"});
+                    }else if("{$jump.ToProductList}" == "androidToProductList")//Android跳转
+                    {
+                        window.jiucaitong.FromH5ToJump("jumpToProductList","");
+                    }else{//wap
+                        window.location.href = "{url x="index" r="deals"}";
+                    }
+                },
+            cancel:function(i){
+                layer.close(i);
+                location.reload();
+            }
+            });   
+          },  
+         error : function() {    
+            
+         }  
+    });
+});
+
+
+
+
+
+//点击领取红包按钮时，步数未达到要求后的弹框
+// $('#btn2').click(function(){
+// 	layer.open({
+// 	    skin: 'pop pop-state',
+// 	    type: 1,
+// 	    title: false,
+// 	    closeBtn: 0,
+// 	    shade: 0.6,
+// 	    shadeClose: true,
+// 	    btn: '确定',
+// 	    content: $('#popFail')
+// 	});
+// });
+
+
+//允许开启计步功能弹窗
+
+if(on_off==0){
+    // if("{$jump.ToProductList}" == "iosToProductList"){
+    //     layer.open({
+    //     skin: 'pop pop-open',
+    //     type: 1,
+    //     title: false,
+    //     closeBtn: 0,
+    //     shade: 0.6,
+    //     btn: '去设置',
+    //     content: $('#popOpen'),
+    //     yes: function(i){
+    //         layer.close(i);
+    //         onOff = true;
+    //         $('.steps').html(today_step); //把步数传进来
+    //         $('.calory').html(today_distance); //把卡路里传进来
+    //         pointerRotate(); //如果页面滚动到转盘时点击允许按钮，那直接触发指针转动函数
+    //     }
+    //     });
+    // }
+
+//======================================taocejun====================================
+    //点击去设置-->跳转到app的设置中心
+    if(device == "iOS"){
+        //ios
+        layer.open({
+        skin: 'pop pop-open',
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        shade: 0.6,
+        btn: '允许',
+        content: $('#popOpen'),
+        yes: function(i){
+            // iosJumpTOsetCenter()
+            window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToAppSet","url":""});
+        }
+        });
+    }
+ //======================================taocejun====================================   
+    
+}
+
+//页面滚动时触发指针转动函数(必须点击允许按钮后才可触发函数)
+$(window).scroll(function(){
+
+     $('.steps').html(today_step); //把步数传进来
+     $('.calory').html(calorie); //把卡路里传进来
+     pointerRotate();
+});
+//指针转动函数
+function pointerRotate(){
+	if($(window).scrollTop()>=420){
+        var pointer = $('.pointer').get(0);
+        var steps = $('.steps').get(0);
+        var deg = parseInt(steps.innerHTML) * 0.012 + 240;
+        if( deg <= 0 ){
+            setTransform(pointer,'rotate',240);
+        }else if( deg >= 480 ){
+            setTransform(pointer,'rotate',480);
+        }else{
+            setTransform(pointer,'rotate',deg);
+        }
+    }
+}
+//设置旋转函数
+function setTransform(el,attr,val){
+    if(!el.transform){
+        el.transform = {};
+    }
+    if(typeof val == "undefined"){
+        return el.transform[attr];
+    } else {
+        el.transform[attr] = val;
+        var value = "";
+        for(var s in el.transform){
+            //console.log(s,el.transform[s]);
+            switch(s){
+                case "rotate":
+                case "rotateX":
+                case "rotateY":
+                case "rotateZ":
+                case "skewX":
+                case "skewY":
+                    value += (s+"("+el.transform[s]+"deg) ");   
+                    break;
+                case "translateX":
+                case "translateY":
+                case "translateZ":  
+                    value += (s+"("+el.transform[s]+"px) ");    
+                    break;
+                case "scale":
+                case "scaleX":
+                case "scaleY":  
+                    value += (s+"("+el.transform[s]/100+") ");  
+                    break;      
+            }
+        }
+        el.style.WebkitTransform = value;
+        el.style.MozTransform = value;
+        el.style.msTransform = value;
+        el.style.transform = value;
+    }
+}
+</script>
+</body>
+</html>

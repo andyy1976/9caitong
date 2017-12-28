@@ -1,0 +1,507 @@
+{include file="inc/header.html"}
+<style type="text/css">
+.mortgage_desc{ padding:0px 10px;}
+.mortgage_desc li{line-height: 30px}
+.mortgage_desc li c{color: #a7b8c7}
+.mortgage_desc li p{color: #455767;font-size: 1.2rem;display:inline;}
+.mortgage_desc li p:nth-child(2){float: right;}
+.pt-mation-list li img{display: initial;}
+</style> 
+<body>
+    <section class="container cf">
+        <div class="header-2"><a href="{url x="index" r="deals"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>{function name="msubstr" v="$deal.name" s="0" l="13" }</div>
+        <!-- 产品出借页 -->
+        <div class="pt-in-ban">
+            <h3>{$deal.loantype_format}</h3>
+            <p class="pt-in-rate-num"><span>{$deal.rate}</span>%{if $deal.interest_rate gt 0}+{$deal.interest_rate}%{/if}</p>
+            <p class="pt-in-rate">预期年化率</p>
+            <ul>
+                <li><p>{if $deal.debts eq 1}{$deal.debts_repay_time}{else}{$deal.repay_time}{/if}{if $deal.repay_time_type eq 0}天{else}个月{/if}</p><p>出借期限</p></li>
+                <li><p>{$deal.min_loan_money} 元</p><p>起投金额</p></li>
+                <li><p>{$deal.over_amount} 元</p><p>剩余金额</p></li>
+            </ul>
+        </div>
+        <ul class="pt-mation-list">
+        {if $deal.timer gt 0}
+        <li><p>开抢倒计时</p><span id="timer">{$deal.initial_time}</span></li> 
+        {else}
+        <li>
+            <p>募集进度</p>
+            <div class="re-progress">
+                <div class="re-tip"><div class="re-bar"></div><b class="re-percent-num" data-percent="{$deal.progress_point}"></b></div>
+            </div>
+        </li>
+        <style type="text/css">
+            
+        </style>
+        {/if}
+            <li><p>总金额（元）</p><span>{$deal.borrow_amount} </span></li> 
+            <li><p>计息方式</p><span>出借当日起息</span></li>
+            <li><p>剩余募集天数</p><span>{$deal.residual_time}天</span></li>
+            <li><p>安全等级</p><!-- <i></i> --><span>
+            {if $deal.risk_grade eq 5}
+                <img src="{$TMPL}/images/wap2/index/star_red.png">
+            {/if}
+            {if $deal.risk_grade eq 5 || $deal.risk_grade eq 4}
+                <img src="{$TMPL}/images/wap2/index/star_red.png">
+            {/if}
+            {if $deal.risk_grade eq 5 || $deal.risk_grade eq 4 || $deal.risk_grade eq 3}
+                <img src="{$TMPL}/images/wap2/index/star_red.png">
+            {/if}
+            {if $deal.risk_grade eq 5 || $deal.risk_grade eq 4 || $deal.risk_grade eq 3 || $deal.risk_grade eq 2}
+                <img src="{$TMPL}/images/wap2/index/star_red.png">
+            {/if}
+            {if $deal.risk_grade eq 5 || $deal.risk_grade eq 4 || $deal.risk_grade eq 3 || $deal.risk_grade eq 2 || $deal.risk_grade eq 1}
+                <img src="{$TMPL}/images/wap2/index/star_red.png">
+            {/if}
+            </span></li>                        
+        </ul>
+        <div class="pt-compare">
+            <p class="pt-compare-rate">预期收益</p>
+            <p class="pt-compare-rate-num"><span id="lixi"></span>元</p>
+            <ul class="pt-compare-list">
+                <li class="li1"><p><span>玖财通</span></p><b>{$deal.rate}%</b></li>
+                <li class="li2"><p><span>余某宝</span></p><b>{$deal.ymb}%</b></li>
+                <li class="li3"><p><span>1年存款</span></p><b>{$deal.bank}%</b></li>
+            </ul>
+            <div class="pt-in-input">
+            {if $user_id}
+                {if $deal.over_amount < $deal.min_loan_money}
+                <p>出借金额</p><input type="tel" id="money" class="money" value="{$deal.over_amount}" style="color:#90a2ad;" disabled="true" class="trailer"><span>元</span>
+                {else}
+                <p>出借金额</p><input type="tel" id="money" class="money" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')" maxlength="8" placeholder="账户余额：{$money}"><span>元</span>
+                {/if}
+            {else}
+                <p>出借金额</p><input type="tel"  id="min-loan-money" class="money" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"  onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')" maxlength="8" placeholder="{$deal.min_loan_money}元起投" ><span>元</span>
+            {/if}
+            </div>
+        </div>
+        <p class="cash-safe"><span>{$ips.name}</span></p>
+        <div class="pt-detail-title">
+            <p><a href="javascript:;" class="active">项目详情</a><a href="javascript:;">安全保障</a><a href="javascript:;">出借记录</a></p>
+        </div>
+        <div class="pt-detail-box" style="display: block">
+            <dl class="pt-item">
+                <dt><a href="javascript:;"><p>项目介绍</p><span></span></a></dt>
+                <dd><p>{$deal.description}</p></dd>
+            </dl>
+            <!-- <dl class="pt-item pt-item-person">
+                <dt><a href="javascript:;"><p>借款人信息</p><span></span></a></dt>
+                <dd><p>{$deal.risk_security}</p></dd>
+            </dl> -->
+            {if $deal.type_id neq 15}
+            <dl class="pt-item pt-item-pawn">
+                <dt><a href="javascript:;"><p>抵押物资料</p><span></span></a></dt>
+                <!-- <dd><p>{$deal.mortgage_desc}</p></dd> -->
+                <dd>
+                {if $deal.mortgage_brand}
+                    <ul class="mortgage_desc">
+                        <li><p><c>车辆品牌：</c>{$deal.mortgage_brand}</p></li>
+                        <li><p><c>车辆年限：</c>{$deal.mortgage_year}</p></li>
+                        <li><p><c>车辆颜色：</c>{$deal.mortgage_color}</p></li>
+                        <li><p><c>保险状况：</c>{$deal.mortgage_insurance}</p></li>
+                        <li><p><c>车辆状况：</c>{$deal.mortgage_info}</p></li>
+                        <!-- <li><p><c>车辆年限：</c>{$deal.mortgage_year}</p><p><c>车辆颜色：</c>{$deal.mortgage_color}</p></li>
+                        <li><p><c>保险状况：</c>{$deal.mortgage_insurance}</p><p><c>车辆状况：</c>{$deal.mortgage_info}</p></li> -->
+                    </ul>
+                {/if}
+                </dd>
+                
+            </dl>
+            
+            <div class="pt-item-img">
+                <div class="pt-item-img-title"><p>图片资料</p><span class="down"></span></div>
+                <ul id="light-slider">
+                    {foreach from = $img item=item}
+                    <li><img src="{$item.img}"><p>{$item.name}</p></li>
+                    {/foreach}
+                </ul>
+            </div>
+            {/if}
+        </div>
+        <div class="pt-detail-box">
+            <ul class="pt-safety">
+                <li>
+                    <img src="{$TMPL}/images/wap2/pt/img_safe_1.png" width="72" height="76">
+                    <h3>标的安全</h3>
+                    <p>1、平台发布所有项目均为借款企业的实际需求；</p>
+                    <p>2、依据市场规律，不盲目追求高利率高风险；</p>
+                    <p>3、合规内外风控管理，严格审查机制；</p>
+                    <p>4、担保、反担保措施，九道防线层层把关。</p>
+                </li>
+                <li>
+                    <img src="{$TMPL}/images/wap2/pt/img_safe_2.png" width="72" height="76">
+                    <h3>资金安全</h3>
+                    <p>1、整个交易流程不触碰用户资金，交易资金完全由第三方支付机构监管；</p>
+                    <p>2、依据专款专用原则，对每笔资金进出进行严格监控；</p>
+                    <p>3、同卡进出，源头走向两不误，确保用户账户资金安全；</p>
+                    <p>4、针对每笔借款收取风险保证金，并专户托管。严格遵守“风险保证金账户”资金使用规则。</p>
+                </li>
+                <li>
+                    <img src="{$TMPL}/images/wap2/pt/img_safe_3.png" width="72" height="76">
+                    <h3>信息安全</h3>
+                    <p>1、与合作银行相同级别的数据安全保障体系，实现安全对接；</p>
+                    <p>2、自主开发平台，使用128位数据加密技术，严格加密个人敏感信息；</p>
+                    <p>3、24小时不间断安全监控，确保信息安全。</p>
+                </li>
+            </ul>
+        </div>
+        <div class="pt-detail-box">
+            <div class="pt-in-record-title"><p><span>用户名</span></p><p><span>金额</span></p><p><span>时间</span></p></div> 
+            <div class="pt-in-record-list">           
+                <table class="pt-in-record">            
+                    {foreach from="$load_list" item="load" name="name"}
+                    <tr><td>{function name="mobile_substr" v="$load.mobile"}</td><td>{function name="format_price_money" v="$load.money"}</td><td>{function name="to_date" v="$load.create_time" f="m-d"} {function name="to_date" v="$load.create_time" f="H:i"}</td></tr>
+                    {/foreach}
+                </table>
+            </div>
+            {if !$load_list}
+            <p class="pt-in-nobody">暂无出借记录</p>
+            {/if}
+        </div>
+        {if !$user_id}
+        <a href="{url x="index" r="user#login"}&jumpUrl={url x="index" r="deal" p="id=$deal.id"}" class="pt-invest-btn" >立即登录</a>
+        {elseif $deal.deal_status eq 1 && $deal.remain_time gt 0 && $deal.timer le 0}
+        <a href="javascript:;" id="lend" class="pt-invest-btn" onclick="rushInvestBtn()">立即出借</a>
+        {elseif $deal.deal_status eq 1 && $deal.remain_time gt 0 && $deal.timer gt 0}
+        <a href="javascript:;"  class="pt-invest-btn" style="background:#aaa">未开始</a>
+        {else}
+        <a href="javascript:;" id="not_begin" class="pt-invest-btn" style="background:#aaa">已抢光</a>
+        {/if}
+    </section>
+    <div id="popBg_img"></div>
+    <div id="popBox_img"></div>
+    <script type="text/javascript">
+    $(function(){
+    //收益比较进度条
+    profitCompare(10, {$deal.rate_progress}, 0, 'li1');
+    profitCompare(1800, {$deal.ymb_progress}, 0, 'li2');
+    profitCompare(3000, {$deal.bank_progress}, 0, 'li3');
+    function profitCompare(timeout, nub, num, li){
+        setTimeout(function(){
+            var timer = setInterval(function(){
+                if( num >= nub ){
+                    clearInterval(timer);
+                }else{
+                    num += 1.5;
+                    $('.'+li).find('p').animate({
+                        width : num +'%'
+                    },20, 'linear');
+                }
+                if( num >= 10 ){
+                    $('.'+li).find('span').show('slow');
+                }
+                if( num >= 5 ){
+                    $('.'+li).find('b').show();
+                }
+            },30);
+        },timeout);
+    }
+    //倒计时
+    function countDown(maxtime,fn ){      
+       var timer = setInterval(function(){  
+           if(maxtime>=0){
+                hour = Math.floor(maxtime/3600);
+                if(hour<10){
+                    hour = "0"+hour;
+                }    
+                minutes = Math.floor(maxtime/60%60);
+                if(minutes<10){
+                    minutes = "0"+minutes;
+                } 
+                seconds = Math.floor(maxtime%60);
+                if(seconds < 10){
+                    seconds = "0"+seconds;
+                }     
+                msg = hour+":"+minutes+":"+seconds;     
+                fn( msg ); 
+                --maxtime;     
+            }     
+            else{ 
+                clearInterval(timer);
+                location.reload();
+            }     
+        }, 1000);  
+    }
+    {if $deal.timer gt 0}
+            countDown({$deal.timer},function(msg){  
+                document.getElementById('timer').innerHTML = msg;  
+            });
+    {/if}
+    //选项卡切换
+    $('.pt-detail-title').find('a').click(function(){
+        $(this).addClass('active').siblings().removeClass('active');
+        var index = $(this).index();
+        $('.pt-detail-box').hide().eq(index).show();
+    });
+    //项目详情展开收起
+    $('.pt-item').find('dt').click(function(){
+        if( $(this).find('span').hasClass('down')){
+            $(this).siblings('dd').hide();
+            $(this).find('span').removeClass('down');
+        }else{
+            $('.pt-item').find('dd').hide();
+            $('.pt-item').find('span').removeClass('down');
+            $(this).siblings('dd').show();
+            $(this).find('span').addClass('down');
+        }
+    });
+
+//项目详情图片效果
+$('.pt-item-img-title').click(function(){
+    if( $(this).find('span').hasClass('down')){
+        $('#light-slider').hide();
+        $(this).find('span').removeClass('down');
+    }else{
+        $('#light-slider').show();
+        $(this).find('span').addClass('down');
+    }
+});
+    //图片资料图片左右切换
+    $("#light-slider").lightSlider({
+        slideWidth: 180
+    });
+    //图片资料图片放大效果
+    $('#light-slider').find('img').click(function(){
+        var imgSrc = $(this).attr('src');
+        popBox_img(imgSrc);
+    })
+     //出借记录列表
+     if (window.addEventListener) {
+        simpScroller(document.querySelector(".pt-in-record-list"));
+    }
+});
+//图片资料图片放大效果
+function popBox_img(src){
+    var popBox = document.getElementById('popBox_img');
+    var popBg = document.getElementById('popBg_img');
+    popBox.innerHTML = '<img src=' + src + '>';
+    //弹出层
+    popBg.style.display = popBox.style.display = 'block';
+    popBoxPos();
+    popBgStyle();
+    //当页面滚动的时候，弹出框跟随滚动
+    window.onscroll = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+    window.onresize = function() {
+        popBoxPos();
+        popBgStyle();
+    }
+    //设置弹出框的位置
+    function popBoxPos(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+        popBox.style.top = ( document.documentElement.clientHeight - popBox.offsetHeight ) / 2 + scrollTop + 'px';
+    }
+    //设置灰色背景的宽高
+    function popBgStyle(){
+        popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+        popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+    }
+    //关闭弹出框
+    popBg.onclick = function(){
+        popBg.style.display = popBox.style.display = 'none';
+    }
+}
+//预期收益计算
+var expected_return = null;
+//只可输入正整数或0
+$(".money").keyup(function(){
+   var patrn=/^([1-9]\d*)(\.\d*[1-9])?$/; 
+    if (!patrn.exec($(".money").val())) {
+        $(".money").val();
+    }
+    loadSy();
+});
+$(".money").blur(function(){
+   var patrn=/^([1-9]\d*)(\.\d*[1-9])?$/; 
+    if (!patrn.exec($(".money").val())) {
+        layer.open({
+            className: 'popup-btn',
+            content: '<h3>提示</h3><p>出借金额不能为空</p>',
+            shadeClose: true,
+            time:2,
+            end:function(){
+                $(".money").val({$deal.min_loan_money});
+                loadSy();
+            }
+        });
+    }
+});
+loadSy();
+function loadSy(){
+    var query = new Object();
+    query.rate = '{$deal.rate}';
+    query.repay_time = '{$deal.repay_time}';
+    query.money = $.trim($(".money").val());
+    if(expected_return) expected_return.abort(); /*终止之前所有的未结束的ajax请求，然后重新开始新的请求  */
+    expected_return=$.ajax({
+        url:'{url x="index" r="ajax#expected_return"}',
+        data:query,
+        type:"post",
+        dataType:"text",
+        success:function(result){
+            $("#lixi").html(result);
+        }
+    });
+}
+//输入出借金额后，点击立即出借时，账户余额不足的提示
+function rushInvestBtn(){
+    {if $ajax.code eq 0}
+        layer.open({
+            className: 'cg-pop',
+            content: '<img src="{$TMPL}/images/wap2/my/cg-pop-bg.png" style="width:100%; border-radius: 12px 12px 0 0;" />',
+            btn: ['立即开通','取消'],
+            yes: function(index){
+                //点击立即开通后跳到存管开户页面
+                window.location.href = "{$ajax.url}";
+                layer.close(index);
+            }, 
+            no: function(){
+                //点击取消按钮后无需做其他动作
+            }
+        });
+    {elseif $ajax.code eq 1}
+    window.location.href = "{$ajax.url}";
+    {else}
+    var query = new Object();
+    query.deal_id = '{$deal.id}';
+    query.bid_money = $.trim($("#money").val());
+    query.min_loan_money = {$deal.min_loan_money};
+    var ajaxurl = "{url x="index" r="deal#bid"}";
+    $.ajax({
+        url: ajaxurl,
+        dataType: "json",
+        data:query,
+        type: "POST",
+        success: function(ajaxobj){
+            if(ajaxobj.status == 0){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>'+ajaxobj.info+'</p>',
+                    shadeClose: true,
+                    time:2,
+                });
+            }else if(ajaxobj.status == 2){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>'+ajaxobj.info+'</p>',
+                    shadeClose: true,
+                    time:2,
+                    end:function(){
+                        window.location.href = ajaxobj.jump+"&jumpUrl={url x="index" r="deal" p="id=$deal.id"}";
+                    }
+                });                
+            }else if(ajaxobj.status == 3){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>'+ajaxobj.info+'</p>',
+                    shadeClose: true,
+                    time:2,
+                    end:function(){
+                        $("#money").val({$deal.min_loan_money});
+                        loadSy();
+                    }
+                });                
+            }else if(ajaxobj.status == 4){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>'+ajaxobj.info+'</p>',
+                    btn: ['确定','取消'],
+                    shadeClose: true,
+                    yes: function(){
+                        //点击确认按钮后要做的动作
+                        window.location.href = "{url x="index" r="uc_money#incharge"}";
+                    },
+                    no: function(){
+                        //点击确认按钮后要做的动作
+                    }
+                });                
+            }else{
+                //把出借金额保存到session
+                var query = new Object();
+                query.money = $(".money").val();
+                query.deal_id = {$deal.id};
+                $.ajax({
+                    url:"{url x="index" r="ajax#storage"}",
+                    dataType: "json",
+                    data:query,
+                    type: "POST",
+                    success: function(obj){
+                        if(obj.status){
+                            window.location.href = ajaxobj.jump;
+                        }
+                    }
+
+                });                                
+            }
+        },
+    });
+    {/if}    
+}
+//募集进度
+progressWrap($('.re-progress').get(0));
+function progressWrap(list, move){
+    var oDiv1 = list.getElementsByClassName('re-tip')[0];
+    var oDiv2 = list.getElementsByClassName('re-bar')[0];
+    var oDiv3 = list.getElementsByClassName('re-percent-num')[0];
+    var num = parseFloat(oDiv3.getAttribute('data-percent'));
+    var reg = /.*\..*/;
+    var onOff = reg.test(num);
+    var iNow;
+    var speed = 1;
+    
+    if(onOff){
+    	if(num <= 1){
+    		iNow = 0.1;
+    	}else{
+	    	iNow = 10;
+    	}
+    	num = num * 10;
+    }else{
+    	iNow = 1;
+    	speed = 20;
+    }  
+    var iTimer = setInterval(function(){
+        if( iNow >= num ){
+            clearInterval(iTimer);
+            progressFn(iNow,oDiv1,oDiv2,oDiv3);
+        }else{
+        	if(num <= 1){
+	    		iNow += 0.1;
+	    	}else{
+	    		iNow += 1;
+	    	}
+            progressFn(iNow,oDiv1,oDiv2,oDiv3);
+        }
+        if( num == 0 ){
+            oDiv2.style.background = 'none';
+            oDiv3.innerText = '0%';
+        }
+    },speed);
+    function progressFn(cent,div1,div2,div3){
+    	if(onOff){
+    		cent = cent/10;
+    	}
+        var allWidth = div1.clientWidth;
+        if( cent > 100 ){
+            return false;
+        }
+    	div2.style.clip = 'rect(0px, '+ cent/100 * allWidth +'px, 10px, 0px)';
+    	if(onOff){
+    		div3.innerText = cent.toFixed(1) + '%';
+    	}else{
+    		div3.innerText = cent + '%';
+    	}
+        if( move ){
+            div3.style.left = cent/100 * allWidth - 20 + 'px';
+        }
+    }
+}
+</script>
+</body>
+</html>

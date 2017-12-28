@@ -1,0 +1,373 @@
+{include file="inc/iheader.html"} 
+{include file="inc/ibanner.html"}
+
+<!--<img class="closebtn"  style="position: fixed; left: 50%; top:50%; z-index: 999999; margin-left:400px;margin-top:-200px;" src="./new/activity/P647/images/closebtn.png" alt=""/>
+<a href="./index.php?ctl=activity&act=P647"><img class="xuanfu"  style="position: fixed; left: 50%; top:50%; z-index: 99999; margin-left:-250px;margin-top:-200px;" src="./new/activity/P647/images/xuanfu.png" alt=""/></a>
+<a href="./index.php?ctl=activity&act=P647"><img class="xuanfu_red"  style="position: fixed; left: 93%; top:70%; z-index: 99999;margin-top:-200px;" src="./new/activity/P647/images/xuanfu_red.png" alt=""/></a>-->
+		<section class="characteristic">
+			<div class="ct"> 
+				<section class="riskControl">
+					<img src="/new/images/riskControl.png" />
+					<div>
+						<h2>严格风控保障</h2>
+						<ul>
+							<li>1、九道内部风控防线</li>
+							<li>2、央行征信中心系统</li>
+							<li>3、法院信息查询系统</li>
+							<li>4、工商网络信息系统</li>
+							<li>5、公众查号信息平台</li>
+							<li>6、第三方征信机构</li>
+						</ul>
+					</div>
+				</section>
+				<section class="safe">
+					<img src="/new/images/safe.png" />
+					<div>
+						<h2>数据资金安全</h2>
+						<ul>
+							<li>1、完全自主开发系统</li>
+							<li>2、银行级别安全防护</li>
+							<li>3、128位数据加密技术</li>
+							<li>4、系统的异地备灾机制</li>
+							<li>5、24小时不间断安全监控</li>
+							<li>6、完善的应急响应机制</li>
+						</ul>
+					</div>
+				</section>
+				<section class="statute">
+					<img src="/new/images/statute.png" />
+					<div>
+						<h2>法律法规保障</h2>
+						<ul>
+							<li>1、平台居间人身份受法律保护</li>
+							<li>2、理财模式受法律保护</li>
+							<li>3、借贷关系受法律保护</li>
+							<li>4、抵押贷款模式更安全</li>
+							<li>5、不断完善的行业监管机制</li>
+							<li>6、法律指导行业健康发展</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+		</section>
+		<div class="blank200"></div>
+		<section class="common center">
+			<h1 class="about"></h1>
+			<p>玖财通是创新的互联网金融平台咨询及服务平台，</p>
+			<p>产品期限灵活、自由选择、安全规范，适合各种出借人，省时省力，</p>
+			<p>是您身边的优质金融服务平台。</p>
+			<hr class="commonline" />
+		</section>
+		<section class="data">
+			<div id="total">
+				<div class="con">
+
+					{foreach from=$registered_user item=num key=key}
+						<span>{$num}</span>
+					{/foreach}
+					<i>人</i>
+					<hr class="commonline" />
+					<p>注册用户数</p>
+				</div>
+			</div>
+			<div id="benefit">
+				<div class="con">
+					<!--<span>4</span>
+					<span>3</span>
+					<i>,</i>
+					<span>6</span>-->
+					{foreach from=$download_total item=val key=key}
+					<span class='font'>{$val}</span>
+					{/foreach}
+					<i>人次</i>
+					<hr class="commonline" />
+					<p>APP累计下载量</p>
+				</div>
+			</div>
+		</section>
+<?php
+$newman_deal_list =array();
+$normal_deal_list =  array();
+if($this->_var['new_deal_list']){
+	foreach($this->_var['new_deal_list'] as $k=>$v){
+		if($v['is_new'] == 1){
+			$newman_deal_list[]=$v;
+		}
+		else{
+			$normal_deal_list[]=$v;
+		}
+	}
+}
+
+$this->assign("deal",$newman_deal_list[0]);
+$this->assign("normal_deal_list",$normal_deal_list);
+?>
+		
+		
+		<section class="invest_box">
+		{if !empty($deal) && $deal.cunguan_tag eq 1}
+			<!--新手专享-->
+			<div class="newhander side">
+				<span class="icon_NP"></span>
+				<div class="data_box">
+					<h3>{$deal.name}:会理财<small>——99.9%新手必选</small></h3>
+					<ul class="detail">
+						<li>
+							<span>
+								<em>{$deal.rate}</em>%
+								{if $deal.user_bid_rebate gt 0}<span class="f12" title="出借返利:{$deal.user_bid_rebate}%">+{$deal.user_bid_rebate}%</span>{/if}
+							</span>
+							<p>年化收益率</p>
+						</li>
+						<li>
+							<span><em>{$deal.repay_time}</em>{if $deal.repay_time_type eq 0}天{else}月{/if}</span>
+							<p>项目期限</p>
+						</li>
+						<li>
+							<span><em><?php echo $this->_var['deal']['borrow_amount']; ?></em>元</span>
+							<p>项目总额</p>
+						</li>
+					</ul>
+					<ul class="inf">
+						<li>{$deal.min_loan_money}元起投</li>
+						<li>限投{$deal.max_loan_money}元</li>
+					</ul>
+				</div>
+				<div class="operation">
+					<div class="num" style="left:{$deal.progress_point}%;">{$deal.progress_point|round="2"}%</div>
+					<div class="progress"><div class="complete" style="width: {$deal.progress_point}%;"></div></div>
+					<p>可投金额：￥<em>{$deal.need_money}</em></p>
+						<a class="listbtn" href="{$deal.url}">
+							{if $deal.is_delete eq 2}
+								<span class="btn_gray f_white">待发布</span>
+							{elseif $deal.is_wait eq 1}
+								<span class="btn_gray f_white">未开始</span>
+							{elseif $deal.deal_status eq 5}
+								<span class="btn_green f_white">还款完毕</span>
+							{elseif $deal.deal_status eq 4}
+								<span class="btn_green f_white">还款中</span>
+							{elseif $deal.deal_status eq 0}
+								<span class="btn_gray f_white">{if $deal.need_credit eq 0}等待审核{else}等待材料{/if}</span>
+							{elseif $deal.deal_status eq 1 && $deal.remain_time gt 0}
+								<span class="btn_red f_white">立即出借</span>
+							{elseif $deal.deal_status eq 2}
+								<span class="btn_yellow f_white" style=" position:relative;">已满标</span>
+							{elseif $deal.deal_status eq 3}
+								<span class="btn_gray f_white">已过期</span>
+							{elseif $deal.deal_status eq 1 && $deal.remain_time lte 0}
+								<span class="btn_gray f_white">已过期</span>
+							{/if}
+						</a>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<!--/新手专享-->
+		{/if}
+		{foreach from=$advance_deal_list item="deal" key=key name="deal"}
+			<!--限时秒杀-->
+			<!--<div class="timeSpike center side">
+				<span class="icon_NP"></span>
+				<div class="data_box">
+					<p class="countdown">距开始还有：<em>2</em>小时<em>25</em>分<em>10</em>秒</p>
+					<div class="countdown">开放时间<em>{function name="to_date" v=$deal.start_time f="m"}</em> 月<em>{function name="to_date" v=$deal.start_time f="d"}</em> 日<em> {function name="to_date" v=$deal.start_time f="H:i"}</em> </div>
+					<ul class="detail">
+						<li>
+							<span><em>{$deal.rate}</em>%</span>{if $deal.user_bid_rebate gt 0}<span class="f14" title="出借返利:{$deal.user_bid_rebate}%">+{$deal.user_bid_rebate}%</span>{/if}
+							<p>年化收益率</p>
+						</li>
+						<li>
+							<span><em>{$deal.repay_time}</em>{if $deal.repay_time_type eq 0}天{else}个月{/if}</span>
+							<p>项目期限</p>
+						</li>
+						<li>
+							<span><em>100</em>万</span>
+							<p>项目总额</p>
+						</li>
+					</ul>
+					<ul class="inf">
+						<li>{$deal.min_loan_money}元起投</li>
+					</ul>
+				</div>
+				<div class="operation">
+					<div class="num" style="left:{$deal.progress_point|round="2"}%;">{$deal.progress_point|round="2"}%</div>
+					<div class="progress"><div class="complete" style="width:{$deal.progress_point|round="2"}%;"></div></div>
+					<p>可投金额：￥<em>544000</em></p>
+					<a href="{$deal.url}">立即出借</a>
+				</div>
+				<div class="clear"></div>
+			</div>-->
+			<!--/限时秒杀-->
+		{/foreach}
+			
+			
+			<!--定期标-->
+			<div class="blank50"></div>
+			<div class="regular center">
+			{foreach from=$index_deal_list item="deal" key=key name="deal"}
+				{if $smarty.foreach.deal.index lt 3}
+				<section class="part{$smarty.foreach.deal.index}">
+					<h2>{$deal.name}</h2>
+					<hr class="commonline" />
+					<ul class="detail">
+						<li>
+							<span><em>{$deal.rate}</em>%</span>{if $deal.interest_rate gt 0}<span class="f14" title="出借返利:{$deal.user_bid_rebate}%">+{$deal.interest_rate}%</span>{/if}
+							<p>年化收益率</p>
+						</li>
+						<li>
+							<span><em>{$deal.repay_time}</em>{if $deal.repay_time_type eq 0}天{else}个月{/if}</span>
+							<p>项目期限</p>
+						</li>
+					</ul>
+					<ul class="inf">
+						<li>项目总额：￥{$deal.borrow_amount}</li>
+						<li>{$deal.min_loan_money}元起投</li>
+						<li>{function name="loantypename" v="$deal.loantype" type=0}</li>
+					</ul>
+					<a href="{$deal.url}" class="invest_submit">
+					{if $deal.is_delete eq 2}
+						<span class="btn_gray f_white">待发布</span>
+					{elseif $deal.is_wait eq 1}
+						<span class="btn_gray f_white">未开始</span>
+					{elseif $deal.deal_status eq 5}
+						<span class="btn_blue f_white">还款完毕</span>
+					{elseif $deal.deal_status eq 4}
+						<span class="btn_green f_white">还款中</span>
+					{elseif $deal.deal_status eq 0}
+						<span class="btn_gray f_white">{if $deal.need_credit eq 0}等待审核{else}等待材料{/if}</span>
+					{elseif $deal.deal_status eq 1 && $deal.remain_time gt 0}
+						<span class="btn_blue f_white">立即出借</span>
+					{elseif $deal.deal_status eq 2}
+						<span class="btn_yellow f_white">已满标</span>
+					{elseif $deal.deal_status eq 3}
+						<span class="btn_gray f_white">已过期</span>
+					{elseif $deal.deal_status eq 1 && $deal.remain_time lte 0}
+						<span class="btn_gray f_white">已过期</span>
+					{/if}
+					</a>
+				</section>
+ 
+			{/if}
+		{/foreach}
+			</div>
+			<!--/定期标-->
+		</section>
+		<!--app下载-->
+		<section class="appDown">
+			<div class="center">
+				<div class="AppAtlas">
+					<img src="/new/images/p1.jpg" class="lord" style="margin-top:230px;margin-left:156px" />
+					<img src="/new/images/p2.jpg" class="i1" style="margin-top:120px;margin-left:0px" />
+					<img src="/new/images/p3.jpg" class="i2" style="margin-top:450px;margin-left:0px" />
+					<img src="/new/images/p4.jpg" class="i3" style="margin-top:10px;margin-left:180px" />
+					<img src="/new/images/p5.jpg" class="i4" style="margin-top:320px;margin-left:340px" />
+					<img src="/new/images/p6.jpg" class="i5" style="margin-top:600px;margin-left:180px" />
+				</div>
+				<div class="download">
+					<p class="downbt"><img src="/new/images/downbt.png" /></p>
+					<p class="downbtn">
+						<a href="https://itunes.apple.com/us/app/jiu-cai-tong/id1101080761"><img src="/new/images/iosdown.png" /></a>
+						<a href="http://d.9caitong.com/jiucaitong.apk"><img src="/new/images/appdown.png" /></a>
+					</p>
+					<p class="appQRcode">
+						<img src="/new/images/QRcode_appdown.png" />
+					</p>
+				</div>
+			</div>
+		</section>
+		<!--/app下载-->
+		<!--公告&媒体报道-->
+		<section class="news center">
+			<!--公告-->
+			<div class="notice">
+				<h2><a href="{url x="index" r="acate&id=33"}" title="点击查看更多">最新公告<small>+</small></a><span></span></h2>
+				<ul>
+					{foreach from=$notice_list item="notice"}
+					<li>
+						<time><em>{function name="to_date" v=$notice.update_time f="d"}</em><span>{function name="to_date" v=$notice.update_time f="M"}<br />{function name="to_date" v=$notice.update_time f="y"}</span></time>
+						<a href="{$notice.url}">{function name="msubstr" v=$notice.title s=0 e=40}</a>
+						<p>{function name="msubstr" v=$notice.brief s=0 e=35}</p>
+					</li>
+					{/foreach}
+				</ul>
+			</div>
+			<!--媒体报道-->
+			<div class="media">
+				<h2><a href="{url x="index" r="acate&id=25"}" title="点击查看更多">媒体报道<small>+</small></a><span></span></h2>
+				<ul>
+					<li class="p1">
+						<div class="img">
+							<a href="{$mtbd_list[0].url}"><img src="{$mtbd_list[0].icon}" style="width: 252px;height: 147px"/></a>
+						</div>
+						<div class="tex">
+							<a href="{$mtbd_list[0].url}">{$mtbd_list[0].title}</a>
+							<p>{$mtbd_list[0].brief}</p>
+						</div>
+					</li>
+
+					<li class="p2">
+						<div class="img"><a href="{$mtbd_list[1].url}"><img src="{$mtbd_list[1].icon}" style="width: 252px;height: 147px" /></a></div>
+						<div class="tex">
+							<a href="{$mtbd_list[1].url}">{$mtbd_list[1].title}</a>
+							<p>{$mtbd_list[1].brief}</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<!--企业视频-->
+		<div class="w1170 mg_at of_h ">
+			<div class="blank60"></div>
+			<h1 class="ta_c"><img src="/new/images/about/bt12.png" /></h1>
+			<div class="blank20"></div>
+			<ul class="list_video">
+			{foreach from=$listvideo item="vo"}
+				<li>
+					<a href="{$vo.video_url}" target="_blank"><img src="/new/images/btn_play.png" class="play" /></a>
+					<img src="{$vo.icon}" />
+					<p>{$vo.title}</p>
+				</li>
+			{/foreach}
+				
+			</ul>
+			<div class="blank20"></div>
+			<p class="ta_r"><a href="{url x="index" r="acate" p="id=38"}" target="_blank">查看更多企业视频  >></a></p>
+			<div class="blank40"></div>
+		</div>
+		<!--/公告&媒体报道-->
+		<section class="common center">
+			<h1 class="partner"></h1>
+			<p>共同奋斗的最坚实的永不背弃的朋友</p>
+			<hr class="commonline" />
+			<ul class="partner_list">
+				<li><a href="javascript:void(0);"><img src="/new/images/h11.png" /></a></li>
+				<li><a href="javascript:void(0);"><img src="/new/images/h3.png" /></a></li>
+				<li><a href="javascript:void(0);"><img src="/new/images/h4.png" /></a></li>
+				<li><a href="javascript:void(0);"><img src="/new/images/h6.png" /></a></li>
+				<li><a href="javascript:void(0);"><img src="/new/images/h7.png" /></a></li>
+				<li><a href="javascript:void(0);"><img src="/new/images/h9.png" /></a></li>
+				<li><a href="javascript:void(0);"><img src="/new/images/h10.png" /></a></li>
+				<li><a href="javascript:void(0);"><img src="/new/images/CFCA.png" /></a></li>
+				<li><a href="javascript:void(0);"><img src="/new/images/baofoo.png" /></a></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</section>
+{include file="/inc/ifooter.html"}
+<a href="/index.php?ctl=activity&act=P647" style="display: none;" id="xuanfu"><img class="xuanfu"  src="/new/activity/P647/images/xuanfu.png" /></a>
+		<script src="/new/js/lib/sea.js"></script>
+		<script src="/new/js/lib/jquery-1.8.3.js"></script>
+		<script>
+            $(".closebtn").on('click',function(){
+                $(".xuanfu").hide();
+                $(".closebtn").hide();
+            })
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+			});
+			seajs.use(["/new/js/page/index"])
+		</script>
+	</body>
+</html>

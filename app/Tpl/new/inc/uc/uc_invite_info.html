@@ -1,0 +1,204 @@
+<div class="user_top_title bgfb">
+	<a class="current">出借详情</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<h3 class="uc_title">
+		{if $deal_type}
+			<a href="{url x="index" r="plandeal" p="id=$deal.id"}" target="_blank">{$deal.name}</a>&nbsp;&nbsp;&nbsp;
+			{else}
+			<a href="{url x="index" r="deal" p="id=$deal.id"}" target="_blank">{$deal.name}</a>&nbsp;&nbsp;&nbsp;
+			{/if}
+			{if $deal.loantype eq 1}
+			<span class="C_blue1 pd_l_3 fw100">&bull;&nbsp;按月付息到期还本</span>
+			{elseif $deal.loantype eq 0}
+			<span class="C_blue1 pd_l_3 fw100">&bull;&nbsp;等额本息</span>
+			{elseif $deal.loantype eq 2}
+			<span class="C_blue1 pd_l_3 fw100">&bull;&nbsp;到期还本息</span>
+			{/if}
+			<!--<a href="#" class="contract fr C_red1">产品合同 ></a>-->
+		</h3>
+		<ul class="ii_list1">
+			<li class="ta_c">
+				<span><i>{function name="number_format" v="$deal.rate" f="1"}</i>%{if $deal.interest_rate gt 0}+{function name="number_format" v="$deal.interest_rate" f="1"}%{/if}</span>
+				<p>年化收益率</p>
+				{if $interest}
+                    {if $interest.interest_time eq 0}
+                    <div class="invite_infoJx">全程加息</div>
+                    {elseif $interest.interest_time gt 0}
+                    <div class="invite_infoJx">加息{$interest.rate}%, 加息{$interest.interest_time}天</div>
+                    {/if}
+                {/if}
+			</li>
+			<li class="ta_c">
+				<span><i>{if $deal.debts eq 1}{$deal.debts_repay_time}{else}{$deal.repay_time}{/if}</i>{if $deal.repay_time_type eq 0}天{else}个月{/if}</span>
+				<p>出借期限</p>
+			</li>
+			<li>
+				<p class="indent">项目总额：<span>{$deal.borrow_amount}元</span></p>
+				<!--<p class="indent">募集期收益：<span>{$deal_log.collect_repay}元</span></p>-->
+				<p class="indent">&nbsp;</p>
+				<p class="indent">募集天数：<span>{$deal.collect_day}天</span></p>
+			</li>
+			<li>
+				<p class="indent">满标日期：<span>{if $deal.success_time}{function name="to_date" v=$deal.success_time f="Y-m-d"}{else}满标后显示{/if}</span></p>
+				<p class="indent">起息日期：<span>{if $deal.repay_start_time}{$deal.repay_start_date}{else}审核中{/if}</span></p>
+				<p class="indent">到期日期：<span>{if $deal.repay_end_time}{$deal.repay_end_time}{else}审核中{/if}</span></p>
+			</li>
+		</ul>
+		{if $deals}
+		<div class="uc_line"></div>
+		<h3>匹配债权</h3>
+		<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="uc_table_list">
+			<tr border="0">
+				<th class="tl pl15" style="width:10%">债权名称</th>
+				<th style="width:8%">债权期限</th>
+				<th style="width:12%">借款金额(¥)</th>
+				<th style="width:12%">还款方式</th>
+				<th style="width:12%">合同</th>
+			</tr>
+			{foreach from="$deals" item="item" key=key}
+			<tr class="bgf7">
+				<td class="tl pl10">{$item.name}</td>
+				<td>{$item.repay_time}</td>
+				<td class="tc">{$item.borrow_amount}</td>
+				<td class="tl lh28">
+					{if $item.loantype eq 1}
+					<span>按月付息到期还本</span>
+					{elseif $item.loantype eq 0}
+					<span>等额本息</span>
+					{elseif $item.loantype eq 2}
+					<span>到期还本息</span>
+					{/if}
+				</td>
+				<td>
+					<a target="_blank" href="{url x="index" r="uc_invest#licai_down_contract" p="id=$item.id&load_id=$item.load_id"}"><span class="C_green1">查看</span></a>
+				</td></a>
+			</tr>
+			{/foreach}
+		</table>
+		<div class="pages">{$pages}</div>
+		{/if}
+		<div class="uc_line"></div>
+		<h3 class="uc_title">出借信息</h3>
+		<ul class="ii_list2">
+			<li>
+				<i>{$deal_log.create_time}</i>
+				<p>出借日期</p>
+			</li>
+			<li>
+				<i>{$deal_log.money}</i>元
+				<p>出借金额</p>
+			</li>
+			<!-- <li>
+				<i>{$deal_log.red}</i>元
+				<p>红包金额</p>
+			</li> -->
+			<li>
+				<i>{$deal_log.red_ecv}</i>元
+				<p>红包</p>
+			</li>
+			<li>
+				<i>{$deal_log.anticipate_money}</i>元
+				<p>预期收益<img src="/new/images/icon_info.png" id="profit" /></p>
+				<div class="dp-n" id="infotext_profit">
+					<p class="ta_c">预期收益=项目收益+募集期收益+加息券收益+奖励加息收益</p>
+					<p>
+						<span class="fl">项目收益：<i class="C_orange">￥{$deal_log.deal_money}</i></span>&nbsp;&nbsp;
+						<span class="fr">募集期收益：<i class="C_orange">￥{$deal_log.raise_money}</i></span>&nbsp;&nbsp;
+						<span class="fr">加息券收益：<i class="C_orange">￥{$deal_log.interestrate_money}</i></span>&nbsp;&nbsp;
+						<span class="fr">奖励加息收益：<i class="C_orange">￥{$deal_log.increase_interest}</i></span>&nbsp;&nbsp;
+					</p>
+				</div>
+			</li>
+			<li>
+				<i>{$deal_log.load_repay_money}</i>元
+				<p>已收收益</p>
+			</li>
+		</ul>
+		{if $deal_log.debts gt 0 && $deal_log.old_deal_id eq 0}
+		<div class="uc_line"></div>
+		<h3 class="uc_title">转让信息</h3>
+		<ul class="ii_list2">
+			<li>
+				<i>{$deal_log.holddays}</i>天
+				<p>持有天数</p>
+			</li>
+			<li>
+				<i>{$deal_log.money}</i>元
+				<p>出借金额</p>
+			</li>
+			<!-- <li>
+				<i>{$deal_log.red}</i>元
+				<p>红包金额</p>
+			</li> -->
+			<li>
+				<i>{$deal_log.fee_money}</i>元
+				<p>手续费</p>
+			</li> 
+			<li>
+				<i>{$deal_log.debts_money}</i>元
+				<p>转让价格</p>
+			</li>
+			<li>
+				<i>{$deal_log.progress}</i>%
+				<p>转让进度</p>
+			</li>
+		</ul>
+		{/if}
+		<div class="uc_line"></div>
+		<h3>回款计划<img src="/new/images/icon_info.png" id="payment" /></h3>
+		<div class="dp-n" id="infotext">
+			<table>
+				<tr>
+					<th width="90">期数</th>
+					<th>回款金额</th>
+				</tr>
+				<tr>
+					<td class="ta_c">1</td>
+					<td class="ta_c">当期项目利息</td>
+				</tr>
+				<tr>
+					<td class="ta_c">2</td>
+					<td class="ta_c">当期项目利息</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="ta_c"> ......</td>
+				</tr><tr>
+					<td class="ta_c">最后一期 </td>
+					<td>项目本金+当期项目利息+募集期利息</td>
+				</tr>
+			</table>
+		</div>
+		{if $day_repay_list}
+		<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="uc_table_list">
+			<tr border="0">
+				<th class="tl pl15" style="width:10%">回款日期</th>
+				<th style="width:8%">应收本息(元)</th>
+				<th style="width:12%">应收利息(元)</th>
+				<th style="width:12%">应收本金(元)</th>
+				<th style="width:12%">状态</th>
+			</tr>
+			{foreach from="$day_repay_list" item="item" key=key}
+			<tr class="bgf7">
+				<td class="tl pl10">{function name="to_date" v=$item.repay_time f="Y-m-d"}</td>
+				<td>{$item.repay_money_format}</td>
+				<td class="tc">{$item.interest_money_format}</td>
+				<td class="tl lh28">{$item.self_money}</td>
+				<td><span class="C_green1">
+					{if $item.has_repay eq 0}
+						<span class="C_red">未还款</span>
+					{else}
+						<span class="C_green1">已还款</span>
+					{/if}
+				</span></td>
+			</tr>
+			{/foreach}
+		</table>
+		{else}
+		<p>回款计划审核中！</p>
+		{/if}
+	</div>
+</div>

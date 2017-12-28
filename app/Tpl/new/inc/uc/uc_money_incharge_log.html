@@ -1,0 +1,69 @@
+<div class="user_top_title bgfb">
+	<a href="{url x="index" r="uc_money#incharge"}">{$LANG.UC_MONEY_INCHARGE}</a>
+	<a href="{url x="index" r="uc_money#incharge_log"}" class="current">{$LANG.UC_MONEY_INCHARGE_LOG}</a>
+</div>
+
+<div class="user_center_con">
+	<div class="blank20"></div>
+	<div class="uc01">
+		{if $list}
+		<div class="sl_wrap">
+			<div class="sl_key">资金账户：</div>
+			<div class="sl_value">
+				<ul>
+					{foreach from="$voucher_deal" item="paging" key=key}
+                		<li><a href="{$paging.url}#deallist" {if $key eq $custody_paging} class="cur"{/if}>{$paging.name}</a></li>
+            		{/foreach}
+					<!-- <li><a href="" class="cur">存管账户</a></li>
+					<li><a href="">普通账户</a></li> -->
+				</ul>
+			</div>
+		</div>
+		<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="uc_table_list">
+			<tr>
+				<th style="width:25%">充值时间</th>
+				<th style="width:25%">充值金额(元)</th>
+				<th style="width:25%">充值方式</th>
+				<th style="width:25%">状态</th>
+			</tr>
+			<!-- {$LANG.INCHARGE_SN} /{$LANG.INCHARGE_MONEY}/{$LANG.PAYMENT_FEE}/{$LANG.PAYMENT_INFO}/{$LANG.PAYMENT_STATUS}/{$LANG.PAYMENT_GEN_TIME}/{$LANG.PAYMENT_PAID_TIME}/{$LANG.OPERATION}/-->
+			{foreach from=$list item=item key=key}
+			<tr class=" {if $key mod 2 eq 1}bgf7{/if}">
+				<td class="tl pl15">
+					{$item.create_time_format}
+				</td>
+				
+				<td >
+					{$item.money_format}
+				</td>
+				
+				<td >
+					{$item.name}&nbsp;
+				</td>
+				
+				<td >
+					{$item.is_paid_format}
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+		<div class="pages">{$pages}</div>
+		{else}
+		<div class="sl_wrap">
+			<div class="sl_key">资金账户：</div>
+			<div class="sl_value">
+				<ul>
+					{foreach from="$voucher_deal" item="paging" key=key}
+                		<li><a href="{$paging.url}#deallist" {if $key eq $custody_paging} class="cur"{/if}>{$paging.name}</a></li>
+            		{/foreach}
+					<!-- <li><a href="" class="cur">存管账户</a></li>
+					<li><a href="">普通账户</a></li> -->
+				</ul>
+			</div>
+		</div>
+		<p>暂无充值记录！</p>
+		{/if}
+	</div>
+</div>
+
+

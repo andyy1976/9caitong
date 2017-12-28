@@ -1,0 +1,45 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>{$activity.title}</div>
+	<!-- 积分商城 -->
+<div>
+    {$activity.content}
+</div>   
+</section>
+<script>
+    //积分兑换失败弹出框
+    function jfExchangeFail(){
+        layer.open({
+            className: 'popup-btn',
+            content: '<h3>提示</h3><p>积分不足</p>',
+            btn: ['赚积分','取消'],
+            yes: function(index){
+                //点击赚积分按钮后跳到每日任务页面
+                window.location.href='{url x="index" r="score#earn_points"}';
+                layer.close(index);
+            }, 
+            no: function(){
+                //点击取消按钮后无需做其他动作
+            }
+        });
+    }
+    //积分兑换成功弹出框
+    function jfExchangeSuccess(){
+        layer.open({
+            className: 'popup-btn',
+            content: '<h3>提示</h3><p>兑换成功</p>',
+            btn: ['查看','确定'],
+            yes: function(index){
+                //点击查看按钮后跳到积分纪录-使用页面
+                window.location.href='{url x="index" r="score#earn_points"}';
+                layer.close(index);
+            }, 
+            no: function(){
+                //点击确定按钮后无需做其他动作
+            }
+        });
+    }
+</script>
+</body>
+</html>

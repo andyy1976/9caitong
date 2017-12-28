@@ -1,0 +1,33 @@
+<div class="FictitiousMoney_list">
+	{if $interestrate_list}
+	<ul id="select_experienceMoney" class="experience">
+		{foreach from=$interestrate_list item="interestrate"}
+		<li id="{$interestrate.id}" money="{$interestrate.money}">
+			<div class="money">
+				<span class="ecv_money">¥<i>{$interestrate.money}</i></span></span></span>
+			</div>
+			<div class="condition">
+				<p>可用标的：体验标</p>
+				<p>有效期：{$interestrate.time}</p>
+			</div>
+			<div class="mark hide"></div>
+		</li>
+		{/foreach}
+	</ul>
+	{else}
+	<div class="noFictitiousMoney ta_c">
+		<img src="/new/images/noFictitiousMoney.png" />
+		<p>暂无可用体验金</p>
+	</div>
+	{/if}
+</div>
+
+
+<div class="blank80"></div>
+<div class="interestrate_operation">
+	<span class="hide" id="selected_money">0</span>
+	<div class="interestrate_btn">
+		<input type="button" value="确定" class="confirm" id="confirm_experienceMoney" />
+		<input type="button" value="取消" class="cancel" id="closeLayer" />
+	</div>
+</div>

@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* public */
+html{ background: #8daef1;}
+.r-img-cen{ width: 87.2%; margin: -.15rem auto 0;}
+.r-img-cen2{ width: 90.93%; margin: 0 auto;}
+.r-img img{ width: 100%;}
+/* regist */
+.r-form{ width: 87.2%; margin: 0 auto; padding-bottom: 1rem; background: #7389f9;}
+.r-form ul{ width: 84%; padding-top: .6rem; margin-left: 8%; overflow: hidden;}
+.r-form li{ width: 100%; margin-bottom: 2rem; float: left; position: relative;}
+.r-form li:last-of-type{ margin: 0;}
+.r-form li span{ width: 20%; line-height: 3rem; float: left; font-size: 1.4rem; color: #fefadf;}
+.r-form li input{ width: 80%; line-height: 1.6rem; padding: .7rem 1rem; float: left; border: none; border-radius: 0; box-sizing: border-box; -webkit-appearance: none; background: #f7f4d5; font-size: 1.4rem;}
+.r-form li i{ width: 7rem; height: 2.6rem; position: absolute; top: .2rem; right: .5rem;}
+.r-form li i img{ width: 100%;}
+.r-form li:last-of-type p{ width: 80%; float: left; margin-left: 20%; position: relative;}
+.r-form li:last-of-type input{ width: 48%;}
+.r-form li:last-of-type a{ width: 46%; height: 3rem; line-height: 3rem; float: right; background: #fc9b0e; border-radius: 4px; border: 1px solid #fc9b0e; text-align: center; font-size: 1.4rem; color: #f7f4d5;}
+.r-form li:last-of-type a.gray{ color: #666; background: #aaa; border-color: #aaa;}
+.r-form li:last-of-type .tip{ position: absolute; left: 1rem; top: -2rem; font-size: 1.4rem; color: #fdda49;}
+.r-btn{ width: 87.2%; margin: 0 auto; background: #7389f9;}
+.r-btn a{ width: 80%; height: 3rem; line-height: 3rem; display: block; margin: 0 auto; background: #fdda49; border: 4px solid #819df3; border-radius: 20px; text-align: center; font-size: 2rem; color: #fc4a25;}
+.r-top2{ margin-top: 1rem;}
+.r-logo{ width: 87.2%; margin: 0 auto;  height: 3.5rem; background: white;}
+.r-logo img{ height: 100%; margin: 0 auto;}
+.r-company{ width: 87.2%; margin: 0 auto; background: #7389f9; padding-bottom: 1.4rem;}
+.r-introduce{ width: 88%; margin: 0 auto; line-height: 2.4rem; font-size: 1.4rem; color: white; text-indent: 2em; word-break: break-all; }
+.r-safe{ width: 87.2%; margin: 0 auto; background: #7389f9; overflow: hidden; padding-bottom: 1.4rem;}
+.r-safe p{ width: 36.85%; float: left; margin: .8rem 3.364% 0;}
+.r-safe span{ width: 50%; line-height: 2.5rem; float: left; font-size: 1.4rem; color: white; margin-top: .5rem;}
+.r-stable span{ margin-left: 5%;}
+.r-stable p{ margin-right: 0;}
+.r-num{ padding-bottom: 0;}
+.r-instructions{ width: 87.2%; line-height: 3rem; margin: 0 auto; text-align: right;}
+.r-instructions a{ padding: .6rem 0 .6rem .6rem; font-size: 1.4rem; color: #7276f4; text-decoration: underline;}
+.r-invest{ width: 87.2%; margin: 0 auto; padding-bottom: 2rem; overflow: hidden;}
+.r-invest p{ width: 34.56%; float: left;}
+.r-invest span{ width: 60%; line-height: 2.6rem; float: left; text-align: center; margin-top: .4rem; font-size: 1.5rem; color: white;}
+.r-invest a{ width: 52.3%; height: 3.2rem; line-height: 3.2rem; float: left; margin: .8rem 0 0 1.4rem; background: #fdda49; border: 3px solid #809df4; border-radius: 18px; text-align: center; font-size: 2rem; color: #fc4a25;}
+#popContainer{ width: 0; height: 0; position: absolute; left: 0; top: 0; background: black; opacity: 0.3; filter:alpha(opacity=30); z-index: 1000000; display: none;}
+#popContent{ width: 91%; /* height: 46.3rem; */ position: absolute; left: 0; top: 0; border-radius: 10px; overflow: hidden; z-index: 1000001; display: none; background: url("../images/pop_bg.png") no-repeat 0 0; background-size: 100% 100%;}
+#closeBtn{ width: 3rem; height: 3rem; background: url("../images/close.png") no-repeat 0 0; background-size: 100% 100%; position: absolute; top: 1rem; right: 1.2rem;}
+.in-box{ width: 72%; margin: 5.6rem auto 0;}
+.in-box p{ font-size: 1.6rem; color: #ffea00; line-height: 1.2;}
+.in-box span{ display: block; font-size: 1.4rem; color: white; margin-bottom: 1.4rem;}
+.in-box a#inBtn{ width: 77%; height: 3rem; display: block; line-height: 3rem; margin: 2rem auto 0; background: #f8ca05; border: 4px solid #5d70bc; border-radius: 18px; text-align: center; font-size: 1.5rem; color: #3256e0; letter-spacing: 4px;}
+
+.banquan{
+	margin-bottom: 1rem;
+}
+.banquan p{
+	text-align: center;
+	margin-bottom: 0.5rem;
+	color: #fff;
+}

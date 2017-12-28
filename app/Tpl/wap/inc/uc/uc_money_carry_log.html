@@ -1,0 +1,85 @@
+<body>
+<section class="container cf">
+    <div class="header"><a href="{url x="index" r="uc_money#bank"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>提现记录</div>
+    <div class="my-invest-title">
+        <p> 
+        {foreach from="$invest" item="vo" key=key}
+            <a href="{$vo.url}" {if $key eq $invest_type}class="active"{/if}>{$vo.name}</a>
+        {/foreach}
+        </p>
+    </div>
+    {if !$list}
+    <div class="pt-coupon-no">
+        <img src="{$TMPL}/images/wap2/pt/10.png"  class="pt-in-false-img pt-coupon-no-img">
+        <h2>这里空空如也！</h2>
+    </div>
+    {else}
+	<!-- 提现记录 -->
+    <div class="carryList">
+    {foreach from = $list item=item key=key}
+    <h3 class="my-re-month">{$key}</h3>
+    <ul class="my-carry-list">
+        {foreach from=$item item=vo}
+        <li {if $vo.status neq 1}class="my-re-unfinished"{/if}>
+            <p class="my-re-time"><span>{$vo.week}</span><span style="font-size: 12px">{$vo.time}</span></p>
+            <p class="my-re-action"><i></i><span>{$vo.status_format}</span><span>{$vo.create_time}</span></p>
+            <p class="my-re-num">-{$vo.money}</p>
+        </li>
+       {/foreach}        
+    </ul>
+    {/foreach}
+    {/if}
+    </div>
+</section>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var invest_type = {$invest_type};
+        $.ajax({
+            type:'POST',
+            url:"{url x="index" r="uc_money#ajaxCarry"}",
+            data:{'invest_type':invest_type},
+            dataType:'json',
+            success:function(msg){
+                console.log(msg);
+                if(parseInt(msg-{$page})>0){
+                  scroll(msg);
+                }
+            }
+        })
+        function scroll(msg){
+            var range = 50;             //距下边界长度/单位px
+            var elemt = 500;            //插入元素高度/单位px           //设置加载最多次数
+            var page = 1;
+            var totalheight = 0; 
+            $(window).scroll(function(){
+                var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+                var invest_type = {$invest_type};
+                totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+                if(($(document).height()-range) <= totalheight) {
+                    page++;
+                    var nums=parseInt((msg/{$page})+1);
+                    if(page<=nums) {
+                        getJSON(page,invest_type);
+                    }                   
+                }
+            });
+        }
+        // 请求数据加载到页面中。。。
+        function getJSON(page,invest_type){
+            page=parseInt(page);
+            $.ajax({
+                type:"POST",
+                url:"{url x="index" r="uc_money#carryList"}",
+                data:{'page':page,'invest_type':invest_type},
+                success :function (str){
+                    var main = $(".carryList");
+                    if(str!='false'){
+                        main.append(str);
+                    }
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

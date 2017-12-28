@@ -1,0 +1,1 @@
+define("new/js/mod/util/FW_Password",["new/js/mod/util/des"],function(e,s){var u=e("new/js/mod/util/des").des;s.FW_Password=function(e,s){return u(escape(s+"%u7396%u8D22%u901A"+e+"%u7406%u8D22"))}});

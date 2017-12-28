@@ -1,0 +1,102 @@
+<div class="user_top_title bgfb">
+	<a class="current">{$page_title}</a>
+</div>
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+
+	<table width="100%" align="center" border="0" cellspacing="1px" class="uc_table_border ta_c">
+		<tr>
+			<td width="25%">
+				<p>账户总资产</p>
+			</td>
+			<td width="25%">
+				<p>
+					<span style="padding-right: 50px">{function name="format_price" v="$money_log.total_money"}</span>
+				</p>
+			</td>
+			<td width="25%">
+				<p>可用余额</p>
+			</td>
+			<td width="25%">
+				<p>
+					<span style="padding-right: 50px">{function name="format_price" v="$money_log.money"}</span>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="25%">
+				<p>在投金额</p>
+			</td>
+			<td width="25%">
+				<p>
+					<span style="padding-right: 50px">{function name="format_price" v="$money_log.invest_money"}</span>
+				</p>
+			</td>
+			<td width="25%">
+				<p>冻结金额</p>
+			</td>
+			<td width="25%">
+				<p>
+					<span style="padding-right: 50px">{function name="format_price" v="$money_log.lock_money"}</span>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="25%">
+				<p>红包</p>
+			</td>
+			<td width="25%">
+				<p>
+					<span style="padding-right: 50px">{function name="format_price" v="$money_log.red_money"}</span>
+				</p>
+			</td>
+			<td width="25%">
+				<p>代金券</p>
+			</td>
+			<td width="25%">
+				<p>
+					<span style="padding-right: 50px">{function name="format_price" v="$money_log.voucher_count"}</span>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="25%">
+				<p>累计出借收益</p>
+			</td>
+			<td width="25%">
+				<p>
+					<span style="padding-right: 50px">{function name="format_price" v="$money_log.invest_total_interest"}</span>
+				</p>
+			</td>
+			<td width="25%">
+				<p>已收收益总计</p>
+			</td>
+			<td width="25%">
+				<p>
+					<span style="padding-right: 50px">{function name="format_price" v="$money_log.load_repay_money"}</span>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="25%">
+				<p>待收收益总计</p>
+			</td>
+			<td width="25%">
+				<p>
+					<span style="padding-right: 50px">{function name="format_price" v="$money_log.load_wait_earnings"}</span>
+				</p>
+			</td>
+			<td width="25%">
+				<p>体验金收益</p>
+			</td>
+			<td width="25%">
+				<p>
+					<span style="padding-right: 50px">{function name="format_price" v="$user_statics.reward_money"}</span>
+				</p>
+			</td>
+		</tr>
+	</table>
+	</div>
+	<div class="blank20"></div>
+</div>

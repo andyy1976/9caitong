@@ -1,0 +1,208 @@
+{include file="inc/iheader.html"} 
+<body>
+<!-- {if !$video}
+<div class="video" loop="true" style="display: block">
+    <video autoplay="autoplay"  class="video_in">
+        <source src="{$TMPL}/video/video.mp4" type="video/webm">
+        <source src="{$TMPL}/video/video.mp4" type="video/mp4">
+    </video>
+    <a href="javascript:void(0)" onclick="skip()"><span class="mark">跳过</span></a>
+</div>
+{/if}
+<style type="text/css">
+.mark{position: fixed;top: 10px;right: 10px;color: #fff;width: 50px;height: 20px;text-align: center;background-color:rgba(0,0,0,0.2);}
+.video{max-width: 1080px;margin: 0 auto}
+.video_in{width:100%;height: 100%}
+</style>
+<script type="text/javascript">
+var video=document.querySelector("video");
+video.addEventListener("ended",function(){
+    $(".container").show();
+    $(".video").hide();
+    pop();
+})
+function skip(){
+    $(".container").show();
+    $(".video").hide();
+    pop();
+}
+</script> -->
+<!-- <section class="container" {if !$video} style="display: none" {/if}> -->
+<style type="text/css">
+    .layui-m-layer0 .layui-m-layerchild{width: 50%;}
+
+</style>
+<section class="container">
+	<!-- 轮播图-banner -->
+    <header>
+    {if $uid}
+    	<!-- <a href="{$wap_cloumn_url}" class="sign">签到</a> -->
+    {else}
+    	<a href="{url x="index" r="user#login"}" class="sign_login">登录/注册</a>
+    {/if}
+    	<div id="banner" class="banner">
+	        <div class="ban-img">
+	            <ul>
+                    {foreach from="$wap_nav" item="adv"}
+	                <li><a href="{$adv.url}"><img src="{$adv.img}"></a></li>
+                    {/foreach}
+	            </ul>
+	        </div>
+	        <div class="ban-btn">
+	            <ul>
+	                <li class="on"></li><li></li>
+	            </ul>
+	        </div>
+	    </div>
+    </header>
+    <!-- 公告-notice -->
+	<div class="notice">
+		<p></p>
+		<div class="notice-list" id="noticeList">
+			<ul>
+            {foreach from=$notice_list item="notice"}
+				<li><a href="{$notice.url}">{$notice.title}</a></li>            
+			{/foreach}	
+			</ul>
+		</div>
+		<a class="more" href="{url x="member" r="uc_set#news"}"></a>
+	</div>
+    {if !$uid && $beginner}
+    <div><a href="{$beginner.url}"><img src="{$beginner.page_path}" style="width: 100%;height: 100px"></a></div>
+    {/if}
+	<!-- 产品圆形展示-circle -->
+	<div class="pro-wrap">
+        {if $user_type neq 1}
+        <a href="javascript:void(0)" onclick="versionSwitching()" class="switch-version switch-version-cg">存管版</a>
+        {/if}
+		<!-- <i><img src="{$TMPL}/images/wap2/index/icon_recommend.png" width="64" height="29"></i> -->
+        <!-- 新手专享 --> 
+        {if $list.is_new}
+        <i><img src="{$TMPL}/images/wap2/index/icon_item_method_1.png" width="93" height="29" ></i>
+        {else}
+        <!-- 专属推荐 -->
+        <i><img src="{$TMPL}/images/wap2/index/icon_item_method_2.png" width="93" height="29"></i>
+        {/if}
+        <!--{if $hd}-->
+        <!--<b><a href="{$hd.url}"><img src="{$hd.img}" width="80" height="80"></a></b>-->
+        <!--{/if}-->
+		<div class="pro-circle">
+			<div class="arch-progress" data-percent="{$list.progress_point}" data-size="200" data-theme="White" data-back="RGBa(242,242,242,1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="4" data-style="Arch"></div>
+		</div>
+		<div class="pro-info">
+        {if $list}
+			<p><span>{$list.rate}</span>%</p>
+            <p>预期年化率</p>
+            <p>{if $list.debts eq 1}{$list.debts_repay_time}{else}{$list.repay_time}{/if}{if $list.repay_time_type eq 1}个月{else}天{/if}<strong style="padding-left: 8px">起投金额 : {$list.min_loan_money}元</strong></p>
+            <a href="{url x="index" r="deal" p="id=$list.id"}" class="pro-btn">{if $list["is_new"]}新人专享{else}立即抢购{/if}</a>
+        {else}
+            <p><span>--</span>%</p>
+            <p>预期年化率</p>
+            <p>--个月</p>
+            <a href="javascript:void(0)" class="pro-btn">{if $list["is_new"]}新人专享{else}立即抢购{/if}</a>
+        {/if}
+		</div>
+	</div>
+	<!-- 四个模块-info-list -->
+    <ul class="info-list cf">
+    {foreach from=$wap_cloumn item="item"}    	
+    	<li><a href="{$item.url}"><p><span>{$item.name}</span><span>{$item.title}</span></p><p><img src="{$item.img}" width="37.2" height="34.7"></p></a></li>
+
+    {/foreach}
+    </ul>
+    <!-- 数据统计-data -->
+    <div class="data">
+		<p class="cash-safe"><span>{$ips.name}</span></p>
+    	<ul class="data-list cf">
+        {foreach from=$statistics item="vo" key="key"}
+            <li><p><span>{$vo.title}</span></p><p><b id="registUser{$key}">{$vo.fake_data}</b></p></li>
+        {/foreach}
+	    </ul>
+	    <p class="risk-tip">市场有风险，出借需谨慎</p>
+        <p class="swipe-up"><i></i>上滑查看更多项目</p>
+    </div>
+    <!-- 导航-footer -->
+    {include file="inc/footer.html"} 
+</section>
+<div id="popBg"></div>
+<div id="popBox">
+	<span id="popClose"><img src="{$TMPL}/images/wap2/index/active/close.png"></span>
+	<a href="{$popup.url}"><img src="{$popup.img}"></a>
+</div>
+<script src="{$TMPL}/js/swipe/zepto.js"></script>
+<script src="{$TMPL}/js/swipe/touch.js"></script>
+<script src="{$TMPL}/js/wap2016.js"></script>
+<script>
+function versionSwitching(){
+    var url = "{url x="index" r="index"}";
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{'version':1,},
+        dataType:'json',
+        success:function(msg){
+            if(msg.status){
+                window.location.href = "https://wapjct.9caitong.com/index.php?PHPSESSID={$PHPSESSID}";
+            }
+
+        }
+
+    })
+    
+}
+{if $version_switching == 1}
+    layer.open({
+        className: 'popup-btn popup-btn-cg',
+        content: '<p>已切换至存管版</p>',
+        shade: 0,
+        //shadeClose: true,
+        time:2
+    });
+{/if}
+function subLogin(){
+    window.location.href = "{url x="index" r="user#login"}&jumpUrl={url x="index" r="index"}";
+}
+function sign(){
+     layer.open({
+        className: 'popup-btn',
+        content: '<h3>提示</h3><p>签到成功，获取100积分</p>',
+        btn: '确认',
+        shadeClose: true,
+        time:2
+    });
+}
+{if $pop == 1}
+    popBox();
+{/if}
+//btn();
+function btn(){
+     //资金托管开通提示：注册成功后，如果没有开户，第一次进入首页时，需要提示去开户。
+    //只在前两次提示，之后不再提示。
+    layer.open({
+        className: 'popup-btn',
+        content: '<h3>提示</h3><p>为保证资金安全，平台资金由海峡银行存管，请先开通存管账户</p>',
+        btn: ['确认', '取消'],
+        shadeClose: true,
+        yes: function(){
+            //点击确认按钮后要做的动作
+            layer.open({content: '确认去开户', time: 1});
+        }, 
+        no: function(){
+            //点击取消按钮后无需做其他动作
+            //这里调用活动弹出层只是为了演示
+            popBox();
+        }
+    });
+}
+/*去掉iphone手机滑动默认行为*/
+$('.data').on('touchmove', function (event) {
+    event.preventDefault();
+});
+;(function($){
+    $('.data').swipeUp(function(){
+        window.location.href = "{url x="index" r="deals"}";
+    })
+})(Zepto)
+</script>
+</body>
+</html>

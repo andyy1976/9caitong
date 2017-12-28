@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html style="background: #edf2f6;">
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="zh-CN">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- 优先使用 IE 最新版本 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 忽略将数字变为电话号码-->
+<meta name="format-detection" content="telephone=no">
+<!--让国产浏览器默认采用高速模式渲染页面-->
+<meta name="renderer" content="webkit">
+<!-- 强制图片显示 -->
+<meta name="imagemode" content="force">
+<!--启用 WebApp 全屏模式-->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- 设置状态栏颜色 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title></title>
+<style type="text/css">
+	body{ margin: 0; padding: 0 }
+	ul{ list-style-type: none; margin: 0; padding: 0;}
+	a{ text-decoration: none; -webkit-tap-highlight-color: transparent;}
+    input,a{ -webkit-appearance: none; appearance: none;}
+    input[disabled]{color:#000;opacity:1; background: none;}
+    .cg-list{ overflow: hidden; margin-top: 10px;}
+    .cg-list li{ width: 96%; padding: 12px 0 12px 4%; float: left; background: #fff; font-size: 16px; border-bottom: 1px solid #e7ebee;}
+    .cg-list li:last-child{ border: 0; }
+    .cg-list span{ width: 21%; height: 30px; line-height: 30px; float: left; padding-right: 14px; color: #13334d; border-right: 1px solid #e7ebee; text-align: right;}
+    .cg-list input{ width: 60%; height: 26px; line-height: 26px; float: left; border: none; padding: 2px 0 2px 14px; font-size: 16px;}
+    .cg-list p{ float: left; line-height: 30px; margin-left: 14px; color: #13334d;}
+    .cg-list-code{ position: relative;}
+    .cg-list-code input{ width: 30%;}
+    .cg-list-code .code-btn{ position: absolute; right: 14px; top: 8px; width: 108px; height: 36px; line-height: 36px; text-align: center; background: #fff; border-radius: 4px; font-size: 14px; color: #da2115; border: 1px solid #da2115;}
+    .cg-list-code .code-btn-gray{ background: #aaa; color: #fff; border-color: #aaa;}
+    .cg-btn{ width: 86%; height: 52px; line-height: 52px; margin: 60px auto 0; background: #da2115; display: block; border-radius: 5px; text-align: center; font-size: 20px; color: #fff; border: 1px solid #da2115;}
+
+    .layui-m-layer0 .popup-btn{ width: 60%; font-size: 15px; border-radius: 8px;}
+    .popup-btn .layui-m-layercont{ padding: 8px 30px 12px;}
+    .popup-btn h3{ border: 0; padding: 0; height: 34px; line-height: 34px; font-weight: bold;}
+    .popup-btn .layui-m-layerbtn{ height: 35px; line-height: 35px; background: none;}
+    .popup-btn .layui-m-layerbtn span{ font-size: 15px;}
+</style>
+</head>
+<body>
+<form>
+	<ul class="cg-list">
+		<li><span>开 户 行</span><input id="bank_name" type="text" disabled="disabled" value="{$bank_name}" /></li>
+		<li><span>银行卡号</span><input id="bank_card" type="text" disabled="disabled" value="{$bank_info.bank_card}" /></li>
+	</ul>
+	<ul class="cg-list">
+		<li><span>预留手机</span><input id="bank_mobile" type="text" disabled="disabled" value="{$bank_info.bank_mobile}" /></li>
+		<li class="cg-list-code"><span>验 证 码</span><input id="sms_code" type="text" placeholder="手机验证码" /><a href="javascript:;" class="code-btn" id="get_regsms_code">59秒后重新获取</a></li>
+	</ul>
+    <input type="hidden" id="seqno" value="{$seqno}"/>
+    <input type="hidden" id="bank_id" value="305"/>
+</form>
+<a href="javascript:;" class="cg-btn">确认</a>
+
+<script type="text/javascript">
+    $("#sms_code").keyup(function(){
+        if($("#sms_code").val().length == 0){
+            $(".cg-btn").css('background','#aaa');
+            $(".cg-btn").css('border','1px solid #aaa');
+            return false;
+        }else{
+            $(".cg-btn").css('background','#da2115');
+            $(".cg-btn").css('border','1px solid #da2115');
+        }
+    });
+
+    var regsiter_vy_time = null;    //定义时间
+    var is_lock_send_vy = false;    //解除锁定
+    var left_rg_time = 0;           //开始时间
+    function left_time_to_send_regvy(){
+        clearTimeout(regsiter_vy_time);
+        if(left_rg_time > 0){
+            regsiter_vy_time = setTimeout(left_time_to_send_regvy,1000);
+            $("#get_regsms_code").html(left_rg_time+"秒后重新获取");
+            $("#get_regsms_code").addClass("code-btn-gray");
+            $("#get_regsms_code").addClass("btn_disable");
+            left_rg_time -- ;
+        }
+        else{
+            is_lock_send_vy = false;
+            $("#get_regsms_code").removeClass("code-btn-gray");
+            $("#get_regsms_code").removeClass("btn_disable");
+            $("#get_regsms_code").html("重新获取验证码");
+            left_rg_time = 0;
+        }
+    }
+
+    $('#get_regsms_code').html('获取验证码');
+    $(".cg-btn").css('background','#aaa');
+    $(".cg-btn").css('border','1px solid #aaa');
+    $("#get_regsms_code").click(function () {
+        if (is_lock_send_vy || $(this).hasClass(".btn_disable")) {
+            return false;
+        }
+        is_lock_send_vy = true;
+        regsmsCode();
+    });
+
+    $(".cg-btn").bind("click", function () {
+        $(".cg-btn").attr("disabled", "disabled");
+        if ($("#sms_code").val().length == 0 || $("#seqno").val().length == 0) {
+            return false;
+        }
+        var load=layer.open({type: 2,shadeClose: false});
+        var ajaxurl = "{url x="index" r="mjn_deal#add_bank"}";
+        var query = new Object();
+        query.bank_code = $.trim($("#bank_name").val());
+        query.cardId = $.trim($("#bank_card").val());
+        query.mobile = $.trim($("#bank_mobile").val());
+        query.sms_code = $.trim($("#sms_code").val());
+        query.businessSeqNo = $.trim($("#seqno").val());
+        $.ajax({
+            url: ajaxurl,
+            data: query,
+            type: "POST",
+            dataType: "json",
+            success: function (result) {
+                if (result.status == 2) {
+                    layer.close(load);
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>' + result.info + '</p>',
+                        shadeClose: true,
+                        time: 2
+                    });
+                    return false;
+                } else {
+                    window.location.href = result.jump;
+                    // layer.open({
+                    //     className: 'popup-btn',
+                    //     content: '<h3>提示</h3><p>' + result.info + '</p>',
+                    //     shadeClose: true,
+                    //     time: 2
+                    // });
+                    // return false;
+                }
+            }
+        });
+    });
+    
+    function regsmsCode() {
+        var query = new Object();
+        query.mobile = $("#bank_mobile").val();
+        query.verify = $.trim($("#verify").val());
+        var ajaxurl = "{url x="index" r="ajax#cg_res_identity_bank_code"}";
+        $.ajax({
+            url:ajaxurl,
+            data:query,
+            type: "POST",
+            dataType: "json",
+            success: function(result){
+                if(result.status==1){
+                    left_rg_time = 60;
+                    left_time_to_send_regvy();
+                    to_send_msg = true;
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<br><p>已将验证码发送到</p><p>'+$("#bank_mobile").val()+'</p><p>请注意查收</p>',
+                        btn: ['确认'],
+                        shadeClose: true,
+                        no: function(){
+                            //点击确认按钮后要做的动作
+                        }
+                    });
+                }else if(result.status==2){
+                    $("#get_regsms_code").css('background','#aaa');
+                    $(".bank-img-code").show();
+                    is_lock_send_vy = false;
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',
+                        shadeClose: true,
+                        time: 2
+                    });
+                    return false;
+                }else{
+                    is_lock_send_vy = false;
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+result.info+'</p>',
+                        shadeClose: true,
+                        time: 2,
+                    });
+                    return false;
+                }
+            },error:function(){
+                is_lock_send_vy = false;
+            }
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>邀请好友抢红包</title>
+<link rel="stylesheet" href="new/activity/P649/css/reset_pc_v=2016.css">
+<link rel="stylesheet" href="new/activity/P649/css/index.css">
+<script src="new/activity/P649/js/jquery-1.6.2.min.js"></script>
+<script src="new/activity/P649/js/layer-v3.0.3/layer/layer.js"></script>
+<script src="new/activity/P649/js/jquery.kxbdmarquee.js"></script>
+</head>
+<body>
+	<div class="ph_top"></div>
+	<div class="ph_but">
+		<div class="ph_ranking">
+			<p class="rank_tit">抢红包次数排行</p>
+				<div class="rank_top">
+					<ul>
+						<li><span class="rank_s">名次</span><span class="pho_num">手机号</span><span class="red_pack">抢红包</span></li>
+					</ul>
+				</div>
+				<div class="rank_but" id="r1">
+					<ul>
+						{foreach from = $datas item='value' key='key'}
+							
+							<li><span class="rank_s">{$key}</span><span class="pho_num">{$value.phone}</span><span class="red_pack">{$value.totaltimes}次</span></li>
+							
+
+						{/foreach}
+					</ul>
+				</div>
+		</div>
+		
+		<div class="reward">
+			<ul class="reward_tit">
+				<li><p class="reward_m">排名</p><p class="reward_j">奖励明细</p><p class="reward_m">排名</p><p class="reward_j">奖励明细</p><p class="reward_m">排名</p><p class="reward_j">奖励明细</p></li>
+			</ul>
+			<ul class="reward_but">
+				<li>
+					<p class="reward_m rew_hei"><span class="rew_num">1</span></p>
+					<p class="reward_j col bor">
+						<img class="ipne1" src="new/activity/P649/images/ipne0.png"/><span class="a">Apple iPhone 8</span>
+					</p>
+					<p class="reward_m rew_hei"><span class="rew_num">2</span></p>
+					<p class="reward_j col">
+						<img class="ipne2" src="new/activity/P649/images/ipne2.png"/>
+						<span>Apple iPad mini 4</span>
+					</p>
+					<p class="reward_m rew_hei"><span class="rew_num">3</span></p>
+					<p class="reward_j col  bor">
+						<img class="ipne3" src="new/activity/P649/images/ipne3.png"/>
+						<span>小米净化器pro</span>
+					</p>
+				</li>
+				<li>
+					<p class="reward_m rew_hei"><span class="rew_num">4</span></p>
+					<p class="reward_j col">
+						<img class="ipne4" src="new/activity/P649/images/ipne4.png"/>
+						<span>无线充电果汁机</span>
+					</p>
+					<p class="reward_m rew_hei"><span class="rew_num">5</span></p>
+					<p class="reward_j col  bor">
+						<img class="ipne5" src="new/activity/P649/images/ipne5.png"/>
+						<span>飞利浦剃须刀</span>
+					</p>
+					<p class="reward_m rew_hei"><span class="rew_num">6</span></p>
+					<p class="reward_j col">
+						<img class="ipne6" src="new/activity/P649/images/ipne6.png"/>
+						<span>便携干衣干鞋器</span>
+					</p>
+				</li>
+				<li>
+					<p class="reward_m rew_hei"><span class="rew_num">7</span></p>
+					<p class="reward_j col bor">
+						<img class="ipne7" src="new/activity/P649/images/ipne7.png"/>
+						<span>乐扣储物罐五件</span>
+					</p>
+					<p class="reward_m rew_hei"><span class="rew_num">8</span></p>
+					<p class="reward_j col">
+						<img class="ipne8" src="new/activity/P649/images/ipne8.png"/>
+						<span>小米移动电源</span>
+					</p>
+					<p class="reward_m rew_hei"><span class="rew_num">9</span></p>
+					<p class="reward_j col bor">
+						<img class="ipne9" src="new/activity/P649/images/ipne9.png"/>
+						<span>电吹风</span>
+					</p>
+				</li>
+				<li>
+					<p class="reward_m rew_hei"><span class="rew_num">10</span></p>
+					<p class="reward_j col">
+						<img class="ipne10" src="new/activity/P649/images/ipne10.png"/>
+						<span>迪士尼搪瓷碗五件</span>
+					</p>
+
+					<p class="reward_m rew_hei"><span class="rew_num rew_mm">11-20</span></p>
+					<p class="reward_j col">
+						<span class="rewjj">玖财通定制u盘</span>
+					</p>
+					<p class="reward_m rew_hei"><span class="rew_num noc"></span></p>
+					<p class="reward_j col"></p>
+				</li>
+			</ul>
+		</div>
+		<p class="but_tit">活动说明：</p>
+		<ol class="yaoyou" >
+			<li>活动时间：2017年9月26日12:00:00---2017年10月11日12:00:00</li>
+			<li>活动期间本人及被邀请人（仅限活动期间被邀请人）抢红包次数总排名前二十获得相应奖励；</li>
+			<li>用户所抢“平台红包”次数为获奖依据，即：抢红包时页面提醒为“平台红包”即为有效数据；其他提示不计入获奖数据中，抢陌生人红包均为平台红包；</li>
+			<li>当抢红包次数相同时，邀请人数多者排名靠前；</li>
+			<li>当抢红包次数及邀请人数均相同时，总抢金额高者（本人及被邀请人总抢红包金额）排名靠前；</li>
+			<li>活动期间总抢红包次数≥200次，且邀友人数≥20人有获奖资格，总抢红包次数低于200次或邀友人数低于20人无奖励；</li>
+			<li>参与流程
+				<p><span class="xl">(1)</span><span class="nr">邀请人：打开APP-----发现页面-----点击“天天免费抢红包”----点击右下角添加好友；左下角查询所抢金额，随时可提现。</span></p>
+				<p><span class="xl">(2)</span><span class="nr">被邀请人：通过邀请人链接----下载APP---注册----点击发现页面----点击“天天免费抢红包”----参与抢发红包。免费发红包，所抢红包随时可提现。</span></p>
+			</li>
+			<li>活动结束15个工作日内客服会主动与获奖用户联系，请用户保持电话畅通。</li>
+			<li>活动结束15个工作日未接到通知者请主动与平台联系，活动结束20个工作日未接通用户，视为放弃领奖。</li>
+			<li>涉嫌违规操作者将取消获奖资格，本活动最终解释权归玖财通所有。</li>
+		</ol>
+		<div class="fot_d">
+			<p class="er"><img src="new/activity/P649/images/er_47.png"/></p>
+			<p class="fot">下载APP参与活动</p>
+		</div>
+	</div>
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?5623bea3186fae9dd701aa9ee659e031";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
+$(function(){
+    $("#r1").kxbdMarquee({
+        isMarquee:true,
+        direction:"up",
+        isEqual:false,
+        scrollDelay:40
+    });
+});
+</script>
+</body>
+</html>

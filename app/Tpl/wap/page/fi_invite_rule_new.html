@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html style="background: #21a2e1">
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="zh-CN">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- 优先使用 IE 最新版本 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 忽略将数字变为电话号码-->
+<meta name="format-detection" content="telephone=no">
+<!--让国产浏览器默认采用高速模式渲染页面-->
+<meta name="renderer" content="webkit">
+<!-- 强制图片显示 -->
+<meta name="imagemode" content="force">
+<!--启用 WebApp 全屏模式-->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- 设置状态栏颜色 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>{$cate_title}</title>
+<link rel="stylesheet" type="text/css" href="{$TMPL}/css/invite/reset_ph_v=2016.css">
+<link rel="stylesheet" type="text/css" href="{$TMPL}/css/invite/wap_fi_v_2017.css">
+<script src="{$TMPL}/js/invite/jquery-1.11.3.min.js"></script>
+<script src="{$TMPL}/js/invite/fastclick.js"></script>
+<script>
+    //处理移动端click事件300ms延迟
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+</script>
+</head>
+<body>
+<?php if(!es_session::get('MachineInfo')) {?>
+        <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/fi/invite/icon_back.png" width="10" height="18"></a>活动规则</div>
+    <?php } ?>
+
+<!-- 新版邀请好友活动规则 -->
+<img src="{$TMPL}/images/wap2/fi/invite/bg_rule_title.png" class="fi_rule_title">
+<div class="fi_rule_box">
+    <p>现金豪礼</p>
+    <dl><dt>1、</dt><dd>被邀请人在受邀15日内成功注册并投资，邀请人可根据被邀请人首次投资金额获得相应的现金红包奖励；</dd></dl>
+    <dl><dt>2、</dt><dd>现金奖以现金红包的形式自动发放到您账户-优惠券中；</dd></dl>
+    <dl><dt>3、</dt><dd>现金红包可直接提取到账户余额，之后进行提现。</dd></dl>
+</div>
+<div class="fi_rule_box">
+    <p>红包豪礼</p>
+    <dl><dt>1、</dt><dd>每个自然月邀请满2人可得30元出借红包，邀请满4人可再得70元出借红包；</dd></dl>
+    <dl><dt>2、</dt><dd>被邀请人需首次投资满1000元，视邀请人邀请成功；</dd></dl>
+    <dl><dt>3、</dt><dd>奖励规则每个自然月重新计算。</dd></dl>
+    <dl><dt>注：</dt><dd>现金红包有效期为7天，出借红包有效期为30天，逾期失效。</dd></dl>
+</div>
+<script src="{$TMPL}/js/invite/flexible.js"></script>
+</body>
+</html>

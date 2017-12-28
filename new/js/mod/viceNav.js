@@ -1,0 +1,1 @@
+define("new/js/mod/viceNav",["$"],function(n){var i=n("$");i(".navWrap").hover(function(){i(this).find("ul").stop().animate({width:"toggle"})})});

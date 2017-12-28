@@ -1,0 +1,180 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	color: #333;
+	font-family: 'Microsoft YaHei';
+	position: relative;
+	background-color: #ffffff;
+}
+.header img{
+	display: block;
+	width: 2.52rem;
+	height: 0.9rem;
+	margin: 0.48rem auto;
+}
+.header p,.page_note_cun p{
+	width: 90%;
+	color: #333;
+	line-height: 0.6rem;
+	font-size: 0.36rem;
+	margin: 0 auto 0.45rem auto;
+	text-indent: 0.8rem;
+}
+.content_cirle{
+	position: relative;
+	font-size: 0.36rem;
+	margin-top: 0.7rem;
+}
+.content_cirle img{
+	display: block;
+	width: 100%;
+}
+.content_cirle p{
+	position: absolute;
+	display:block;
+	color: #333;
+}
+.content_cirle .note_1{
+	top: 4.4rem;
+	left: 0.5rem;
+	width: 3rem;
+	text-align: center;
+}
+.content_cirle .note_2{
+	top: 1.7rem;
+	left: 0.5rem;
+	width: 2.5rem;
+	text-align: center;
+}
+.content_cirle .note_3{
+	top: 0.2rem;
+	left: 0;right: 0;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+.content_cirle .note_4{
+	top: 1.7rem;
+	right: 0.5rem;
+	width: 2.5rem;
+	text-align: center;
+}
+.content_cirle .note_5{
+	top: 3.95rem;
+	right: 0.5rem;
+	width: 3.4rem;
+	text-align: center;
+}
+.page_note_cun{
+	margin-top: 0.5rem;
+}
+.page_note_list,.page_note_list li,.joint_logo_list{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 100%
+}
+.page_note_list li{
+	margin-top: 0.4rem;
+}
+.page_note_list span{
+	display: inline-block;
+	width: 4.6rem;
+	height: 0.7rem;
+	line-height: 0.7rem;
+	text-align: center;
+	font-size: 0.36rem;
+	color: #fff;
+	background-color: #5b8ed4;
+	border-radius: 0.2rem;
+	margin-left: 0.55rem;
+}
+.page_time_line{
+	position: relative;
+	font-size: 0;
+	margin-top: 0.48rem;
+}
+.page_time_line div{
+	font-size: 0.36rem;
+	display: inline-block;
+	width: 50%;
+}
+.page_time_line div img,.page_time_line div span{
+	display: block;
+	width: 100%;
+}
+.page_time_line section{
+	position: relative;
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+}
+.page_time_line .page_time_line_bg{
+	position: absolute;
+	display: block;
+	width: 1.57rem;
+	height: 15.42rem;
+	left: 0;right: 0;
+	margin: 0 auto;
+	z-index: 99;
+}
+.page_time_right,.page_time_right section{
+	position: relative;
+	height: 15rem;
+}
+.page_time_right{
+	position: absolute;
+	top: 0;
+}
+.left_img_1{
+	margin: 0.7rem 0 0.6rem 0;
+}
+.left_img_2{
+	margin: 1.6rem 0 0.9rem 0;
+}
+.left_img_3{
+	margin: 0.9rem 0 0.9rem 0;
+}
+.right_font_1{
+	margin: 1.2rem 0 0.9rem 0;
+}
+.right_font_2{
+	margin: 2rem 0 1.9rem 0;
+}
+.right_font_3{
+	margin: 0.8rem 0 0.9rem 0;
+}
+.joint_logo_list{
+	margin: 0.58rem 0 1rem 0;
+}
+.joint_logo_list img{
+	display: inline-block;
+	width: 2.3rem;
+	height: 0.8rem;
+	margin-left: 0.35rem
+}
+.container{
+	display: block;
+	width: 100%;
+	margin: 0.4rem auto 0 auto;
+}
+
+.page_title{
+	display: inline-block;
+	width: 2.9rem;
+	height: 1rem;
+	color: #4270ae;
+	margin: 0;
+	font-size: 0.48rem;
+	line-height: 1rem;
+	text-align: center;
+	border-bottom: 0.02rem solid #4270ae;
+}
+.botttom_line{
+	border-bottom: 0.01rem dotted #7f7f7f;
+}
+.zhan_w{
+	display: block;
+	height: 0.8rem;
+}

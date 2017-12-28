@@ -1,0 +1,22 @@
+{if $interestrate_list}
+<ul id="select_interestrate" class="interestrate_list {if $interestrate.yes}isselect{/if}">
+{foreach from=$interestrate_list item="interestrate"}
+	<li id="{$interestrate.id}" {if $interestrate.yes}class="isselect"{/if}>
+		<span class="icon_selected {if $interestrate.yes}show{/if}"></span>
+		<span class="ecv_money"><span id="ecv_money">{$interestrate.money}</span>元</span>
+		<span class="ecv_cont">{$interestrate.cont}</span>
+		<span class="ecv_time">{$interestrate.yes}有效期：{$interestrate.time}</span>
+	</li>
+{/foreach}
+</ul>
+{else}
+<p class="ta_c">暂无可用的代金券！</p>
+{/if}
+<div class="blank80"></div>
+<div class="interestrate_operation">
+	<div class="interestrate_info"><span>可使用：￥<i id="max_interestrate">200</i></span><span>已选择：￥<i id="selected_money">0</i></span></div>
+	<div class="interestrate_btn">
+		<input type="button" value="确定" class="confirm" id="interestrate_select" />
+		<input type="button" value="取消" class="cancel" id="interestrate_cancel" />
+	</div>
+</div>

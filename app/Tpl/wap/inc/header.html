@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>{$cate_title}</title>
+    {include file="inc/common/load_css_js.html"}
+	<!-- <script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script> -->
+    <!-- <script type="text/javascript">
+    {if $jump_get_out.index eq "iosToHomePage"}
+    window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToSetHome"});
+    {elseif $jump_get_out.index eq "AndroidToHomePage" }
+    window.jiucaitong.jumpToSetHome("当前账号在其他设备上登录，请注意账户安全。您已被迫下线，是否重新登录？");
+    {elseif $jump_get_out.index eq "ToHomePage" }
+    $(function(){
+        layer.open({
+            className: 'popup-btn',
+            content: "<h3>提示</h3><p>{$session_data}</p>",
+            btn: ['重新登录', '取消'],
+            shadeClose: true,
+            yes: function(){
+                //点击确认按钮后要做的动作
+               parent.location.href = "{url x="index" r="user#login"}";
+            }, 
+            no: function(){
+                //点击取消按钮后要做的动作
+                window.location.href = "{url x="index" r="index"}";
+                
+            }
+        });
+    })
+    {/if}
+    </script> -->
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?eded88072fc6d76a42e21a68b8a1e759";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>

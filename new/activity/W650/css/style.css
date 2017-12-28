@@ -1,0 +1,184 @@
+html {
+  background: #19e37d;
+}
+.container {
+  max-width: 750px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.container img {
+  width: 100%;
+}
+.content {
+  width: 14.2rem;
+  height: 15.26rem;
+  margin: 0.62rem auto 0;
+  background: url(../images/bg_steps.png);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.speed {
+  width: 11.26rem;
+  height: 11.26rem;
+  margin: 1.22rem auto 0;
+  background: url(../images/bg_speed.png);
+  background-size: 100% 100%;
+  position: relative;
+}
+.pointer {
+  width: 1.1rem;
+  height: 3.94rem;
+  background: url(../images/icon_pointer.png);
+  background-size: 100% 100%;
+  position: absolute;
+  left: 5.08rem;
+  top: 2.24rem;
+  transform: rotate(240deg);
+  -webkit-transform: rotate(240deg);
+  transform-origin: 50% 3.4rem;
+  -webkit-transform-origin: 50% 3.4rem;
+  transition: all .6s;
+  -webkit-transition: all .8s;
+}
+.pointer-rotate {
+  transform: rotate(480deg);
+}
+.statistics {
+  width: 5.22rem;
+  height: 2.1rem;
+  position: absolute;
+  left: 3.02rem;
+  top: 8.16rem;
+  border: 1px dotted #f7f770;
+  border-radius: 12px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.statistics p {
+  color: #f7f770;
+}
+.statistics p span {
+  color: #fff;
+}
+.statistics p:first-child {
+  line-height: 0.96rem;
+  margin-top: 0.16rem;
+  font-size: 0.56rem;
+}
+.statistics p:last-child {
+  line-height: 0.82rem;
+  font-size: 0.48rem;
+}
+.statistics p:last-child span {
+  padding: 0 2px;
+}
+.btns a {
+  width: 5.82rem;
+  height: 1.76rem;
+  line-height: 1.76rem;
+  float: left;
+  margin-left: 0.84rem;
+  background: #f7f770;
+  text-align: center;
+  font-size: 0.52rem;
+  color: #989845;
+  border-radius: 4px;
+}
+.rule {
+  width: 92%;
+  margin: 0.56rem auto 0;
+  padding-bottom: 0.88rem;
+  overflow: hidden;
+}
+.rule p {
+  line-height: 0.96rem;
+  font-size: 0.48rem;
+  color: #0f7f47;
+}
+.pop {
+  width: 12rem;
+  border-radius: 10px;
+}
+.pop .layui-layer-btn {
+  padding: 0;
+}
+.pop .layui-layer-btn0 {
+  width: 6.36rem;
+  height: 2rem;
+  line-height: 2rem;
+  padding: 0;
+  margin: 0.4rem auto 1.14rem;
+  text-align: center;
+  display: block;
+  background: #fff;
+  border: 1px solid #16bd69;
+  font-size: 0.8rem;
+  color: #16bd69;
+  border-radius: 10px;
+}
+.pop-open img {
+  width: 12rem;
+  height: 12.96rem;
+}
+.pop-open .open-steps {
+  line-height: 1.5rem;
+  font-size: 0.56rem;
+  color: #16bd69;
+  text-align: center;
+}
+.pop-open .open-steps span {
+  color: #ff5050;
+}
+.pop-top {
+  height: 4.84rem;
+  background: #29dc81;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  z-index: 1;
+}
+.pop-top img {
+  width: 5.24rem;
+  height: 5.24rem;
+  position: absolute;
+  left: 3.38rem;
+  top: -3.02rem;
+  z-index: 2;
+}
+.pop-top p {
+  text-align: center;
+  color: #fff;
+}
+.pop-top p:nth-of-type(1) {
+  padding-top: 2.4rem;
+  line-height: 1.24rem;
+  font-size: 0.8rem;
+}
+.pop-top p:last-child {
+  line-height: 1rem;
+  font-size: 0.64rem;
+}
+.pop-state .layui-layer-btn0 {
+  width: 5.44rem;
+  height: 1.68rem;
+  line-height: 1.68rem;
+  padding: 0;
+  margin: 0.58rem auto;
+  font-size: 0.64rem;
+}
+.pop .layui-layer-setwin {
+  width: 1.4rem;
+  height: 2.12rem;
+  top: 7.76rem;
+  left: 5.3rem;
+  z-index: 1;
+}
+.pop .layui-layer-setwin .layui-layer-close2 {
+  width: 100%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  background: url(../images/btn_close.png);
+  background-size: 100% 100%;
+  z-index: 1;
+}
+

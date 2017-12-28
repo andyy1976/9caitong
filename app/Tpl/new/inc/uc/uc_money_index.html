@@ -1,0 +1,115 @@
+<div class="user_top_title bgfb">
+	<a class="current">资金明细</a>
+</div>
+<div class="user_center_con">
+	<div class="blank20"></div>
+	<div class="uc01 ofh">
+		<ul class="equal2 ofh">
+			<li class="fl c1">
+				<span class="tmoney">
+					可用余额(元)
+					<i>{function name="format_price" value=$total_Pcord}</i>
+				</span>
+				<p>
+					<span>存管账户:{function name="format_price" value=$Pcrecharge_money}</span>
+					<span>普通账户:{function name="format_price" value=$Pcordinary}</span>
+				</p>
+			</li>
+			<li class="fr c2">
+				<span class="tmoney">
+					冻结资金(元)
+					<i>{function name="format_price" v=$Total_freeze}</i>
+					<img src="/new/images/icon_info.png" id="Frozen" />
+					<div class="dp-n" id="infotext_frozen">
+						<p class="ta_c">冻结资金=提现冻结资金+出借冻结资金</p>
+					</div>
+				</span>
+				<p>
+					<span>存管账户:{function name="format_price" value=$cun_statics}</span>
+					<span>普通账户:{function name="format_price" v=$p_statics}</span>
+				</p>
+			</li>
+		</ul>
+	</div>
+	<div class="uc_line"></div>
+	<div class="uc01">
+		{if $list}
+		<div class="sl_wrap">
+			<div class="sl_key">资金账户：</div>
+			<div class="sl_value">
+				<ul>
+					 {foreach from="$voucher_deal" item="paging" key=key}
+               			 <li><a href="{$paging.url}#deallist" {if $key eq $fund_paging} class="cur"{/if}>{$paging.name}</a></li>
+            		{/foreach}
+				</ul>
+			</div>
+		</div>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc_table_list">
+	        <tbody>
+	            <tr border="0">
+					<th style="width:16%">时间</th>
+					<th class="pl15 tl" style="width:16%">交易类型</th>
+					<th>说明</th>
+					{if $t=="point" || $t=="score"}
+					<th style="width:12%">操作积分</th>
+					{else}
+					<th style="width:12%">操作金额(元)</th>
+					{/if}
+					<th style="width:14%">{if $t eq 'lock_money'}冻结资金{else}可用余额{/if}(元)</th>
+				</tr>
+				{foreach from=$list item=log key=key name="log"}
+				 <tr class="{if $key mod 2 eq 1}bgf7{/if}">
+					<td>{function name="to_date" v=$log.create_time}</td>
+					<td>{if $log.type==1}充值
+                        {elseif $log.type==2}投标成功
+                        {elseif $log.type==3}标的放款
+                        {elseif $log.type==4}偿还本息
+                        {elseif $log.type==5}{if $log.brief}{$log.brief}{elseif $log.memo=="还本还息"}还本还息{else}还息{/if}
+                        {elseif $log.type==8}申请提现
+                        {elseif $log.type==9}申请提现
+						{elseif $log.type==29}虚拟货币转化
+                        {elseif $log.type==47}获得体验金收益
+                        {elseif $log.type==58}募集期收益
+						{elseif $log.type==59}奖励加息收益
+						{elseif $log.type==60}加息卡收益
+						{elseif $log.type==61}现金红包
+                        {elseif $log.type==62}转让成功
+                        {elseif $log.type==48}自动投标
+                        {elseif $log.type==70}企业代偿
+                        {/if}
+                        
+                        </td>
+					<td class="ta_l aC_blue">{$log.memo}</td>
+					<!--{if $t=="point"}
+					<td>{if $log.point gt 0}<span class="C_green1">+{$log.point}</span>{elseif $log.point eq 0}{$log.point}{else}<span class="C_red">{$log.point}</span>{/if}</td>
+					<td> {$log.account_point}</td>
+					{elseif $t=="score"}
+					<td>{if $log.score gt 0}<span class="C_green1">+{$log.score}</span>{elseif $log.score eq 0}{$log.score}{else}<span class="C_red">{$log.score}</span>{/if}</td>
+					<td> {$log.account_score}</td>
+					{elseif $t=="lock_money"}
+					<td>{if $log.lock_money gt 0}<span class="C_green1">+{$log.lock_money}</span>{elseif $log.lock_money eq 0}{$log.lock_money}{else}<span class="C_red">{$log.lock_money}</span>{/if}</td>
+					<td> {$log.account_lock_money}</td>
+					{else}-->
+					<td>{if $log.money gt 0}<span class="C_red">+{function name="format_price" v=$log.money}</span>{elseif $log.money eq 0}{function name="format_price" v=$log.money}{else}<span class="C_green1">{function name="format_price" v=$log.money}</span>{/if}</td>
+					<td>{$log.account_money}</td>
+				<!--	{/if}-->
+				</tr>
+				{/foreach}
+			</tbody>
+		</table>
+		<div class="pages">{$pages}</div>
+		{else}
+		<div class="sl_wrap">
+			<div class="sl_key">资金账户：</div>
+			<div class="sl_value">
+				<ul>
+					 {foreach from="$voucher_deal" item="paging" key=key}
+               			 <li><a href="{$paging.url}#deallist" {if $key eq $fund_paging} class="cur"{/if}>{$paging.name}</a></li>
+            		{/foreach}
+				</ul>
+			</div>
+		</div>
+		<p class="ta_c">暂无记录</p>
+		{/if}
+	</div>
+</div>

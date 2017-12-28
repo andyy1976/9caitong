@@ -1,0 +1,21 @@
+<div class="user_top_title bgfb">
+	<a class="current">资金存管</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<p class="ta_c"><img src="/new/images/img_cg.png" class="w100b" /></p>
+		<form ajax_url="{url x="index" r="user#user_reg_settingpwd"}" id="page_reg_stepthree" autocomplete="off" class="cg_account_success ta_c">
+			<span class="reminder ta_c">存管账户开通成功</span>
+			<div class="blank10"></div>
+			<!--<p class="ta_c fs_16">存管虚拟账户账号：<span class="fs_16 c C_orange">{$accno}</span></p>-->
+			<div class="blank10"></div>
+			<p class="ta_c">为保障账户安全请跳转到宜宾银行存管页面设置交易密码</p>
+			<div class="blank20"></div>
+			<!--<a href="javascript:void(0);" class="btn_blue ta_c" id="dep_settingpaypwd">设置交易密码</a>-->
+			<a href="{url x="index" r="uc_depository_paypassword#pc_setpaypassword"}" class="btn_blue ta_c">设置交易密码</a>
+			<a href="{url x="index" r="uc_center"}" class="reg_jump_link ta_c w100b dp-b mg-tb20 fs_16" id="user_reg_ellipsispaypwd">跳过设置</a>
+		</form>
+	</div>
+</div>

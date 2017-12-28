@@ -1,0 +1,48 @@
+<body>
+<section class="container container2 cf">
+    <!-- 我的账户 -->
+    <div class="my-data">
+        <div class="sale-center">
+            <a href="{url x="index" r="salesman#login_out"}">
+                {if $header}
+                    <img src="{$header}" width="36" height="36" class="my-head">
+                {else}
+                    <img src="{$TMPL}/images/wap2/my/head_img.png" width="36" height="36" class="my-head">
+                {/if}
+                    <p class="my-user-info">{if $user_data.real_name}{$user_data.real_name}{else}{function name="hideMobile" v="$user_data.mobile"}{/if}，欢迎回来！</p>
+            </a>
+        </div>
+        <div class="sale-tip">
+        <ul class="my-money">
+            <li><p>{$user_list}</p><p>本月新客户</p></li>
+            <li><p>{$month_money}</p><p>本月业绩</p></li>
+            <li><p>{$total_money}</p><p>历史总业绩</p></li>            
+        </ul>
+    </div>
+    </div>
+    <style type="text/css">
+    .sale-center{margin: 20px 0;}
+    .sale-tip{height: 40px;margin: 100px 0 50px 0px}
+    .my-money li{color: #fff}
+    .sale-list{margin-top: 10px;width: 100%}
+    .sale-list li{width:15%;float: left;text-align: center;height: 55px;display: block;margin: 40px 9%}
+    .sale-list li span{margin-top:5px;color: #000;display: block;font-size: 12px;}
+    .sale-list img{height:55px;width:100%}
+    .sale-waring{text-align: center;height: 40px;padding-top: 40px;color: red}
+    .sale-tips{text-align: center;height: 40px;color: red}
+    </style>
+    <div>
+        <ul class="sale-list">
+            <li><a href="{url x="index" r="salesman#notice"}"><img src="{$TMPL}/images/wap2/sale/icon_01.png"><span>公告</span></a></li>
+            <li><a href="{url x="index" r="salesman#achievement"}"><img src="{$TMPL}/images/wap2/sale/icon_02.png"><span>本月业绩</span></a></li>
+            <li><a href="{url x="index" r="salesman#total_performance"}"><img src="{$TMPL}/images/wap2/sale/icon_03.png"><span>总业绩</span></a></li>
+            <li><a href="{url x="index" r="salesman#card"}"><img src="{$TMPL}/images/wap2/sale/icon_04.png"><span>名片</span></a></li>
+            <li><a href="{url x="index" r="salesman#sale_user"}"><img src="{$TMPL}/images/wap2/sale/icon_05.png"><span>本月用户</span></a></li>
+            <li><a href="{url x="index" r="salesman#total_user"}"><img src="{$TMPL}/images/wap2/sale/icon_06.png"><span>所有用户</span></a></li>
+        </ul>
+    </div>
+    <div class="sale-waring" style="clear: both">内测版本，如果发现问题请及时反馈</div>
+    <div class="sale-tips" style="clear: both">本系统所有业绩，均不包含虚拟货币</div>
+</section>
+</body>
+</html>

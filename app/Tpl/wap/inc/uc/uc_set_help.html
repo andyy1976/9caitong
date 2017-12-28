@@ -1,0 +1,31 @@
+<body>
+<section class="container cf">
+    <!--<?php var_dump($_SESSION);?>-->
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>帮助中心</div>
+<?php } ?>
+    <!-- 设置-帮助中心 -->
+    <div style="width: 60%;margin: 0 auto;"><a href="javascript:void(0)" onclick="{$jump.popTel}()"><p class="my-service"><img src="{$TMPL}/images/wap2/my/icon_service.png" width="48" height="39"></p>
+    <p class="my-service-tel">拨打客服电话</p>
+    <p class="my-service-time">工作日8:30-22:00，周末9:00-22:00</p></a></div>
+    
+    <ul class="my-service-list">
+    {foreach from=$help_list item=help}
+        <li><a href="{$help.url}&title={$help.title}"><span>{$help.title}</span><i></i></a></li>
+    {/foreach}        
+    </ul>
+</section>
+<script type="text/javascript">
+function iosToPopTel(){
+    window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToPopTel","content":"400-650-8706"}); //返回项目列表
+}
+function androidToPopTel(){
+    window.jiucaitong.FromH5ToJump("jumpToPopTel","400-650-8706");  //返回项目列表
+}
+function popTel(){
+    window.location.href="tel:400-650-8706";
+}
+
+</script>
+</body>
+</html>

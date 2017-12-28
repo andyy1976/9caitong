@@ -1,0 +1,101 @@
+/*共用部分*/
+html,body,ul li{margin: 0px;padding: 0px;font-family: arial,"微软雅黑";}
+body{background: #fee6a0;font-size: 10px;}
+h2.tit{font-size:1.2em; margin-left:1.5em;font-weight: normal;}
+ol li{list-style: decimal;}
+ul li{list-style: none;}
+.mar_l{margin-left: -0.4em;}
+.of_h{overflow: hidden;}
+.ta_c{text-align: center;}
+.lh_200{line-height: 200%;}
+.fs_15{font-size: 1.5em;}
+.fs_14{font-size: 1.4em;}
+.fs_16{font-size: 1.6em;}
+.cl_f{color: #FFFFFF;}
+.w35{width: 35%;}
+.w40{width: 40%;}
+.w90{width: 90%;}
+.w98{width: 98%;}
+.w100{width: 100%;}
+.bg1{background: #e66551;}
+.bg2{background: #f14f4a;}
+.blank60{height: 0px;}
+/*banner样式*/
+.banner img{
+    width: 100%;
+    display: block;
+}
+/*介绍样式*/
+.present{
+    background: #de361c;
+    padding: 1em 0 0;
+}
+.present hr{
+    height: 0.1em;
+    background-color: #ea8070;
+    border: none;
+}
+.presentmin{
+    margin-left: -0.6em;
+}
+/*表格*/
+.table{
+    border-collapse:collapse;
+    margin: 0.5em;
+    font-size: 1.5em;
+    border-collapse:collapse;
+}
+.table td, .table th{
+    border: 0.1em solid #f14f4a;
+}
+.table th{
+    width: 10%;
+}
+.table .border-r{
+    border-right:0.1em solid #fee6a0; 
+}
+.table td{
+    background: #faeecd;
+}
+.table .td-float{
+    display: block;
+    text-align: left;
+    margin: 0 1em;
+}
+/*例子样式*/
+.example{
+    background: #f45e5f;
+    margin: 8em auto 0;
+    border-radius: 1em;
+}
+.example-top{
+    margin-top: -6em;
+}
+.examplemin{
+    margin: 0 auto;
+    font-size: 1.5em;
+    color: #fff;
+    padding-bottom: 1em;
+}
+.examplemin img{
+    width: 35%;
+    display: block;
+    margin: 0 auto;
+}
+.colors{
+    color: #fff60d;
+}
+/*活动说明样式*/
+.explain{
+    background: #f9d889;
+    margin: 4em auto;
+    border-radius: 1em;
+	margin-bottom:-4em;
+}
+.explain-top{
+    margin-top: -10em;
+}
+.explain ol{
+    padding-bottom: 1em;
+}
+

@@ -1,0 +1,27 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>提现结果</div>
+	<!-- 提现结果-成功 -->
+    <p class="my-result-icon"><img src="{$TMPL}/images/wap2/my/icon_success.png" width="59.5" height="59.5"></p>
+    <p class="my-result-title">恭喜，提现申请成功</p>
+    <div class="my-result-money"><p>提现金额</p><span>{$withdraw_info.money}元</span></div>
+    <a href="{url x="index" r="uc_money#bank"}" class="my-re-result-btn">确定</a>
+</section>
+<script>
+    //错误提示弹出框
+    //真实姓名错误：实名认证校验失败
+    //身份证号错误：实名认证校验失败
+    //用户名格式不正确：用户名格式不正确
+    //用户名已存在：该用户名已存在
+    function myRealNameTips(){
+        layer.open({
+            className: 'popup-btn',
+            content: '<h3>提示</h3><p>实名认证校验失败</p>',
+            btn: '确定',
+            time: 2
+        });
+    }
+</script>
+</body>
+</html>

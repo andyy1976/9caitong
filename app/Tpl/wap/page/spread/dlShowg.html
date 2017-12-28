@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="new/spread/dlShowg/css/style.css"/>
+			<script type="text/javascript" src="new/spread/dlShowa/js/jquery-1.11.3.min.js"></script>
+	</head>
+	<body class="sc">
+		<img src="new/spread/dlShowg/images/banner3.png" class="w100 dp_b" />
+		<div class="w100 bg_1">			
+			<div class="w80 mg_at cl_f bg_1 fs_16 lh_200">
+				已成功领取了<span class="fw_b cl_3">84442元体验金</span>+<span class="fw_b cl_3">50元代金券</span>，请直接下载APP查看。<br />
+				点击<a href="#" class="cl_1">体验金使用攻略</a>查看如何使用。
+			</div>
+		</div>
+		<img src="new/spread/dlShowg/images/banner4.png" class="w100 dp_b" />
+		<a id="down" href="javascript:;"><img src="new/spread/dlShowg/images/btn_appdown.png" class="w80 dp_b mg_at" /></a>
+		<div class="blank2"></div>
+		<div class="wrap1 w90 mg_at of_h bd_1 fs_10">
+			<p class="ta_c fs_16 cl_2">完成任意一笔投资，再送爱奇艺黄金会员！</p>
+			<a href="{url x="index" r="deals#index"}"><img src="new/spread/dlShowg/images/btn_vip2.png" class="w90 mg_at dp_b" /></a>
+		</div>
+		<div class="blank5"></div>
+	</body>
+</html>
+<script>
+$(document).ready(function(){
+	var mobile;
+    var ua = navigator.userAgent;
+    var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+    isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+    isAndroid = ua.match(/(Android)\s+([\d.]+)/);
+    if(isIphone != null){
+    	$("#down").attr("href","itms-apps://itunes.apple.com/us/app/jiu-cai-tong-yu-qi-nian-hua/id1101080761?mt=8");
+    }else if(isAndroid != null){
+    	$("#down").attr("href","https://d.jiuchengjr.com/jiucaitong.apk");
+    }
+	
+});
+</script>

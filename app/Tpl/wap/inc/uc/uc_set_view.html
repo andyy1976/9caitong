@@ -1,0 +1,32 @@
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>{$cate.title}</div>
+<?php } ?>
+	<!-- 设置-帮助中心-列表 -->
+    <div class="my-help-list">
+       {foreach from=$list item=help}
+        <dl>
+            <dt>{$help.title}<i></i></dt>
+            <dd>
+                {$help.content}
+            </dd>
+        </dl>
+    {/foreach}
+    </div>
+</section>
+<script>
+    //帮助中心显示隐藏
+    var aDt = document.getElementsByClassName('my-help-list')[0].getElementsByTagName('dt');
+    for(var i=0;i<aDt.length;i++){
+        aDt[i].onclick = function(){
+            if(this.parentNode.className == ''){
+                this.parentNode.className = 'show';
+            }else if(this.parentNode.className == 'show'){
+                this.parentNode.className = '';
+            }
+        }
+    }
+</script>
+</body>
+</html>

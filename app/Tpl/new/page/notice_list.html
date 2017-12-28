@@ -1,0 +1,47 @@
+{include file="inc/nheader.html"} 
+<div class="wraper bgf8 ofh">
+	<div class="center">
+		<div class="blank80"></div>
+		<div class="left_menu fl w263 ofh">
+			{if $list}
+			<ul>
+				{foreach from=$cate_list item="cate_item" key=key}
+				{if $cate_item.type_id eq 0 || $cate_item.type_id eq 2 ||$cate_item.type_id eq 4}
+				<li><a href="{$cate_item.url}" {if $cate_item.id eq $cate.id}class="current"{/if}>{$cate_item.title}</a></li>
+				{/if}
+				{/foreach}
+			</ul>
+			{else}
+				<div class="ta_c">{$page_title}{$LANG.NO_ARTICLE}</div>
+			{/if}
+		</div>
+		<div class="isl_wrap fr w879 ofh bgff">
+			<h2 class="column_title">{$cate.title}</h2>
+			<div class="pd30 ofh">
+				<ul class="news_list">
+					{foreach from=$list item=item}
+					<li>
+						<a href="{$item.url}" title="{$item.title}">{function name="msubstr" v=$item.title s=0 e=46}</a>
+						<span class="f_r">{function name="to_date" v=$item.update_time f="Y-m-d"}</span>
+					</li>
+					{/foreach}
+				</ul>
+				<div class="blank20"></div>
+				<div class="pages">{$pages}</div>
+			</div>
+		</div>
+	</div>
+	<div class="blank50"></div>
+</div>
+{include file="inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+			});
+			seajs.use(["/new/js/page/common"])
+		</script>
+</body>
+</html>

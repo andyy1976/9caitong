@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <link rel="stylesheet" href="new/activity/W645/css/reset_ph_v=2016.css">
+    <script src="new/activity/W645/js/jquery-1.11.3.min.js"></script>
+    <script src="new/activity/W645/js/layer/layer.js"></script>
+    <link rel="stylesheet" href="new/activity/W645/css/style.css">
+    <script src="new/activity/W645/js/fastclick.js"></script>
+    <script>
+        //处理移动端click事件300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+</head>
+<body>
+<div class="success">
+	<h3>恭喜，注册成功</h3>
+	<p>请下载玖财通APP,和好友一起天天抢免</p>
+	<p>费抢红包！新手福利已派发带您的账户，请下</p>
+	<p>载玖财通APP查看，或者关注微信公众号。</p>
+	<a href="javascript:;" class="btn-download">下载APP</a>
+	<img src="new/activity/W645/images/ewm.png" />
+</div>
+</body>
+</html>

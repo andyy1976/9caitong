@@ -1,0 +1,6 @@
+{foreach from=$intererate_card item=card}
+        <li>
+                <div class="my-coupon-l"><span>{$card.rate}</span>%</div>
+                <div class="my-coupon-r"><p>{$card.use_condition}个月项目</p><p>{$card.interest_time}</p><p>{function name="to_date" value="$card.begin_time" f="Y-m-d"}至{function name="to_date" value="$card.end_time" f="Y-m-d"}</p></div>
+            </li>
+    {/foreach}

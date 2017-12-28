@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>{$cate_title}</title>
+    <link rel="stylesheet" type="text/css" href="new/find/css/reset_ph_v=2016.css">
+    <script src="new/find/js/jquery-1.11.3.min.js"></script>
+    <script src="new/find/js/layer/layer.js"></script>
+    <script src="new/find/js/TouchSlide.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="new/find/css/wap_mall_v_2017.css">
+    <script src="new/find/js/fastclick.js"></script>
+	<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })();
+    </script>
+</head>
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+
+    <div class="header"><a href="{url x="index" r="find"}" class="back-icon"><img src="new/find/images/wap2/my/icon_back.png" width="10" height="18"></a><!-- <a href="javascript:window.close();" class="close-icon"><img src="new/find/images/wap2/mall/icon_close.png" width="20" height="18"></a> --> 积分商城<a href="{url x="index" r="uc_set#help" p="id=$help_id"}" class="i-help"><img src="{$TMPL}/images/wap2/my/i-help.png" width="20" height="20"></a></div>    
+<?php } ?> 
+    <!-- 积分商城 -->
+	<div id="banner" class="banner">
+        <div class="ban-img">
+            <ul>
+			{foreach from="$banner_list" item="list"}
+                <li><a href="{if $list.is_virtual eq 1 }{url x="index" r="find#mall_details_coupon" p="id=$list.id"}{else}{url x="index" r="find#mall_details_goods" p="id=$list.id"}{/if}"><img src="{$list.banner_img}"></a></li>
+			{/foreach} 
+            </ul> 
+        </div>
+        <div class="ban-btn">
+            <ul>
+                <li class="on"></li><li></li>
+            </ul>
+        </div>
+    </div>
+    <ul class="nav">
+		{foreach from="$shortcut_list" item="shortcut" }
+    	<li>
+    		<a href="javascript:;">
+    			<img src="{$shortcut.img}" />
+    			<p>{$shortcut.name}{if $shortcut.type eq 3}<span>{$score}</span>{/if}</p>
+    		</a>
+    	</li>
+		{/foreach}
+    </ul>
+    <div class="list list-fictitious">
+	{foreach from="$module_list" key="key" item="items"}
+    	<div class="list-title">{$items.name}</div>
+		{if $items.banner}
+		<div id="banner{$key}" class="banner">
+			<div class="ban-img">
+				<ul>
+					{foreach from="$items.banner" item="list"}
+					<li><a href="{if $list.is_virtual eq 1 }{url x="index" r="find#mall_details_coupon" p="id=$list.id"}{else}{url x="index" r="find#mall_details_goods" p="id=$list.id"}{/if}"><img src="{$list.banner_img}"></a></li>
+					{/foreach}
+				</ul>
+			</div>
+			<div class="ban-btn">
+				<ul>
+					<li class="on"></li><li></li>
+				</ul>
+			</div>
+		</div>
+		{/if}
+    	<ul class="list-box cf">
+		{foreach from="$items.goods" key="key" item="first"}
+    		<li>
+				{if $first.is_virtual eq 1}
+    			<a href="{url x="index" r="find#mall_details_coupon" p="id=$first.id"}" class="list-bg"><img src="{$first.img}" /></a>
+				{else}
+				<a href="{url x="index" r="find#mall_details_goods" p="id=$first.id"}" class="list-bg"><img src="{$first.img}" /></a>
+				{/if} 
+    			<p class="list-name">{$first.sub_name}</p>
+    			<p class="list-num"><span><b>{$first.score}</b>积分</span>{if $first.is_vip eq 1}&nbsp;&nbsp;&nbsp;&nbsp; 会员:<font color="blue">{$first.Consumer_integration}积分</font>{elseif $first.discount_score}<del>{$first.discount_score}积分</del>{/if}</p>
+    		</li>
+		{/foreach}
+ 
+    	</ul>
+    	<div class="list-more">
+    		<a href="javascript:;"><span>更多</span></a>
+    	</div>
+	{/foreach}
+    </div>
+    <p class="disclaimer">{if $type eq 'Android'}{else}*所有奖品和活动均与苹果公司无关{/if}</p>
+    <a href="#banner" class="to-top"></a>
+</section>
+<script>
+$(function(){
+    $(".list-box").each(function(index, el) {
+		var $length = $(this).children('li').length;
+        var $liHeight = $(this).find('li').innerHeight();
+    	//var onOff = true;
+    	if($length > 4){
+    		$(this).addClass('list-box-height');
+    		$(this).next('.list-more').show();
+            $(this).css('height',$liHeight*2);
+    	}
+	});
+});
+	//banner轮播
+	{if $banner_list} 
+		TouchSlide({ 
+			slideCell:"#banner",
+			titCell:".ban-btn ul",
+			mainCell:".ban-img ul", 
+			effect:"leftLoop", 
+			interTime:"4000",
+			delayTime:"500",
+			autoPage:true,
+			autoPlay:true
+		});
+	{/if}
+	$(function(){
+		var arr = eval({$module_list_json});
+		for(var i=0;i<arr.length;i++){
+			if(arr[i]['banner']) {
+				TouchSlide({
+					slideCell: "#banner" + i,
+					titCell: ".ban-btn ul",
+					mainCell: ".ban-img ul",
+					effect: "leftLoop",
+					interTime: "4000",
+					delayTime: "500",
+					autoPage: true,
+					autoPlay: true
+				});
+			}
+		}
+	})
+    /*function controlNumber(list){
+    	var $length = list.find('li').length;
+        var $liHeight = list.find('li').innerHeight();
+    	//var onOff = true;
+    	if($length > 4){
+    		list.addClass('list-box-height');
+    		list.parent().find('.list-more').show();
+            list.find('ul').css('height',$liHeight*2);
+            alert(1)
+    	}
+     	
+    }*/
+	
+
+	$('.list-more').click(function(){
+        var $length = $(this).prev().find('li').length;
+        var $liHeight = $(this).prev().find('li').innerHeight();
+		if($(this).find('span').hasClass("hide")){
+			$(this).prev().addClass('list-box-height');
+            $(this).prev().css('height',$liHeight*2);
+			$(this).find('span').removeClass('hide');
+			$(this).find('span').html('更多');
+		}else{
+			$(this).prev().removeClass('list-box-height');
+            $(this).prev().css('height',Math.ceil($length/2) * $liHeight);
+			$(this).find('span').addClass('hide');
+			$(this).find('span').html('收起');
+		}
+	});
+	$(".nav li").click(function(){
+		var i = $(this).index();//当前索引值
+		var arr = eval({$shortcut_list_json});
+		{$jump.ToProductList}(arr[i]['url']);
+	})
+	function ToProductList(url){
+        window.location.href = url;
+    }
+    function iosToProductList(url){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jifenRecoder","url":url});
+    }
+    function androidToProductList(url){
+         window.jiucaitong.FromH5ToJump("jifenRecoder",url);  //返回项目列表
+    }
+</script>
+</body>
+</html>

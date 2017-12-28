@@ -1,0 +1,34 @@
+<div class="user_top_title bgfb">
+	<a class="current">实名认证</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<form ajax_url="{url x="index" r="credit#credit_save"}" method="post" id="uploadCreditForm_{$credit.type}" name="uploadCreditForm_{$credit.type}">
+		<table cellpadding="5" cellspacing="0" border="0"  class="uc_table_form">
+			<tbody>
+				<tr>
+					<td class="ta_r">{if $user_type eq 1}法人姓名{else}真实姓名{/if}：</td>
+					<td><input type="text" id="uc_realname" class="uc_input input_onfocus_shadow" value="{$user_info.real_name}" placeholder="请输入您的真实姓名" /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="ta_r">身份证号</td>
+					<td><input type="text" id="uc_IDcard" value="{$user_info.idno}" class="uc_input input_onfocus_shadow" placeholder="请输入您的身份证号" maxlength="18" /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input type="hidden" id="credit_type" value="{$credit.type}" name="type" />
+						<input type="hidden" id="is_ajax" value="1" name="is_ajax" />
+			            <input type="button" value="提交审核" class="uc_submit_blue" id="sub_btn_credit_id" />
+					</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		</form>
+	</div>
+</div>

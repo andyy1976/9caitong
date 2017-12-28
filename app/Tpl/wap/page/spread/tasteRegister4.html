@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册就送84442体验金+50元代金券</title>
+		<script src="new/spread/tasteRegister4/js/jquery-1.11.3.min.js"></script>
+   <script src="new/spread/tasteRegister4/js/fastclick.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="new/spread/tasteRegister4/css/style.css"/>
+	</head>
+	<body class="zc">
+		<img src="new/spread/tasteRegister4/images/banner1.png" class="w100 dp_b" />
+		<p class="bn_a ta_c fs_16"><a href="{url x="index" r="find#W635"}">体验金使用攻略</a></p>
+		<img src="new/spread/tasteRegister4/images/banner2.png" class="w100 dp_b" />
+		<ul class="reg w80 mg_at of_h">
+			<li class="bg_f bd-rd_l bd-rd_r"><span class="icon"><img src="new/spread/tasteRegister4/images/iocn_phone.png" class="w50" /></span><input type="text" name="username" placeholder="请输入手机号码" maxlength="11" class="ipt w80" /></li>
+			<li class="bg_f bd-rd_l bd-rd_r"><span class="icon"><img src="new/spread/tasteRegister4/images/iocn_pwd.png" class="w50" /></span><input type="password" name="password" placeholder="6-16位数字字母组合，无特殊字符" class="ipt w80" /></li>
+			<li class="bd-rd_l"><span class="icon"><img src="new/spread/tasteRegister4/images/iocn_code.png" class="w50" /></span><input type="text" id="codeNum" placeholder="请输入验证码" class="ipt f_l w40 bd-rd_r" /><img src="{$APP_ROOT}/verify.php?w=84&h=35&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=84&h=35&rand='+ Math.random();" style="padding-left: 40px;" /></li>
+			<li class="bd-rd_l"><span class="icon"><img src="new/spread/tasteRegister4/images/iocn_phone_code.png" class="w50" /></span><input type="text" name="phoneCode" placeholder="短信验证码" class="ipt f_l w40 bd-rd_r" /><span id="getCode" class="getCode f_r ta_c fs_16">获取验证码</span></li>
+			<li><b style="padding-left: 120px;" id="error_html" class="tip"></b></li>
+			<li><a href="javascript:;" onclick="doRegister();"><img src="new/spread/tasteRegister4/images/btn_reg.png" class="w100" /></a></li>
+		</ul>
+		
+		<div class="wrap1 w90 mg_at of_h bd_1">
+			<p class="ta_c fs_16 cl_1">完成任意一笔投资，再送爱奇艺黄金会员！</p>
+			<a href="{url x="index" r="deals#index"}"><img src="new/spread/tasteRegister4/images/btn_vip.png" class="w90 mg_at dp_b" /></a>
+		</div>
+		<div class="blank2"></div>
+		<div class="w90 mg_at">
+			<span class="bd_1 cl_f ta_c dp_ib fs_20 note">注</span>
+			<div class="blank2"></div>
+			<ul class="cl_f fs_16 lh_200">
+				<li>1、客户首次真实投资任意金额就可获得爱奇艺黄金会员。限量1000份，先到先得，送完即止！</li>
+				<li>2、所有奖品于投资完成之后领取：爱奇艺会员奖励于活动结束后7个工作日内由客服联系发放，请务必填写真实电话号码注册。</li>
+				<li>3、真实金额投资，不包含红包、代金券、体验金等。</li>
+				<li>4、法律允许范围内，玖财通保留最终解释权。</li>
+			</ul>
+		</div>
+		<img src="new/spread/tasteRegister4/images/img1.png" class="w100 dp_b" />
+		<div class="ta_c bg_2 lh_200 pd_lr_20">
+			理财有风险，投资需谨慎<br />
+			北京玖承资产管理有限公司 京ICP备 13051110号-4
+		</div>
+	</body>
+</html>
+<script>
+var last_times = 0; //倒计时时间 单位S
+var static_countdowns_times = 60;//倒计时开始时间
+function countdown() {
+	$("#getCode").css("background-color", "#aaa");
+	if (0 >= last_times) {
+		$("#getCode").css("background-color", "#FFCC33");
+		$("#getCode").html('获取验证码');
+		return;
+	}
+	str_text = last_times--;
+	str_text += '秒后重试';
+	$('#getCode').html(str_text);
+	setTimeout("countdown()", 1000);
+}
+
+function check_form(username, password,re_username,imgCode) {
+	
+	var pattern = /^1[34578]\d{9}$/;
+	var match = /^(?![^0-9]+$)(?![^a-zA-Z]+$).+$/;
+	if (username.length == 0){
+		$("#error_html").html('请输入手机号');
+		return false;
+	}
+	if (!pattern.test(username)) {
+		$("#error_html").html('手机号格式不正确');
+		return false;
+	}
+	if (password.length == 0) {
+		$("#error_html").html('请输入密码');
+		return false;
+	}
+	if (password.length < 6) {
+		$("#error_html").html('密码应为6-16位数字字母组合');
+		return false;
+	}
+	if (!match.test(password)) {
+		$("#error_html").html("密码应为6-16位数字字母组合");
+		return false;
+	}
+	if(username == re_username) {
+		$("#error_html").html('邀请码不能填写自己');
+		return false;
+	}
+	if(re_username && !pattern.test(re_username)){
+		$("#error_html").html('邀请码不存在');
+		return false;
+	}
+	if (imgCode == ""){
+		$("#error_html").html("请输入图形验证码");
+		return false;
+	}
+	
+	$("#error_html").html("");
+	return true;
+}
+
+$("#getCode").click(function () {
+	$("#error_html").html('');
+	if (0 >= last_times) {
+		var username = $('input[name=username]').val();
+		var password = $('input[name=password]').val();
+		var re_username = $('input[name=re_username]').val();
+		var imgCode = $('#codeNum').val();
+		var check_re = check_form(username, password,re_username,imgCode);
+		if (check_re){
+			$.ajax({
+				url:  "index.php?ctl=ajax&act=send_phone_verifycode_one",
+				data: {'user_mobile':username,'Verifycode':imgCode},
+				type: 'post',
+				dataType: 'json',
+				success: function(re){
+					if(re.status == 0){
+						$("#error_html").html(re.info);
+						return false;
+					}else{
+						$("#error_html").html(re.info);
+						last_times = static_countdowns_times;
+						countdown()
+					}
+				}
+			})
+		}
+	} else {
+		$("#error_html").html('请勿多次点击');
+	}
+})
+
+function doRegister(){
+	var username = $('input[name=username]').val();
+	var password = $('input[name=password]').val();
+	var re_username = $('input[name=re_username]').val();
+	var phoneCode = $('input[name=phoneCode]').val();
+	var imgCode = $('#codeNum').val();
+	var check_re = check_form(username, password,re_username,imgCode);
+	if(check_re == true && phoneCode == '') $("#error_html").html('请输入手机验证码');
+	if(check_re && phoneCode){
+		$.ajax({
+			url:  "index.php?ctl=user&act=doregister",
+			data: {'referer':re_username,'mobile':username,'user_pwd':password,'sms_code':phoneCode,'user_name':'w'+username},
+			type: 'post',
+			dataType: 'json',
+			success: function(re){
+				if(re.status == 1){
+					//跳转
+					{if $pid eq ''}
+						window.location.href="{url x="index" r="spread#dlShowa"}";
+						{else}
+						window.location.href="/index.php?ctl=spread&act={$pid}";
+						{/if}
+				}else{
+					$("#error_html").html(re.info);
+					return false;
+				}
+			}
+		})
+	}
+}
+function jump_top(){
+	$('html,body').animate({scrollTop: '400px'}, 800);
+}
+</script>

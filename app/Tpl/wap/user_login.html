@@ -1,0 +1,278 @@
+{include file="inc/header.html"} 
+<body>
+    <section class="container cf">
+        <div class="rl-header"><?php if(!$_SESSION['sdf212user_info']['user_name']){?><a href="{url x="index" r="index"}" class="close-icon"><?php } ?><img src="{$TMPL}/images/wap2/rl/icon_close.png" width="14" height="14"></a></div>
+        <!-- 登录 -->
+        <form method="post" action="{url x="index" r="user#dologin"}" name="page_login_form">
+            <ul class="rl-list cf">
+                <li class="rl-tel"><i></i><input type="tel" id="login-phone" name="phone" placeholder="手机号" value="{$mobile}"  maxlength="11"></li>
+                <li class="rl-pwd"><i></i><input type="password" id="login-password" name="user_pwd" placeholder="6-16位密码" maxlength="16"><b class="rl-eye"></b></li>
+                {if $count gte 2}
+                <li class="rl-yzm"><i></i><input type="text" id="Jverify"  maxlength="4" placeholder="验证码"><img src="{$APP_ROOT}/verify.php?w=89&h=44&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img" title="看不清楚？换一张" width="76" height="30" class="rl-yzm-img"></li>
+                {/if}
+            </ul>
+            <p class="rl-forget-pwd"><a href="{url x="index" r="user#getpassword"}">忘记密码</a></p>
+            <a href="javascript:;" class="rl-btn rl-btn-gray" id="user-login-submit">登录</a>
+            <a href="{url x="index" r="user#register"}" class="rl-btn-login"><span>免费注册得礼包</span></a>
+        </form>
+    </section>
+    <script>
+    //密码明文密文切换
+    $(function(){
+        var $onOff = true;
+        $('.rl-eye').click(function(){
+            if($onOff){
+                $(this).addClass('rl-eye-open').siblings().attr('type','text');
+            }else{
+                $(this).removeClass('rl-eye-open').siblings().attr('type','password');
+            }
+            $onOff = !$onOff;
+        })
+    })
+    //对获取按钮状态控制
+    $("#login-phone").keyup(function(){
+        var password = $.trim($("#login-password").val());
+        var mobile = $.trim($("#login-phone").val());
+        if(password.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if(mobile.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if({$count} >= 2){
+            if($.trim($("#Jverify").val()).length == 0){
+                $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+                return false;
+            }else{
+                $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+            }       
+        }else{
+            $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+        }
+    })
+    $("#login-password").keyup(function(){
+        var password = $.trim($("#login-password").val());
+        var mobile = $.trim($("#login-phone").val());
+        if(password.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if(mobile.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if({$count} >= 2){
+            if($.trim($("#Jverify").val()).length == 0){
+                $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+                return false;
+            }else{
+                $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+            }       
+        }else{
+            $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+        }
+    })
+    if({$count} >= 2){
+        var mobile = $.trim($("#login-phone").val());
+        $("#Jverify").keyup(function(){
+            if(mobile.length == 0){
+                $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+                return false;
+            }else if($.trim($("#Jverify").val()).length == 0){
+                $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+                return false;
+            }else if($("#login-password").val().length == 0){
+                $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+                return false;
+            }else{
+                $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+            }
+
+        })
+        
+    }
+    //登录弹出框
+    //请输入正确的手机号码：请输入正确的手机号码
+    //手机号码未注册：该账户不存在
+    //密码错误：密码错误
+    var is_lock_user_login = false; 
+    $(document).ready(function(){  
+        $("#user-login-submit").click(function(){
+            var password = $.trim($("#login-password").val());
+            var mobile = $.trim($("#login-phone").val());
+            if(password.length == 0 || mobile.length == 0){
+                return false;
+            }
+            if({$count} >= 2){
+            	if($.trim($("#Jverify").val()).length == 0){
+            		return false;
+            	}
+            }
+            checkUserLogin();
+        });
+    });
+    function checkUserLogin(){
+        if($.trim($("#login-phone").val()).length == 0)
+        {
+            return false;
+        }
+        var phone = $("#login-phone").val() ;
+        if(!(/^1[3|4|5|7|8]\d{9}$/.test(phone))){
+            layer.open({
+                className: 'popup-btn',
+                content: '<h3>提示</h3><p>请输入正确的手机号码</p>', 
+                shadeClose: true,
+                time: 2
+            });
+            return false; 
+        }
+        if($("#login-password").val().length < 6 || $("#login-password").val().length > 16){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>密码错误</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                $("#old_pwd").val("");
+                $("#old_pwd").focus();
+                 return false;
+            }
+        if({$count} >= 2){
+            if($("#Jverify").val().length < 4){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>图文验证码错误</p>', 
+                    shadeClose: true,
+                    time: 2
+                });
+                return false; 
+            }
+        }
+        Login();
+    }
+    function Login(){
+        var ajaxurl = "{url x="index" r="user#dologin"}";        
+        var phone = $("#login-phone").val() ;
+        var user_pwd = FW_Password($("#login-password").val());
+        if(!(/^1[3|4|5|7|8]\d{9}$/.test(phone))){
+            layer.open({
+                className: 'popup-btn',
+                content: '<h3>提示</h3><p>请输入正确的手机号码</p>', 
+                shadeClose: true,
+                time: 2
+            });
+            return false; 
+        }
+        if({$count} >= 2){
+            if($("#Jverify").val() == ""){
+               layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>请输入图形验证码</p>', 
+                    shadeClose: true,
+                    time: 2
+                });
+                return false; 
+            }else if($("#Jverify").val().length < 4){
+            	layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>验证码格式不正确</p>', 
+                    shadeClose: true,
+                    time: 2
+                });
+                return false; 
+            }else{
+                 var verify =  $("#Jverify").val();
+            }
+        }
+        var load=layer.open({type: 2,shadeClose: false});
+        var query = new Object();
+        query.mobile = phone;
+        query.user_pwd = user_pwd;
+        query.verify = verify;
+        query.ajax = 1;
+        query.jump_url = "{$jump_url}";
+        $.ajax({ 
+            url: ajaxurl,
+            dataType: "json",
+            data:query,
+            type: "POST",
+            success: function(ajaxobj){
+                if(ajaxobj.status==0)
+                {
+                    layer.close(load);
+                    if($("#Jverify_img").length > 0)
+                        $("#Jverify_img").attr("src",'{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random());
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>'+ajaxobj.info+'</p>',
+                        shadeClose: true,
+                        time:2,
+                        end: function(){
+                            //点击确认按钮后要做的动作
+                            location.reload(); 
+                        },
+                    });
+                                                
+                }else{
+                    layer.close(load);
+                    var integrate = $("<span id='integrate'>"+ajaxobj.data+"</span>");
+                    $("body").append(integrate);
+                    update_page_user_tip();
+                    $("#integrate").remove();               
+
+                    if (ajaxobj.status == 1) {
+                        is_lock_user_login = false;
+                        if (ajaxobj.jump != '') 
+                            location.href = ajaxobj.jump;
+                        else 
+                            location.reload();
+                    }else if(ajaxobj.status == 2){
+                        layer.close(load);
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>'+ajaxobj.info+'</p>',
+                            btn: ['确认', '取消'],
+                            shadeClose: true,
+                            yes: function(){
+                                //点击确认按钮后要做的动作
+                                window.location.href = "{url x="index" r="uc_center#identity"}";
+                            }, 
+                            no: function(){
+                                //点击取消按钮后要做的动作
+                                location.reload();
+                            }
+                        });
+                    }   
+                    else{
+                        layer.close(load);
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>'+ajaxobj.info+'</p>',
+                            shadeClose: true,
+                            time: 2
+                        });
+                    }
+                }
+            },
+            error:function(ajaxobj)
+            {
+                layer.close(load);
+                is_lock_user_login = false;
+            }
+        });        
+    }
+    function update_page_user_tip()
+    {
+        var ajaxurl = APP_ROOT+"/index.php?ctl=ajax&act=update_user_tip";
+        $.ajax({ 
+            url: ajaxurl,
+            type: "POST",
+            success: function(ajaxobj){
+                $("#user_head_tip").html(ajaxobj);
+            },
+            error:function(ajaxobj)
+            {
+            }
+        }); 
+    }
+</script>
+</body>
+</html>

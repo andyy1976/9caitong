@@ -1,0 +1,512 @@
+{include file="inc/header.html"} 
+<body>
+    <section class="container cf">
+        <div class="rl-header"><a href="javascript:history.go(-1)" class="close-icon"><img src="{$TMPL}/images/wap2/rl/icon_close.png" width="14" height="14"></a></div>
+        <!-- 注册 -->
+        <form id="signup-user-form">
+            <ul class="rl-list cf">
+                <li class="rl-tel"><i></i><input type="tel" id="settings-mobile"  maxlength="11" placeholder="请输入手机号"></li>
+                <li class="rl-pwd"><i></i><input type="password" id="settings-password" maxlength="16" placeholder="6-16位数字或字母组合"><b class="rl-eye"></b></li>
+                <li class="rl-yzm" style="display: none;"><i></i><input type="text" id="smsverify"  maxlength="4"  placeholder="验证码"><img src="{$APP_ROOT}/verify.php?w=89&h=44&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img" title="看不清楚？换一张" width="76" height="30" class="rl-yzm-img"></li>
+
+                <li class="rl-code"><i></i><input type="tel" id="mobile_code"  maxlength="6" placeholder="短信验证码"><a href="javascript:;" id="get_regsms_code" class="rl-code-btn rl-code-gray"></a></li>
+                <li class="rl-invite"><i></i><input type="tel" maxlength="11" id="request_code" {if $code}value="{$code}"{/if}placeholder="邀请码（非必填）"></li>
+            </ul>
+            <p class="rl-protocol"><input type="checkbox" id="agreement" name="agreement" value="0" tabindex="4" checked="checked" /><a href="{url x="index" r="user#agreement"}">同意<span>《注册协议》</span></a></p>
+            <a href="javascript:;" class="rl-btn rl-btn-gray" id="register_submit">注册</a>
+            <a href="{url x="index" r="user#login"}" class="rl-btn-login">登录</a>
+        </form>
+    </section>
+    <script>
+    //密码明文密文切换
+    $(function(){
+        $('#get_regsms_code').html('获取验证码');
+        var $onOff = true;
+        $('.rl-eye').click(function(){
+            if($onOff){
+                $(this).addClass('rl-eye-open').siblings().attr('type','text');
+            }else{
+                $(this).removeClass('rl-eye-open').siblings().attr('type','password');
+            }
+            $onOff = !$onOff;
+        })
+    })    
+    var regsiter_vy_time = null;    //定义时间
+    var is_lock_send_vy = false;    //解除锁定
+    var left_rg_time = 0;           //开始时间
+    function left_time_to_send_regvy(){
+        clearTimeout(regsiter_vy_time);
+        if(left_rg_time > 0){
+            regsiter_vy_time = setTimeout(left_time_to_send_regvy,1000);
+            $("#get_regsms_code").css('background','#aaa');
+            $("#get_regsms_code").html(left_rg_time+"秒后重新获取");
+            $("#get_regsms_code").addClass("btn_disable");
+            left_rg_time -- ;
+        }
+        else{
+            is_lock_send_vy = false;
+            $("#get_regsms_code").removeClass("btn_disable");
+            $("#get_regsms_code").css('background','#f99c1c');
+            $("#get_regsms_code").html("重新获取验证码");
+            left_rg_time = 0;
+        }
+    }
+    
+    //对获取按钮状态控制
+    $("#settings-mobile").keyup(function(){
+        var password = $.trim($("#settings-password").val());
+        var mobile = $.trim($("#settings-mobile").val());
+        if(mobile.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            $(".rl-code-btn").css('background','#aaa');
+            return false;
+        }else if(password.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            $(".rl-code-btn").css('background','#aaa');
+            return false;
+        }else if($(".rl-yzm").css("display")=='block'){
+            if($("#smsverify").val().length == 0){
+                $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+                $(".rl-code-btn").css('background','#aaa');
+                return false;
+            }else{
+                $(".rl-code-btn").css('background','#f99c1c');
+            }
+        }else{
+            $(".rl-code-btn").css('background','#f99c1c');
+        }
+    })
+    $("#settings-password").keyup(function(){
+        var password = $.trim($("#settings-password").val());
+        var mobile = $.trim($("#settings-mobile").val());
+        if(password.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            $(".rl-code-btn").css('background','#aaa');
+            return false;
+        }else if(mobile.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            $(".rl-code-btn").css('background','#aaa');
+            return false;
+        }else if($(".rl-yzm").css("display")=='block'){
+            if($("#smsverify").val().length == 0){
+                $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+                $(".rl-code-btn").css('background','#aaa');
+                return false;
+            }else{
+                $(".rl-code-btn").css('background','#f99c1c');
+            }
+        }else{
+            $(".rl-code-btn").css('background','#f99c1c');
+        }
+    })
+    $("#smsverify").keyup(function(){
+        if($("#settings-mobile").val().length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            $(".rl-code-btn").css('background','#aaa');
+            return false;
+        }else if($("#settings-password").val().length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            $(".rl-code-btn").css('background','#aaa');
+            return false;
+        }else if($("#smsverify").val().length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            $(".rl-code-btn").css('background','#aaa');
+            return false;
+        }else{
+            $(".rl-code-btn").css('background','#f99c1c');
+        }
+    })
+    $("#settings-mobile").keyup(function(){
+        var password = $.trim($("#settings-password").val());
+        var mobile = $.trim($("#settings-mobile").val());
+        var code = $.trim($("#mobile_code").val());
+        if(password.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if(mobile.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if(code.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if($("input[type='checkbox']").is(':checked') == false){
+             $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+        }else if($(".rl-yzm").css("display")=='block'){
+            if($("#smsverify").val().length == 0){
+                $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+                return false;
+            }else{
+                $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+            }
+        }else{
+            $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+        }
+    })
+    $("#settings-password").keyup(function(){
+        var password = $.trim($("#settings-password").val());
+        var mobile = $.trim($("#settings-mobile").val());
+        var code = $.trim($("#mobile_code").val());
+        if(password.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if(mobile.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if(code.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if($("input[type='checkbox']").is(':checked') == false){
+             $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+        }else if($(".rl-yzm").css("display")=='block'){
+            if($("#smsverify").val().length == 0){
+                $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+                return false;
+            }else{
+                $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+            }
+        }else{
+            $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+        }
+    })
+    $("#mobile_code").keyup(function(){
+        var password = $.trim($("#settings-password").val());
+        var mobile = $.trim($("#settings-mobile").val());
+        var code = $.trim($("#mobile_code").val());
+        if(password.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if(mobile.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if(code.length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if($("input[type='checkbox']").is(':checked') == false){
+             $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+        }else if($(".rl-yzm").css("display")=='block'){
+            if($("#smsverify").val().length == 0){
+                $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+                return false;
+            }else{
+                $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+            }
+        }else{
+            $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+        }
+    })
+    $("#smsverify").keyup(function(){
+        if($("#settings-mobile").val().length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if($("#settings-password").val().length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if($("#mobile_code").val().length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if($("#smsverify").val().length == 0){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+            return false;
+        }else if($("input[type='checkbox']").is(':checked') == false){
+            $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+        }else{
+            $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+        }
+    })
+    $("#agreement").click(function(){
+        if($("input[type='checkbox']").is(':checked') == false){
+             $(".rl-btn").css({'background':'#aaa','border':'1px solid #aaa'});
+         }else{
+            if($("#settings-mobile").val().length != 0 && $("#settings-password").val().length != 0 && $("#mobile_code").val().length != 0){
+                if($(".rl-yzm").css("display")=='block'){
+                    if($("#smsverify").val().length != 0){
+                        $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+                    }
+                }else{
+                    $(".rl-btn").css({'background':'#3d77ea','border':'1px solid #3d77ea'});
+                }
+            }
+            
+           
+         }
+    })
+    $(document).ready(function(){
+        //控制按钮状态
+        $("#get_regsms_code").click(function(){
+            //短信验证码置灰时不可用
+            var password = $.trim($("#settings-password").val());
+            var mobile = $.trim($("#settings-mobile").val());
+            if(password.length == 0 || mobile.length == 0){
+                return false;
+            }
+            if($(".rl-yzm").css("display")=='block'){
+            	 if($("#smsverify").val().length == 0){
+            	 	return false;
+            	 }
+            }
+            if(is_lock_send_vy || $(this).hasClass(".btn_disable")){
+                return false;
+            }
+            is_lock_send_vy = true;
+            //点击获取验证码触发手机号验证
+            if(!(/^1[3|4|5|7|8]\d{9}$/.test(mobile))){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>请输入正确的手机号码</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                $("#settings-mobile").focus();
+                is_lock_send_vy = false;
+                return false; 
+            }
+            //点击获取验证码触发密码验证
+            var reg_pwd=/^[a-zA-z0-9]{6,16}$/;  
+            var regs_pwd=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+            if(reg_pwd.test(password)){  
+                if(!regs_pwd.test(password)){
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>密码应为6-16位数字字母组合</p>',
+                        shadeClose: true,
+                        time: 2
+                    });
+                    $("#settings-password").focus();
+                    is_lock_send_vy = false;
+                    return false;
+                }
+            }
+            else{
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>密码应为6-16位数字字母组合</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                $("#settings-password").focus();
+                is_lock_send_vy = false;
+                return false;
+            }
+            if($(".rl-yzm").css("display")=='block'){
+                if($.trim($("#smsverify").val()).length == 0){
+                    is_lock_send_vy = false;
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>请输入图文验证码</p>', 
+                        shadeClose: true,
+                        time: 2
+                    });
+                    $("#smsverify").focus();
+                    return false;
+                }
+            }
+            loadSubmitCode(); 
+        });
+        function loadSubmitCode(){
+            var ajaxurl = "{url x="index" r="ajax#get_register_verify_code"}";
+            var query = new Object();
+            query.user_mobile =  $.trim($("#settings-mobile").val());
+            query.smsverify = $.trim($("#smsverify").val());
+            if($(".rl-yzm").css("display")=='none'){
+                query.ajax = 1;
+            }else{
+                query.ajax = 0;
+            }
+            $.ajax({ 
+                url: ajaxurl,
+                data:query,
+                type: "POST",
+                dataType: "json",
+                success: function(result){
+                    if(result.status==1)
+                    {
+                        left_rg_time = 60;
+                        left_time_to_send_regvy();
+                        to_send_msg = true;
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<br><p>已将验证码发送到</p><p>'+$.trim($("#settings-mobile").val())+'</p><p>请注意查收</p>',
+                            btn: ['确认'],
+                            shadeClose: true,
+                            no: function(){
+                            //点击确认按钮后要做的动作
+                            }
+                        });
+                        $("#get_regsms_code").css('background','#aaa');
+                    }else if(result.status==3){
+                        is_lock_send_vy = false;
+                        $(".rl-yzm").css("display", "block");
+                        $("#get_regsms_code").css('background','#aaa');
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>'+result.info+'</p>',
+                            shadeClose: true,
+                            time:2,
+                        });
+                        return false;
+                        
+                    }else{   
+                        is_lock_send_vy = false;
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>'+result.info+'</p>',
+                            shadeClose: true,
+                            time:2,
+                        });
+                        return false;
+                    }
+                },error:function(){
+                    is_lock_send_vy = false;
+                }
+            });
+        }
+        //点击注册
+        $("#register_submit").click(function(){
+            //点击获取验证码触发手机号验证
+            var mobile = $.trim($("#settings-mobile").val());
+            var password =$.trim($("#settings-password").val());
+            var code = $.trim($("#mobile_code").val());
+            if(mobile.length == 0 || password.length == 0 || code.length == 0 || $("input[type='checkbox']").is(':checked') == false){
+                return false;
+            }
+            if($(".rl-yzm").css("display")=='block'){
+            	 if($("#smsverify").val().length == 0){
+            	 	return false;
+            	 }
+            }
+            if(!(/^1[3|4|5|7|8]\d{9}$/.test(mobile))){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>请输入正确的手机号码</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                $("#settings-mobile").focus();
+                return false; 
+            }
+            //点击获取验证码触发密码验证
+            var reg_pwd=/^[a-zA-z0-9]{6,16}$/;  
+            var regs_pwd=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+            if(reg_pwd.test(password)){  
+                if(!regs_pwd.test(password)){
+                    layer.open({
+                        className: 'popup-btn',
+                        content: '<h3>提示</h3><p>密码应为6-16位数字字母组合</p>',
+                        shadeClose: true,
+                        time: 2
+                    });
+                    $("#settings-password").focus();
+                    return false;
+                }
+            }
+            else{
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>密码应为6-16位数字字母组合</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                $("#settings-password").focus();
+                return false;
+            }
+            if($("#mobile_code").val().length == 0){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>请先获取验证码</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                return false;  
+            }
+            if($("#mobile_code").val().length < 6){
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>短信验证码错误</p>',
+                    shadeClose: true,
+                    time: 2
+                });
+                return false;  
+            }
+            //是否同意注册协议
+            if($("input[type='checkbox']").is(':checked') == false){
+            layer.open({
+                className: 'popup-btn',
+                content: '<h3>提示</h3><p>请同意注册协议！</p>',
+                shadeClose: true,
+                time:2,
+            });
+            return false;
+            }
+            RegistSubmit();
+        });
+
+    });
+function RegistSubmit(){
+    if($(".rl-yzm").css("display")=='block'){
+        if($("#smsverify").val() == ""){
+            return false; 
+        }else{
+            var verify =  $("#Jverify").val();
+        }
+    }
+    if($.trim($("#request_code").val()) != ""){
+       var referer = $.trim($("#request_code").val());  
+    }
+    var load=layer.open({type: 2,shadeClose: false});
+    var ajaxurl = "{url x="index" r="user#doregister"}"; 
+    var query = new Object();
+    query.verify = verify;
+    query.referer = referer;
+    query.mobile = $.trim($("#settings-mobile").val());
+    query.user_pwd = $.trim($("#settings-password").val());
+    query.sms_code = $.trim($("#mobile_code").val());
+    query.user_name = "w"+$.trim($("#settings-mobile").val());
+    query.verify = $.trim($("#smsverify").val());
+    $.ajax({
+        url: ajaxurl,
+        data:query,
+        type: "POST",
+        dataType: "json",
+        success:function(result){
+            if(result.status){
+                layer.close(load);
+                var register=layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p style="color:#aaa">'+result.info+'</p>',
+                    btn: ['确认'],
+                    shadeClose: true,
+                    yes: function(){
+                    layer.close(register);
+                    //点击确认按钮后要做的动作
+                    //window.location.href = "{url x="index" r="uc_center#identity"}";
+                        layer.open({
+                            className: 'cg-pop',
+                            content: '<img src="{$TMPL}/images/wap2/my/cg-pop-bg.png" style="width:100%; border-radius: 12px 12px 0 0;" />',
+                            btn: ['立即开通','取消'],
+                            yes: function(index){
+                                //点击立即开通后跳到存管开户页面
+                                window.location.href = "{url x="index" r="uc_depository_account#index"}";
+                                layer.close(index);
+                            },
+                            no: function(){
+                                window.location.href = "{url x="index" r="uc_center#index"}";
+                            }
+                        });
+                    }
+                });
+            }else{
+                layer.close(load)
+                layer.open({
+                    className: 'popup-btn',
+                    content: '<h3>提示</h3><p>'+result.info+'</p>', 
+                    shadeClose: true,
+                    time: 2
+                });
+            }
+            
+        }
+    });
+}
+</script>
+</body>
+</html>

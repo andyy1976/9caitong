@@ -1,0 +1,126 @@
+{include file="inc/nheader.html"}
+<div class="wrapper bgf8">
+	<div class="regbanner w100b">
+		<img src="/new/images/page_reg_bg2.jpg" class="w100b" />
+	</div>
+	<div class="center">
+		<ul class="regstep wTwo">
+			<li>
+				<div class="step">
+					<span><i>1</i></span>
+					<p>手机号注册</p>
+				</div>
+				<div class="stepline"></div>
+			</li>
+			<li class="step_end">
+				<div class="step">
+					<span class="step_span_active"><i>2</i></span>
+					<p class="step_p_active">开户</p>
+				</div>
+			</li>
+		</ul>
+		<div class="clear"></div>
+		<form ajax_url="{url x="index" r="uc_depository_account#company_register"}" method="post" id="company_register" autocomplete="off" class="page_userForm_box mlra">
+			<!--<h3>开通资金存管<span>请输入您的身份信息，完成认证</span></h3>-->
+			<ul>
+				<!--<li><span class="andatory">*</span><input type="text" value="" name="user_reg_escrow_username" class="ipttxt w100b input_onfocus_shadow" id="user_reg_escrow_username" placeholder="开户用户名" maxlength="11" /></li>-->
+				<li>
+					<h3>企业信息</h3>
+					<span class="andatory">*</span>
+					<input type="text" name="company_name" class="ipttxt w100b input_onfocus_shadow" id="company_name" placeholder="企业名称" />
+				</li>
+				<li>
+					<span class="andatory">*</span>
+					<input type="text" name="corporate" class="ipttxt w100b input_onfocus_shadow" id="corporate" placeholder="法人" />
+					<img src="/new/images/btn_tip.png" class="btn_tip" />
+					<img src="/new/images/reg_tip/corporate.jpg" class="hide" />
+				</li>
+				<li>
+					<span class="andatory">*</span>
+					<input type="text" name="subject_type" class="ipttxt w100b input_onfocus_shadow" id="subject_type" placeholder="主体类型" />
+					<img src="/new/images/btn_tip.png" class="btn_tip" />
+					<img src="/new/images/reg_tip/subject_type.jpg" class="hide" />
+				</li>
+				<li>
+					<span class="andatory">*</span>
+					<input type="text" name="start_data" class="ipttxt w100b input_onfocus_shadow" id="start_data" placeholder="成立日期" />
+				</li>
+				<li>
+					<span class="andatory">*</span>
+					<input type="text" name="license_add" class="ipttxt w100b input_onfocus_shadow" id="license_add" placeholder="营业执照住所" />
+					<img src="/new/images/btn_tip.png" class="btn_tip" />
+					<img src="/new/images/reg_tip/credit_add.jpg" class="hide" />
+				</li>
+				<li>
+					<h3>对公账户</h3>
+					<span class="andatory">*</span>
+					<input type="text" name="P_account" class="ipttxt w100b input_onfocus_shadow" id="P_account" maxlength="30" placeholder="对公账户" />
+					<img src="/new/images/btn_tip.png" class="btn_tip" />
+					<img src="/new/images/reg_tip/P_account.jpg" class="hide" />
+				</li>
+				<li>
+					<span class="andatory">*</span>
+					<input type="text" name="P_account_bank" class="ipttxt w100b input_onfocus_shadow" id="P_account_bank" placeholder="对公户开户行名称" />
+					<img src="/new/images/btn_tip.png" class="btn_tip" />
+					<img src="/new/images/reg_tip/P_account_bank.jpg" class="hide" />
+				</li>
+				<li>
+					<span class="andatory">*</span>
+					<input type="text" name="P_account_bank_num" class="ipttxt w100b input_onfocus_shadow" id="P_account_bank_num" maxlength="30" placeholder="对公户开户行行号" />
+					<img src="/new/images/btn_tip.png" class="btn_tip nopic" />
+					<img src="/new/images/reg_tip/P_account_bank_num.jpg" class="hide" />
+				</li>
+				<li>
+					<h3>其他</h3>
+					<span class="andatory">*</span>
+					<input type="text" name="credit_code" class="ipttxt w100b input_onfocus_shadow" id="credit_code" maxlength="30" placeholder="统一信用代码" />
+					<img src="/new/images/btn_tip.png" class="btn_tip" />
+					<img src="/new/images/reg_tip/credit_code.jpg" class="hide" />
+				</li>
+				<!--<li>
+					<span class="andatory">*</span>
+					<input type="text" name="credit_add" class="ipttxt w100b input_onfocus_shadow" id="credit_add" maxlength="30" placeholder="统一信用地址" />
+					<img src="/new/images/btn_tip.png" class="btn_tip" />
+					<img src="/new/images/reg_tip/credit_code.jpg" class="hide" />
+				</li>-->
+				<li>
+					<input type="button" class="submit_form w100b" id="page_reg_step2_submit_company" name="" value="确定" />
+				</li>
+			</ul>
+		</form>
+		<div class="blank50"></div>
+	</div>
+</div>
+<div class="reg_banklist dp-n" id="reg_banklist">
+	<ul>
+	{foreach from='$bank_list' item='item'}
+		<li bank_id="{$item.id}" s_quota="{$item.single_quota}" sd_quota="{$item.day_limit}">
+			<img src="{$item.icon}" />
+			<span>{$item.name}</span>
+		</li>
+	{/foreach}
+	</ul>
+		
+	<p>限额：单笔<span id="S_quota">0</span>元，单日<span id="SD_quota">0</span>元</p>
+	<div class="reg_bank_btn ta_r">
+		<input type="button" id="reg_bank_confirm" class="confirm" value="确定" />
+		<input type="button" id="reg_bank_cancel" class="cancel" value="取消" />
+	</div>
+</div>
+{include file="/inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script src="/new/js/lib/laydate.js"></script>
+		<script>
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160828' ]]
+			});
+			seajs.use(["/new/js/page/page_reg"]);
+			laydate.render({
+			  elem: '#start_data'
+			  ,max: 0
+			});
+		</script>
+	</body>
+</html>

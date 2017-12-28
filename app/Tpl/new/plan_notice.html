@@ -1,0 +1,52 @@
+{include file="inc/header.html"}
+<div class="msg_box success_box mt10 mb10">
+							<h2>
+								<div class="icon"><i></i></div>
+								<span class="tip">{$LANG.SUCCESS_TITLE}</span>
+							</h2>
+						
+							<div class="notice">
+								<p id="money">正在处理中......</p>
+							<p id="notice"></p>
+							</div>
+
+
+</div>
+</div>						
+<div style="background:#f2f2f2; padding:30px;text-align: center">
+	{function name="app_conf" value="SHOP_FOOTER"} 
+</div>
+<script>
+$(function(){
+function doajax(){
+	var ajaxurl = "{url x="index" r="deal#plan_success"}";
+    var query = new Object();
+    query.plan_load_id = {$plan_load_id};
+    $.ajax({ 
+        url: ajaxurl,
+        data:query,
+        type: "POST",
+        dataType: "json",
+        success: function(result){
+            if(result.status==1){
+				if(result.info==0){
+					$("#money").html("出借失败");
+				}else{
+					$("#money").html("出借成功，您实际出借 "+result.info+'元');
+				}
+               
+				$("#notice").html('<a href="{url x="index" r="uc_invest#invite"}">确定</a>');
+				clearInterval(sh);
+            }else{   
+               //$("#money").html("出借失败);
+			   //$("#notice").html('<a href="{url x="index" r="uc_invest#invite"}">确定</a>');
+            }
+        },error:function(){
+            
+        }
+    });
+
+}
+sh= setInterval(doajax,5000);
+})
+</script>

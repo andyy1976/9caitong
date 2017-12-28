@@ -1,0 +1,14 @@
+﻿.zhezhao{ width:100%; height:100%; position:fixed; background:#000;filter:alpha(opacity=75);-moz-opacity:0.75;-khtml-opacity: 0.75;opacity: 0.75;z-index:999; top:0; left:0}
+
+/*我的奖励*/
+.myjiangli{ position:fixed; width:70%; left:10%; top:26%; background:#fa6262; border-radius:5px; z-index:1000; padding:3% 5%}
+.exptktit{ display:block; width:100%; position:absolute; left:0; top:-35px}
+.expclose{ display:block; width:16px; position:absolute; right:12px; top:12px}
+.myjiangli ul{ width:60%; margin-left:28%;margin-top:12%; margin-bottom:7%}
+.myjli{ line-height:26px;font-size:15px;color:#fff }
+.myjli b{ color:#f65252; background:#ff9696; font-size:12px; height:16px; width:16px; border-radius:100%; display:inline-block; text-align:center; line-height:17px; margin-right:5px; font-family:Arial;}
+.myjli span{ color:#fff000}
+.myjlexp{ font-size:16px; text-align:center; color:#fff000;}
+.myjlbut a{ display:block; width:100%; height:40px; border-radius:40px; color:#fff; background:#fb0; text-align:center; line-height:40px; font-size:16px}
+.myjlbut02 a{height:36px; line-height:36px;}
+.myjlbut02 a.fl{ background:#86d0b5}

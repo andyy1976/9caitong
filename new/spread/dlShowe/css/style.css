@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document */
+html{ background: #ffcc00;}
+.container{ max-width: 750px; margin: 0 auto;}
+.banner{ width: 100%;}
+.box{ width: 91%; height: 296px; margin: 12px auto 30px; background: url("../images/bg_form.png") no-repeat; background-size: 100% 100%; overflow: hidden; position: relative;}
+.item{ width: 85%; margin: 20px auto 0; overflow: hidden;}
+.item:first-of-type{ margin-top: 28px;}
+.box-l{ width: 20%; line-height: 30px; float: left; color: #6d2900; font-size: 15px;}
+.box-r{ width: 80%; height: 30px; float: left; border: 1px solid #d6ab00; background: #f7f5d4; box-sizing: border-box;}
+.box-r input{ width: 100%; line-height: 22px; padding: 0 8px; margin: 4px 0; color: #004479; font-size: 14px; border: 0; border-radius: 0; background: none; box-sizing: border-box;}
+.item-code input{ width: 60%; border-right: 1px solid #d6ab00;}
+.item-code img{ width: 84px; height: 28px; float: right;}
+.item-yzm{ margin-top: 26px;}
+.item-yzm .box-r{ width: 42%; margin-left: 20%;}
+.item-yzm a{ width: 34%; height: 30px; line-height: 30px; float: right; text-align: center; background: #fe9c00; border-radius: 3px; color: #f7f5d4; font-size: 12px;}
+.item-yzm a.gray{ background: #aaa;}
+.btn{ width: 84%; display: block; margin: 16px auto 0;}
+.btn img{ width: 100%;}
+.tips{ display: none; position: absolute; left: 0; top: 160px; text-indent: 25%; color: #6d2900; font-size: 12px;}
+
+.list{ width: 88%; margin: 0 auto 24px; border: 1px solid #d8ad02; border-radius: 10px; position: relative; box-sizing: border-box;}
+.list h3{ width: 44%; height: 36px; line-height: 36px; position: absolute; left: 50%; top: -18px; margin-left: -22%; color: #6d2900; font-size: 18px; background: #ffcc00; text-align: center;}
+.list img{ width: 33%; margin: 20px 6% 18px; float: left;}
+.list ul{ width: 54%; float: left; margin-top: 20px;  color: #6d2900; font-size: 13px; line-height: 2.2;}
+.list:last-of-type ul{ line-height: 1.6; margin-top: 16px;}
+.wx-word-1{ width: 80%; margin: 20px auto 12px; color: #6d2900; font-size: 14px; line-height: 1.8;}
+.wx-img{ margin: 0 auto;}
+.wx-word-2{ line-height: 46px; color: #6d2900; font-size: 14px; text-align: center;}
+.wx-word-3{ color: #380732; font-size: 18px; text-align: center; margin: 10px 0;}
+.app-btn{ width: 82.4%; height: 45px; line-height: 45px; text-align: center; margin: 0 auto 22px; background: #380732; display: block; border-radius: 14px; color: #ffcc00; font-size: 18px;}
+.app-btn-2{ margin-top: 50px;}
+.app-btn span{ background: url("../images/icon_download.png") no-repeat; background-size: 20.5px 24px; padding-left: 26px;}

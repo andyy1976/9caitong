@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>小玖课堂</title>
+    <link rel="stylesheet" type="text/css" href="{$TMPL}/css/xiaojiuketang/reset_ph_v=2016.css">
+    <link rel="stylesheet" type="text/css" href="{$TMPL}/css/xiaojiuketang/style.css">
+    <script src="{$TMPL}/js/xiaojiuketang/jquery-1.11.3.min.js"></script>
+    <script src="{$TMPL}/js/xiaojiuketang/fastclick.js"></script>
+    <script>
+        //处理移动端click事件300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+</head>
+<body>
+<section class="classroom-wrap cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/xiaojiuketang/icon_back.png" width="10" height="18"></a>小玖课堂</div>
+<?php } ?>
+    <div class="classroom">
+    	<img src="{$TMPL}/images/wap2/xiaojiuketang/banner.jpg" />
+    	<img src="{$TMPL}/images/wap2/xiaojiuketang/title1.png" style="margin-top: 16px;" />
+    	<div class="law">
+    		<h3>1.借贷关系合法性</h3>
+    		<p>投资人与借款人借贷关系的合法性，根据《合同法》第一百九十六条：“借款合同是借款人向贷款人借款，到期返还借款并支付利息的合同。”及最高人民法院《关于人民法院审理借贷案件的若干意见》第1条：“公民之间的借贷纠纷公民与法人之间的借贷纠纷以及公民与其他组织之间的借贷纠纷，应作为借贷案件受理。”我国法律肯定投资人与借款人借贷关系的合法性，并保护投资人收回借贷本金和符合法律规定利息的权利。</p>
+    		<h3>2.利息收益合法性</h3>
+    		<p>投资人获得利息收益的合法性，根据最高人民法院《法释〔2015〕18号最高人民法院关于审理民间借贷案件适用法律若干问题的规定》第二十六条“借贷双方约定的利率未超过年利率24%，出借人请求借款人按照约定的利率支付利息的，人民法院应予支持。”网投出借利率低于24%为合法利率，完全受到法律保护，超出此限度的，超出部分的利息不予保护。 投资人在玖财通向借款人出借资金并按照约定年化收益率收取利息收益，符合法律规定，受到法律保护。</p>
+    		<h3>3.居间撮合服务合法性</h3>
+    		<p>玖财通提供居间撮合服务的合法性，根据《合同法》第四百二十四条：“居间合同是居间人向委托人报告订立合同的机会或者提供订立合同的媒介服务，委托人支付报酬的合同。”及第四百二十六条：“居间人促成合同成立的，委托人应当按照约定支付报酬。” 玖财通为投资人与借款人提供订立借款合同的居间撮合服务并收取相应报酬是符合法律规定并受法律保护的。</p>
+    		<h3>4.《电子合同》的合法性</h3>
+    		<p>根据《电子签名法》第三条：“民事活动中的合同或者其他文件、单证等文书，当事人可以约定使用电子签名、数据电文。当事人约定使用电子签名、数据电文的文书，不得仅因为其采用电子签名、数据电文的形式而否定其法律效力。”及第十四条：“可靠的电子签名与手写签名或者盖章具有同等的法律效力。” 投资人在玖财通平台签署电子合同并采取电子签名，符合相关电子合同及电子签名的法律规定法律确认其合法有效性。</p>
+    		<h3>5.资金银行存管</h3>
+    		<p>《网络借贷信息中介机构业务活动管理暂行办法》出台该监管政策明确要求P2P平台应当选择符合条件的银行业金融机构作为存管机构。存管的核心原理是将平台和用户资金进行隔离，用户投资的资金不再进入平台控制的账户，借款人和理财用户之间的交易发生在双方的银行账户之间，平台无法触碰用户资金。玖财通携手四川宜宾银行实现“银行直连存管”，符合监管要求的资金存管模式。</p>
+    	</div>
+    	<img src="{$TMPL}/images/wap2/xiaojiuketang/title2.png"/>
+    	<div class="file">
+    		<ul>
+    			<li><a href="app/Tpl/wap/pdf/wljdxi.pdf">《网络借贷信息中介机构业务活动管理暂行办法》</a></li>
+    			<li><a href="app/Tpl/wap/pdf/hlwjrxx.PDF">《互联网金融信息披露个体网络借贷》</a></li>
+    			<li><a href="app/Tpl/wap/pdf/wljdzj.pdf">《网络借贷资金存管业务指引（征求意见稿）》</a></li>
+    		</ul>
+    	</div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>补填邀请码</div>
+<?php } ?>
+	<!-- 补填邀请码 -->
+    <p class="fi-invite-wad-success">您的邀请码已填写，不可变更</p>
+    <div class="fi-invite-success">
+       <p>邀请码</p>
+       <span>{$referer}</span>
+    </div>
+</section>
+<style type="text/css">
+.fi-invite-wad-success{color:#ff3939;text-align: center;margin-top: 15%;font-size: 16px}
+.fi-invite-success{background:#e8edf1;width: 271px;margin: 0 auto;height: 112px;margin-top: 40px;}
+.fi-invite-success p{text-align: center;font-size: 16px;color:#678ce9;padding-top: 15px; display: block;position: relative; }
+.fi-invite-success span{text-align: center;font-size: 25px;color:#678ce9;padding-top: 10px;display: block;}
+.fi-invite-success p:before,.fi-invite-success p:after {content:'';position: absolute;top:65%;background: #d3dce3;width:10%;height:1px;}
+.fi-invite-success p:before{left: 25%;}
+.fi-invite-success p:after {right: 25%;}
+</style>
+</body>
+</html>

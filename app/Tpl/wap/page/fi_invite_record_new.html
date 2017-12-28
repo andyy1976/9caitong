@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="zh-CN">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- 优先使用 IE 最新版本 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 忽略将数字变为电话号码-->
+<meta name="format-detection" content="telephone=no">
+<!--让国产浏览器默认采用高速模式渲染页面-->
+<meta name="renderer" content="webkit">
+<!-- 强制图片显示 -->
+<meta name="imagemode" content="force">
+<!--启用 WebApp 全屏模式-->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- 设置状态栏颜色 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>{$cate_title}</title>
+<link rel="stylesheet" type="text/css" href="{$TMPL}/css/invite/reset_ph_v=2016.css">
+<link rel="stylesheet" type="text/css" href="{$TMPL}/css/invite/wap_fi_v_2017.css">
+<script src="{$TMPL}/js/invite/jquery-1.11.3.min.js"></script>
+<script src="{$TMPL}/js/invite/fastclick.js"></script>
+<script>
+    //处理移动端click事件300ms延迟
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+</script>
+</head>
+<body>
+<?php if(!es_session::get('MachineInfo')) {?>
+        <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/fi/invite/icon_back.png" width="10" height="18"></a>邀请记录</div>
+    <?php } ?>
+
+<!-- 新版邀请记录 -->
+<div class="fi_invite_title"><span>好友</span><span>状态</span><span>邀请状态</span><span>时间</span></div>
+<ul class="fi_invite_list">
+  {if !$list}
+    <div class="pt-coupon-no">
+        <img src="{$TMPL}/images/wap2/pt/10.png" class="pt-in-false-img pt-coupon-no-img" style="width: 50%; margin-top: 120px;margin-left:22%">
+        <h2 style="font-size: 20px; margin-top: 25px;text-align:center">这里空空如也！</h2>
+    </div>
+    {else}
+        {foreach from=$list item=vo key=key}
+         <li><span>{$vo.real_name}</span><span>{$vo.type}</span><span>{$vo.invite_type}</span><span>{$vo.create_date}</span></li>
+        {/foreach}
+    {/if}
+   
+    
+</ul>
+<script src="{$TMPL}/js/invite/flexible.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type:'POST',
+            url:"{url x="index" r="invite#ajaxInvite"}",
+            dataType:'json',
+            success:function(msg){
+                console.log(msg);
+                if(parseInt(msg-{$page})>0){
+                  scroll(msg);
+                }
+            }
+        })
+        function scroll(msg){
+            var range = 50;             //距下边界长度/单位px
+            var elemt = 500;            //插入元素高度/单位px           //设置加载最多次数
+            var page = 1;
+            var totalheight = 0; 
+            $(window).scroll(function(){
+                var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+                totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+                if(($(document).height()-range) <= totalheight) {
+                    page++;
+                    var nums=parseInt((msg/{$page})+1);
+                    if(page<=nums) {
+                        getJSON(page);
+                    }                   
+                }
+            });
+        }
+        // 请求数据加载到页面中。。。
+        function getJSON(page){
+            page=parseInt(page);
+            $.ajax({
+                type:"POST",
+                url:"{url x="index" r="invite#inviteList"}",
+                data:{'page':page},
+                success :function (str){
+                    var main = $(".fi-invite-list");
+                    if(str!='false'){
+                        main.append(str);
+                    }
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* container */
+html{ background: #edf2f6;}
+.container{ max-width: 100%; margin: 0 auto;}
+.header{ line-height: 48px; background: linear-gradient(to bottom, #575cde 0%, #4672de 100%); overflow: hidden; color: white; text-align: center; font-size: 1.8rem; font-weight: bold; position: relative;}
+.header .back-icon{ position: absolute; left: 0; top: 0; padding: 15px 4%;}
+/* popup-btn */
+.layui-m-layer0 .popup-btn{ width: 66%; font-size: 1.5rem; border-radius: 8px;}
+.popup-btn .layui-m-layercont{ padding: 8px 30px 12px;}
+.popup-btn h3{ border: 0; padding: 0; height: 34px; line-height: 34px; font-weight: bold;}
+.popup-btn p{ color: red;}
+.popup-btn .layui-m-layerbtn{ height: 44px; line-height: 44px; background: none;}
+.popup-btn .layui-m-layerbtn span{ font-size: 1.5rem;}
+/* regist-login */
+.rl-header{ height: 46px; position: relative;}
+.rl-header .close-icon{ position: absolute; left: 0; top: 0; padding: 16px;}
+.rl-list{ width: 92%; margin: 12px auto 0;}
+.rl-list li{ width: 100%; height: 50px; float: left; border-bottom: 1px solid #9aa9b7;}
+.rl-list li i,.rl-pwd-list li i{ width: 2.1rem; height: 2.1rem; float: left; margin: 16px 3.2% 0 .8%; background: url(../images/wap2/rl/icon_tel_num.png) no-repeat left; background-size: 100%;}
+.rl-list .rl-pwd i,.rl-pwd-list .rl-pwd i{ background-image: url(../images/wap2/rl/icon_pwd.png);}
+.rl-list .rl-yzm i{ background-image: url(../images/wap2/rl/icon_yzm.png);}
+.rl-list .rl-code i,.rl-pwd-list .rl-code i{ background-image: url(../images/wap2/rl/icon_code.png);}
+.rl-list .rl-invite i{ background-image: url(../images/wap2/rl/icon_invite_code.png);}
+.rl-list input,.rl-pwd-list input{ width: 87%; line-height: 22px; float: left; padding: 16px 0 12px; background: none; border: 0; font-size: 1.6rem;}
+.rl-list .rl-yzm input,.rl-list .rl-code input{ width: 54%;}
+.rl-list .rl-pwd input{ width: 78%;}
+.rl-list input::-webkit-input-placeholder{ color: #97a8b2; font-size: 1.5rem;}
+.rl-list input placeholder{ color: #97a8b2; font-size: 1.5rem;}
+.rl-eye{ float: right; width: 2.25rem; height: 1.25rem; margin-top: 18px; background: url(../images/wap2/rl/icon_eye_close.png) no-repeat left; background-size: 100%;}
+.rl-eye-open{ background-image: url(../images/wap2/rl/icon_eye_open.png);}
+.rl-yzm-img{ float: right; margin-top: 10px;}
+.rl-verify-img{margin-top: 10px;}
+.rl-pwd-list .rl-verify i{background-image: url(../images/wap2/rl/icon_yzm.png);}
+.rl-code-btn{ width: 32%; line-height: 36px; margin-top: 7px; text-align: center; float: right;background: #aaa; border-radius: 3px; color: white;}
+.rl-protocol,.rl-forget-pwd{ width: 92%; height: 44px; margin: 0 auto; font-size: 1.2rem; line-height: 14px;}
+.rl-protocol a,.rl-forget-pwd a{ line-height: 14px; display: inline-block;margin-top: 21px; margin-left: 7px; color: #13334d;  background-size: 14px 14px;}
+.rl-protocol input{margin: 20px 10px;float: left}  
+.rl-forget-pwd a{ float: right; padding-right: 0; background: none;}
+.rl-protocol span{ color: #3d77ea;}
+.rl-btn{ width: 92%; height: 38px; line-height: 38px; display: block; margin: 20px auto 0; background: #aaa; border: 1px solid #aaa; border-radius: 4px; text-align: center; color: white; font-size: 1.6rem; box-sizing: border-box;}
+.rl-btn-login{  border-color: #97a8b2;width: 92%; height: 38px; line-height: 38px; display: block; margin: 20px auto 0; background: #f2f6f9; border: 1px solid #aaa; border-radius: 4px; text-align: center; color: #3d77ea; font-size: 1.6rem; box-sizing: border-box;}
+.rl-btn-login span{ padding-left: 22px; background: url(../images/wap2/rl/icon_redbag.png) no-repeat left; background-size: 15px 16px; }
+.rl-regist-protocol{ width: 92%; margin: 10px auto;}
+.rl-regist-protocol p{ color: #486079; font-size: 1.5rem; text-indent: 2em;}
+/* pwd-get、pwd-set */
+.rl-pwd-list{ margin-top: 10px;}
+.rl-pwd-list li{ width: 100%; height: 50px; float: left; background: white; border-bottom: 1px solid #e7ebee;}
+.rl-pwd-list li:last-of-type{ border: 0;}
+.rl-pwd-list li i{ margin: 16px 4.6% 0 3%;}
+.rl-pwd-list input{ width: 60%; line-height: 26px; padding: 0 0 0 5%; margin: 14px 0 10px; border-radius: 0; border-left: 1px solid #e7ebee; box-sizing: border-box;}
+.rl-pwd-list .rl-code input{ width: 50%;}
+.rl-pwd-list .rl-code-btn{ width: 30%; margin-right: 3%;}
+.rl-pwd-btn{ width: 88%; line-height: 50px; display: block; margin: 60px 6% 0; background: #aaa; color: white; font-size: 1.8rem; text-align: center;}

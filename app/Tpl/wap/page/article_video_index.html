@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>{$article.title}</title>
+    <link rel="stylesheet" type="text/css" href="/new/activity/wap_video/css/reset_ph_v=2016.css">
+    <link rel="stylesheet" type="text/css" href="/new/activity/wap_video/css/brand_video.css">
+    <script src="/new/activity/wap_video/js/jquery-1.11.3.min.js"></script>
+    <script src="/new/activity/wap_video/js/fastclick.js"></script>
+	<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+</head>
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="/new/activity/wap_video/images/brand/video/icon_back.png" width="10" height="18"></a>
+    </div>
+<?php } ?>
+    <!-- 企业视频详情 -->
+    <div class="video-show"><iframe frameborder="0" width="320" height="249" src="{$article.video_url}" allowfullscreen></iframe></div>
+    <div style="width:92%;margin: 0 auto">
+     <p style="font-size: 1.3rem">{$article.content}</p>
+        <div style="text-align:right;color:#97a8b2;width: 100%">玖财通团队</div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

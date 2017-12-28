@@ -1,0 +1,161 @@
+<body>
+<section class="container cf">
+    <div class="header"><a href="{url x="member" r="uc_center"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a><span class="cg-record-title">{if $invest_status eq 1}出借记录-普通{else}出借记录-存管{/if}</span></div>
+   <div class="cg-record-content">
+        {foreach from="$invest_cg" item="vo" key=key}
+            <a href="{$vo.url}" {if $key eq $invest_status}class="active"{/if}>{$vo.name}</a>
+        {/foreach}
+    </div>
+    
+    <!-- 导航右侧开始 -->
+    
+    <link href="{$TMPL}/css/component.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{$TMPL}/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="{$TMPL}/js/jquery.dlmenu.js"></script>
+    <div id="dl-menu" class="dl-menuwrapper">
+        <button id="dl-menu-button">Open Menu</button>
+        <ul class="dl-menu">
+            {foreach from="$loan_type" item="paging" key=key}
+                <li><a href="{$paging.url}#deallist" {if $key eq $deal_type} class="cur"{/if}>{$paging.name}</a></li>
+            {/foreach}
+        </ul>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            $( '#dl-menu' ).dlmenu();
+        });
+    </script>
+<!-- 导航右侧结束 -->
+    <div class="cg-record-bg"></div>
+
+    <!-- 出借记录 -->
+    <div class="my-invest-title">
+        <p> 
+        {foreach from="$invest" item="vo" key=key}
+            <a href="{$vo.url}" {if $key eq $invest_type}class="active"{/if}>{$vo.name}</a>
+        {/foreach}
+        </p>
+    </div>
+    <ul class="my-invest-list" style="display: block;">
+    {if !$temp_user_load}
+    <div class="pt-coupon-no">
+        <img src="{$TMPL}/images/wap2/pt/10.png"  class="pt-in-false-img pt-coupon-no-img">
+        <h2>这里空空如也！</h2>
+    </div>
+    {else}
+    {foreach from=$temp_user_load item=load}
+        <li>
+            <a href="index.php?ctl=uc_invest&act=details&id={$load.id}&load_id={$load.bid}&deal_type={$deal_type}">
+                <h3>{$load.name}</h3>
+                <div class="my-invest-data">
+                    <div class="my-invest-l">
+                    {if $load.deal_status lt 3}
+                        <p style="font-size: 14px;color:#FF0000">审核中</p>
+                    {else}
+                        <p>{$load.interest_money}</p>
+                    {/if} 
+					{if $load.deal_status lt 5}
+                     <p>预期收益</p>
+					{else}
+						<p>已收收益</p>
+					{/if}
+                    </div>
+                    <div class="my-invest-r">
+                        <p>出借总额<span>{$load.money}</span></p><p>到期时间{if $load.deal_status lt 3}<span>审核中</span>{else}<span>{$load.repay_date}{/if}</span></p>
+                    </div>
+                </div>
+            </a>
+        </li>
+    {/foreach}
+    {/if}    
+    </ul>
+</section>
+<script type="text/javascript">
+    //存管与普通出借记录切换
+    $(function(){
+        var onOff = true;
+        $('.cg-record-title').click(function(){
+            if(onOff){
+                $(this).addClass('cg-record-title-down');
+                $('.cg-record-bg').css({
+                    display: "block"
+                });
+                $('.cg-record-content').css({
+                    top: '48px',
+                    transition: "top .5s"
+                });
+                onOff = false;
+            }else{
+                $(this).removeClass('cg-record-title-down');
+                $('.cg-record-bg').css({
+                    display: "none"
+                });
+                $('.cg-record-content').css({
+                    top: '-38px',
+                    transition: "top .5s"
+                });
+                onOff = true;
+            }
+        });
+        $('.cg-record-content').find('a').click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+        })
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var invest_type = {$invest_type};
+        var invest_status = {$invest_status};
+        var deal_type = {$deal_type};
+        $.ajax({
+            type:'POST',
+            url:"{url x="index" r="uc_invest#ajaxInvest"}",
+            data:{'invest_type':invest_type,'invest_status':invest_status,'deal_type':deal_type},
+            dataType:'json',
+            success:function(msg){
+                console.log(msg);
+                if(parseInt(msg-{$page})>0){
+                  scroll(msg);
+                }
+            }
+        })
+        function scroll(msg){
+            var range = 50;             //距下边界长度/单位px
+            var elemt = 500;            //插入元素高度/单位px           //设置加载最多次数
+            var page = 1;
+            var totalheight = 0; 
+            $(window).scroll(function(){
+                var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+                var invest_type = {$invest_type};
+                var invest_status = {$invest_status};
+                var deal_type = {$deal_type};
+                totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+                if(($(document).height()-range) <= totalheight) {
+                    page++;
+                    var nums=parseInt((msg/{$page})+1);
+                    if(page<=nums) {
+                        getJSON(page,invest_type,invest_status,deal_type);
+                    }                   
+                }
+            });
+        }
+        // 请求数据加载到页面中。。。
+        function getJSON(page,invest_type,invest_status,deal_type){
+            page=parseInt(page);
+            $.ajax({
+                type:"POST",
+                url:"{url x="index" r="uc_invest#investList"}",
+                data:{'page':page,'invest_type':invest_type,'invest_status':invest_status,'deal_type':deal_type},
+                success :function (str){
+                    var main = $(".my-invest-list");
+                    if(str!='false'){
+                        main.append(str);
+                    }
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+html {
+  background: #7394f5;
+}
+.container {
+  max-width: 750px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.container img {
+  width: 100%;
+}
+.content {
+  width: 15rem;
+  height: 24.12rem;
+  background: url(../images/bg.png);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.rule {
+  overflow: hidden;
+}
+.rule a {
+  width: 1.56rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  float: right;
+  margin: 0.56rem 0.72rem 0 0;
+  background: #5d7dc4;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+}
+.logo {
+  width: 8.58rem;
+  height: 1.06rem;
+  margin: 0.12rem auto 0;
+}
+.box {
+  width: 13.64rem;
+  height: 17.54rem;
+  margin: 0 auto;
+  background: url(../images/bg_redbag.png);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.step_1,
+.step_2,
+.step_3 {
+  width: 13.64rem;
+  height: 17.54rem;
+  overflow: hidden;
+  position: relative;
+}
+.box p {
+  text-align: center;
+  color: #fff;
+}
+.head_img {
+  width: 2.22rem;
+  height: 2.22rem;
+  margin: 0.84rem auto 0;
+  border-radius: 50%;
+}
+.friend {
+  line-height: 1.24rem;
+  font-size: 14px;
+}
+.friend_word {
+  line-height: 1.52rem;
+  font-size: 20px;
+}
+.myself_word {
+  line-height: 2.36rem;
+  font-size: 20px;
+  margin-top: 2.34rem;
+}
+.friend_money,
+.myself_money {
+  line-height: 3.4rem;
+  font-size: 12px;
+}
+.friend_money span,
+.myself_money span {
+  font-weight: bold;
+  font-size: 40px;
+}
+.regist_word {
+  line-height: 0.9rem;
+  margin: 0.6rem auto;
+  font-size: 15px;
+}
+.item {
+  width: 10.76rem;
+  margin: 0 auto 0.4rem;
+  overflow: hidden;
+}
+.item span {
+  width: 0.72rem;
+  height: 0.96rem;
+  float: left;
+  margin: 0.32rem 0.4rem 0 0;
+  background: url(../images/icon_tel.png);
+  background-size: 100% 100%;
+}
+.item_yzm span {
+  background-image: url(../images/icon_yzm.png);
+}
+.item_code span {
+  background-image: url(../images/icon_code.png);
+}
+.item input {
+  width: 4.08rem;
+  height: 19px;
+  line-height: 19px;
+  padding: 0.4rem;
+  float: left;
+  border: 1px solid #fff;
+  background: none;
+  font-size: 15px;
+  color: #fff;
+  border-radius: 4px;
+}
+.item input::-webkit-input-placeholder {
+  color: #fff;
+}
+.item input::placeholder {
+  color: #fff;
+}
+.item_tel input {
+  width: 8.72rem;
+}
+.item .yzm {
+  width: 4.1rem;
+  height: 1.44rem;
+  margin-top: 0.08rem;
+  float: right;
+}
+.item .btn_code {
+  width: 4.1rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  float: right;
+  text-align: center;
+  background: #fda82c;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 4px;
+}
+.btn {
+  width: 6.2rem;
+  height: 6.2rem;
+  display: block;
+  background: url(../images/btn1.png);
+  background-size: 100% 100%;
+  position: absolute;
+  top: 9.24rem;
+  left: 3.72rem;
+}
+.btn2 {
+  background-image: url(../images/btn2.png);
+}
+.btn3 {
+  background-image: url(../images/btn3.png);
+}
+.tip {
+  width: 100%;
+  line-height: 1.48rem;
+  font-size: 12px;
+  position: absolute;
+  bottom: 0.68rem;
+}
+/*设置登录密码*/
+.login_pwd_pop {
+  width: 11.1rem;
+  height: 7.26rem;
+  background: -webkit-linear-gradient(#749cf5, #7279f4);
+  background: linear-gradient(#749cf5, #7279f4);
+  border-radius: 6px;
+}
+.login_pwd_pop .layui-layer-setwin {
+  -display: none;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  top: 7.26rem;
+  margin-left: -0.8rem;
+}
+.login_pwd_pop .layui-layer-setwin .layui-layer-close2 {
+  padding: 0;
+  margin: 0;
+  width: 1.6rem;
+  height: 2.8rem;
+  background: url(../images/btn_close.png);
+  background-size: 100% 100%;
+  font-size: 0;
+  border: 0;
+  right: auto;
+  top: auto;
+}
+.login_pwd_pop .layui-layer-content {
+  padding: 0;
+}
+.login_pwd_title {
+  height: 2.4rem;
+  line-height: 2.4rem;
+  margin-top: 0.3rem;
+  font-size: 15px;
+  color: #fff;
+  text-align: center;
+}
+.login_pwd input {
+  width: 80%;
+  height: 18px;
+  line-height: 18px;
+  padding: 0.24rem;
+  border: 1px solid #fff;
+  margin-left: 0.88rem;
+  background: none;
+  color: #fff;
+  border-radius: 4px;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.login_pwd_btn {
+  width: 55.68%;
+  height: 1.44rem;
+  line-height: 1.46rem;
+  display: block;
+  margin: 0.94rem auto 0;
+  background: #fda82c;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 17px;
+  color: #fff;
+}
+/*规则*/
+.rule_title {
+  width: 8rem;
+  height: 3.12rem;
+  line-height: 1.16rem;
+  margin: 2.2rem auto 0;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+.rule_title span {
+  display: inline-block;
+  margin-top: 0.36rem;
+}
+.rule_list {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0.4rem 0 0.36rem;
+  border-top: 1px dashed #a0bcf9;
+  overflow: hidden;
+}
+.rule_list:first-of-type {
+  border: 0;
+  margin-top: 1rem;
+}
+.rule_list dt {
+  width: 8%;
+  float: left;
+}
+.rule_list dt span {
+  width: 0.56rem;
+  height: 0.56rem;
+  line-height: 0.56rem;
+  float: left;
+  margin-top: 0.1rem;
+  background: #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 0.48rem;
+  color: #7390f5;
+}
+.rule_list dd {
+  width: 92%;
+  float: left;
+  line-height: 0.76rem;
+  font-size: 12px;
+  color: #fff;
+}
+.ewm {
+  width: 5.1rem;
+  height: 6.04rem;
+  margin: 0.8rem auto 0;
+  background: url(../images/bg_circle.png);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.ewm img {
+  width: 3.14rem;
+  height: 3.14rem;
+  display: block;
+  margin: 0.76rem auto 0;
+}
+.ewm p {
+  line-height: 0.8rem;
+  text-align: center;
+  font-size: 11px;
+  color: #000;
+}
+/*红包弹幕*/
+.record-marquee {
+  width: 15rem;
+  height: 1.16rem;
+  position: relative;
+  margin: 0.2rem auto;
+}
+.record-list {
+  width: 15rem;
+  height: 1.16rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  color: #fff;
+  font-size: 10px;
+}
+.record-list li {
+  height: 1.16rem;
+  line-height: 1.16rem;
+  float: left;
+  padding: 0 10px;
+  margin: 0 0 0 100px;
+  border-radius: 0.16rem;
+  background: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  text-align: center;
+}
+.record-list p {
+  line-height: 0.48rem;
+  margin-top: 0.1rem;
+}

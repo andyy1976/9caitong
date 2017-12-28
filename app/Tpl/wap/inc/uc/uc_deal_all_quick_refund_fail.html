@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+</head>
+<body>
+<section class="container cf">
+    <?php if(!es_session::get('MachineInfo')) {?>
+        <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>还款失败</div>
+	<?php } ?>
+    <!-- 还款成功 -->
+    <p class="my-result-icon"><img src="{$TMPL}/images/wap2/my/icon_fail.png" width="59.5" height="59.5"></p>
+	<p class="my-result-title">{$list.msg}</p>
+	<p class="my-result-title">请致电客服咨询。</p>
+    <a href="javascript:void(0)" onclick="{$jump.Godeal}()" class="my-re-result-btn">确定</a>
+</section>
+</body>
+</html>
+
+<script>
+    function iosGodeal(){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"Godeal"});
+    }
+
+    function androidGodeal(){
+		var deal_id = "{$list.deal_id}";
+        window.jiucaitong.FromH5ToJump("Godeal",deal_id);
+    }
+</script>

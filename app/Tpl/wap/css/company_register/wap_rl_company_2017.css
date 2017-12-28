@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* container */
+html{ background: #edf2f6;}
+.container{ max-width: 750px; margin: 0 auto;}
+.header{ line-height: 48px; background: linear-gradient(to bottom, #575cde 0%, #4672de 100%); overflow: hidden; color: white; text-align: center; font-size: 1.8rem; font-weight: bold; position: relative;}
+.header .back-icon{ position: absolute; left: 0; top: 0; padding: 15px 4%;}
+/* popup-btn-new */
+.layui-layer-dialog{ min-width: 180px;}
+.popup-btn-new .layui-layer-setwin{ display: none;}
+.popup-btn-new{ width: 66%; border-radius: 8px;}
+.popup-btn-new .layui-layer-content{ padding: 6px 0 8px; text-align: center;}
+.popup-btn-new h3{ border: 0; padding: 0; height: 34px; line-height: 34px; font-weight: bold; color: #13334d; font-size: 18px;}
+.popup-btn-new p{ padding: 6px 0; color: #13334d;}
+.popup-btn-new h4{ color: #f00; font-weight: normal; padding: 4px 0;}
+.popup-btn-new .layui-layer-btn{ height: 44px; line-height: 44px; padding: 0; border-top: 1px solid #D0D0D0;}
+.popup-btn-new .layui-layer-btn0{ width: 100%; height: 100%; line-height: 44px; padding: 0; margin: 0; border: 0; border-radius: 0 0 8px 8px; text-align: center; font-size: 18px;color: #006aff; background: none;}
+/* regist-company */
+.rl-header{ height: 46px; position: relative;}
+.rl-header .close-icon{ position: absolute; left: 0; top: 0; padding: 16px;}
+.rl-btn{ width: 92%; height: 38px; line-height: 38px; display: block; margin: 20px auto 0; background: #3d77ea; border: 1px solid #3d77ea; border-radius: 4px; text-align: center; color: white; font-size: 1.6rem; box-sizing: border-box;}
+.rl-btn-qy{ background-color: #3d77ea!important; border-color: #3d77ea!important; color: #fff!important; margin-top: 30px; margin-bottom: 60px;}
+.rl-list,.qy-list,.qy-title{ width: 92%; margin: 12px auto 0;}
+.rl-list li,.qy-list li{ width: 100%; height: 50px; float: left; border-bottom: 1px solid #9aa9b7;}
+.qy-list{ margin-top: 0; margin-bottom: 14px;}
+.qy-list li{ height: 45px; border-color: #a5b2c0; line-height: 45px;}
+.qy-list li input{ width: 80%; line-height: 22px; background: none; border: none; padding-left: 0; margin-top: 12px;}
+.qy-list li input::-webkit-input-placeholder{ color: #97a8b2;}
+.qy-list li input::placeholder{ color: #97a8b2;}
+.qy-list span,.qy-list i{ width: 19px; height: 19px; float: right; margin: 12px 12px 14px 0; background: url(../../images/company_register/icon_symbol.png); background-size: 19px 19px;}
+.qy-list .time{ float: left;}  
+.qy-list i{ background-image: url(../../images/company_register/icon_qy_arrow.png);}
+.qy-title{ height: 26px; line-height: 26px; margin-top: 6px; font-size: 14px; color: #13334d;}
+.qy-title span{ width: 22px; height: 22px; float: left; margin-top: 2px; margin-right: 4px; background: url(../../images/company_register/icon_qy_info.png) no-repeat left; background-size: 100% 100%;}
+.qy-title-acc span{background-image: url(../../images/company_register/icon_qy_acc.png);}
+.qy-title-info span{background-image: url(../../images/company_register/icon_qy_credit.png);}
+#popBg{ width: 100%; height: 100%; position: absolute; left: 0; top: 0; background: black; opacity: 0.8; z-index: 198910151; display: none;}
+#popBox{ width: 96.8%; height: auto; position: absolute; left:0; top:0; z-index: 198910152; display: none;}
+#popBox img{ width: 100%;}
+
+/* popup-box-ios */
+.popup-box-ios .layui-layer-setwin{ display: none;}
+.popup-box-ios{ width: 66%; border-radius: 8px;}
+.popup-box-ios .layui-layer-content{ padding: 6px 0 8px; text-align: center;}
+.popup-box-ios h3{ border: 0; padding: 0; height: 34px; line-height: 34px; font-weight: bold; color: #3d77ea; font-size: 18px;}
+.popup-box-ios p{ padding: 6px 0; color: #333;}
+.popup-box-ios .layui-layer-btn{ height: 44px; line-height: 44px; padding: 0; border-top: 1px solid #ddd;}
+.popup-box-ios .layui-layer-btn a{ width: 50%; height: 44px; line-height: 44px; margin: 0; padding: 0; border: 0; text-align: center; font-size: 16px; box-sizing: border-box; background: none; color: #999;}
+.popup-box-ios .layui-layer-btn a.layui-layer-btn0{ border-radius: 0 0 0 8px; border-right: 1px solid #ddd;}
+.popup-box-ios .layui-layer-btn a.layui-layer-btn1{ border-radius: 0 0 8px 0; color: #3d77ea;}
+

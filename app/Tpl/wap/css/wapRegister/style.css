@@ -1,0 +1,272 @@
+.container {
+  background: #ff6f5f;
+}
+.container img {
+  width: 100%;
+}
+.banner {
+  width: 100%;
+  height: 9.68rem;
+  background: url(../../images/wap2/register/banner.png);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.banner p {
+  line-height: 1.32rem;
+  margin: 0.72rem 0 0 3rem;
+  font-size: 0.68rem;
+  color: white;
+}
+.banner p span {
+  color: #ffe59d;
+  padding: 0 0.32rem 0 0.44rem;
+}
+.peoples {
+  line-height: 1.54rem;
+  background: #882300;
+  text-align: center;
+  font-size: 0.68rem;
+  color: #fd4738;
+}
+.peoples span {
+  padding: 0 0.3rem;
+}
+.regist {
+  width: 100%;
+  background: #fe5546;
+  overflow: hidden;
+}
+.regist .item {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 0.08rem;
+}
+.regist .item span {
+  width: 3.5rem;
+  line-height: 1.56rem;
+  float: left;
+  margin-right: 0.36rem;
+  text-align: right;
+  font-size: 0.68rem;
+  color: #fff;
+}
+.regist .item .input {
+  width: 10.2rem;
+  height: 1.44rem;
+  float: left;
+  border-radius: 0.16rem;
+  box-shadow: 0 0.12rem 0 #ffb7b0;
+  background: #fff;
+}
+.regist .item .input input {
+  width: 7.6rem;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  padding: 0.28rem 0.6rem;
+  border-radius: 0;
+  border: none;
+  background: none;
+  font-size: 0.6rem;
+  color: #fd4232;
+}
+.regist .item:first-child {
+  margin-top: 0.68rem;
+}
+.regist .item:nth-of-type(3) input {
+  width: 5.6rem;
+}
+.regist .item:nth-of-type(3) .code-img {
+  width: 2.2rem;
+  height: 0.8rem;
+  float: right;
+  margin-right: 0.36rem;
+  margin-top: 0.32rem;
+  padding-left: 0.44rem;
+  border-left: 0.06rem solid #cad2df;
+}
+.regist .item:last-of-type .input {
+  width: 5.16rem;
+}
+.regist .item:last-of-type .input input {
+  width: 3.8rem;
+}
+.regist .item:last-of-type .code-btn {
+  width: 4.72rem;
+  height: 1.44rem;
+  line-height: 1.44rem;
+  float: left;
+  margin-left: 0.3rem;
+  border-radius: 0.16rem;
+  box-shadow: 0 0.12rem 0 #bea30b;
+  background: #fedd20;
+  text-align: center;
+  font-size: 0.6rem;
+  color: #c63311;
+}
+.regist .item:last-of-type .code-btn-gray {
+  box-shadow: 0 0.12rem 0 #676767;
+  background: #909090;
+  color: #fffcfb;
+}
+.regist p {
+  line-height: 1rem;
+  padding-left: 4.08rem;
+  font-size: 0.48rem;
+  color: #f6e68a;
+  height: 1rem;
+}
+.regist .tip {
+  line-height: 1rem;
+  padding-left: 4.08rem;
+  font-size: 0.48rem;
+  color: #f6e68a;
+}
+.btn {
+  width: 13.48rem;
+  height: 2.28rem;
+  margin: 0.24rem auto 0;
+  display: block;
+  background: url(../../images/wap2/register/btn.png);
+  background-size: 100% 100%;
+}
+.btn:active {
+  background: url(../../images/wap2/register/btn_gray.png);
+  background-size: 100% 100%;
+}
+.title {
+  line-height: 1.6rem;
+  margin-top: 0.24rem;
+  text-align: center;
+  font-size: 0.68rem;
+  color: #fff;
+}
+.title span {
+  padding-right: 0.48rem;
+  background: url(../../images/wap2/register/icon.png) no-repeat;
+  background-size: 0.58rem 0.46rem;
+  background-position: right;
+}
+.foot {
+  text-align: center;
+  padding: 0.2rem 0 0.1rem;
+}
+.foot p {
+  line-height: 0.6rem;
+  font-size: 0.48rem;
+  color: #eb3920;
+}
+.foot p:first-child {
+  line-height: 0.64rem;
+  color: #d12209;
+  font-weight: bold;
+}
+/*弹出框样式*/
+.tip-pop {
+  width: 11.36rem;
+  height: 12.7rem;
+  box-shadow: none;
+  background: rgba(0, 0, 0, 0) url(../../images/wap2/register/tip_pop_bg.png);
+  background-size: 100% 100%;
+}
+.tip-pop .layui-layer-content {
+  padding: 0;
+}
+.tip-pop p.tip-words {
+  line-height: 1.3rem;
+  margin-top: 7.6rem;
+  font-size: 0.68rem;
+  color: #e61313;
+  text-align: center;
+}
+.tip-pop .layui-layer-btn {
+  height: 2.4rem;
+  margin-top: 1.4rem;
+  padding: 0;
+}
+.tip-pop .layui-layer-btn .layui-layer-btn0 {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-size: 0;
+}
+.tip-pop .layui-layer-setwin .layui-layer-close2 {
+  width: 1.3rem;
+  height: 1.3rem;
+  background: url(../../images/wap2/register/tip_pop_close.png);
+  background-size: 100% 100%;
+  top: 1.72rem;
+}
+/*success*/
+.success-wrap {
+  background: #000;
+}
+.success-wrap .success {
+  width: 14.9rem;
+  height: 26.68rem;
+  margin: 0 auto;
+  background: url(../../images/wap2/register/success_bg.png);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.success-wrap .success p {
+  width: 86%;
+  line-height: 1rem;
+  margin: 8.64rem auto 0;
+  font-size: 0.68rem;
+  color: #666;
+}
+.success-wrap .success .btn-download {
+  width: 86%;
+  height: 1.32rem;
+  line-height: 1.32rem;
+  margin: 1.48rem auto 0;
+  display: block;
+  text-align: center;
+  box-shadow: 0 0.14rem 0 #ff7a7a;
+  background: #ef1631;
+  border-radius: 0.6rem;
+  font-size: 0.8rem;
+  color: #fff4f7;
+  font-weight: bold;
+}
+/*弹出框样式*/
+.popup-pop {
+  width: 5rem;
+  height: 5rem;
+  box-shadow: none;
+  border-radius: 5px
+}
+.popup-pop .layui-layer-content {
+  padding: 0;
+}
+.popup-pop p.tip-words {
+  line-height: 1.3rem;
+  margin-top: 7.6rem;
+  font-size: 0.68rem;
+  color: #e61313;
+  text-align: center;
+}
+.popup-pop .layui-layer-btn {
+  height: 2.4rem;
+  margin-top: 1.4rem;
+  padding: 0;
+}
+.popup-pop .layui-layer-content{
+    text-align: center;
+    color: red;
+    top: 25px;
+    font-weight: 600;
+}
+.popup-pop .layui-layer-btn .layui-layer-btn0 {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-size: 0;
+}
+

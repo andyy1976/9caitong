@@ -1,0 +1,53 @@
+{include file="inc/nheader.html"}
+<div class="wrapper bgf8">
+	<div class="regbanner w100b">
+		<img src="/new/images/page_reg_bg2.jpg" class="w100b" />
+	</div>
+	<div class="center">
+		<ul class="regstep">
+			<li>
+				<div class="step">
+					<span><i>1</i></span>
+					<p>手机号注册</p>
+				</div>
+				<div class="stepline"></div>
+			</li>
+			<li>
+				<div class="step">
+					<span><i>2</i></span>
+					<p>开通银行存管账户</p>
+				</div>
+				<div class="stepline"></div>
+			</li>
+			<li class="step_end">
+				<div class="step">
+					<span class="step_span_active"><i>3</i></span>
+					<p class="step_p_active">设置交易密码</p>
+				</div>
+			</li>
+		</ul>
+		<div class="clear"></div>
+		<form ajax_url="{url x="index" r="user#user_reg_settingpwd"}" id="page_reg_stepthree" autocomplete="off" class="page_userForm_box mlra">
+			<span class="reminder ta_c">存管账户开通成功</span>
+			<!--<p class="ta_c fs_16">存管虚拟账户账号：<span class="fs_16 c C_orange">1879164678192793</span></p>-->
+			<div class="blank20"></div>
+			<p class="ta_c">为保障账户安全请跳转到宜宾银行存管页面设置交易密码</p>
+			<div class="blank20"></div>
+			<a href="javascript:void(0);" class="reg_jump_btn C_white ta_c" id="user_reg_settingpaypwd">设置交易密码</a>
+			<a href="javascript:void(0);" class="reg_jump_link ta_c w100b dp-b mg-tb20 fs_16" id="user_reg_ellipsispaypwd">跳过设置</a>
+		</form>
+		<div class="blank50"></div>
+	</div>
+</div>
+{include file="/inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160828' ]]
+			});
+			seajs.use(["/new/js/page/page_reg"])
+		</script>
+	</body>
+</html>

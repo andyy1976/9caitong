@@ -1,0 +1,54 @@
+<script type='text/javascript' src='//webchat.7moor.com/javascripts/7moorInit.js?accessId=429139a0-8bd8-11e7-b6e0-9d5793fc455a&autoShow=false' async='async'></script>
+<body>
+<section class="container cf">
+    <div class="header"><a href="{url x="index" r="uc_center#index"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>设置</div>
+	<!-- 设置 -->
+    <p class="my-set-logo"><img src="{$TMPL}/images/wap2/my/icon_logo_1.png" width="74" height="105"></p>
+    <ul class="my-list my-set-list cf">
+    	<li style="margin-bottom: 10px"><a href="{url x="index" r="uc_set#news"}"><span>消息中心</span><i></i><b {if $new['nid'] gt $new['id']}class="my-news-red-point"{/if}></b></a></li> 
+    	<li><a onclick="qimoChatClick();"><span>在线客服</span><i></i></a></li>
+        <li><a href="{url x="index" r="uc_set#help"}"><span>帮助中心</span><i></i></a></li>        
+        <li><a href="{url x="index" r="uc_set#about"}"><span>关于我们</span><i></i></a></li>
+        <li><a onclick="setOpen()"><span>客服电话</span><i></i><p>点击拨打</p></a></li>
+
+    </ul>
+</section>
+<div class="open-close" style="display: none">
+	<div id="setBg"></div>
+	<div id="setBox">
+	    <p class="set-safety">工作日8:30-22:00，周末9:00-22:00</p>
+	    <ul class="set-list">
+	    	<li><a href="tel:400-650-8706">400-650-8706</a></li>
+	    	<!-- <li><a href="tel:010-53386369">010-53386369</a></li>
+	    	<li><a href="tel:010-53608035">010-53608035</a></li> -->
+	    </ul>
+	    <p class="set-close" onclick="setClose()">取消</p>
+	  
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+function setOpen(){
+	$(".open-close").css('display','block');
+}
+function setClose(){
+	$(".open-close").css('display','none');
+}
+</script>
+
+<!-- <script language="javascript" type="text/javascript">
+	NTKF_PARAM = {
+		siteid:"kf_9421",		            //企业ID，为固定值，必填
+		settingid:"kf_9421_1477013965571",	//接待组ID，为固定值，必填
+		uid:"12323",		                //用户ID，未登录可以为空，但不能给null，uid赋予的值显示到小能客户端上
+		uname:"eminyli@163.com",		    //用户名，未登录可以为空，但不能给null，uname赋予的值显示到小能客户端上
+		isvip:"0",                          //是否为vip用户，0代表非会员，1代表会员，取值显示到小能客户端上
+		userlevel:"1",		                //网站自定义会员级别，0-N，可根据选择判断，取值显示到小能客户端上
+		erpparam:"abc"                      //erpparam为erp功能的扩展字段，可选，购买erp功能后用于erp功能集成
+		} 
+	</script> -->
+
+	<!--基础脚本加载 -->
+<script type="text/javascript" src="https://dl.ntalker.com/js/xn6/ntkfstat.js?siteid=kf_9421" charset="utf-8"></script>
+
+</html>

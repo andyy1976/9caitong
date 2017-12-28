@@ -1,0 +1,71 @@
+{include file="inc/header.html"}
+<script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })()
+    </script>
+<section class="welfare-wrap cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+     <div class="header"><a href="{url x="index" r="index"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>新手福利</div>
+<?php } ?>
+    <div class="welfare">
+        <img src="{$TMPL}/images/wap2/index/welfare/img1.png">
+        <div class="box">
+            <i><img src="{$TMPL}/images/wap2/index/welfare/icon.png"></i>
+            <img src="{$TMPL}/images/wap2/index/welfare/img2.png">
+            <ul class="list">
+                <li><span></span><p>注册就送<b> 50 元代金券+ 84442 元体验金</b></p><a onclick="{$jump.ToRegister}()">去注册</a></li>
+                <li>
+                    <span></span><p>每成功邀请1位好友，<b>即可获得 20 元代金券</b></p><p>成功邀请3位好友，<b>可解封 16666 元体验金</b></p><a href={$wap_cloumn_url}>去邀请</a>
+                </li>
+                <li><span></span><p>出借任意普通标后，<b>可解封 58888 元体验金</b></p><a onclick="{$jump.ToProductList}() ">去出借</a></li>
+            </ul>
+        </div>
+        <div class="box">
+            <img src="{$TMPL}/images/wap2/index/welfare/img3.png">
+            <ul class="list">
+                <li><span></span><p><b> 100 元起投，</b>项目期限1个月起，瞬享收益</p><a onclick="{$jump.ToProductList}()">去出借</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+</body>
+<script type="text/javascript">
+//wap跳转
+function ToRegister(){
+    {if $user_id}
+        window.location.href = "{url x="index" r="uc_center"}";        
+    {else}
+        window.location.href = "{url x="index" r="user#register"}";
+    {/if}
+}
+function ToProductList(){
+    window.location.href = "{url x="index" r="deals"}";
+}
+//iOS跳转
+function iosToRegister(){
+    {if $user_id}
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToMyPage"});
+    {else}
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToRegister"});
+    {/if}
+}
+function iosToProductList(){
+    window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToProductList"});
+}
+//Android跳转
+function androidToRegister(){
+    {if $user_id}
+        window.jiucaitong.FromH5ToJump("jumpToMyPage","");  //返回项目列表
+    {else}
+        window.jiucaitong.FromH5ToJump("jumpToRegister",""); 
+    {/if}
+}
+function androidToProductList(){
+     window.jiucaitong.FromH5ToJump("jumpToProductList","");  //返回项目列表
+}
+</script>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">     
+<meta content="yes" name="apple-mobile-web-app-capable">     
+<meta content="black" name="apple-mobile-web-app-status-bar-style">     
+<meta content="telephone=no" name="format-detection">
+<title>注册wap</title>
+<script type="text/javascript" src="new/spread/tasteRegister2/js/jquery.js"></script>
+<script type="text/javascript" src="new/spread/tasteRegister2/js/resize.js"></script>
+<script type="text/javascript" src="new/spread/tasteRegister2/js/checkCode.js"></script>
+</head>
+<style>
+html{
+	color:#000;
+	background:#FFF;
+	font-family: "Microsoft Yahei";
+}
+img{width:100%;}
+a{text-decoration: none;color: #666666;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{
+	margin:0;
+	padding:0;
+}table{
+	border-collapse:collapse;
+	border-spacing:0;
+}fieldset,img{
+	border:0;
+}address,caption,cite,code,dfn,em,strong,th,var{
+	font-style:normal;
+	font-weight:normal;
+}ul{
+	list-style:none;
+}caption,th{
+	text-align:left;
+}h1,h2,h3,h4,h5,h6{
+	font-size:100%;
+	font-weight:normal;
+}q:before,q:after{
+	content:'';
+}abbr,acronym{
+	border:0;
+	font-variant:normal;
+}sup{
+	vertical-align:text-top;
+}sub{
+	vertical-align:text-bottom;
+}input,textarea,select{
+	font-family:inherit;
+	font-size:inherit;
+	font-weight:inherit;
+	*font-size:100%;
+}legend{
+	color:#000;
+}
+.clear{ clear:both; width:0; height:0; overflow:hidden; }
+.banner img{ height:auto; font-size:0; padding:0; margin:0;}
+html,body{ background:#ca0034; height:100%;}
+.r-form img{ width:0.73rem;}
+.r-form ul{  padding-top: .6rem; width:6rem; margin:0 auto; overflow: hidden;}
+.r-form li{ width: 100%; margin-bottom:0.36rem; height:0.64rem; position: relative;}
+.r-form li:last-of-type{ margin: 0;}
+.r-form li span{ width:0.73rem; line-height: 0.64rem; float: left;}
+.r-form li input{ width:5.16rem; line-height:0.65rem; text-indent:0.4rem;  float: left; border: none; border-radius: 0; border-bottom-right-radius:4px;border-top-right-radius:4px;  box-sizing: border-box; -webkit-appearance: none; background: #fff; font-size:0.28rem; }
+.r-form li i{ width:1.96rem; height:0.64rem; position: absolute; top:0rem; right:0rem;}
+.r-form li i img{ width: 100%;}
+.r-form li i input#code{width:1.9rem;border-radius: 4px;font-family: Arial; font-style: italic; font-weight: bold;  border: 0; letter-spacing: 2px;  position: absolute; padding: 0; right: 0.15rem;}
+.r-form li input.r-input{ width:3.11rem;}
+.r-form li:last-of-type a{width:1.9rem; margin-right:0.15rem;  line-height: 0.64rem;height: 0.64rem; float: right; background: #ffcc33; border-radius: 4px; text-align: center; font-size:0.28rem; color: #f7f4d5;}
+.r-form li:last-of-type a.gray{ color: #666; background: #aaa; border-color: #aaa;}
+.r-form li:last-of-type .tip{ position: absolute; left: 1.1rem; top:-0.35rem; font-size:0.28rem; color: #fdda49;}
+.r-btn{ background:url(new/spread/tasteRegister2/image/w_btn.jpg) no-repeat center; background-size:6.04rem 1.04rem; margin:0.7rem auto 0;}
+.r-btn a{display:block; text-indent:-9999rem; width:6.04rem; height:1.04rem; margin:0 auto;}
+</style>
+<body>
+	<div class="banner">
+    	<img src="new/spread/tasteRegister2/image/w_banner1.jpg" />
+        <img src="new/spread/tasteRegister2/image/w_banner2.jpg" />
+    </div>
+	<div class="r-con">
+        <div class="r-form">
+            <form>
+                <ul>
+                    <li><span><img src="new/spread/tasteRegister2/image/w_ico1.jpg" /></span><input type="text" name="username" placeholder="请输入手机号"></li>
+                    <li><span><img src="new/spread/tasteRegister2/image/w_ico2.jpg" /></span><input type="password" name="password" placeholder="设置登录密码"></li>
+                    <li><span><img src="new/spread/tasteRegister2/image/w_ico3.jpg" /></span><input type="referee" name="re_username" placeholder="请输入邀请码（非必填）"></li>
+                    <li><span><img src="new/spread/tasteRegister2/image/w_ico4.jpg" /></span><input id="codeNum" class="r-input" type="text" placeholder="请输入验证码"><i> <img id="codeImg" src="{$APP_ROOT}/verify.php?w=89&h=44&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random();" style="height: 28px";>  </i></li>
+                    <li><span><img src="new/spread/tasteRegister2/image/w_ico5.jpg" /></span><input type="text" class="r-input" placeholder="请输入验证码" name="phoneCode"><a href="javascript:;" id="getCode" class="">获取验证码</a><b id="error_html" class="tip"></b></li>
+                </ul>
+            </form>
+        </div>
+        <div class="r-btn">
+            <a href="javascript:;" id="#btn-fa" onclick="doRegister();">立即领取</a>
+        </div>
+    </div>
+    <div style="width:100%; padding-bottom:10px; padding-top:10px; text-align:center"> <span style="font-size:14px; color:#940126">Copyright©北京玖承资产管理有限公司</span><br><br> </div>
+</body>
+</html>
+<script>
+var last_times = 0; //倒计时时间 单位S
+var static_countdowns_times = 60;//倒计时开始时间
+function countdown() {
+	$("#getCode").css("background-color", "#aaa");
+	if (0 >= last_times) {
+		$("#getCode").css("background-color", "#fedd20");
+		$("#getCode").html('获取验证码');
+		return;
+	}
+	str_text = last_times--;
+	str_text += '秒后重试';
+	$('#getCode').html(str_text);
+	setTimeout("countdown()", 1000);
+}
+
+function check_form(username, password,re_username,imgCode) {
+	
+	var pattern = /^1[34578]\d{9}$/;
+	var match = /^(?![^0-9]+$)(?![^a-zA-Z]+$).+$/;
+	if (username.length == 0){
+		$("#error_html").html('请输入手机号');
+		return false;
+	}
+	if (!pattern.test(username)) {
+		$("#error_html").html('手机号格式不正确');
+		return false;
+	}
+	if (password.length == 0) {
+		$("#error_html").html('请输入密码');
+		return false;
+	}
+	if (password.length < 6) {
+		$("#error_html").html('密码应为6-16位数字字母组合');
+		return false;
+	}
+	if (!match.test(password)) {
+		$("#error_html").html("密码应为6-16位数字字母组合");
+		return false;
+	}
+	if(username == re_username) {
+		$("#error_html").html('邀请码不能填写自己');
+		return false;
+	}
+	if(re_username && !pattern.test(re_username)){
+		$("#error_html").html('邀请码不存在');
+		return false;
+	}
+	if (imgCode == ""){
+		$("#error_html").html("请输入图形验证码");
+		return false;
+	}
+	
+	$("#error_html").html("");
+	return true;
+}
+
+$("#getCode").click(function () {
+	$("#error_html").html('');
+	if (0 >= last_times) {
+		var username = $('input[name=username]').val();
+		var password = $('input[name=password]').val();
+		var re_username = $('input[name=re_username]').val();
+		var imgCode = $('#codeNum').val();
+		var check_re = check_form(username, password,re_username,imgCode);
+		if (check_re){
+			$.ajax({
+				url:  "index.php?ctl=ajax&act=send_phone_verifycode_one",
+				data: {'user_mobile':username,'Verifycode':imgCode},
+				type: 'post',
+				dataType: 'json',
+				success: function(re){
+					if(re.status == 0){
+						$("#error_html").html(re.info);
+						return false;
+					}else{
+						$("#error_html").html(re.info);
+						last_times = static_countdowns_times;
+						countdown()
+					}
+				}
+			})
+		}
+	} else {
+		$("#error_html").html('请勿多次点击');
+	}
+})
+
+function doRegister(){
+	var username = $('input[name=username]').val();
+	var password = $('input[name=password]').val();
+	var re_username = $('input[name=re_username]').val();
+	var phoneCode = $('input[name=phoneCode]').val();
+	var imgCode = $('#codeNum').val();
+	var check_re = check_form(username, password,re_username,imgCode);
+	if(check_re == true && phoneCode == '') $("#error_html").html('请输入手机验证码');
+	if(check_re && phoneCode){
+		$.ajax({
+			url:  "index.php?ctl=user&act=doregister",
+			data: {'referer':re_username,'mobile':username,'user_pwd':password,'sms_code':phoneCode,'user_name':'w'+username},
+			type: 'post',
+			dataType: 'json',
+			success: function(re){
+				if(re.status == 1){
+					//跳转
+					{if $pid eq ''}
+						window.location.href="{url x="index" r="spread#dlShowa"}";
+						{else}
+						window.location.href="/index.php?ctl=spread&act={$pid}";
+						{/if}
+				}else{
+					$("#error_html").html(re.info);
+					return false;
+				}
+			}
+		})
+	}
+}	
+</script>

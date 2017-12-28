@@ -1,0 +1,80 @@
+<div class="deal_bid">
+	<table border="0" cellspacing="" cellpadding="">
+		<tr>
+			<td align="right">出借金额：</td>
+			<td class="LendMoney">{function name="format_price" v=$bid_money}</td>
+		</tr>
+		<tr>
+			<td align="right" valign="top">优惠券：</td>
+			<td>
+				{if $choose_interest_list || $choose_red_list}
+				<ul class="dealBid_FictitiousMoney">
+					{if $choose_red_list}
+                    {foreach from=$choose_red_list item="red" key=k name="red"}
+					<li class="bonus">
+						<div class="money">
+							<span>¥<i>{$red.money}</i></span>
+							<p>满{$red.max_use_money}元可用</p>
+						</div>
+						<div class="condition">
+							<p>可用标的：{$red.use_condition}个月标的</p>
+							<p>有效期：{$red.begin_date}-{$red.end_date}</p>
+						</div>
+					</li>
+                    {/foreach}
+					{/if}
+					{if $choose_interest_list}
+                    {foreach from=$choose_interest_list item="interest" key=kk name="interest"}
+					<li class="coupon">
+						<div class="money">
+							<span><i>{$interest.rate}%</i></span>
+							<p>{$interest.interest_time_info}</p>
+						</div>
+						<div class="condition">
+							<p>可用标的：{$interest.use_condition}个月标的</p>
+							<p>有效期：{$interest.begin_date}-{$interest.end_date}</p>
+						</div>
+					</li>
+                    {/foreach}
+					{/if}
+				</ul>
+				{else}
+				无
+				{/if}
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<div class="bid_btn">
+				    {if $deal.type_id eq 12}
+					<input type="hidden" id="isPlan" value="1" />
+					{/if}
+					<input type="hidden" name="LOGIN_KEY" id="LOGIN_KEY" value="{insert name="get_login_key"}" />
+					<input type="button" class="bid_submit" id="J_bindpassword_btn" value="确定">&nbsp;&nbsp;
+				</div>					
+			</td>
+		</tr>
+	</table>
+	<!--<ul>
+		<li><label class="bid_bt">出借金额：</label><span class="bid_money">{function name="format_price" v=$bidmoney}</span></li>
+		<li><label class="bid_bt">红包金额：</label><span class="bid_money">{function name="format_price" v=$ecv_id}</span></li>
+		<li><label class="bid_bt">代金券金额：</label><span class="bid_money">{function name="format_price" v=$interestrate_money}</span></li>
+        {if $deal.cunguan_tag eq 0}
+		<li><label class="bid_bt">交易密码：</label><input type="password" class="ivt_money pd_l_3 input_onfocus_shadow" id="J_bid_password" /></li>
+		<li>
+			<label class="bid_bt"></label>
+			{if $user_info.paypassword eq ''}还未设置！{else}忘记了？{/if}
+			<a href="{url x="index" r="uc_account#paypassword"}" target="_blank" class="f_blue">点这里</a>
+		</li>
+        {else}
+        <input type="hidden"  class="ivt_money pd_l_3 input_onfocus_shadow" id="J_bid_password" value="J_bid_password" />
+        {/if}
+		<li class="bid_btn">
+			<label class="bid_bt"></label>
+			<input type="hidden" name="LOGIN_KEY" id="LOGIN_KEY" value="{insert name="get_login_key"}" />
+			<input type="button" class="bid_submit" id="J_bindpassword_btn" value="确定">&nbsp;&nbsp;
+			<input type="button" class="bid_cancel" id="J_bindpassword_rbtn" value="取消"></div>
+		</li>
+	</ul>-->
+</div>

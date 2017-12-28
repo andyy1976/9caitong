@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="zh-CN">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- 优先使用 IE 最新版本 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 忽略将数字变为电话号码-->
+<meta name="format-detection" content="telephone=no">
+<!--让国产浏览器默认采用高速模式渲染页面-->
+<meta name="renderer" content="webkit">
+<!-- 强制图片显示 -->
+<meta name="imagemode" content="force">
+<!--启用 WebApp 全屏模式-->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- 设置状态栏颜色 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>友情提示</title>
+<link rel="stylesheet" type="text/css"
+	href="new/activity/warning/css/reset_ph_v=2016.css">
+
+<link rel="stylesheet" type="text/css"
+	href="new/activity/warning/css/wap_vip_v_2017.css">
+
+<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+<header> </header>
+</head>
+<body>
+
+	<section class="container cf">
+		{if $recharger_explain eq 1}
+		<div class="header"
+			style="padding-top: 15px; width: 100%; position: fixed; top: 0;">
+			<a onclick="{$jump.GoBack}()" class="back-icon"><img
+				src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"
+				style="margin-top: 18px; padding-left: 10px"></a>
+			<p2>友情提示</p2>
+			<a onclick="{$jump.GoBack}()" style="padding-top: 15px;"
+				class="my-re-record"></a>
+		</div>
+		<div style="width: 100%; height: 56px;"></div>
+		{/if}
+		<!-- 我的奖品 -->
+		<ul>
+			<li>
+				<div style="text-align: center; margin-top: 100px">企业用户暂不可使用</div>
+
+			</li>
+
+		</ul>
+
+	</section>
+	<script>
+//设置根字体大小
+(function(){
+    var html = document.documentElement;
+    var htmlWidth = html.getBoundingClientRect().width;
+    html.style.fontSize = htmlWidth/15 + 'px';
+})();
+//iOS 访问
+//iOS 访问
+
+
+</script>
+	<script>
+function iosJumpToGoBack(){
+    window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToGoBack"}); //跳转到上个页面
+}
+//Android访问
+function androidJumpToGoBack(){
+     window.jiucaitong.FromH5ToJump("jumpToGoBack","");  //跳转到上个页面
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+.newTop {width:100%;}
+.newTop img{width:100%;}
+
+.cetitle {width:260px; height:487px; position:absolute; right:0; top:20%; background:url(../images/ctop.png) no-repeat 0 0; background-size:100% 100%; position:fixed;}
+
+.cetitle ul { width:110px; height:230px; margin:245px auto; color:#6187f3; font-size:16px;}
+.cetitle ul li {margin-top:13px; margin-left:18px;}
+.cetitle ul li a {color:#6187f3; font-size:16px;}
+.cetitle ul .topLiOne {margin-top:47px;cursor:pointer}
+.cetitle ul .topLi {margin-top:0px;cursor:pointer}
+
+.newWelbg {width:100%; height:795px; background:url(../images/newWelbg.png) no-repeat 0 0; background-size:100% 100%;margin-top:-5px;}
+.see-more {width:1196px; margin:0 auto;}
+.ExpX {float:left; font-size:14px; color:#333; }
+.see-moreTwo {float:right; font-size:14px; color:#333;}
+.noOne-new {width:100%; height:725px; background:#ecf7ff; margin-top:24px; border-radius:30px; border:1px solid #dde6ff;}
+.titleOnex { text-align:center; padding-top:40px;}
+.vipOne {font-size:14px; color:#333; padding:52px 0 20px; width:965px; margin:0 auto; border-bottom:1px solid #dcdcdc; position:relative;}
+.vipOne img {margin-left:10px; margin-top:4px; position:absolute;}
+.vipOne span {font-size:22px; margin:0 30px 0 60px;}
+.experience-gold {width:950px; height:187px; background:#fff; border:1px solid #dfe1e1; margin:25px auto 0; border-radius:15px;}
+.experience-gold ul li { width:207px; height:113px;  background:url(../images/Experiencebg.png) no-repeat 0 0; float:left; margin:36px 15px;}
+
+.experience-gold ul .cashMonyx { background:url(../images/Experiencebgtwo.png) no-repeat 0 0;}
+.monycoun {font-size:15px;  margin-top:14px; text-align:center; color:#6a91ff;}
+.mon {font-size:22px; }
+.monycounf { font-size:14px; color:#fff; margin-top:30px; text-align:center;}
+.cashMonyx p { font-size:13px;}
+.cashm { color:#fe8954;margin-left:40px;margin-top:10px;}
+.cashmt { color:#fe8954; margin-left:48px; margin-top:-4px;  font-size:12px;}
+.mcoun {font-size:29px; margin-right:6px;}
+.cashMonyx .Mfoot {font-size:15px; color:#fff; margin-top:6px; text-align:center;}
+.Novice {width:950px; height:143px; background:#fff; border:1px solid #dfe1e1; margin:25px auto 0; border-radius:15px;}
+.Novice ul{float:left;}
+.Novice ul li {float:left; width:180px; border-left:1px solid #e6e6e6; height:65px; font-size:16px; color:#333; text-align:center; margin-top:50px;}
+.Novice ul .yearget {margin-left:100px; border-left:none; text-align:left;}
+.lilvZo {color:#ff6600;margin-top:-50px;}
+.monthOneZo {margin-top:-15px;}
+.setMoneyZo {margin-top:-8px;}
+.lilv {font-size:60px; }
+.monthOne {font-size:36px; color:#ff822f;}
+.setMoney {font-size:30px; color:#ffa04b;}
+.Novice div {width:285px; height:143px; float:right; border-left:1px solid #dcdcdc;}
+.Novice div img {margin:35px 100px;}
+.howInvbg {width:100%; height:456px; background:url(../images/111.png) no-repeat 0 0; background-size:100% 100%;}
+
+.howInvOne {width:1196px; height:423px; background:#ecf7ff; border-radius:30px; border:1px solid #dde6ff; margin:0 auto; border-top:none;}
+
+.howInvOne ul {width:850px; margin:40px auto;}
+.howInvOne ul li {float:left; margin-left:15px;}
+.howInvOne ul .invli {width:170px; height:251px; background:url(../images/sign_in.png) no-repeat 0 0;  text-align:center;}
+.howInvOne ul .invlih {width:170px; height:251px; background:url(../images/sign_in.png) no-repeat 0 0;  text-align:center;}
+.shu {font-size:26px; color:#fff; padding-top:15px;}
+.wenzi {font-size:16px; color:#fff;}
+.howInvOne ul img{margin-top:50px;}
+
+.imgcai {display:none;}
+.lastimg {margin-top:-3px;}
+.chong {padding-bottom:7px;}
+
+.invli div p{display:none; margin-top:20px; font-size:12px; }
+.invli div .desc { color:#333;  display:block;}
+.invli div .yi { color:#6a91ff;  display:block;}
+
+
+.xiaoyu {margin-top:80px; }
+.xiaoyu img {height:13px; width:8px;}
+
+.avtivbg {width:100%; height:554px; background:url(../images/avtivbg.png) no-repeat 0 0; background-size:100% 100%;}
+.active {width:1196px; height:520px; background:#ecf7ff; border-radius:30px; border:1px solid #dde6ff; margin:0 auto; }
+.active ul {width:1060px; margin:44px auto;}
+.active ul li {width:235px; height:310px; float:left; margin-left:30px;}
+.exp { background:url(../images/exp.png) no-repeat 0 0;}
+.abs { background:url(../images/abs.png) no-repeat 0 0;}
+.incint { background:url(../images/incint.png) no-repeat 0 0;}
+.prin { background:url(../images/prin.png) no-repeat 0 0;}
+.expPa {font-size:12px; color:#333; margin-top:210px; padding-left:10px; padding-bottom:10px;}
+.activetime {font-size:12px; color:#333;padding-left:10px;}
+.activetime span{color:#28abf5;}
+.btnexp {font-size:16px; color:#fff; margin-top:25px; width:235px; height:38px; text-align:center; }
+.lookmore {float:right; margin-top:34px; margin-right:13px; color:#333; font-size:14px;}
+
+.problemBg {background: #e1f2ff url("/Public/Jxd/image/xinshouzhiyin/problemBg.png") no-repeat scroll center top; width: 100%;}
+.problem {width:1196px;  background:#ecf7ff; border-radius:30px; border:1px solid #dde6ff; margin:0 auto 145px; }
+.problem ul {margin:45px 77px 97px;; }
+.problem ul .problemclass{width:890px; height:50px; background:#fff; margin-top:13px; line-height:50px; font-size:16px; color:#333; }
+.problem ul .problemclass span {padding:0 16px;}
+.problem ol {margin-left:20px; display:none;}
+.problem ol .odd {font-size:14px; color:#ff6600; line-height:30px; margin-top:17px;}
+.problem ol .even {font-size:12px; color:#333; line-height:28px; width:860px;}
+.morehrep {float:right; margin-top:52px; font-size:14px; color:#333; margin-right:-40px;}
+
+#alertBox{width:514px; height:382px; border:1px solid #e0e0e0;  position:absolute; background:#fff;}
+  .boxtop {width:514px; height:180px; border-bottom:1px solid #e0e0e0;}
+  .boxtitle {width:514px; height:40px; border-bottom:1px solid #e0e0e0;text-align:center; line-height:40px; font-size:16px; color:#333;}
+   .boxtop p {font-size:14px; color:#333; margin-left:46px; line-height:45px;}
+  .jct {margin-top:25px; }
+  .boxtop div {  height:18px; float:left; margin-top:-33px; margin-left:160px; border-radius:4px;}
+  .jctget {width:225px; background:#ff7800; color:#ff7800;}
+  .mebget {width:140px; background:#ff871c; color:#ff871c;}
+  .hqget {width:20px; background:#ffa04b; color:#ffa04b;}
+  .boxtop div span {float:right; margin-right:-58px;  font-size:14px;}
+  .get-money {font-size:14px; color:#333; margin:30px 46px;}
+  .get-money input {border:1px solid #e0e0e0; border-radius:4px; text-align:center; margin-left:10px;}
+  .sys_inp {width:230px; height:30px;}
+  .sys-btn {text-align:center;}
+  .sys_btn {width:200px; height:36px; text-align:center; border:none; background:#3399ff; border-radius:8px; font-size:14px; color:#fff;}
+  .boxtitle span {float:right; margin-right:20px; font-size:20px; color:#bcbcbc;}
+  .close_btn {width:40px; height:40px; font-size:14px; color:#333;  line-height:45px; float:right; margin-top:-40px;}
+  .close_btn img{margin-top:12px;}

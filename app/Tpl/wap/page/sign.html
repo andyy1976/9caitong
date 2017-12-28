@@ -1,0 +1,449 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+<title>{$cate_title}</title>
+<link rel="stylesheet" type="text/css" href="{$TMPL}/css/sign/style.css" />
+<link rel="stylesheet" type="text/css" href="{$TMPL}/js/sign/need/layer.css" />
+<script type="text/javascript" src="{$TMPL}/js/sign/resize.js"></script>
+
+</head>
+<body>
+	<!-- <header>
+        <a href="javascript:;" class="head-perv">
+            <img src="{$TMPL}/images/sign/head-ico1.png" alt="上一页" />
+        </a>        
+        <h1>签到</h1>
+    </header> -->
+	<?php if(!es_session::get('MachineInfo')) {?>
+	<header>
+    <a class="head-perv"><img src="{$TMPL}/images/sign/head-ico1.png" width="10" height="18"></a> <h1>签到</h1></header>
+<?php } ?>
+    <div class="con-warp">
+        <div class="con1">           
+          <div class="calendar-warp">
+              <div id="calendar"></div>
+          </div>
+          <p class="sign-text">{if !$user_sign}今日未签到{else}今日已签到{/if}</p>  
+          <a href="javascript:;" class="{if !$user_sign}sign-a{else}sign-b{/if}">{if !$user_sign}签到{else}已签到{/if}<span class="tips"></span></a>  
+          <p class="sign-text1">当前累计积分<span>{$score}</span>，连续签到有好礼哦～</p>
+        </div>
+        <div class="con2">
+            <h2 class="con2-h2"><img src="{$TMPL}/images/sign/h2-img.png" alt="连续签到好礼奉上" /></h2>
+            <ul class="con2-ul">
+                <li>
+                    <span class="tips">3天</span>
+                    <span class="gift {if $user_sign.sign_count eq 3 && $user_sign.status eq 1}show{else}hidden{/if}">已领取</span>
+                    <a href="javascript:;"><img src="{$TMPL}/images/sign/gift1.png" alt="10积分" />10积分</a>
+  
+                </li>
+                <li>
+                    <span class="tips">7天</span>
+                    <span class="gift {if $user_sign.sign_count eq 7 && $user_sign.status eq 1}show{else}hidden{/if}">已领取</span>
+                    <a href="javascript:;"><img src="{$TMPL}/images/sign/gift2.png" alt="30积分" />30积分</a>
+                </li>
+                <li>
+                    <span class="tips">14天</span>
+                    <span class="gift {if $user_sign.sign_count eq 14 && $user_sign.status eq 1}show{else}hidden{/if}">已领取</span>
+                    <a href="javascript:;" class="{if $user_sign.sign_count eq 14 && $user_sign.status eq 0}con2-a one-four{/if}"><img src="{$TMPL}/images/sign/gift3.png" alt="神秘礼物" />神秘礼物</a>
+					{if $user_sign.sign_count eq 14 && $user_sign.status eq 0}<div id="id" style="display:none">{$user_sign.id}</div>{/if}
+                </li>
+                <li>
+                    <span class="tips">30天</span>
+                    <span class="gift {if $user_sign.sign_count eq 30 && $user_sign.status eq 1}show{else}hidden{/if}">已领取</span>
+                    <a href="javascript:;" class="{if $user_sign.sign_count eq 30 && $user_sign.status eq 0}con2-a three{/if}"><img src="{$TMPL}/images/sign/gift4.png" alt="神秘礼物" />神秘礼物</a>
+					{if $user_sign.sign_count eq 30 && $user_sign.status eq 0}<div id="id" style="display:none">{$user_sign.id}</div>{/if}
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>        
+    </div>
+    <div class="pop-bg"></div>
+    <div class="pop-con">
+        <a href="javascript:;" class="pop-close"></a>
+        <img src="{$TMPL}/images/sign/gongxi.png" alt="恭喜你" class="gongxi" />
+        <p class="pop-text"></p>
+        <img src="" class="pop-img" />
+        <a href="#" class="pop-a"></a>
+		    <p style="text-align:center;position:fixed;left:50%;font-size:0.28rem; color: #fff; margin-left:-2rem;top:90%;">宝箱奖励当日领取有效 ，请及时领取</p>
+    </div>  
+</body>
+</html>
+<script type="text/javascript" src="{$TMPL}/js/sign/jquery.js"></script>
+<script type="text/javascript" src="{$TMPL}/js/sign/layer.js"></script>
+<script>
+    $(function(){  
+        //ajax获取日历json数据
+        var ajax_url="{url x="index" r="score#do_sign"}";
+        var curr=new Date();
+        var currYear=curr.getFullYear();
+        var currMonth=curr.getMonth() + 1;  
+        /*if(calUtil.signListAjax(currYear,currMonth,ajax_url)){
+        signList=calUtil.signListAjax(showYear,showMonth,ajax_url);
+      }else{
+        layer.open({
+             content: '请求失败稍后再试'
+             ,skin: 'msg'
+             ,time: 2 //2秒后自动关闭   
+        });     
+      }  */
+	  var signList=calUtil.signListAjax(currYear,currMonth,ajax_url);
+	  if(signList==null){
+		signList=false;         
+	  }    
+      calUtil.init(signList);     
+    });	
+    var popText=["连续签到3天～","连续签到7天～","连续签到14天～","连续签到30天～","获得15元出借红包～","获得10次抢红包机会～"];
+    var popImgUrl=["{$TMPL}/images/sign/jifen1.png","{$TMPL}/images/sign/jifen2.png","{$TMPL}/images/sign/box1.png","{$TMPL}/images/sign/box2.png"];
+    var popImgUrlOpen=["{$TMPL}/images/sign/box1-open.png","{$TMPL}/images/sign/box2-open.png"];
+    var popA=["前往积分商城","前往积分商城","去出借","前往红包页面"];
+    var popHref=["#","#","{$jump.ToProductList}()","{$jump.Gohongbao}()"];
+    /*点击图片弹出对应信息*/
+  $('.con2-a').each(function(index, el) {
+			id = $("#id").text();
+			{if $user_sign.sign_count eq 30 && $user_sign.status eq 0}
+				index=3;
+			{elseif $user_sign.sign_count eq 14 && $user_sign.status eq 0}
+				index=2;
+			{else}
+				return false;
+			{/if}
+			
+      //$('.pop-a').css('display', 'none');
+			$(this).click(function(event) {         
+				$('.pop-text').html(popText[index]);
+				$('.pop-a').html(popA[index]);
+				$('.pop-img').attr('src', popImgUrl[index]);
+				$('.pop-a').attr('onclick', popHref[index]);     
+				$('.pop-bg').fadeIn('fast');
+				$('.pop-con').fadeIn('fast');		
+				});         
+		});
+		$('.pop-img').click(function(event) {
+			id = $("#id").text();
+			{if $user_sign.sign_count eq 30 && $user_sign.status eq 0}
+				index=3;
+			{elseif $user_sign.sign_count eq 14 && $user_sign.status eq 0}
+				index=2;
+			{else}
+				return false;
+			{/if}
+		 var ajax_url="{url x="index" r="score#get_award"}";   
+				var query = new Object();
+				query.id=id;
+				$.ajax({
+					type:"post",
+					url:ajax_url,
+					dataType:"json", 
+					data:query,
+					async:true,
+					success:function (obj) {   
+						if(obj.status==0){
+						    $('.pop-bg').fadeIn('fast');
+						    $('.pop-con').fadeIn('fast');
+								layer.open({
+										content: obj.info
+										,skin: 'msg'
+										,time: 2 //2秒后自动关闭
+										});                            
+						}else{        
+										$('.pop-a').css('display', 'block');
+										$('.pop-text').html(obj.info);
+										$('.pop-img').attr('src', popImgUrlOpen[index-2]);
+										$('.pop-bg').fadeIn('fast');
+										$('.pop-con').fadeIn('fast');
+										
+									}
+					},
+					error:function (obj) {            
+							return false;
+						}
+					});
+                });
+    $('.pop-close').click(function(event) {
+        $('.pop-bg').fadeOut('fast');
+        $('.pop-con').fadeOut('fast');
+		window.location.reload();
+    });
+
+//日历
+var calUtil = {
+  //当前日历显示的年份
+  showYear:2017,
+  //当前日历显示的月份
+  showMonth:11,
+  //当前日历显示的天数
+  showDays:1,
+  eventName:"load",
+  //初始化日历
+  init:function(signList){
+    calUtil.setMonthAndDay();
+    calUtil.draw(signList);
+    calUtil.bindEnvent();
+  },
+  draw:function(signList){
+    //绑定日历
+    var str = calUtil.drawCal(calUtil.showYear,calUtil.showMonth,signList);
+    $("#calendar").html(str);
+    //绑定日历表头
+    var calendarName=calUtil.showYear+"年"+calUtil.showMonth+"月";
+    $(".calendar_month_span").html(calendarName);  
+  },
+  //绑定事件
+  bindEnvent:function(){
+    //绑定上个月事件
+    $(".calendar_month_prev").click(function(){
+      var showMonth=calUtil.showMonth-1;
+      var showYear=calUtil.showYear;
+      if(showMonth==0)
+        {
+            showMonth=12;
+            showYear-=1;
+        }
+      //ajax获取日历json数据
+      var ajax_url="{url x="index" r="score#do_sign"}";
+	  signList=calUtil.signListAjax(showYear,showMonth,ajax_url);
+		if(signList == undefined ||signList==null){
+			signList=false;         
+		} 
+      calUtil.eventName="prev";
+      calUtil.init(signList);
+    });
+    //绑定下个月事件
+    $(".calendar_month_next").click(function(){
+      
+      var showMonth=calUtil.showMonth+1;
+      var showYear=calUtil.showYear;
+      if(showMonth==13)
+        {
+            showMonth=1;
+            showYear+=1;
+        }
+      //ajax获取日历json数据
+      var ajax_url="{url x="index" r="score#do_sign"}";  
+		signList=calUtil.signListAjax(showYear,showMonth,ajax_url);
+		if(signList == undefined ||signList==null){
+			signList=false;         
+		} 	  
+      calUtil.eventName="next";
+      calUtil.init(signList);
+    });
+    //当天签到
+    $('.sign-a').off("click").click(function() {     
+      var ajax_url="{url x="index" r="score#user_sign"}";     
+       $.ajax({
+         type:"post",
+         url:ajax_url,
+         dataType:"json",        
+         async:true,
+         success:function (obj) {
+                 
+                if(obj.status==0){
+                    layer.open({
+                        content: '今日已签到'
+                        ,skin: 'msg'
+                        ,time: 2 //2秒后自动关闭
+                    });                      
+                }else{                         
+                    var jifen=$(".sign-text1").find('span').html();   
+					layer.open({
+                        content: '签到成功'
+                        ,skin: 'msg'
+                        ,time: 2 //2秒后自动关闭
+                    });	
+									
+                    $(".sign-text1").find('span').html(parseInt(jifen)+obj.score);
+                    $('.sign-text').html("今天已签到");
+					setTimeout(function(){window.location.reload();},1000);
+                    var signList=obj.signList; 
+                    calUtil.eventName="signIn";                                                       
+                    calUtil.init(signList);  
+                    
+					
+                }    
+             },
+         error:function (obj) {            
+               return false;
+         }
+      });      
+      
+    });
+  },
+  //获取当前选择的年月
+  setMonthAndDay:function(){
+    switch(calUtil.eventName)
+    {
+      case "load":
+        var current = new Date();
+        calUtil.showYear=current.getFullYear();
+        calUtil.showMonth=current.getMonth() + 1;
+        break;
+      case "prev":
+        var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
+        calUtil.showMonth=parseInt(nowMonth)-1;
+        if(calUtil.showMonth==0)
+        {
+            calUtil.showMonth=12;
+            calUtil.showYear-=1;
+        }
+        break;
+      case "next":
+        var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
+        calUtil.showMonth=parseInt(nowMonth)+1;
+        if(calUtil.showMonth==13)
+        {
+            calUtil.showMonth=1;
+            calUtil.showYear+=1;
+        }
+        break;
+    }
+  },
+  getDaysInmonth : function(iMonth, iYear){
+   var dPrevDate = new Date(iYear, iMonth, 0);
+   return dPrevDate.getDate();
+  },
+  signListAjax : function(iYear,iMonth,ajax_url){
+      var query=new Object();
+      query.showMonth=iMonth;   
+      query.showYear=iYear;
+      $.ajax({
+         type:"post",  
+         url:ajax_url,  
+         dataType:"json", 
+         data:query,       
+         async:false,
+         success:function (obj) {
+			signList=obj.signList;
+             //return signList;   
+               
+          },
+        error:function (obj) {            
+             return false;
+         }
+      }); 
+	return signList;	  
+  },
+  bulidCal : function(iYear, iMonth) {
+   var aMonth = new Array();
+   aMonth[0] = new Array(7);
+   aMonth[1] = new Array(7);
+   aMonth[2] = new Array(7);
+   aMonth[3] = new Array(7);
+   aMonth[4] = new Array(7);
+   aMonth[5] = new Array(7);
+   aMonth[6] = new Array(7);
+   var dCalDate = new Date(iYear, iMonth - 1, 1);
+   var iDayOfFirst = dCalDate.getDay();
+   var iDaysInMonth = calUtil.getDaysInmonth(iMonth, iYear);
+   var iVarDate = 1;
+   var d, w;
+   aMonth[0][0] = "日";
+   aMonth[0][1] = "一";
+   aMonth[0][2] = "二";
+   aMonth[0][3] = "三";
+   aMonth[0][4] = "四";
+   aMonth[0][5] = "五";
+   aMonth[0][6] = "六";
+   for (d = iDayOfFirst; d < 7; d++) {
+    aMonth[1][d] = iVarDate;
+    iVarDate++;
+   }
+   for (w = 2; w < 7; w++) {
+    for (d = 0; d < 7; d++) {
+     if (iVarDate <= iDaysInMonth) {
+      aMonth[w][d] = iVarDate;
+      iVarDate++;
+     }
+    }
+   }
+   return aMonth;
+  },
+  ifHasSigned : function(signList,day){
+   var signed = false;
+   $.each(signList,function(index,item){
+    if(item.signDay == day) {
+     signed = true;
+     return false;
+    }
+   });
+   return signed ;
+  },
+  drawCal : function(iYear, iMonth ,signList) {
+   var myMonth = calUtil.bulidCal(iYear, iMonth);
+   var htmls = new Array();
+   htmls.push("<div class='sign_main' id='sign_layer'>");
+   htmls.push("<div class='sign_succ_calendar_title'>");
+   htmls.push("<div class='calendar_month_next'>下月</div>");
+   htmls.push("<div class='calendar_month_prev'>上月</div>");
+   htmls.push("<div class='calendar_month_span'></div>");
+   htmls.push("</div>");
+   htmls.push("<div class='sign' id='sign_cal'>");
+   htmls.push("<table>");
+   htmls.push("<tr>");
+   htmls.push("<th>" + myMonth[0][0] + "</th>");
+   htmls.push("<th>" + myMonth[0][1] + "</th>");
+   htmls.push("<th>" + myMonth[0][2] + "</th>");
+   htmls.push("<th>" + myMonth[0][3] + "</th>");
+   htmls.push("<th>" + myMonth[0][4] + "</th>");
+   htmls.push("<th>" + myMonth[0][5] + "</th>");
+   htmls.push("<th>" + myMonth[0][6] + "</th>");
+   htmls.push("</tr>");
+   var d, w;
+   for (w = 1; w < 7; w++) {
+    htmls.push("<tr>");
+    for (d = 0; d < 7; d++) {
+     var ifHasSigned = calUtil.ifHasSigned(signList,myMonth[w][d]);
+     // console.log(ifHasSigned);
+     if(ifHasSigned){
+      htmls.push("<td class='on'>" + (!isNaN(myMonth[w][d]) ? myMonth[w][d] : " ") + "</td>");
+     } else {
+      htmls.push("<td>" + (!isNaN(myMonth[w][d]) ? myMonth[w][d] : " ") + "</td>");
+     }
+    }
+    htmls.push("</tr>");
+   }
+   htmls.push("</table>");
+   htmls.push("</div>");
+   htmls.push("</div>");
+   return htmls.join('');
+  }
+};
+function iosToProductList(){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToProductList"}); //返回项目列表
+    }
+function androidToProductList(){
+        window.jiucaitong.FromH5ToJump("jumpToProductList","");  //返回项目列表
+    }
+function androidhongbao(){
+         window.jiucaitong.FromH5ToJump("qiang_hongbao","");
+    }
+function iosToHongbao(){
+       window.jiucaitong.FromH5ToJump("qiang_hongbao","");
+
+    }
+function Gohongbao(){
+       layer.open({   
+                        content: '请在APP打开'
+                        ,skin: 'msg'
+                        ,time: 2 //2秒后自动关闭
+                    }); 
+
+    }
+function ToProductList(){  
+        parent.location.href = "{url x="index" r="deals"}"; 
+    }
+</script>

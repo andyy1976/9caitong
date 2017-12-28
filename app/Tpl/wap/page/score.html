@@ -1,0 +1,93 @@
+{include file="inc/header.html"} 
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a href="{url x="member" r="find"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>积分商城<a href="{url x="index" r="uc_set#help" p="id=$help_id"}" class="i-help"><img src="{$TMPL}/images/wap2/my/i-help.png" width="20" height="20"></a></div>
+<?php } ?>
+	<!-- 积分商城 -->
+    <div class="fi-jf-banner">
+        <p>{$account_score}</p><span>我的积分</span>
+    </div>
+    <ul class="fi-jf-operation">
+    <?php if(!es_session::get('MachineInfo')) {?>
+    	<li><a href={$wap_cloumn_url}><span>赚积分</span></a></li>
+    <?php }else{ ?>
+        <li><a href="{url x="index" r="score#earn_points"}"><span>赚积分</span></a></li> 
+    <?php } ?>
+    	<li><a href="javascript:void(0)" onclick="{$jump.ToProductList}()"><span>积分记录</span></a></li>        
+    </ul>
+    <p class="fi-jf-title">热门奖品</p>
+    <ul class="fi-jf-list">
+    {foreach from="$goods_list" item="item" name=goods}
+    	<li>
+            <div class="fi-jf-l"><img src="{$item.img}" width="90" height="75"></div>
+            <div class="fi-jf-r">
+                <p><span>{$item.score}积分可兑换</span><span>有效期{$item.repay_time}天</span><span>剩余{$item.bought}个</span></p><a href="javascript:;" class="fi-jf-btn" onclick="jfExchangeFail({$item.id})">立即兑换</a>
+            </div>   
+        </li>
+     {/foreach}  
+    </ul>
+</section>
+<script>
+    var ajaxurl = "{$jumpUrl}{url x="index" r="score#points_list"}";
+    //积分兑换失败弹出框
+    function jfExchangeFail(id){
+        layer.open({
+            className: 'popup-btn',
+            content: '<h3>提示</h3><p>确定兑换该商品吗？兑换后将不可取消</p>',
+            btn: ['确定','取消'],
+            yes: function(index){
+               var ajaxurl = "{url x="index" r="goods_information#doexchange"}";
+               var load=layer.open({type: 2,shadeClose: false});
+               var number = 1;
+               $.ajax({
+                    url: ajaxurl,
+                    type: "POST",
+                    dataType: "json",
+                    data:{'goods_id':id,"number":number},
+                    success: function(data){
+                        layer.close(load);
+                        layer.open({
+                            className: 'popup-btn',
+                            content: '<h3>提示</h3><p>'+data.info+'</p>',
+                            btn: '确定',
+                            yes: function(){
+                                location.reload();
+                            }, 
+                        });
+                    }
+               });
+            }, 
+            no: function(){
+                //点击取消按钮后无需做其他动作
+            }
+        });
+    }
+    function ToProductList(){
+        window.location.href = "{url x="index" r="score#points_list"}";
+    }
+    function iosToProductList(){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jifenRecoder","url":"http://wapcg.9caitong.com/index.php?ctl=score&act=points_list"});
+    }
+    function androidToProductList(){
+         window.location.href = "{url x="index" r="score#points_list"}";
+    }
+    //积分兑换成功弹出框
+    function jfExchangeSuccess(){
+        layer.open({
+            className: 'popup-btn',
+            content: '<h3>提示</h3><p>兑换成功</p>',
+            btn: ['查看','确定'],
+            yes: function(index){
+                //点击查看按钮后跳到积分纪录-使用页面
+                window.location.href='{url x="index" r="score#earn_points"}';
+                layer.close(index);
+            }, 
+            no: function(){
+                //点击确定按钮后无需做其他动作
+            }
+        });
+    }
+</script>
+</body>
+</html>

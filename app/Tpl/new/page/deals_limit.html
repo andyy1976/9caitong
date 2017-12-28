@@ -1,0 +1,204 @@
+{include file="inc/nheader.html"}
+		<div class="wrapper">
+			<div class="vbanner"><img src="/new/images/banner_deals.jpg" /></div>
+			<div class="center selector" style="height: 150px;">
+				<form action="{url x="index" r="deals" p="cid=$cid"}" method="post" id="searchByConditionForm">
+					<div class="sl_wrap">
+						<div class="sl_key">项目类型：</div>
+						<div class="sl_value">
+							<ul>
+								{foreach from="$loan_type" item="deal_loan_type" key=key}
+								<li><a href="{$deal_loan_type.url}#deallist" {if $deal_loan_type.id eq $deal_type}class="cur"{/if}>{$deal_loan_type.name}</a></li>
+								{/foreach}
+							</ul>
+						</div>						
+					</div>
+					<div class="sl_wrap">
+						<div class="sl_key">借款期限：</div>
+						<div class="sl_value">
+							<ul>
+								{foreach from="$months_type_url" item="months" key=key}
+								<li><a href="{$months.url}#deallist" {if $key eq $months_type}class="cur"{/if}>{$months.name}</a></li>
+								{/foreach}
+							</ul>
+						</div>						
+					</div>
+					<div class="sl_wrap">
+						<div class="sl_key">借款状态：</div>
+						<div class="sl_value">
+							<ul>
+								{foreach from =$deal_status_url item="status"}
+								<li><a href="{$status.url}#deallist" {if $status.key eq $deal_status}class="cur"{/if}>{$status.name}</a></li>
+								{/foreach}
+							</ul>
+						</div>						
+					</div>
+					<div class="sl_wrap">
+						<div class="sl_key">年化收益：</div>
+						<div class="sl_value">
+							<ul>
+								{foreach from =$interest_url item="iinterest" key=key}
+								<li><a href="{$iinterest.url}#deallist" {if $interest eq $iinterest.interest}class="cur"{/if}>{$iinterest.name}</a></li>
+								{/foreach}
+							</ul>
+						</div>						
+					</div>
+				</form>
+			</div>
+			<div class="wrap_f0">
+				<div class="center">
+					<div class="deals_sort">
+						<a {if !$field || $field eq "deal_status"}class="cur"{/if} href="javascript:void(0);" id="sortBysort">默认</a>
+						<a {if $field eq "rate"}class="cur"{/if} href="javascript:void(0);" id="sortByrate">年化收益<i class="iconfont">{if $field neq "rate"}&#57367;{else}{if $field_sort eq 'desc'}&#57368;{else}&#57367;{/if}{/if}</i></a>
+						<a {if $field eq "repay_time"}class="cur"{/if} href="javascript:void(0);" id="sortBytime">期限<i class="iconfont">{if $field neq "repay_time"}&#57367;{else}{if $field_sort eq 'desc'}&#57368;{else}&#57367;{/if}{/if}</i></a>
+					</div>
+					<div class="deals_wrap">
+						<ul class="deals_list" server_time="{$server_time}">
+									{if $result_treetop && !$deal_type && !$months_type && !$deal_status && !$interest}
+									{foreach from=$result_treetop item="deal" key=key name="deal"}
+									<li>
+										<p class="mark">
+											<span class="icon_mortgage">抵押</span>
+											<span>先息后本</span>
+											<!--<span>信息透明</span>-->
+										</p>
+
+										{if $deal.is_new==1}
+											<h3><a href="{$deal.url}" title="{$deal.name}" style="font-size:14px;width: 135px; display: block;float: left;overflow: hidden; white-space: nowrap;">{$deal.name}</a>
+											<img src="/new/images/icon_deal_new.png" />
+											</h3>
+										{else}
+											<h3>
+												<a href="{$deal.url}" title="{$deal.name}" style="font-size:14px;;width: 135px; display: block;float: left;overflow: hidden; white-space: nowrap;">{$deal.name}</a>
+												<img src="/new/images/icon_deal_experience.png" />
+											</h3>
+										{/if}
+
+										<p>项目总额：<span>{$deal.borrow_amount}</span>元</p>
+                                        <p>&nbsp;</p>
+										<ul>
+											<li>
+												<span>{$deal.rate}<i>%</i></span>
+												<p>预期年化</p>
+											</li>
+											<li>
+												<span>{$deal.repay_time}<i>{if $deal.repay_time_type eq 0}天{else}个月{/if}</i></span>
+												<p>项目期限</p>
+											</li>
+										</ul>
+										
+										<span class="num" style="left: {if $deal.deal_status gte 4}100%{else}{function name="round" v=$deal.progress_point f=2}%{/if};">{if $deal.deal_status gte 4}100%{else}{$deal.progress_point}%{/if}</span>
+										<div class="progress"><div class="complete" style="width: {if $deal.deal_status gte 4}100%{else}{function name="round" v=$deal.progress_point f=2}%{/if};"></div></div>
+										<div class="deals_btn">
+											{if $deal.deal_status eq 0 || $deal.start_time gt TIME_UTC}
+												<a href="{$deal.url}" class="btn_gray">未开始</a>
+											{elseif $deal.deal_status eq 1 && $deal.start_time lte TIME_UTC}
+												<a href="{$deal.url}" class="btn_main">立即出借</a>
+											{elseif $deal.deal_status eq 1 && $deal.start_time lte TIME_UTC}
+												<a href="{$deal.url}" class="btn_gray">已过期</a>
+											{elseif $deal.deal_status eq 2}
+												<a href="{$deal.url}" class="btn_gray">已满标</a>
+											{elseif $deal.deal_status eq 3}
+												<a href="{$deal.url}" class="btn_gray">流标</a>
+											{elseif $deal.deal_status eq 4}
+												<a href="{$deal.url}" class="btn_gray">还款中</a>
+											{elseif $deal.deal_status eq 5}
+												<a href="{$deal.url}" class="btn_gray">已结束</a>
+											{/if}
+										</div>								
+									</li>
+									{/foreach}			
+									{/if} 
+
+							<!-- 体验标 -->
+							{if $deal_list}
+							{foreach from=$deal_list item="deal" key=key name="deal"}
+							<li {if $deal.is_advance eq 1 && $deal.deal_status eq 1}start_time="{$deal.start_time}"  class="presale"{/if}>
+								<p class="mark">
+									<span class="icon_mortgage">抵押</span>
+									<span>{function name="loantypename" v="$deal.loantype" type=0}</span>
+									<!--<span>信息透明</span>-->
+								</p>
+
+								{if $deal.is_new==1}
+									<h3>
+										<a href="{$deal.url}" title="{$deal.name}" style="font-size:14px;width: 135px; display: block;float: left;overflow: hidden; white-space: nowrap;">{$deal.name}</a>
+										<img src="/new/images/icon_deal_new.png" />
+									</h3>
+								{elseif $deal.is_advance eq 1}
+									<h3>
+										<a href="{$deal.url}" title="{$deal.name}" style="font-size:14px;width: 135px; display: block;float: left;overflow: hidden; white-space: nowrap;">{$deal.name}</a>
+										<img src="/new/images/icon_deal_presale.png" />
+									</h3>
+								{else}
+									<h3><a href="{$deal.url}" title="{$deal.name}" style="font-size:14px;">{$deal.name}</a></h3>
+								{/if}
+
+								<p>项目总额：<span>{$deal.borrow_amount}</span>元</p>
+								<p>起投金额：<span>{$deal.min_loan_money}</span>元</p>
+								<ul>
+									<li>
+										<span>{$deal.rate}<i>%{if $deal.interest_rate gt 0}+{$deal.interest_rate}%{/if}</i></span>
+										<p>预期年化</p>
+									</li>
+									<li>
+										<span>{if $deal.debts_repay_time}{$deal.debts_repay_time}<i>天</i>{else}{$deal.repay_time}<i>{if $deal.repay_time_type eq 0}天{else}个月{/if}</i>{/if}</span>
+										<p>项目期限</p>
+									</li>
+								</ul>
+								
+								<div class="progressBox {if $deal.deal_status eq 1 && $deal.start_time gt TIME_UTC}hide{/if}">
+									<span class="num hide" style="left: {if $deal.deal_status gte 4}100%{else}{function name="round" v=$deal.progress_point f=2}%{/if};">{if $deal.deal_status gte 4}100%{else}{$deal.progress_point}%{/if}</span>
+									<div class="progress"><div class="complete" style="width: {if $deal.deal_status gte 4}100%{else}{function name="round" v=$deal.progress_point f=2}%{/if};"></div></div>
+								</div>
+								{if $deal.is_advance eq 1}
+								<div class="Countdown {if $deal.start_time lte TIME_UTC }hide{/if}"></div>
+								{/if}
+
+
+								<div class="deals_btn">
+									{if $deal.start_time gt TIME_UTC}
+										<a href="{$deal.url}" class="btn_gray">未开始</a>
+									{elseif $deal.deal_status eq 1 && $deal.start_time lte TIME_UTC && $deal.remain_time gt 0}
+										<a href="{$deal.url}" class="btn_main">立即出借</a>
+                                    {elseif $deal.deal_status eq 0 && $deal.start_time lte TIME_UTC}
+                                        <a href="{$deal.url}" class="btn_main">立即出借</a>
+									{elseif $deal.deal_status eq 1 && $deal.start_time lte TIME_UTC && $deal.remain_time lte 0}
+										<a href="{$deal.url}" class="btn_gray">已过期</a>
+									{elseif $deal.deal_status eq 2}
+										<a href="{$deal.url}" class="btn_gray">已满标</a>
+									{elseif $deal.deal_status eq 3}
+										<a href="{$deal.url}" class="btn_gray">流标</a>
+									{elseif $deal.deal_status eq 4}
+										<a href="{$deal.url}" class="btn_gray">还款中</a>
+									{elseif $deal.deal_status eq 5}
+										<a href="{$deal.url}" class="btn_gray">已结束</a>
+									{/if}
+								</div>								
+							</li>
+							{/foreach}
+							{else}
+							<p>暂无符合筛选条件的项目</p>
+							{/if}
+						</ul>
+					</div>
+					<div class="pages">{$pages}</div>
+				</div>
+				<div class="blank50"></div>
+			</div>
+		</div>
+{include file="/inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{
+					"$":"new/js/lib/jquery-1.8.3",
+					"layer":"new/js/lib/layer"
+				},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+			});
+			seajs.use(["new/js/page/deals"])
+		</script>
+	</body>
+</html>

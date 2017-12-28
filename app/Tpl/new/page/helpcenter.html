@@ -1,0 +1,50 @@
+{include file="inc/nheader.html"} 
+<div class="wraper bgf8 ofh">
+	<div class="center">
+		<div class="blank80"></div>
+		<div class="left_menu fl w263 ofh">
+			<ul id="H_bar">
+				{foreach from=$article_cate item="cate" key=key}
+				{if $cate.pid neq 0}
+				<li><a href="javascript:void(0);" id="hb_{$cate.id}" rel="{$cate.id}">{$cate.title}</a></li>
+				{/if}
+				{/foreach}
+			</ul>
+		</div>
+		<div class="isl_wrap fr w879 ofh bgff">
+			{foreach from=$article_cate item="cate"}
+			{if $cate.pid neq 0}
+			<div id="H_con_{$cate.id}" class="H_con hide" rel="{$cate.id}">
+				<h2 class="column_title">{$cate.title}</h2>
+				<div class="pd30 ofh">
+					<ul class="help_list">
+						{foreach from=$cate.article.list item=aitem}
+						<li>
+							<a href="javascript:void(0);" class="question">{$aitem.title}<span class="mark">+</span></a>
+							<div class="answer hide ofh">
+								{$aitem.content}
+							</div>
+						</li>
+						{/foreach}
+					</ul>
+					<div class="blank20"></div>
+				</div>
+			</div>
+			{/if}
+			{/foreach}
+		</div>
+	</div>
+	<div class="blank50"></div>
+</div>
+{include file="inc/nfooter.html"}
+		<script src="/new/js/lib/sea.js"></script>
+		<script>
+			seajs.config({
+				alias:{"$":"new/js/lib/jquery-1.8.3"},
+				paths:{"new":"/new"},
+				map:[[ /^(.*.(?:css|js))(.*)$/i, '$1?t=20160816' ]]
+			});
+			seajs.use(["/new/js/page/helpcenter"])
+		</script>
+</body>
+</html>

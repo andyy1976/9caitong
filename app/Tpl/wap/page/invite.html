@@ -1,0 +1,285 @@
+{include file="inc/header.html"}
+<script type="text/javascript" src="{$TMPL}/js/qrcode/jquery.qrcode.js" ></script>
+<script type="text/javascript" src="{$TMPL}/js/qrcode/qrcode.js" ></script> 
+<script type="text/javascript" src="{$TMPL}/js/qrcode/utf.js" ></script>
+<!-- <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>  -->
+<body>
+<section class="container cf">
+<?php if(!es_session::get('MachineInfo')) {?>
+    <div class="header"><a  onclick="uuu()" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>邀请好友</div>
+<?php } ?>
+    <!-- 邀请好友 -->
+    <div class="fi-invite-box">
+        <div class="fi-invite-gift">
+            <img src="{$TMPL}/images/wap2/fi/bg_invite_gift_top.png">
+            <div class="fi-invite-gift-box">
+                <div class="fi-invite-gift-list">
+                    <img src="{$TMPL}/images/wap2/fi/bg_invite_gift_t1.png">
+                    <p><span>出借1000-4999</span>奖励<b>15</b>元现金</p>
+                    <p><span>出借5000-9999</span>奖励<b>40</b>元现金</p>
+                    <p><span>出借≥1万</span>奖励<b>80</b>元现金</p>
+                </div>
+                <div class="fi-invite-gift-list">
+                    <img src="{$TMPL}/images/wap2/fi/bg_invite_gift_t2.png">
+                    <p>邀请2人得<b>30</b>元红包</p>
+                    <p>邀请4人得<b>70</b>元红包</p>
+                </div>
+                <p class="fi-invite-rule"><a href="javascript:;" onclick="publicPop()">【查看规则】</a></p>
+        		<p class="fi-invite-time">邀请活动截止时间：2017年11月31日</p>
+            </div>
+            <img src="{$TMPL}/images/wap2/fi/bg_invite_gift_bot.png">
+        </div>
+        <p class="fi-invite-title">快捷邀请</p>
+        <ul class="fi-invite-mode">
+            <li><a href="javascript:void(0);" onclick="{if $user_id}{$jump.wx}{else}subLogin(){/if}"><img src="{$TMPL}/images/wap2/fi/icon_wx.png"></a></li> 
+            <li><a href="javascript:void(0);" onclick="{if $user_id}{$jump.pyq}{else}subLogin(){/if}"><img src="{$TMPL}/images/wap2/fi/icon_friends.png"></a></li>
+            <li><a href="javascript:void(0);" onclick="{if $user_id}{$jump.qq}{else}subLogin(){/if}"><img src="{$TMPL}/images/wap2/fi/icon_qq.png"></a></li>
+            <li><a href="javascript:void(0);" {if $user_id} onclick="popBox('popBox_ewm'){else}onclick="subLogin(){/if}"><img src="{$TMPL}/images/wap2/fi/icon_ewm.png"></a></li>
+        </ul>
+    </div>
+    <ul class="fi-invite-query">
+        <li><a {if $user_id} href="javascript:void(0)" onclick="invite_record()" {else}onclick="Login()" {/if}>邀请记录<i></i></a></li>
+        <li><a {if $user_id} href="javascript:void(0)" onclick="invete_repair()" {else}onclick="Login()" {/if}>补填邀请码<i></i></a></li>
+        <!-- <li><a href="{url x="index" r="invite#invite_change"}">更新邀请码<i></i></a></li> -->
+    </ul>
+</section>
+<!-- 使用说明、规则等遮罩层共用结构  -->
+<div class="public-pop">
+    <div class="public-pop-title">邀请规则说明 </div>
+    <div class="public-pop-box">{$invite_explain}</div>
+    <div class="public-pop-close"><img src="{$TMPL}/images/wap2/my/chahao.png" width="19" height="19"></div>
+</div>
+<div id="popBg"></div>
+<div id="popBox_invite" class="popBox_invite">
+    <img src="{$TMPL}/images/wap2/fi/bg_share_invite.png">
+</div>
+<div id="popBox_ewm" class="popBox_ewm">
+    <h3>让好友扫码或者输入邀请码进行邀请</h3>
+    <p id="qrcodeCanvas"></p>
+    <b>{function name="hideMobile" v="$mobile"}</b>
+    <span>我的邀请码</span>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#qrcodeCanvas').qrcode({
+		render    : "canvas",
+	    text    : "{$wximg}",
+	    width : "110",               //二维码的宽度
+	    height : "110",              //二维码的高度
+	   /*  background : "#ffffff",       //二维码的后景色1s
+	    foreground : "#000000",        //二维码的前景色 */
+	    correctLevel : QRErrorCorrectLevel.M,
+	    src: 'logo.png'             //二维码中间的图片
+	}); 
+	$("canvas").css({"padding-left":"10px","padding-top":"10px"});
+});
+function invite_record(){
+    parent.location.href ="{url x="index" r="invite#invite_record"}";
+}
+function invete_repair(){
+    parent.location.href ="{url x="index" r="invite#invete_repair"}";
+}
+function uuu(){
+    parent.location.href ="{$jumpUrl}";
+}
+//IOS 邀请
+{if $mobile}
+    var url_path = "{$url}";
+    var invite_url = "http://jctwapcg.9caitong.com";
+    var url = invite_url+"/index.php?ctl=find&act=W644&code="+{$mobile};
+    
+{/if}
+    function WxScript() {
+         window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToWechatFriends","title":"快来抢8888元体验金+518元红包","icon":url_path+"/app/Tpl/wap/images/wap2/fi/icon.png","content":"您的好友送福利了，除了惊喜豪礼，更有超高收益新手标","url":url}); //打开微信好友
+    }
+    function WxqScript() {
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToWechatFriendCircle","title":"快来抢8888元体验金+518元红包","icon":url_path+"/app/Tpl/wap/images/wap2/fi/icon.png","content":"您的好友送福利了，除了惊喜豪礼，更有超高收益新手标","url":url}); //微信朋友圈
+    }
+    function QqScript(){
+        window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToQQ","title":"快来抢8888元体验金+518元红包","icon":url_path+"/app/Tpl/wap/images/wap2/fi/icon.png","content":"您的好友送福利了，除了惊喜豪礼，更有超高收益新手标","url":url}); //扣扣
+    }
+//Android 邀请 
+     function WxAndroid() {
+        var params = {
+            "text" : "您的好友送福利了，除了惊喜豪礼，更有超高收益新手标",
+            "imageUrl" : url_path+"/app/Tpl/wap/images/wap2/fi/icon.png",
+            "title" : "快来抢8888元体验金+518元红包",
+            "url" : url,
+            "type" : $sharesdk.ContentType.WebPage
+            };
+            $sharesdk.shareContent(22, params, function (reqId, platform, state, shareInfo, error) {
+            });
+    }
+    function WxqAndroid() {
+       var params = {
+            "text" : "您的好友送福利了，除了惊喜豪礼，更有超高收益新手标",
+            "imageUrl" : url_path+"/app/Tpl/wap/images/wap2/fi/icon.png",
+            "title" : "快来抢8888元体验金+518元红包",
+            "url" : url,
+            "type" : $sharesdk.ContentType.WebPage
+            };
+            $sharesdk.shareContent(23, params, function (reqId, platform, state, shareInfo, error) {
+            });
+    }
+    function QqAndroid(argument) {
+        var params = {
+            "text" : "您的好友送福利了，除了惊喜豪礼，更有超高收益新手标",
+            "imageUrl" : url_path+"/app/Tpl/wap/images/wap2/fi/icon.png",
+            "title" : "快来抢8888元体验金+518元红包",
+            "titleUrl" : url,
+            };
+        $sharesdk.shareContent(24, params, function (reqId, platform, state, shareInfo, error) {
+        });
+    }
+    function initialization()
+        {          
+            //android的平台配置信息跟ShareSDK.xml一致；
+             var sinaConf = 
+            {
+            "Id" : "1",
+            "SortId" : "1",
+            "AppKey" : "568898243",
+            "AppSecret" : "38a4f8204cc784f81f9f0daaf31e02e3",
+            "RedirectUrl" : "http://www.sharesdk.cn",
+            "ShareByAppClient" : "false",
+            "Enable" : "true"
+            };
+            //platformConfig平台配置信息可为null，此时用ShareSDK.xml
+            var platformConfig = {}; 
+            platformConfig[$sharesdk.PlatformID.SinaWeibo] = sinaConf;
+
+            $sharesdk.initSDKAndSetPlatfromConfig("113f48b687bfe", platformConfig);
+        } 
+
+</script>
+<script>
+//使用说明、规则等遮罩层（内容多时可滚动并隐藏滚动条）
+    function publicPop(){
+        $('.public-pop').show(); 
+        $(document).on("touchmove",function(ev){ //阻止页面滑动事件的默认行为，不阻止遮罩层中的滑动事件的默认行为
+            var e = ev || event;
+            var target = e.target || e.srcElement;
+            if( target.className.indexOf("public-pop") >= 0) {
+                e.preventDefault();
+            }
+        });
+        if(window.addEventListener){
+            simpScroller(document.querySelector(".public-pop-box"), {
+                hideScrollBar: true
+            });
+        }
+        $('.public-pop-close').click(function(){    
+            $('.public-pop').hide();
+        });
+    }
+
+
+/*//查看规则
+function seeRule(){
+    layer.open({
+        className: 'popup-tip',
+        content: '<h3>邀请规则说明</h3><div class="see-rule-box">{$invite_explain}<span>*本活动最终解释权归玖财通所有。</span></div>',
+        btn: '确认'
+    });
+}*/
+function Login(){
+    var login=layer.open({
+        className: 'popup-btn',
+        btn: ['确认','取消'], //按钮
+        content: '<h3>提示</h3><p>需登录后才能查看，现在去登录吗？</p>', 
+        shadeClose: true,
+        yes: function(){
+            layer.close(login);
+            //点击确认按钮后要做的动作
+            {if $jump.login eq "iosLogin"}
+            window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToLogin"}); //返回项目列表
+            {elseif $jump.login eq "AndroidLogin" }
+            window.jiucaitong.FromH5ToJump("jumpToLogin","");  //返回项目列表
+            {else}
+            parent.location.href = "{url x="index" r="user#login"}&jumpUrl={url x="index" r="invite"}";
+            {/if}
+        },
+        no: function(){
+        }
+    });
+}
+function subLogin(){
+    var subLogin=layer.open({
+        className: 'popup-btn',
+        btn: ['确认','取消'], //按钮
+        content: '<h3>提示</h3><p>需登录后才能邀请好友，现在去登录吗？</p>', 
+        shadeClose: true,
+        yes: function(){
+            layer.close(subLogin);
+            //点击确认按钮后要做的动作
+            {if $jump.login eq "iosLogin"}
+            window.webkit.messageHandlers.kInputFromiOS.postMessage({"idf":"jumpToLogin"}); //返回项目列表
+            {elseif $jump.login eq "AndroidLogin" }
+            window.jiucaitong.FromH5ToJump("jumpToLogin","");  //返回项目列表
+            {else}
+            parent.location.href = "{url x="index" r="user#login"}&jumpUrl={url x="index" r="invite"}";
+            {/if}
+        },
+        no: function(){
+        }
+    });
+}
+//快捷邀请弹出层，邀请成功后返回当前页面后记得关闭弹出层
+//判断是否为微信浏览器
+function isWeiXin(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        return true;
+    }else{
+        return false;
+    }
+}
+function popBox(popBox){
+    if(popBox == "popBox_invite" && !isWeiXin()){
+        layer.open({
+            className: 'popup-btn',
+            btn: ['好的'], //按钮
+            content: '<p style="font-size:15px;padding-top:10px">将页面分享给好友，即可邀请哦</p>', 
+            shadeClose: true,
+            no: function(){
+            },
+        });
+    }else{
+        var popBox = document.getElementById(popBox);
+        var popBg = document.getElementById('popBg');
+        //弹出层
+        popBg.style.display = popBox.style.display = 'block';
+        popBoxPos();
+        popBgStyle();
+        //当页面滚动的时候，弹出框跟随滚动
+        window.onscroll = function() {
+            popBoxPos();
+            popBgStyle();
+        }
+        //当浏览器窗口大小改变的时候，弹出框的位置随着变化
+        window.onresize = function() {
+            popBoxPos();
+            popBgStyle();
+        }
+        //设置弹出框的位置
+        function popBoxPos(){
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+            popBox.style.left = ( document.documentElement.clientWidth - popBox.offsetWidth ) / 2 + scrollLeft + 'px';
+            popBox.style.top = scrollTop + 'px';
+        }
+        //设置灰色背景的宽高
+        function popBgStyle(){
+            popBg.style.width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) + "px";
+            popBg.style.height = Math.max(document.documentElement.clientHeight, document.body.scrollHeight) + "px";
+        }
+        //关闭弹出框
+        popBox.onclick = popBg.onclick = function(){
+            popBg.style.display = popBox.style.display = 'none';
+        }
+    }
+    
+}
+</script>
+</body>
+</html>

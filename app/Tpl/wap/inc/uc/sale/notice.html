@@ -1,0 +1,23 @@
+<body>
+<section class="container container2 cf">
+    <div class="sale-header"><a href="{url x="index" r="salesman"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a><span style="float:left;width:85%;text-align:center;padding-right:5%">公告</span></div>
+    <ul class="fi-sale-list">
+    {foreach from=$list item = item}
+        <li><h3><span>{$item.title}</span><span>还剩<b>{$item.end_time}</b>天</span></h3><a href="{$item.appwap_url}"><img src="{$item.wap_img}"></a></li>
+    {/foreach}   
+    </ul>
+</section>
+<style type="text/css">
+.sale-header{line-height: 48px;background: linear-gradient(to bottom, #575cde 0%, #4672de 100%);overflow: hidden;color: white;font-size: 1.6rem;position: relative;}
+.sale-header img{padding-left:5%;float: left;padding-top: 15px;}
+.fi-sale-list{ overflow: hidden;}
+.fi-sale-list li{ width: 94%; float: left; margin-bottom: 10px; padding: 0 3% 10px; background: white;}
+.fi-sale-list h3{ height: 32px; line-height: 32px; overflow: hidden;}
+.fi-sale-list span{ float: left; color: #13334d; font-size: 1.5rem;}
+.fi-sale-list span:nth-of-type(2){ float: right; color: #97a8b2; font-size: 1.3rem;}
+.fi-sale-list b{ color: #ff4208;}
+.fi-sale-list a{ width: 100%; height: 10.35rem; display: block;}
+.fi-sale-list img{ width: 100%; height: 100%;border-radius: 5px}
+</style>
+</body>
+</html>

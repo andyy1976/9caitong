@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="utf-8" />
+		<title>404错误</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<style>
+			html,body{margin:0;padding:0;}
+			body{font-family: arial , "microsoft Yahei";font-size: 14px;color:#292929;background:#f0f0f0;}
+			a{text-decoration:none;color:#428bca;}
+			a:hover{text-decoration:underline;}
+			.error-main{width:700px;margin:80px auto 180px;}
+			.error-main .line-left{width:50%;float:left;height:7px;background:#f18a21;}
+			.error-main .line-right{width:50%;float:left;height:7px;background:#18ce65;}
+			.error-box{padding:50px 50px 70px;background:#fafafa;clear:both;}
+			.error-box h2{font-size:24px;font-weight:400;border-bottom:1px solid #d0d0d0;}
+			.error-box h2 strong{font-size:54px;margin-right:20px;font-weight:400;}
+			.error-actions{overflow:hidden;line-height:200%;}
+			.error-actions div{width:50%;float:left;}
+			.error-actions div h4{font-size:20px;font-weight:400;}
+			.error-actions div ol{color:#838383;}
+			.error-shadow{height:50px;background:url(/new/images/error-page-shadow.png);}
+		</style>
+	</head>
+	<body>
+		<div class="error-main">
+			<div class="line-left"></div>
+			<div class="line-right"></div>
+			<div class="error-box">
+				<h2><strong>404</strong>无法打开页面</h2>
+				<div class="error-actions">
+					<div>
+						<h4>可能原因：</h4>
+						<ol>
+							<li>网络信号差</li>
+							<li>找不到请求的页面</li>
+							<li>输入的网址不正确</li>
+						</ol>
+					</div>
+					<div>
+						<h4>可以尝试：</h4>
+						<ul>
+							<li><a href="/">返回首页</a></li>
+							<li><a href="/index.php?ctl=about#Nabout_contact">联系我们</a></li>
+							<li><a href="javascript:history.go(-1);">返回上一页</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="error-shadow"></div>
+		</div>
+	</body>
+</html>

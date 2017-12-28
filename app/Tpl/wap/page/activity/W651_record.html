@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html style="background: #edf2f6">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="zh-CN">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 优先使用 IE 最新版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 忽略将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--让国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!-- 强制图片显示 -->
+    <meta name="imagemode" content="force">
+    <!--启用 WebApp 全屏模式-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 设置状态栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>抽奖记录</title>
+    <link rel="stylesheet" href="new/activity/W651/css/reset_ph_v=2016.css">
+    <script src="new/activity/W651/js/jquery-1.11.3.min.js"></script>
+    <script src="new/activity/W651/js/fastclick.js"></script>
+    <script src="new/activity/W651/js/layer-v3.0.3/layer.js"></script>
+    <link rel="stylesheet" href="new/activity/W651/css/style.css">
+	<script>
+    	//处理移动端click事件300ms延迟
+    	if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+    </script>
+    <script>
+        //设置根字体大小
+        (function(){
+            var html = document.documentElement;
+            var htmlWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = htmlWidth/15 + 'px';
+        })();
+    </script>
+</head>
+<body>
+<div class="container">
+    <!-- <div class="header"><a href="javascript:history.go(-1)" class="back-icon"><img src="new/activity/W651/images/icon_back.png" width="10" height="18"></a>抽奖记录</div> -->
+    <!-- 抽奖记录列表 -->
+    {if $myprizesinfo!=0}
+	<ul class="record" >
+        {foreach from=$myprizesinfo item="vo"}
+        <li>
+            <p><span>{$vo.zhou}</span><span>{$vo.hi}</span></p>
+            <p><i></i><span>转盘抽奖</span><span>{$vo.date}</span></p>
+            <p>{$vo.prizename}</p>
+        </li>
+        {/foreach}
+    </ul>
+
+    {else}
+    <!-- 无抽奖记录 -->
+    <div class="no-record"><img src="new/activity/W651/images/img_no_record.png"><p>暂无转盘中奖记录哦~</p></div>
+    {/if}
+</div>
+</body>
+</html>

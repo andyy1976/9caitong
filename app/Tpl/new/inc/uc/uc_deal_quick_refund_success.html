@@ -1,0 +1,40 @@
+<div class="user_top_title bgfb">
+	<a class="current">还款成功</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<p class="ta_c"><img src="/new/images/img_cg.png" class="w100b" /></p>
+		<form ajax_url="{url x="index" r="user#user_reg_settingpwd"}" id="page_reg_stepthree" autocomplete="off" class="cg_account_success ta_c">
+			<span class="reminder ta_c">还款成功</span>
+			<table cellpadding="5" cellspacing="0" border="0"  class="uc_table_form mlra">
+				<tbody>
+					<tr>
+						<td class="ta_r">还款项目：</td>
+						<td>{$deal.name}</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="ta_r">还款期数：</td>
+						<td>{$repay.l_key}/{$deal.repay_time}期</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="ta_r">还款总计：</td>
+						<td><i class="C_orange">¥{$repay.repay_money}</i></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<a href="{url x="index" r="uc_deal#borrowed"}" class="uc_submit_blue dp-ib ta_c">我知道了</a>
+							<p class="aC_blue"></p>
+						</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>

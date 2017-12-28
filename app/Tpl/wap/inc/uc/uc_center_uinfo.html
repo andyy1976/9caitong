@@ -1,0 +1,215 @@
+<body>
+<section class="container container2 cf">
+	<!-- 我的账户 -->
+    <div class="my-data">
+    	<div class="my-person cf">
+    		<a href="{url x="index" r="uc_account"}">
+            {if $header}
+    			<img src="{$header}" width="36" height="36" class="my-head">
+            {else}
+                <img src="{$TMPL}/images/wap2/my/head_img.png" width="36" height="36" class="my-head">
+            {/if}
+    			<p class="my-user-info">您好，{if $user_data.real_name}{$user_data.real_name}<!-- {function name="utf_substr" v="$user_data.real_name"} -->{else}{function name="hideMobile" v="$user_data.mobile"}{/if}</p>
+    			<i class="my-user-icon"><img src="{$TMPL}/images/wap2/my/icon_person.png" width="10" height="18"></i>
+    		</a>
+    	</div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="my-total">
+                        <h3 class="total_account"><span class="money_show_hide">总账户</span></h3><p>{function name="format_price" v="$total_general" f=2}</p><p>******</p><p>总资产（元）</p>
+                    </div>
+                    <ul class="my-money cf">
+                        <li><p>{function name="format_price" v="$total_wait_earnings" f=2}</p><p>******</p><p>待收收益 ( 元 )</p></li>
+                        <li><p>{function name="format_price" v="$Pctotal" f=2}</p><p>******</p><p>可用余额 ( 元 )</p></li>
+                        <li><p>{function name="format_price" v="$total_repay_money" f=2}</p><p>******</p><p>累计收益 ( 元 )</p></li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <div class="my-total">
+                        <h3><span>存管账户</span></h3><p>{function name="format_price" v="$custody_assets" f=2}</p><p>******</p><p>总资产（元）</p>
+                    </div>
+                    <ul class="my-money cf">
+                        <li><p>{function name="format_price" v="$money_total.cunguan_load_wait_earnings" f=2}</p><p>******</p><p>待收收益 ( 元 )</p></li>
+                        <li><p>{function name="format_price" v="$Pcrecharge_money" f=2}</p><p>******</p><p>可用余额 ( 元 )</p></li>
+                        <li><p>{function name="format_price" v="$money_total.cunguan_load_repay_money" f=2}</p><p>******</p><p>累计收益 ( 元 )</p></li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <div class="my-total">
+                        <h3><span>普通账户</span></h3><p>{function name="format_price" v="$ordinary" f=2}</p><p>******</p><p>总资产（元）</p>
+                    </div>
+                    <ul class="my-money cf">
+                        <li><p>{function name="format_price" v="$money_total.load_wait_earnings" f=2}</p><p>******</p><p>待收收益 ( 元 )</p></li>
+                        <li><p>{function name="format_price" v="$Pcordinary" f=2}</p><p>******</p><p>可用余额 ( 元 )</p></li>
+                        <li><p>{function name="format_price" v="$money_total.load_repay_money" f=2}</p><p>******</p><p>累计收益 ( 元 )</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+		<!-- <div class="my-total">
+			<p>{$money_total.total_money}</p><p>总资产（元）</p>
+		</div>
+		<ul class="my-money">
+			<li><p>{$money_total.load_wait_earnings}</p><p>待收收益 ( 元 )</p></li>
+			<li><p>{function name="number_format" v="$user_data.money" f=2}</p><p>可用余额 ( 元 )</p></li>
+            <li><p>{$money_total.load_repay_money}</p><p>累计收益 ( 元 )</p></li>			
+		</ul> -->
+    </div>
+    <ul class="my-operation">
+    	<li><a onclick="incharge_btn()"><span>充值</span></a></li>
+    	<li><a onclick="bank_btn()"><span>提现</span></a></li>
+    </ul>
+    {if $ajaxdata.code eq 0}
+    <a href="javascript:;" class="cg-tips"><span>开通宜宾商业银行存管账户，享受更安全的资金保障</span><i></i></a>
+    {/if}
+    <ul class="my-list">
+    	<li><a href="{url x="index" r="uc_money"}"><span>资金详览</span><i></i></a></li>
+    	<li><a href="{url x="index" r="uc_invest#lendlist"}"><span>出借记录</span><i></i></a></li>
+    	<!-- <li><a href="{url x="index" r="uc_autoinvest#index"}"><span>自动投标</span><i></i></a></li> -->
+    	<li><a onclick="autoinvest_btn()"><span>自动投标</span><i></i></a></li>
+    	<li><a href="{url x="index" r="uc_voucher#wapindex"}"><span>优惠券</span><i></i></a></li>
+    	<li><a href="{url x="index" r="uc_account#security"}"><span>安全中心</span><i></i></a></li>
+    	<li><a href="{url x="index" r="uc_set"}"><span>设置</span><i></i></a></li>
+    	<!-- <li><a href="https://wap.jiuchengjr.com/"><span>1.0版查询入口</span><i></i></a></li> -->
+    </ul>
+    <!-- 导航-footer -->
+   {include file="inc/footer.html"}
+</section>
+<script type="text/javascript">
+$(function(){
+    //金额显示与隐藏
+    $('.money_show_hide').click(function(){
+        if($('.money_show_hide').hasClass('eye_close')){
+            $('.money_show_hide').removeClass('eye_close');
+            $('.my-total p:first-of-type').show();
+            $('.my-total p:nth-of-type(2)').hide();
+            $('.my-money li p:first-of-type').show();
+            $('.my-money li p:nth-of-type(2)').hide();
+        }else{
+            $('.money_show_hide').addClass('eye_close');
+            $('.my-total p:first-of-type').hide();
+            $('.my-total p:nth-of-type(2)').show();
+            $('.my-money li p:first-of-type').hide();
+            $('.my-money li p:nth-of-type(2)').show();
+        }
+    });   
+});
+    //存管账户
+    var mySwiper = new Swiper ('.swiper-container', {
+        loop: true, 
+        pagination: '.swiper-pagination',
+    });
+    //存管弹窗
+    $('.cg-tips').click(function(){        
+        layer.open({
+            className: 'cg-pop',
+            content: '<img src="{$TMPL}/images/wap2/my/cg-pop-bg.png" style="width:100%; border-radius: 12px 12px 0 0;" />',
+            btn: ['立即开通','取消'],
+            yes: function(index){
+                //点击立即开通后跳到存管开户页面
+                window.location.href = '{$ajaxdata.url}';
+                layer.close(index);
+            }, 
+            no: function(){
+                //点击取消按钮后无需做其他动作
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+function incharge_btn(){
+    {if $ajaxdata.code eq 0}
+    layer.open({
+        className: 'cg-pop',
+        content: '<img src="{$TMPL}/images/wap2/my/cg-pop-bg.png" style="width:100%; border-radius: 12px 12px 0 0;" />',
+        btn: ['立即开通','取消'],
+        yes: function(index){
+            //点击立即开通后跳到存管开户页面
+            window.location.href = '{$ajaxdata.url}';
+            layer.close(index);
+        }, 
+        no: function(){
+            //点击取消按钮后无需做其他动作
+        }
+    });
+    /*layer.open({
+        className: 'popup-btn',
+        content: '<h3>提示</h3><p>您有信息尚未填写完整，是否前去填写？</p>',
+        btn: ['是','否'],
+        shadeClose: true,
+        yes: function(){
+            //点击确认按钮后要做的动作
+            window.location.href = '{$ajaxdata.url}';
+        },
+        no:function(){
+
+        }
+    });*/
+    {elseif $ajaxdata.code eq 2}
+        layer.open({
+            className: 'popup-btn',
+            content: '<h3>提示</h3><p>系统正在升级，请稍后再试</p>', 
+            shadeClose: true,
+            time: 2
+        });
+    {elseif $ajaxdata.code eq 1}
+        window.location.href = '{$ajaxdata.url}';
+    {else}
+         window.location.href = '{url x="index" r="uc_money#incharge"}';
+    {/if}
+}
+function bank_btn(){
+    {if $ajaxdata.code eq 0}
+    layer.open({
+        className: 'cg-pop',
+        content: '<img src="{$TMPL}/images/wap2/my/cg-pop-bg.png" style="width:100%; border-radius: 12px 12px 0 0;" />',
+        btn: ['立即开通','取消'],
+        yes: function(index){
+            //点击立即开通后跳到存管开户页面
+            window.location.href = '{$ajaxdata.url}';
+            layer.close(index);
+        }, 
+        no: function(){
+            //点击取消按钮后无需做其他动作
+        }
+    });
+    {elseif $ajaxdata.codes eq 3}
+        layer.open({
+            className: 'popup-btn',
+            content: '<h3>提示</h3><p>系统正在升级，请稍后再试</p>', 
+            shadeClose: true,
+            time: 2
+        });
+    {elseif $ajaxdata.code eq 1}
+        window.location.href = '{$ajaxdata.url}';
+    {else}
+        window.location.href = '{url x="index" r="uc_money#bank"}';
+    {/if}
+}
+
+function autoinvest_btn(){
+	{if $ajaxdata.code eq 0}
+    layer.open({
+        className: 'cg-pop',
+        content: '<img src="{$TMPL}/images/wap2/my/cg-pop-bg.png" style="width:100%; border-radius: 12px 12px 0 0;" />',
+        btn: ['立即开通','取消'],
+        yes: function(index){
+            //点击立即开通后跳到存管开户页面
+            window.location.href = '{$ajaxdata.url}';
+            layer.close(index);
+        }, 
+        no: function(){
+            //点击取消按钮后无需做其他动作
+        }
+    });
+    {elseif $ajaxdata.code eq 1}
+    window.location.href = '{$ajaxdata.url}';
+	{else}
+     window.location.href = '{url x="index" r="uc_autoinvest#index"}';
+	{/if}
+}
+</script>
+</body>
+</html>

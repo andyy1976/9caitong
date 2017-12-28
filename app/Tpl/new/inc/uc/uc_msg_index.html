@@ -1,0 +1,59 @@
+<div class="user_top_title bgfb">
+	<a class="current">{$LANG.UC_NOTICE}</a>
+</div>
+
+<div class="user_center_con">
+	<div class="uc01">
+		<div class="blank20"></div>
+		<form name="pm_list">
+			<table style="width:100%" cellspacing="0" cellpadding="0" border="0" class="uc_table_list" >
+				<tr>
+					<th width="40px"></th>
+					<th width="120px">时间</th>
+					<th width="120px">类别</th>
+					<th width="200px">发送人</th>
+					<th>摘要</th>
+				</tr>
+				{foreach from=$msg_list item=pm key=key}
+				<tr class="{if $key mod 2 eq 0}bgf7{/if}">
+					<td><!--<input  type="checkbox" />--></td>
+					<td>{function name="pass_date" v=$pm.create_time}</td>
+					
+					<td>
+						{if $pm.system_msg_id neq 0 or $pm.is_notice}
+							{if $pm.is_notice gt 0}
+								{$pm.notice_name}
+							{else}
+								{$LANG.SYSTEM_PM}
+							{/if}
+						{/if}	
+					</td>
+					<td>玖财通官网</td>
+					<td class="ta_l" style="cursor:pointer;" onclick="window.location.href='{url x="index" r="uc_msg#message_info" p="id=$pm.msg_id"}';">
+						<div class="clearfix tr">
+						{if $mtype eq 'private'}
+						<input type="checkbox" value="{$pm.group_key}" name="pm_key[]" />删除
+						{/if}
+						</div>
+						{if $pm.title}<div class="b">{$pm.title}</div>{/if}
+						{if $pm.system_msg_id eq 0 and $pm.type eq 0 and $pm.is_notice eq 0}
+						[{$LANG.VIEW_AND_REPLY}]
+						{/if}
+					</td>
+				</tr>				
+				{/foreach}
+			
+			</table>
+		</form>
+		{if $mtype eq 'private'}
+			<div class="pt10 f_r" style="float:right">
+			{$LANG.SELECT_ALL}<input type="checkbox" name="checkall" /> 
+			</div>
+			<div class="f_r tr" style=" width: 100%;">
+			<input type="button" value="{$LANG.DELETE}" name="del_pm" class="remove_msg_btn" />
+			</div>	
+		{/if}			
+		<div class="pages">{$pages}</div>
+		<div class="blank20"></div>	
+	</div>
+</div>

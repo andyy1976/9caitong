@@ -1,0 +1,32 @@
+<body>
+<section class="container cf">
+    <div class="header"><a href="{url x="index" r="uc_center"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a>安全中心</div>
+	<!-- 安全中心 -->
+    <ul class="my-security-list my-safe-list cf">
+        
+    {if $user_info.cunguan_tag neq 1}
+         <li class="my-safe-cunguan"><a href="{url x="index" r="uc_depository_account#index"}"><span>存管账户</span><i></i><p class="tel-how">去开通</p></a></li>
+         <li class="my-login-pass"><a href="{url x="index" r="uc_account#reset_password"}"><span>修改登录密码</span><i></i></a></li>
+         <li class="my-safe-tel"><a href="{url x="index" r="uc_account#mobile"}"><span>手机号</span><i></i><p class="tel-num">{function name="hideMobile" v=$user_info.mobile}</p><p class="tel-how">修改绑定手机号？</p></a></li>
+    {else}
+       {if $user_info.cunguan_pwd eq 1}
+        	<li class="my-login-pass"><a href="{url x="index" r="uc_account#reset_password"}"><span>修改登录密码</span><i></i></a></li>
+            <li class="my-safe-cg-pass"><a href="{url x="index" r="uc_depository_paypassword#changepaypassword"}"><span>修改存管交易密码</span><i></i></a></li>
+            <li class="my-safe-re-pass"><a href="{url x="index" r="uc_depository_paypassword#resetpaypassword"}"><span>重置存管交易密码</span><i></i><p class="tel-how">忘记交易密码？</p></a></li>
+            <li class="my-safe-tel"><a href="{url x="index" r="uc_account#mobile"}"><span>手机号</span><i></i><p class="tel-num">{function name="hideMobile" v=$user_info.mobile}</p><p class="tel-how"></p></a></li>
+            {if $usinfos.bankcard}
+                <li class="my-inbank"><a href="{url x="index" r="uc_account#bank"}"><span>我的银行卡</span><i></i></a></li>
+            {else}
+                <li class="my-cg-bank"><a href="{url x="index" r="uc_depository_addbank#wap_check_pwd"}"><span>我的银行卡</span><i></i><p class="tel-how">去绑卡</p></a></li>
+            {/if}
+        {else}
+        	<li class="my-login-pass"><a href="{url x="index" r="uc_account#reset_password"}"><span>修改登录密码</span><i></i></a></li>
+            <li class="my-safe-cg-pass"><a href="{url x="index" r="uc_depository_paypassword#setpaypassword"}"><span>存管交易密码</span><i></i><p class="tel-how">去设置</p></a></li>
+            <li class="my-safe-tel"><a href="{url x="index" r="uc_account#mobile"}"><span>手机号</span><i></i><p class="tel-num">{function name="hideMobile" v=$user_info.mobile}</p><p class="tel-how">修改绑定手机号？</p></a></li>
+            <li class="my-cg-bank"><a href="{url x="index" r="uc_depository_addbank#wap_check_pwd"}"><span>我的银行卡</span><i></i><p class="tel-how">去绑卡</p></a></li>
+        {/if}
+    {/if}
+    </ul>
+</section>
+</body>
+</html>

@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+html{ background: url("../images/bg1.jpg") repeat-y;}
+.container{ min-width: 1200px;}
+.banner{ width: 100%; height: 920px; background: url("../images/banner.jpg") no-repeat 50% 0!important; overflow: hidden;}
+
+.content{ width: 1200px; margin: -23px auto 0;}
+.content h2{ width: 952px; margin: 0 auto;}
+.law{ width: 100%; height: 1280px; margin: 40px auto; background: url("../images/bg2.png") no-repeat 0 0; position: relative;}
+.law h3{ width: 860px; line-height: 42px; margin: 32px auto 0; font-size: 20px; color: #ff8a00;}
+.law h3 span{ font-size: 30px;}
+.law h3.third{ margin-top: 28px;}
+.law h3.four{ margin-top: 28px;}
+.law b{ width: 100%; height: 90px; display: block;}
+.law p{ width: 860px; line-height: 34px; margin: 0 auto; font-size: 16px; color: #333;}
+
+.law i{ width: 170px; height: 124px; position: absolute; left: -290px; top: -64px; background: url("../images/icon.png") 0 0;}
+.law i.icon-2{ left: -55px; top: 597px; background-position: 0 -248px;}
+.law i.icon-3{ left: -235px; top: 1242px; background-position: 0 -372px;}
+.law i.icon-4{ left: -167px; top: 2028px; background-position: 0 -248px;}
+.law i.icon-5{ left: 1350px; top: 124px; background-position: 0 -124px;}
+.law i.icon-6{ left: 1158px; top: 876px; background-position: 0 -372px;}
+.law i.icon-7{ left: 1350px; top: 1470px; background-position: 0 0;}
+
+.file{ width: 1200px; margin: 62px auto 0; overflow:hidden;}
+.file li{ width: 385px; float: left; margin: 0 5px 0 6px;}
+.file a{ width: 350px; height: 468px; display: block; margin: 0 auto; transition: .5s;}
+.file a img{ width: 100%;}
+.file a.scale{ transform: scale(1.1, 1.1);}
+.file span{ width: 100%; line-height: 72px; display: block; font-size: 16px; color: #333; text-align: center;}

@@ -1,0 +1,79 @@
+<body>
+<section class="container container2 cf">
+    <div class="sale-header"><a href="{url x="index" r="salesman"}" class="back-icon"><img src="{$TMPL}/images/wap2/my/icon_back.png" width="10" height="18"></a><p style="float:right;width:90%;text-align:center;padding-right:5%">所有用户</p></div>
+    <div class="acvievt">
+    <form action="{url x="index" r="salesman#total_user"}" method="post" id="sale-from">
+        <span id="sale-span"><input type="text" name="real_name" value="" placeholder="手机号码/姓名查询" style="height:20px"></span>
+        <span id="sale-span">
+            <select class="sale-zt" name="type" value="{$type}">
+                <option value="0">全部</option>
+                <option value="1">注册</option>
+                <option value="2">实名</option>
+                <option value="3">出借</option>
+            </select>
+        </span>
+        <span style="padding-left: 10px;"><input type="submit" name=""  value="筛选" style="width:15%"></span>
+    </form>
+        
+        <ul class="acvievt_li">
+            <li><span>用户</span><span>姓名</span><span>状态</span><span>更新时间</span></li>
+            {foreach from=$list item="vo"}
+            <li><a href="{url x="index" r="salesman#total_user_info" p="id=$vo.id"}"><span>{$vo.mobile}</span><span>{$vo.real_name}</span><span>{$vo.type}</span><span>{$vo.create_time}</span><i><img src="{$TMPL}/images/wap2/my/icon_person.png" width="5" height="10"></i></a></li>
+            {/foreach}
+        </ul>
+    </div>
+    <style type="text/css">
+    .sale-header{line-height: 48px;background: linear-gradient(to bottom, #575cde 0%, #4672de 100%);overflow: hidden;color: white;font-size: 1.6rem;position: relative;}
+    .sale-header img{padding-left:5%;}
+    /*.acvievt{margin: 10px 4%;width: 92%}*/
+    #sale-span{padding-left: 5%}
+    #sale-span input{width: 45%}
+    .acvievt input{font-size: 12px}
+    .acvievt .sale-zt{font-size: 12px;width: 20%;}
+    .acvievt ul{margin-top: 10px}
+    .acvievt ul li{height: 40px;line-height: 40px;text-align: center;font-size: 12px}
+    .acvievt ul li:nth-of-type(1){border-bottom: 1px solid #000;height: 40px;line-height: 40px}
+    .acvievt ul li span{float: left;display: block;width: 23%;text-align: center;}
+    .acvievt ul li a{color: #000}
+    .acvievt i{height: 40px}
+    .acvievt i img{padding-right: 5px;}
+    .acvievt ul li span:nth-of-type(2){width: 20%;text-align: center;}
+    .acvievt ul li span:nth-of-type(3){width: 15%;text-align: center;}
+    .acvievt ul li span:nth-of-type(4){width: 38%;text-align: center;}
+    .acvievt ul li:nth-of-type(even){background:#d6d6d6;}/*偶数行*/
+    #sale-from{margin-top: 15px;}
+    </style>
+    <link rel="stylesheet" href="{$TMPL}/js/sale/src/css/layui.css">
+    <script type="text/javascript" src="{$TMPL}/js/sale/src/layui.js"></script>
+    <script>
+        layui.use('flow', function(){
+            var flow = layui.flow; 
+            flow.load({
+                elem: '.acvievt_li' //流加载容器
+                ,done: function(page, next){ //执行下一页的回调
+                var lis = [];
+                var query = new Object();
+                query.page=page;
+                query.real_name="{$real_name}";
+                query.type="{$type}";
+                var url = "{url x="index" r="salesman#ajax_sale_user"}";
+                $.ajax({
+                    type:'POST',
+                    url:url,
+                    data:query,
+                    dataType:'json',
+                    success:function(res){
+                        layui.each(res.data, function(index, item){
+                            lis.push('<li><a href={url x="index" r="salesman#total_user_info"}&id='+item.id+'><span>'+item.mobile+'</span><span>'+item.real_name+'</span><span>'+item.type+'</span><span>'+item.create_time+'</span><i><img src="{$TMPL}/images/wap2/my/icon_person.png" width="5" height="10"></i></a></li>');
+                        });
+                        next(lis.join(''), page < res.pages);    
+                    }
+                });
+            }
+        });
+    });
+    </script>
+</section>
+</head>
+</body>
+</html>
